@@ -12,8 +12,8 @@
 @color-white-divider: rgba(255,255,255,.2);
 
 @color-black: rgba(0,0,0,.87);
-@color-black-secondary: rgba(0,0,0,.54);
-@color-black-divider: rgba(0,0,0,.4);
+@color-black-secondary: rgba(0,0,0,.4);
+@color-black-divider: rgba(0,0,0,.2);
 
 @line-height-base:        1.8; // 20/14
 
@@ -25,14 +25,18 @@
 
 @btn-primary-color:              #fff;
 @btn-primary-bg:                 rgba(0,0,0,.8);
-@btn-primary-border:             darken(@btn-primary-bg, 5%);
+@btn-primary-border:             transparent;
+
+@btn-default-color:              @color-white-secondary;
+@btn-default-bg:                 rgba(0,0,0,.3);
+@btn-default-border:             transparent;
 
 
 body{
   font-weight: @font-weight-normal;
-  text-align: center;
+  // text-align: center;
   background-color: rgba(0,0,0,.2);
- // box-shadow: inset 0 0 200px #fff;
+  // box-shadow: inset 0 0 200px #fff;
 
 }
 
@@ -66,111 +70,83 @@ header{
   // box-shadow: inset 0px 0px 300px rgba(0,0,0,1);
   // text-shadow:  0 -1px 0px rgba(255,255,255,1);
   padding: 3em 0;
+}
+
+.brand {
+  // text-shadow: 0 0em em white;
+  // background-image: url(../img/llama.jpg);
+  // background-repeat: no-repeat;
+  // background-position: center center;
+  // background-size: cover;
+  // display: inline-block;
+  // background-attachment: fixed;
+
+  // -webkit-text-fill-color: transparent;
+  // -webkit-background-clip: text;
+
+  font-family: 'Rubik', sans-serif;
+  font-size: 6em;
+  @media (min-width: @screen-sm-min) {
+    font-size: 11em;
+  }
   @media (min-width: @screen-md-min) {
-    // paddingbrand: 100px 0 80px 0;
-  }
-
-  .brand {
-    // text-shadow: 0 0em em white;
-    font-family: 'Rubik', sans-serif;
-    font-size: 5em;
-    // background-image: url(../img/llama.jpg);
-    // background-repeat: no-repeat;
-    // background-position: center center;
-    // background-size: cover;
-    // display: inline-block;
-    // background-attachment: fixed;
-
-    // -webkit-text-fill-color: transparent;
-    // -webkit-background-clip: text;
-
-    @media (min-width: @screen-sm-min) {
-      font-size: 10em;
-    }
-    @media (min-width: @screen-md-min) {
-      font-size: 15em;
-    }
-  }
-
-  .btn{
-    @media (max-width: @screen-xs-max) {
-      .btn-block;
-    }
-  }
-
-  h2{
-    line-height: 1.5;
-    @media (min-width: @screen-md-min) {
-      padding: 0 4em;
-    }
-  }
-
-  p{
-    font-size:  @font-size-h4;
-    margin-bottom: 2em;
-    @media (min-width: @screen-md-min) {
-      padding: 0 4em;
-    }
-  }
-
-  .brand{
-    @media (min-width: @screen-md-min) {
-    }
-  }//brand
-
-}
-
-
-
-section, footer{
-  background: @color-white;
-  padding: 2em 0;
-  @media (min-width: @screen-md-min) {
-    padding: 4em 0;
+    font-size: 16em;
   }
 }
 
-.blurbs{
-  .col-md-4{
-    padding-bottom: 20px;
-    @media (min-width: @screen-md-min) {
-      border-bottom: none;
-      padding-bottom: 0px;
-    }
+.btn{
+  @media (max-width: @screen-xs-max) {
+    .btn-block;
   }
 }
 
-.call {
-  background: transparent;
-  // background: red;
-  // text-shadow: 0 -1px 1px rgba(0,0,0,1);
-  // background: @color-black-divider;
-  // box-shadow: inset 0 0 200px rgba(0,0,0,1);
-  // color: @color-white;
-  h2{
+h2{
+  line-height: 1.5;
+  font-size: 1.5em;
+  margin-top: 0;
+}
+
+p{
+  font-size: 1em;
+  margin-bottom: 2em;
+}
+
+
+.call-out {
+  background: #fff;
+  margin: 4em 0 4em -(@grid-gutter-width/2);
+  // margin-left: -(@grid-gutter-width/2);
+  padding:  @grid-gutter-width*2 @grid-gutter-width;
+
+}
+
+aside {
+  color: @color-black-secondary;
+  // font-size: .6em;
+  p {
     margin-bottom: 1em;
   }
-  p {
-//    font-size:  @font-size-h4;
-//    margin-bottom: 30px;
-    @media (min-width: @screen-md-min) {
-      padding: 0 4em;
-    }
+  .btn {
+    margin-bottom: 3em;
   }
-  a{
-    margin-top: 2em;
+  h2 {
+    // margin-bottom: 0em;
   }
 }
 
+
+
 footer{
-  border-top: 2px solid @color-black;
+  padding: 4em 0;
+  // border-top: 2px solid @color-black;
   background: #222;
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
-  ul{
-    display: inline-block;
-    margin-bottom: 2em;
-  }
+  // color: #fff;
+  // text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+  // ul{
+  //   display: inline-block;
+  //   margin-bottom: 2em;
+  // }
+  text-align: center;
   .rh-logo{
     img{
       height: 40px;

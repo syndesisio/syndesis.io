@@ -3020,7 +3020,7 @@ select[multiple].input-lg {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
 }
 .btn:active,
@@ -3044,27 +3044,27 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 .btn-default {
-  color: #333;
-  background-color: #fff;
-  border-color: #ccc;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: transparent;
 }
 .btn-default:focus,
 .btn-default.focus {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #8c8c8c;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-default:hover {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-  color: #333;
-  background-color: #e6e6e6;
-  border-color: #adadad;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-default:active:hover,
 .btn-default.active:hover,
@@ -3075,9 +3075,9 @@ fieldset[disabled] a.btn {
 .btn-default:active.focus,
 .btn-default.active.focus,
 .open > .dropdown-toggle.btn-default.focus {
-  color: #333;
-  background-color: #d4d4d4;
-  border-color: #8c8c8c;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-default:active,
 .btn-default.active,
@@ -3093,35 +3093,35 @@ fieldset[disabled] .btn-default:focus,
 .btn-default.disabled.focus,
 .btn-default[disabled].focus,
 fieldset[disabled] .btn-default.focus {
-  background-color: #fff;
-  border-color: #ccc;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-color: transparent;
 }
 .btn-default .badge {
-  color: #fff;
-  background-color: #333;
+  color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .btn-primary {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 0, 0, 0.8);
+  border-color: transparent;
 }
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-primary:hover {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-primary:active:hover,
 .btn-primary.active:hover,
@@ -3134,7 +3134,7 @@ fieldset[disabled] .btn-default.focus {
 .open > .dropdown-toggle.btn-primary.focus {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 0, 0, 0);
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -3151,7 +3151,7 @@ fieldset[disabled] .btn-primary:focus,
 .btn-primary[disabled].focus,
 fieldset[disabled] .btn-primary.focus {
   background-color: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 0, 0, 0.8);
+  border-color: transparent;
 }
 .btn-primary .badge {
   color: rgba(0, 0, 0, 0.8);
@@ -6724,7 +6724,6 @@ button.close {
 }
 body {
   font-weight: 400;
-  text-align: center;
   background-color: rgba(0, 0, 0, 0.2);
 }
 h1,
@@ -6748,88 +6747,53 @@ strong,
 header {
   padding: 3em 0;
 }
-@media (min-width: 992px) {
-}
-header .brand {
+.brand {
   font-family: 'Rubik', sans-serif;
-  font-size: 5em;
+  font-size: 6em;
 }
 @media (min-width: 768px) {
-  header .brand {
-    font-size: 10em;
+  .brand {
+    font-size: 11em;
   }
 }
 @media (min-width: 992px) {
-  header .brand {
-    font-size: 15em;
+  .brand {
+    font-size: 16em;
   }
 }
 @media (max-width: 767px) {
-  header .btn {
+  .btn {
     display: block;
     width: 100%;
   }
 }
-header h2 {
+h2 {
   line-height: 1.5;
+  font-size: 1.5em;
+  margin-top: 0;
 }
-@media (min-width: 992px) {
-  header h2 {
-    padding: 0 4em;
-  }
-}
-header p {
-  font-size: 20px;
+p {
+  font-size: 1em;
   margin-bottom: 2em;
 }
-@media (min-width: 992px) {
-  header p {
-    padding: 0 4em;
-  }
+.call-out {
+  background: #fff;
+  margin: 4em 0 4em -15px;
+  padding: 60px 30px;
 }
-section,
-footer {
-  background: #ffffff;
-  padding: 2em 0;
+aside {
+  color: rgba(0, 0, 0, 0.4);
 }
-@media (min-width: 992px) {
-  section,
-  footer {
-    padding: 4em 0;
-  }
-}
-.blurbs .col-md-4 {
-  padding-bottom: 20px;
-}
-@media (min-width: 992px) {
-  .blurbs .col-md-4 {
-    border-bottom: none;
-    padding-bottom: 0px;
-  }
-}
-.call {
-  background: transparent;
-}
-.call h2 {
+aside p {
   margin-bottom: 1em;
 }
-@media (min-width: 992px) {
-  .call p {
-    padding: 0 4em;
-  }
-}
-.call a {
-  margin-top: 2em;
+aside .btn {
+  margin-bottom: 3em;
 }
 footer {
-  border-top: 2px solid rgba(0, 0, 0, 0.87);
+  padding: 4em 0;
   background: #222;
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.6);
-}
-footer ul {
-  display: inline-block;
-  margin-bottom: 2em;
+  text-align: center;
 }
 footer .rh-logo img {
   height: 40px;
