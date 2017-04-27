@@ -6787,12 +6787,6 @@ header p {
     padding: 0 4em;
   }
 }
-@media (min-width: 992px) {
-}
-header .arrow {
-  color: rgba(255, 255, 255, 0.2);
-  text-shadow: none;
-}
 section,
 footer {
   background: #ffffff;
@@ -6835,7 +6829,7 @@ footer {
 }
 footer ul {
   display: inline-block;
-  margin-bottom: 30px;
+  margin-bottom: 2em;
 }
 footer .rh-logo img {
   height: 40px;
