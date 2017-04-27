@@ -1,0 +1,172 @@
+@import "node_modules/bootstrap/less/bootstrap.less";
+
+@import url('https://fonts.googleapis.com/css?family=Overpass:100,400,700|Rubik:900');
+
+@font-family-base: 'Overpass', sans-serif;
+@font-weight-normal: 400;
+@font-weight-bold: 700;
+
+@color-white: rgba(255,255,255,1);
+@color-white-secondary: rgba(255,255,255,.7);
+@color-white-divider: rgba(255,255,255,.2);
+
+@color-black: rgba(0,0,0,.87);
+@color-black-secondary: rgba(0,0,0,.54);
+@color-black-divider: rgba(0,0,0,.4);
+
+@line-height-base:        1.8; // 20/14
+
+@link-color: @color-white-secondary;
+
+
+@input-border-radius-large:      2px;
+@btn-border-radius-large:        2px;
+
+@btn-primary-color:              #fff;
+@btn-primary-bg:                 rgba(0,0,0,.8);
+@btn-primary-border:             darken(@btn-primary-bg, 5%);
+
+
+
+body{
+  font-weight: @font-weight-normal;
+  text-align: center;
+  background-image: linear-gradient(rgba(0,0,0,.05), rgba(0,0,0,.3))
+  // , url(../img/llama.jpg)
+  ;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: rgba(0,0,0,.2);
+//  box-shadow: inset 0 0 200px #fff;
+
+}
+
+h1,h2,h3,h4,h5,h6, strong, .btn-lg{
+  font-weight: @font-weight-bold;
+}
+
+// .btn {
+//   text-shadow: none!important;
+//   cursor: pointer!important;
+// }
+
+header{
+  // color: @color-white;
+  // background: @color-black-divider;
+  // box-shadow: inset 0px 0px 300px rgba(0,0,0,1);
+  // text-shadow: 0 -1px 1px rgba(0,0,0,1);
+  padding: 4em 0 4em 0;
+  @media (min-width: @screen-md-min) {
+    // paddingbrand: 100px 0 80px 0;
+  }
+
+  .brand {
+    font-family: 'Rubik', sans-serif;
+    font-size: 5em;
+    @media (min-width: @screen-sm-min) {
+      font-size: 10em;
+    }
+  }
+
+  .btn{
+    @media (max-width: @screen-xs-max) {
+      .btn-block;
+    }
+  }
+
+  h2{
+    // margin-bottom: 30px;
+    // line-height: 50px;
+    @media (min-width: @screen-md-min) {
+      padding: 0 4em;
+    }
+  }
+
+  p{
+    font-size:  @font-size-h4;
+    margin-bottom: 2em;
+    @media (min-width: @screen-md-min) {
+      padding: 0 4em;
+    }
+  }
+
+  .brand{
+    // margin-bottom: 40px;
+    @media (min-width: @screen-md-min) {
+      // margin-bottom: 80px;
+    }
+  }//brand
+
+  .arrow{
+//    font-size: 60px;
+    color: @color-white-divider;
+    text-shadow: none;
+    // margin-top: 2em;
+  }
+
+}
+
+
+
+section, footer{
+  background: @color-white;
+  padding: 2em 0;
+  @media (min-width: @screen-md-min) {
+    padding: 4em 0;
+  }
+//  border-bottom: 1px solid @color-black-divider;
+}
+
+.blurbs{
+  .col-md-4{
+//    border-bottom: 1px solid @color-black-divider;
+    padding-bottom: 20px;
+    @media (min-width: @screen-md-min) {
+      border-bottom: none;
+      padding-bottom: 0px;
+    }
+  }
+}
+
+.call {
+  background: transparent;
+  // background: red;
+  // text-shadow: 0 -1px 1px rgba(0,0,0,1);
+  // background: @color-black-divider;
+  // box-shadow: inset 0 0 200px rgba(0,0,0,1);
+  // color: @color-white;
+  h2{
+    margin-bottom: 1em;
+  }
+  p {
+//    font-size:  @font-size-h4;
+//    margin-bottom: 30px;
+    @media (min-width: @screen-md-min) {
+      padding: 0 4em;
+    }
+  }
+  a{
+    margin-top: 2em;
+  }
+}
+
+footer{
+  border-top: 2px solid @color-black;
+  background: #222;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+  ul{
+    display: inline-block;
+//    border-bottom: 1px solid @color-white-divider;
+//    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+  .rh-logo{
+    img{
+      height: 40px;
+    }
+  }
+
+}

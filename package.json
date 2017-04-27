@@ -1,0 +1,19 @@
+{
+  "name": "llama",
+  "version": "1.0.0",
+  "description": "llama",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "andres",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-uglify": "^2.1.2"
+  }
+}
