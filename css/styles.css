@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url('https://fonts.googleapis.com/css?family=Overpass:100,400,700|Rubik:900');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700');
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -3003,7 +3003,7 @@ select[multiple].input-lg {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
 }
 .btn:active,
@@ -3025,27 +3025,27 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 .btn-default {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 .btn-default:focus,
 .btn-default.focus {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(191, 191, 191, 0.7);
 }
 .btn-default:hover {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(224, 224, 224, 0.7);
 }
 .btn-default:active,
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(224, 224, 224, 0.7);
 }
 .btn-default:active:hover,
 .btn-default.active:hover,
@@ -3056,9 +3056,9 @@ fieldset[disabled] a.btn {
 .btn-default:active.focus,
 .btn-default.active.focus,
 .open > .dropdown-toggle.btn-default.focus {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(191, 191, 191, 0.7);
 }
 .btn-default:active,
 .btn-default.active,
@@ -3075,11 +3075,11 @@ fieldset[disabled] .btn-default:focus,
 .btn-default[disabled].focus,
 fieldset[disabled] .btn-default.focus {
   background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 .btn-default .badge {
   color: rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .btn-primary {
   color: #fff;
@@ -6660,6 +6660,8 @@ body {
   font-weight: 400;
   text-rendering: optimizeLegibility;
   font-smoothing: antialiased;
+  background-image: radial-gradient(ellipse farthest-corner at center top, rgba(255, 255, 255, 0.7) 0%, transparent 60%, transparent), linear-gradient(#e9fbcf 10%, #1d7d8e 90%);
+  background-attachment: fixed;
 }
 h1,
 h2,
@@ -6675,11 +6677,12 @@ strong,
 header {
   padding: 8em 0;
 }
-.brand img {
+.brand {
   width: 100%;
+  fill: red;
 }
 .btn {
-  margin-top: 1em;
+  margin-top: .5em;
 }
 @media (max-width: 767px) {
   .btn {
@@ -6692,29 +6695,28 @@ h2 {
   font-size: 1.5em;
   margin-top: 0;
 }
-p {
-  font-size: 1em;
-}
-.call-out,
-footer {
-  background: rgba(0, 0, 0, 0.2);
+.call-out {
+  background: #ffffff;
+  box-shadow: 0rem 0.5rem 1rem -0.5rem rgba(0, 0, 0, 0.3);
   margin: 4em 0;
   padding: 3em;
 }
-.actions p {
-  font-size: 0.9em;
-}
-.actions .btn {
-  margin-bottom: 3em;
+.actions i {
+  font-size: 3em;
+  color: rgba(255, 255, 255, 0.2);
 }
 .actions h2 {
-  font-size: 1em;
-  margin-bottom: .5em;
+  margin-top: .5em;
 }
 footer {
-  padding: 4em 0;
-  background: transparent;
+  margin-top: 4em;
+  color: rgba(255, 255, 255, 0.7);
+  background: #09262b;
   text-align: center;
+  padding: 8em 0;
+}
+footer .rh-logo {
+  margin-top: 4em;
 }
 footer .rh-logo img {
   height: 40px;

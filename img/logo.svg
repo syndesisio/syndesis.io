@@ -2,11 +2,15 @@
 <!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 408.5 91.5" style="enable-background:new 0 0 408.5 91.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#09262B;}
+</style>
 <g>
-	<path d="M0,2.9h21v67.8h37.3v18H0V2.9z"/>
-	<path d="M68.5,2.9h21v67.8h37.3v18H68.5V2.9z"/>
-	<path d="M174.2,0h3.7l42,88.7h-22.6l-4.3-8.9h-33.9l-4.1,8.9h-22.6L174.2,0z M185.9,64.8L176,43h-0.3l-10,21.7H185.9z"/>
-	<path d="M229.1,2.9h19.6l21.9,46.3l22-46.3h19.3v85.8H291V50.5l-18.7,41h-3.4l-18.7-41.3v38.5h-21V2.9z"/>
-	<path d="M362.8,0h3.7l42,88.7H386l-4.3-8.9h-33.9l-4.1,8.9H321L362.8,0z M374.5,64.8L364.6,43h-0.3l-10,21.7H374.5z"/>
+	<path class="st0" d="M0,2.9h21v67.8h37.3v18H0V2.9z"/>
+	<path class="st0" d="M68.5,2.9h21v67.8h37.3v18H68.5V2.9z"/>
+	<path class="st0" d="M174.2,0h3.7l42,88.7h-22.6l-4.3-8.9h-33.9l-4.1,8.9h-22.6L174.2,0z M185.9,64.8L176,43h-0.3l-10,21.7H185.9z"
+		/>
+	<path class="st0" d="M229.1,2.9h19.6l21.9,46.3l22-46.3h19.3v85.8H291V50.5l-18.7,41h-3.4l-18.7-41.3v38.5h-21V2.9z"/>
+	<path class="st0" d="M362.8,0h3.7l42,88.7H386l-4.3-8.9h-33.9l-4.1,8.9H321L362.8,0z M374.5,64.8L364.6,43h-0.3l-10,21.7H374.5z"/>
 </g>
 </svg>

@@ -1,6 +1,6 @@
 @import "node_modules/bootstrap/less/bootstrap.less";
 
-@import url('https://fonts.googleapis.com/css?family=Overpass:100,400,700|Rubik:900');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,700');
 
 @font-family-base: 'Overpass', sans-serif;
 @font-size-base: 16px;
@@ -19,7 +19,6 @@
 
 @link-color: @color-white-secondary;
 
-
 @input-border-radius-large:      2px;
 @btn-border-radius-large:        2px;
 
@@ -27,9 +26,9 @@
 @btn-primary-bg:                 rgba(0,0,0,.8);
 @btn-primary-border:             transparent;
 
-@btn-default-color:              @color-black-secondary;
+@btn-default-color:              @color-white-secondary;
 @btn-default-bg:                 rgba(0,0,0,0);
-@btn-default-border:             @color-black-secondary;
+@btn-default-border:             @color-white-secondary;
 
 @grid-gutter-width: 60px;
 
@@ -37,73 +36,28 @@ body{
   font-weight: @font-weight-normal;
   text-rendering: optimizeLegibility;
   font-smoothing: antialiased;
-  // background-color: rgba(0,0,0,.2);
-  // background-image:
-  //   linear-gradient(-45deg, #267871, #136a8a);
-  // color: @color-white;
-  // background-image: url(../img/llama.jpg);
-  // background-repeat: no-repeat;
-  // background-position: right top;
-  // background-size: cover;
-  // background-attachment: fixed;
+  background-image:
+  radial-gradient(ellipse farthest-corner at center top, rgba(255,255,255,.7) 0%, transparent 60%, transparent),
+  // linear-gradient( to bottom, #bbbbbb, #ededed);
+  linear-gradient(#e9fbcf 10%,#1d7d8e 90%);
+  background-attachment: fixed;
 }
 
 h1,h2,h3,h4,h5,h6, strong, .btn-lg{
   font-weight: @font-weight-bold;
 }
 
-// .btn {
-//   text-shadow: none!important;
-//   cursor: pointer!important;
-// }
-
-
 header{
-  // background-image: url(../img/llama.jpg);
-  // background-repeat: no-repeat;
-  // background-position: top center;
-  // background-size: cover;
-  // background-attachment: fixed;
-
-
-  // color: @color-white;
-  // background: @color-black-divider;
-  // box-shadow: inset 0px 0px 300px rgba(0,0,0,1);
-  // text-shadow:  0 -1px 0px rgba(255,255,255,1);
   padding: 8em 0;
 }
 
 .brand {
-  // background: red;
-  // text-shadow: 0 0em em white;
-  // background-image: url(../img/llama.jpg);
-  // background-repeat: no-repeat;
-  // background-position: center center;
-  // background-size: cover;
-  // display: inline-block;
-  // background-attachment: fixed;
-
-  // -webkit-text-fill-color: transparent;
-  // -webkit-background-clip: text;
-  // text-align: center;
-  // font-family: 'Rubik', sans-serif;
-  // font-size: 6em;
-  // @media (min-width: @screen-sm-min) {
-  //   font-size: 11em;
-  // }
-  // @media (min-width: @screen-md-min) {
-  //   font-size: 16em;
-  // }
-  // @media (min-width: @screen-lg-min) {
-  //   font-size: 19em;
-  // }
-  img {
-    width: 100%;
-  }
+  width: 100%;
+  fill: red;
 }
 
 .btn{
-  margin-top: 1em;
+  margin-top: .5em;
   @media (max-width: @screen-xs-max) {
     .btn-block;
   }
@@ -115,52 +69,37 @@ h2{
   margin-top: 0;
 }
 
-p{
-  font-size: 1em;
-  // margin-bottom: 1.5em;
-}
-
-
-.call-out, footer {
-  background: @color-black-divider;
+.call-out {
+  background: @color-white;
+  box-shadow: 0rem .5rem 1rem -.5rem rgba(0, 0, 0, 0.3);
   margin: 4em 0;
   padding: 3em;
 
 }
 
 .actions {
-  // color: @color-black-secondary;
-  // font-size: .6em;
-  p {
-    // margin-bottom: 1em;
-    font-size: 0.9em;
+  i {
+    font-size: 3em;
+    color: @color-white-divider;
+    // oa-bottom: 1em;
   }
-  .btn {
-    margin-bottom: 3em;
-  }
+  // p {
+  //   font-size: 0.9em;
+  // }
   h2 {
-    font-size: 1em;
-    margin-bottom: .5em;
+    // font-size: 1em;
+    margin-top: .5em;
   }
 }
 
-
-
 footer{
-  // margin-top: 0;
-  padding: 4em 0;
-  background: transparent;
-  // background: @color-black-secondary; // #CC0000
-  // border-top: 2px solid @color-black;
-  // background-image: linear-gradient(transparent, #222);
-  // color: #fff;
-  // text-shadow: 0 -1px 0 rgba(0,0,0,.6);
-  // ul{
-  //   display: inline-block;
-  //   margin-bottom: 2em;
-  // }
+  margin-top: 4em;
+  color: @color-white-secondary;
+  background: #09262b;
   text-align: center;
+  padding: 8em 0;
   .rh-logo{
+    margin-top: 4em;
     img{
       height: 40px;
     }
