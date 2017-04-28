@@ -2,22 +2,24 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     less = require('gulp-less'),
     plumber = require('gulp-plumber'),
+    autoprefixer = require('gulp-autoprefixer'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
 // Uglyfies js on to /js/minjs
-gulp.task('scripts', function(){  
+gulp.task('scripts', function(){
   gulp.src('js/*.js')
     .pipe(plumber())
     .pipe(uglify())
     .pipe(gulp.dest("js/minjs"));
-}); 
+});
 
 // Compiles less on to /css
 gulp.task('less', function () {
   gulp.src('less/**/*.less')
    .pipe(plumber())
    .pipe(less())
+   .pipe(autoprefixer())
    .pipe(gulp.dest('css'))
    .pipe(reload({stream:true}));
 });
@@ -37,11 +39,11 @@ gulp.task('bs-reload', function () {
 });
 
 // watch for changes on files
-gulp.task('watch', function(){ 
+gulp.task('watch', function(){
   gulp.watch('js/*.js', ['scripts']);
   gulp.watch('less/*.less', ['less']);
   gulp.watch("*.html", ['bs-reload']);
-}); 
+});
 
 // deploys
 gulp.task('default',  ['scripts', 'less','browser-sync','watch']);
