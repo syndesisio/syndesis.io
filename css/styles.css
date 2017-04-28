@@ -6673,27 +6673,10 @@ strong,
   font-weight: 700;
 }
 header {
-  padding: 4em 0;
+  padding: 8em 0;
 }
-.brand {
-  text-align: center;
-  font-family: 'Rubik', sans-serif;
-  font-size: 6em;
-}
-@media (min-width: 768px) {
-  .brand {
-    font-size: 11em;
-  }
-}
-@media (min-width: 992px) {
-  .brand {
-    font-size: 16em;
-  }
-}
-@media (min-width: 1200px) {
-  .brand {
-    font-size: 19em;
-  }
+.brand img {
+  width: 100%;
 }
 .btn {
   margin-top: 1em;
