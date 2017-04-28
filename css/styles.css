@@ -6660,7 +6660,7 @@ body {
   font-weight: 400;
   text-rendering: optimizeLegibility;
   font-smoothing: antialiased;
-  background-image: radial-gradient(ellipse farthest-corner at center top, rgba(255, 255, 255, 0.7) 0%, transparent 60%, transparent), linear-gradient(#e9fbcf 10%, #1d7d8e 90%);
+  background-image: radial-gradient(ellipse farthest-corner at center top, rgba(255, 255, 255, 0.7) 0%, transparent 65%, transparent), linear-gradient(#e9fbcf 10%, #1d7d8e 90%);
   background-attachment: fixed;
 }
 h1,
@@ -6711,7 +6711,9 @@ h2 {
 footer {
   margin-top: 4em;
   color: rgba(255, 255, 255, 0.7);
-  background: #09262b;
+  background-color: #09262b;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), transparent 10%);
+  box-shadow: inset 0em 0em 5em rgba(0, 0, 0, 0.4);
   text-align: center;
   padding: 8em 0;
 }
@@ -6720,4 +6722,10 @@ footer .rh-logo {
 }
 footer .rh-logo img {
   height: 40px;
+}
+.btn-primary:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.btn-default:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
