@@ -6724,7 +6724,6 @@ button.close {
 }
 body {
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.2);
 }
 h1,
 h2,
@@ -6770,7 +6769,7 @@ p {
 }
 .call-out,
 footer {
-  background: #fff;
+  background: rgba(0, 0, 0, 0.2);
   margin: 4em 0 0em -30px;
   padding: 60px 30px;
 }
