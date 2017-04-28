@@ -6740,6 +6740,7 @@ header {
   padding: 4em 0;
 }
 .brand {
+  text-align: center;
   font-family: 'Rubik', sans-serif;
   font-size: 6em;
 }
@@ -6770,11 +6771,8 @@ p {
 .call-out,
 footer {
   background: rgba(0, 0, 0, 0.2);
-  margin: 4em 0 0em -30px;
-  padding: 60px 30px;
-}
-aside {
-  color: rgba(0, 0, 0, 0.4);
+  margin: 4em 0;
+  padding: 3em;
 }
 aside p {
   margin-bottom: 1em;
