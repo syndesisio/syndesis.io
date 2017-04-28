@@ -6724,6 +6724,7 @@ button.close {
 }
 body {
   font-weight: 400;
+  text-rendering: optimizeLegibility;
 }
 h1,
 h2,
@@ -6752,6 +6753,11 @@ header {
 @media (min-width: 992px) {
   .brand {
     font-size: 16em;
+  }
+}
+@media (min-width: 1200px) {
+  .brand {
+    font-size: 19em;
   }
 }
 @media (max-width: 767px) {
