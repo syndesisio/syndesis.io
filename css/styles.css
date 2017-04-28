@@ -6774,14 +6774,13 @@ footer {
   margin: 4em 0;
   padding: 3em;
 }
-aside p {
-  margin-bottom: 1em;
+.actions p {
   font-size: 0.9em;
 }
-aside .btn {
+.actions .btn {
   margin-bottom: 3em;
 }
-aside h2 {
+.actions h2 {
   font-size: 1em;
   margin-bottom: .5em;
 }
