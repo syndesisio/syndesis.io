@@ -1,4 +1,4 @@
-baseURL = "https://syndesis.io/"
+baseURL = "https://jimmidyson.github.io/syndesis.io/"
 languageCode = "en-gb"
 enableGitInfo = true
 title = "Syndesis"
