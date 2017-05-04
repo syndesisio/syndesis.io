@@ -3,5 +3,4 @@ languageCode = "en-gb"
 enableGitInfo = true
 title = "Syndesis"
 theme = "syndesis"
-publishDir = "docs"
 relativeURLs = true

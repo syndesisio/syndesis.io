@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:7.10-alpine
+
+    working_directory: /workspace
+
+    steps:
+      - run:
+          name: Install tools 
+          command: |-
+            apk update -q && apk upgrade && apk add -q --no-progress git curl openssh-client tar
+            curl -fsSL https://github.com/spf13/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.tar.gz | tar xz -C /usr/local/bin hugo
+            yarn global add gulp-cli
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn
+
+      - save_cache:
+          key: node-modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      
+      - run:
+          name: Build site
+          command: gulp build
+
+      - deploy:
+          command: |
+            if [[ "${CIRCLE_PROJECT_USERNAME}" == "jimmidyson" && "${CIRCLE_BRANCH}" == "master" ]]; then
+              ./publish-to-gh-pages.sh
+            fi
