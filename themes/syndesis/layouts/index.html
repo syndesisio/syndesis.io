@@ -10,12 +10,38 @@
     </p>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha384-d+UOwmNNIC7V4izkTAKSXzWhjC2GxiS9PTykO1XdOPC3nc2z65UOS7SP6QdKPA70" crossorigin="anonymous"></script>
+<canvas class="particlesjs"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.0.2/particles.js" integrity="sha384-Bl7a88Sjii3hBFU16AlY9kXPfYVKNgPOgnYORuYthjxCxhjTjjUSKPyLJ6c3+iEv" crossorigin="anonymous"></script>
 <script>
-  'use strict';
   (function() {
-  particlesJS.load('particles-js', 'particlesjs-config.json', function() {
-    console.log('callback - particles.js config loaded');
-  });})();
+    window.onload = function() {
+      Particles.init({
+        selector: '.particlesjs',
+        color: '#ffffff',
+        connectParticles: true,
+        maxParticles: 300,
+        speed: 0.2,
+        // options for breakpoints
+        responsive: [
+          {
+            breakpoint: 768,
+            options: {
+              maxParticles: 10,
+            }
+          }, {
+            breakpoint: 425,
+            options: {
+              maxParticles: 80
+            }
+          }, {
+            breakpoint: 320,
+            options: {
+              maxParticles: 0 // disables particles.js
+            }
+          }
+        ]
+      });
+    };
+  })();
 </script>
 {{ partial "footer.html" . }}
