@@ -8,12 +8,14 @@
 
   <!-- Bootstrap CSS -->{{ .Hugo.Generator }}
   <link href="https://fonts.googleapis.com/css?family=Raleway:500|Righteous" rel="stylesheet">
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/syndesis.css{{ with .GitInfo }}?{{ .AbbreviatedHash }}{{ end }}">
+  <link rel="stylesheet" href="/css/syndesis.css{{ with .GitInfo }}?{{ .AbbreviatedHash }}{{ end }}">
 
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </head>
+
+
 
 <body>
   <a href="https://github.com/syndesisio" class="hidden-md-down" aria-label="View source on Github">
@@ -55,7 +57,7 @@
       </form>
     </div>
   </nav>
-  <div class="jumbotron text-center text-white">
+  <div class="jumbotron jumbotron-fluid text-center text-white">
     <div class="container">
       <h1 class="display-4">Introducing <span class="title">Syndesis</span></h1>
       <p class="lead">Harness the Power of Open Source in a Truly Hybrid Integration Platform.</p>
