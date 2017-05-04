@@ -1,0 +1,24 @@
+@import "./bootstrap/_variables";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+.navbar-brand {
+  font-family: Righteous, cursive;
+}
+
+.navbar-toggler {
+  cursor: pointer;
+}
+
+.jumbotron {
+  .title {
+    color: #bee1f4;
+  }
+
+  .btn-outline-learn-more {
+    @include button-outline-variant($white, $brand-primary);
+  }
+
+  .btn-get-started {
+    @include button-variant($brand-primary, $white, $brand-primary);
+  }
+}

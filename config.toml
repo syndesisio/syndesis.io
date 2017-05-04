@@ -1,0 +1,5 @@
+baseURL = "https://syndesis.io/"
+languageCode = "en-gb"
+enableGitInfo = true
+title = "Syndesis"
+theme = "syndesis"
