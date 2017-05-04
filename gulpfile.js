@@ -13,9 +13,20 @@ gulp.task('css:watch', gulp.series('css', function () {
   gulp.watch('./themes/syndesis/scss/**/*.scss', gulp.series('css'));
 }));
 
-gulp.task('watch', gulp.parallel('css:watch'));
 
-gulp.task('hugo:serve', function () {
+gulp.task('js', function () {
+  return gulp.src(['./node_modules/scrollpos-styler/scrollPosStyler.js'])
+    .pipe(plugins.concat('syndesis.js'))
+    .pipe(plugins.uglifyjs())
+    .pipe(gulp.dest('./themes/syndesis/static/js'));
+});
+gulp.task('js:watch', gulp.series('js', function () {
+  gulp.watch(['./node_modules/scrollpos-styler/scrollPosStyler.js'], gulp.series('js'));
+}));
+
+gulp.task('watch', gulp.parallel('css:watch', 'js:watch'));
+
+gulp.task('hugo:serve', function (cb) {
   var exec = require('child_process').exec;
 
   exec('hugo serve', function (err, stdout, stderr) {
@@ -35,5 +46,5 @@ gulp.task('hugo', function (cb) {
 });
 
 gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
-gulp.task('build', gulp.series('css', 'hugo'));
-gulp.task('default', gulp.series('build', 'serve'))
+gulp.task('build', gulp.series('css', 'js', 'hugo'));
+gulp.task('default', gulp.series('build', 'serve'));

@@ -14,6 +14,16 @@ h1,h2,h3,h4,h5,h6 {
   cursor: pointer;
 }
 
+.sps--abv {
+  background-color: transparent !important;
+  transition: background-color 500ms ease-in-out;
+}
+
+.sps--blw {
+  background-color: inherit;
+  transition: background-color 500ms ease-in-out;
+}
+
 .jumbotron {
   .title {
     color: #bee1f4;
