@@ -1,8 +1,13 @@
 @import "./bootstrap/_variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+h1,h2,h3,h4,h5,h6 {
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+}
+
 .navbar-brand {
   font-family: Righteous, cursive;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
 }
 
 .navbar-toggler {
@@ -12,6 +17,10 @@
 .jumbotron {
   .title {
     color: #bee1f4;
+  }
+
+  .lead {
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
   }
 
   .btn-outline-learn-more {
