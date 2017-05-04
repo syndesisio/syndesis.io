@@ -22,7 +22,9 @@ jobs:
 
       - run:
           name: Install dependencies
-          command: yarn
+          command: |-
+            yarn
+            npm rebuild node-sass
 
       - save_cache:
           key: node-modules-{{ checksum "yarn.lock" }}
