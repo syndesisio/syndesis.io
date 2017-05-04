@@ -22,3 +22,20 @@
     @include button-variant($brand-primary, $white, $brand-primary);
   }
 }
+
+footer.page-footer {
+  background-color: #000;
+  color: $white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  .btn-primary {
+    @include button-variant($white, #a30000, #000);
+    font-weight: bold;
+    width: 40%;
+  }
+
+  .rh-logo {
+    padding-top: 3rem;
+  }
+}
