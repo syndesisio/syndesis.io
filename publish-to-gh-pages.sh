@@ -20,5 +20,8 @@ rm -rf public/*
 echo "Generating site"
 gulp build
 
-echo "Updating gh-pages branch"
-cd public && git add --all && git commit -m "Publishing to gh-pages" && git push
+cd public
+if [[ $(git status -s) ]]; then
+  echo "Updating gh-pages branch"
+  git add --all && git commit -m "Publishing to gh-pages" && git push
+fi
