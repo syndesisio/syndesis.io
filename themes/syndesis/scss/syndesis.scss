@@ -54,6 +54,18 @@ footer.page-footer {
     @include button-variant($white, #a30000, #000);
     font-weight: bold;
     width: 40%;
+
+    @include media-breakpoint-down(lg) {
+      width: 70%;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 60%;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 70%;
+    }
   }
 
   .rh-logo {
