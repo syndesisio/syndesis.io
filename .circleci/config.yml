@@ -41,7 +41,7 @@ jobs:
 
       - deploy:
           command: |
-            if [[ "${CIRCLE_PROJECT_USERNAME}" == "jimmidyson" && "${CIRCLE_BRANCH}" == "master" ]]; then
+            if [[ "${CIRCLE_PROJECT_USERNAME}" =~ ^(jimmidyson\|syndesisio)$ && "${CIRCLE_BRANCH}" == "master" ]]; then
               git config --global user.email "${GIT_EMAIL}"
               git config --global user.name "${GIT_NAME}"
 
