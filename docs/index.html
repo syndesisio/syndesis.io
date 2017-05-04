@@ -58,6 +58,7 @@
 
 <div id="particles-js"></div>
 <div class="jumbotron jumbotron-fluid text-center text-white">
+  <canvas class="particlesjs"></canvas>
   <div class="container">
     <h1 class="display-4">Introducing <span class="title">Syndesis</span></h1>
     <p class="lead">Harness the Power of Open Source in a Truly Hybrid Integration Platform.</p>
@@ -67,7 +68,6 @@
     </p>
   </div>
 </div>
-<canvas class="particlesjs"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.0.2/particles.js" integrity="sha384-Bl7a88Sjii3hBFU16AlY9kXPfYVKNgPOgnYORuYthjxCxhjTjjUSKPyLJ6c3+iEv" crossorigin="anonymous"></script>
 <script>
   (function() {
@@ -76,24 +76,17 @@
         selector: '.particlesjs',
         color: '#ffffff',
         connectParticles: true,
-        maxParticles: 300,
-        speed: 0.2,
-        
+        maxParticles: 150,
         responsive: [
           {
             breakpoint: 768,
             options: {
-              maxParticles: 10,
-            }
-          }, {
-            breakpoint: 425,
-            options: {
               maxParticles: 80
             }
           }, {
-            breakpoint: 320,
+            breakpoint: 375,
             options: {
-              maxParticles: 0 
+              maxParticles: 50
             }
           }
         ]
