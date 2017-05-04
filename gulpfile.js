@@ -13,7 +13,6 @@ gulp.task('css:watch', gulp.series('css', function () {
   gulp.watch('./themes/syndesis/scss/**/*.scss', gulp.series('css'));
 }));
 
-
 gulp.task('js', function () {
   return gulp.src(['./node_modules/scrollpos-styler/scrollPosStyler.js'])
     .pipe(plugins.concat('syndesis.js'))
