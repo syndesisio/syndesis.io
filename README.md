@@ -10,7 +10,7 @@
 * Run `yarn`
 
 ### Previewing
-Run `gulp` and open your browser at http://localhost:1313/syndesis.io.
+Run `gulp` and open your browser at http://localhost:1313.
 
 ### Building
 Run `gulp build` to build site into `docs` directory, which GitHub will serve from.
