@@ -103,3 +103,7 @@ footer.page-footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+.row.feature-images [class*="col-"] {
+    margin-bottom: 0.75rem;
+}
