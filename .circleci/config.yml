@@ -35,9 +35,7 @@ jobs:
           name: Build site
           command: gulp build
 
-      - add_ssh_keys:
-          fingerprints:
-            - "4b:0a:a7:14:3f:99:69:8c:fa:36:d0:92:28:c4:05:79"
+      - add_ssh_keys
 
       - deploy:
           command: |
@@ -53,3 +51,11 @@ jobs:
             git config --global user.name "${GIT_NAME}"
 
             ./publish-to-gh-pages.sh
+
+            if [[ -n "${CLOUDFLARE_API_KEY}" && -n "${CLOUDFLARE_EMAIL}" && -n "${CLOUDFLARE_ZONE_ID}" ]]; then
+              curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+                -H "X-Auth-Email: ${CLOUDFLARE_EMAIL}" \
+                -H "X-Auth-Key: ${CLOUDFLARE_API_KEY}" \
+                -H "Content-Type: application/json" \
+                --data '{"purge_everything":true}'
+            fi
