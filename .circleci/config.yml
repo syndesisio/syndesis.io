@@ -6,6 +6,10 @@ jobs:
 
     working_directory: /workspace
 
+    branches:
+      ignore:
+      - gh-pages
+
     steps:
       - run:
           name: Install tools 
