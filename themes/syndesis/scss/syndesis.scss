@@ -1,0 +1,127 @@
+@import "./bootstrap/_variables";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+
+////////////////////////////////////////////////////////////////////////////////
+// NAVBAR
+////////////////////////////////////////////////////////////////////////////////
+
+.navbar-brand {
+  font-family: Righteous, cursive;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+}
+
+.navbar-toggler {
+  cursor: pointer;
+}
+
+.sps--abv {
+  background-color: transparent !important;
+  transition: background-color 800ms ease-in-out;
+}
+
+.sps--blw {
+  background-color: inherit;
+  transition: background-color 800ms ease-in-out;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// JUMBOTRON
+////////////////////////////////////////////////////////////////////////////////
+
+.jumbotron {
+  position: relative;
+  margin-bottom: 0;
+
+  h1,h2,h3,h4,h5,h6 {
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+  }
+
+  .title {
+    color: #bee1f4;
+  }
+
+  .lead {
+    text-shadow: 1px 2px 2px rgba(0,0,0,0.5);
+  }
+
+  .btn-outline-learn-more {
+    @include button-outline-variant($white, $brand-primary);
+  }
+
+  .btn-get-started {
+    @include button-variant($brand-primary, $white, $brand-primary);
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// MAILING LIST
+////////////////////////////////////////////////////////////////////////////////
+
+.mailing-list {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  .lead {
+    text-shadow: none;
+  }
+
+  .btn {
+    font-weight: bold;
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// FOOTER
+////////////////////////////////////////////////////////////////////////////////
+
+footer.page-footer {
+  background-color: #000;
+  color: $white;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  .btn-primary {
+    @include button-variant($white, #a30000, #000);
+    font-weight: bold;
+    width: 40%;
+
+    @include media-breakpoint-down(lg) {
+      width: 70%;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 60%;
+    }
+
+    @include media-breakpoint-down(xs) {
+      width: 70%;
+    }
+  }
+
+  .rh-logo {
+    padding-top: 3rem;
+  }
+
+  h4 {
+    font-family: $font-family-base;
+  }
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// PARTICLE.JS
+////////////////////////////////////////////////////////////////////////////////
+
+.particlesjs {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  opacity: 0.5;
+}
+
+

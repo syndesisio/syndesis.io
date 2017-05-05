@@ -1,0 +1,61 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:7.10-alpine
+
+    working_directory: /workspace
+
+    steps:
+      - run:
+          name: Install tools 
+          command: |-
+            apk update -q && apk upgrade && apk add -q --no-progress git curl openssh-client tar
+            curl -fsSL https://github.com/spf13/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.tar.gz | tar xz -C /usr/local/bin hugo
+            yarn global add gulp-cli
+
+      - checkout
+
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: |-
+            yarn
+            npm rebuild node-sass
+
+      - save_cache:
+          key: node-modules-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      
+      - run:
+          name: Build site
+          command: gulp build
+
+      - add_ssh_keys
+
+      - deploy:
+          command: |
+            if [[ "${CIRCLE_PROJECT_USERNAME}" != "jimmidyson" && "${CIRCLE_PROJECT_USERNAME}" != "syndesisio" ]]; then
+              exit 0
+            fi
+            
+            if [[ "${CIRCLE_BRANCH}" != "master" ]]; then
+              exit 0
+            fi
+
+            git config --global user.email "${GIT_EMAIL}"
+            git config --global user.name "${GIT_NAME}"
+
+            ./publish-to-gh-pages.sh
+
+            if [[ -n "${CLOUDFLARE_API_KEY}" && -n "${CLOUDFLARE_EMAIL}" && -n "${CLOUDFLARE_ZONE_ID}" ]]; then
+              curl -X DELETE "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+                -H "X-Auth-Email: ${CLOUDFLARE_EMAIL}" \
+                -H "X-Auth-Key: ${CLOUDFLARE_API_KEY}" \
+                -H "Content-Type: application/json" \
+                --data '{"purge_everything":true}'
+            fi

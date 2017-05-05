@@ -1,2 +1,4 @@
-node_modules
 /node_modules
+/public
+/themes/syndesis/static/js
+/themes/syndesis/static/css
