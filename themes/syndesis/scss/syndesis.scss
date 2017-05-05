@@ -1,10 +1,6 @@
 @import "./bootstrap/_variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
-h1,h2,h3,h4,h5,h6 {
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
-}
-
 .navbar-brand {
   font-family: Righteous, cursive;
   text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
@@ -27,6 +23,10 @@ h1,h2,h3,h4,h5,h6 {
 .jumbotron {
   position: relative;
   margin-bottom: 0;
+
+  h1,h2,h3,h4,h5,h6 {
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+  }
 
   .title {
     color: #bee1f4;
@@ -97,4 +97,9 @@ footer.page-footer {
   top: 0;
   width: 100%;
   opacity: 0.5;
+}
+
+.full-width-feature {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
