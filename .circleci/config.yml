@@ -50,6 +50,10 @@ jobs:
             git config --global user.email "${GIT_EMAIL}"
             git config --global user.name "${GIT_NAME}"
 
+            if [[ "${CIRCLE_PROJECT_USERNAME}" == "syndesisio" ]]; then
+              echo syndesis.io > themes/syndesis/static/CNAME
+            fi
+
             ./publish-to-gh-pages.sh
 
             if [[ -n "${CLOUDFLARE_API_KEY}" && -n "${CLOUDFLARE_EMAIL}" && -n "${CLOUDFLARE_ZONE_ID}" ]]; then
