@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! git status -s > /dev/null; then
+if [[ -n "$(git status -s)" ]]; then
   echo "The working directory is dirty. Please commit any pending changes."
   exit 1;
 fi
@@ -21,7 +21,7 @@ echo "Generating site"
 gulp build
 
 cd public
-if ! git status -s > /dev/null; then
+if [[ -n "$(git status -s)" ]] ; then
   echo "Updating gh-pages branch"
   git add --all && git commit -m "Publishing to gh-pages" && git push
 fi
