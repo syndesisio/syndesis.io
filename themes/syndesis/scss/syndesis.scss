@@ -26,6 +26,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .jumbotron {
   position: relative;
+  margin-bottom: 0;
 
   .title {
     color: #bee1f4;
@@ -41,6 +42,15 @@ h1,h2,h3,h4,h5,h6 {
 
   .btn-get-started {
     @include button-variant($brand-primary, $white, $brand-primary);
+  }
+}
+
+.mailing-list {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  .lead {
+    text-shadow: none;
   }
 }
 
