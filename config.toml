@@ -4,3 +4,4 @@ enableGitInfo = true
 title = "Syndesis"
 theme = "syndesis"
 relativeURLs = true
+googleAnalytics = "UA-98663114-1"
