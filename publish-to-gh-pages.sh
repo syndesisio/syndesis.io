@@ -23,5 +23,5 @@ gulp build
 cd public
 if [[ -n "$(git status -s)" ]] ; then
   echo "Updating gh-pages branch"
-  git add --all && git commit -m "Publishing to gh-pages" && git push
+  git add --all && git commit -m "[ci skip] Publishing to gh-pages" && git push
 fi
