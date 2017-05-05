@@ -21,7 +21,7 @@ echo "Generating site"
 gulp build
 
 cd public
-if git status -s > /dev/null; then
+if ! git status -s > /dev/null; then
   echo "Updating gh-pages branch"
   git add --all && git commit -m "Publishing to gh-pages" && git push
 fi
