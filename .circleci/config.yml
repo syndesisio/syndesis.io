@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - run:
-          name: Install tools 
+          name: Install tools
           command: |-
             apk update -q && apk upgrade && apk add -q --no-progress git curl openssh-client tar
             curl -fsSL https://github.com/spf13/hugo/releases/download/v0.20.7/hugo_0.20.7_Linux-64bit.tar.gz | tar xz -C /usr/local/bin hugo
@@ -30,7 +30,7 @@ jobs:
           key: node-modules-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      
+
       - run:
           name: Build site
           command: gulp build
@@ -42,7 +42,7 @@ jobs:
             if [[ "${CIRCLE_PROJECT_USERNAME}" != "jimmidyson" && "${CIRCLE_PROJECT_USERNAME}" != "syndesisio" ]]; then
               exit 0
             fi
-            
+
             if [[ "${CIRCLE_BRANCH}" != "master" ]]; then
               exit 0
             fi
@@ -51,7 +51,7 @@ jobs:
             git config --global user.name "${GIT_NAME}"
 
             if [[ "${CIRCLE_PROJECT_USERNAME}" == "syndesisio" ]]; then
-              echo syndesis.io > themes/syndesis/static/CNAME
+              echo syndesis.io > static/CNAME
             fi
 
             ./publish-to-gh-pages.sh
