@@ -61,6 +61,12 @@ gulp.task('hugo', function (cb) {
   });
 });
 
+gulp.task('optimize', function() {
+  return gulp.src(['./public/**/*.html'])
+    .pipe(plugins.cacheBust())
+    .pipe(gulp.dest('./public'));
+});
+
 gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
-gulp.task('build', gulp.series('css', 'js', 'hugo'));
+gulp.task('build', gulp.series('css', 'js', 'hugo', 'optimize'));
 gulp.task('default', gulp.series('build', 'serve'));
