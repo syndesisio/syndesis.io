@@ -3,11 +3,21 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
+function sriTransformer(tHash) {
+  var res = {};
+  for (var key in tHash){
+    res[key.substr(key.lastIndexOf('/') + 1)] = tHash[key];
+  }
+  return res;
+}
+
 gulp.task('css', function () {
   return gulp.src('./themes/syndesis/scss/**/*.scss')
     .pipe(plugins.sass())
     .pipe(plugins.postcss())
-    .pipe(gulp.dest('./themes/syndesis/static/css'));
+    .pipe(gulp.dest('./themes/syndesis/static/css'))
+    .pipe(plugins.sri({fileName: 'css.json', algorithms: ['sha384'], transform: sriTransformer}))
+    .pipe(gulp.dest('./data/sri/'));
 });
 gulp.task('css:watch', gulp.series('css', function () {
   gulp.watch('./themes/syndesis/scss/**/*.scss', gulp.series('css'));
@@ -17,7 +27,9 @@ gulp.task('js', function () {
   return gulp.src(['./node_modules/scrollpos-styler/scrollPosStyler.js'])
     .pipe(plugins.concat('syndesis.js'))
     .pipe(plugins.uglifyjs())
-    .pipe(gulp.dest('./themes/syndesis/static/js'));
+    .pipe(gulp.dest('./themes/syndesis/static/js'))
+    .pipe(plugins.sri({fileName: 'js.json', algorithms: ['sha384'], transform: sriTransformer}))
+    .pipe(gulp.dest('./data/sri/'));
 });
 gulp.task('js:watch', gulp.series('js', function () {
   gulp.watch(['./node_modules/scrollpos-styler/scrollPosStyler.js'], gulp.series('js'));
