@@ -61,11 +61,17 @@ gulp.task('hugo', function (cb) {
   });
 });
 
-gulp.task('optimize', function() {
+gulp.task('optimize-html', function() {
   return gulp.src(['./public/**/*.html'])
     .pipe(plugins.cacheBust())
     .pipe(gulp.dest('./public'));
 });
+gulp.task('optimize-css', function() {
+  return gulp.src(['./public/**/*.css'])
+    .pipe(plugins.purifycss(['./public/app/**/*.js', './public/**/*.html']))
+    .pipe(gulp.dest('./public'));
+});
+gulp.task('optimize', gulp.series('optimize-html', 'optimize-css'));
 
 gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
 gulp.task('build', gulp.series('css', 'js', 'hugo', 'optimize'));
