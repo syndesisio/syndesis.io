@@ -3,6 +3,11 @@
 var gulp = require('gulp');
 var plugins = require('gulp-load-plugins')();
 
+var jsLibs = [
+  './node_modules/scrollpos-styler/scrollPosStyler.js',
+  './themes/syndesis/js/connectingDots.js'
+];
+
 function sriTransformer(tHash) {
   var res = {};
   for (var key in tHash){
@@ -24,7 +29,7 @@ gulp.task('css:watch', gulp.series('css', function () {
 }));
 
 gulp.task('js', function () {
-  return gulp.src(['./node_modules/scrollpos-styler/scrollPosStyler.js'])
+  return gulp.src(jsLibs)
     .pipe(plugins.concat('syndesis.js'))
     .pipe(plugins.uglifyjs())
     .pipe(gulp.dest('./themes/syndesis/static/js'))
@@ -32,7 +37,7 @@ gulp.task('js', function () {
     .pipe(gulp.dest('./data/sri/'));
 });
 gulp.task('js:watch', gulp.series('js', function () {
-  gulp.watch(['./node_modules/scrollpos-styler/scrollPosStyler.js'], gulp.series('js'));
+    gulp.watch(jsLibs, gulp.series('js'));
 }));
 
 gulp.task('watch', gulp.parallel('css:watch', 'js:watch'));

@@ -5,6 +5,7 @@
 ### Prerequisites
 * Install NodeJS
 * Install `yarn`: `curl -o- -L https://yarnpkg.com/install.sh | bash`
+* Add yarn's binary directory to your path: `export PATH=${PATH}:$(yarn global bin)`
 * Install `gulp` globally: `yarn global add gulp-cli`
 * Install `hugo` (see http://gohugo.io/overview/installing/)
 * Run `yarn`
