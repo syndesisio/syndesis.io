@@ -75,7 +75,8 @@ gulp.task('optimize-html', function() {
 gulp.task('optimize-css', function() {
   return gulp.src(['./public/**/*.css'])
     .pipe(plugins.uncss({
-      html: ['./public/**/*.html']
+      html: ['./public/**/*.html'],
+      ignore: [/^\.sps.*/]
     }))
     .pipe(gulp.dest('./public'));
 });
