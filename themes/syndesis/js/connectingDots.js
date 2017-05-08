@@ -16,6 +16,8 @@ var connectingDots = (function(window) {
           lineWidth = o.lineWidth || 2,
           distance = o.distance || 500,
           randomSize = o.randomSize || 0.5,
+          boxWidth = o.boxWidth || 0.3,
+          confineParticles = o.confineParticles || true,
           bgColor = o.bgColor || '#0088CE';
 
         function setCanvasSize() {
@@ -34,12 +36,12 @@ var connectingDots = (function(window) {
                 var y = (Math.random() * h);
                 var ySpeed = (Math.random() * (speed / 10)) - (speed / 20);
 
-                var x3rd = (Math.random() * (w/3));
+                var x3rd = (Math.random() * (boxWidth * w));
 
-                var x = (i % 2) == 0 ? x3rd : w - x3rd;
+                var x = (i % 2) === 0 ? x3rd : w - x3rd;
                 var xSpeed = (Math.random() * (speed / 10)) - (speed / 20);
 
-                points.push(new Point(x, y, xSpeed, ySpeed));
+                points.push(new Point(x, y, xSpeed, ySpeed,i % 2));
             }
 
             ctx.fillStyle = bgColor;
@@ -91,7 +93,7 @@ var connectingDots = (function(window) {
             }, delay)
         }
 
-        var Point = function (_x, _y, _xSpeed, _ySpeed) {
+        var Point = function (_x, _y, _xSpeed, _ySpeed, _rightBox) {
             this.x = _x;
             this.y = _y;
             this.xSpeed = _xSpeed;
@@ -106,7 +108,21 @@ var connectingDots = (function(window) {
                 _this.x += _this.xSpeed + xNoise;
                 _this.y += _this.ySpeed + yNoise;
 
-                if (_this.x < size || _this.x > (w - size)) {
+                var leftBorder, rightBorder;
+                if (confineParticles) {
+                    if (_rightBox) {
+                        leftBorder = (1 - boxWidth) * w;
+                        rightBorder = w;
+                    } else {
+                        leftBorder = 0;
+                        rightBorder = boxWidth * w;
+                    }
+                } else {
+                    leftBorder = 0;
+                    rightBorder = w;
+                }
+
+                if (_this.x < (leftBorder + size) || _this.x > (rightBorder - size)) {
                     _this.xSpeed = -_this.xSpeed;
                 }
 
@@ -114,12 +130,12 @@ var connectingDots = (function(window) {
                     _this.ySpeed = -_this.ySpeed;
                 }
 
-                if (_this.x < 0) {
-                    _this.x = 2;
+                if (_this.x < leftBorder) {
+                    _this.x = leftBorder + 2;
                 }
 
-                if (_this.x > w) {
-                    _this.x = w - 2;
+                if (_this.x > rightBorder) {
+                    _this.x = rightBorder - 2;
                 }
 
                 if (_this.y < 0) {
