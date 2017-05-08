@@ -32,7 +32,7 @@ gulp.task('css:watch', gulp.series('css', function () {
 gulp.task('js', function () {
   return gulp.src(jsLibs)
     .pipe(plugins.concat('syndesis.js'))
-    .pipe(plugins.uglifyjs())
+    .pipe(plugins.uglify())
     .pipe(gulp.dest('./themes/syndesis/static/js'));
 });
 gulp.task('js:watch', gulp.series('js', function () {
@@ -70,6 +70,14 @@ gulp.task('hugo', function (cb) {
 gulp.task('optimize-html', function() {
   return gulp.src(['./public/**/*.html'])
     .pipe(plugins.cacheBust())
+    .pipe(plugins.htmlmin({
+      collapseBooleanAttributes: true,
+      collapseWhitespace: true,
+      minifyCSS: true,
+      minifyJS: true,
+      minifyURLs: true,
+      removeComments: true
+    }))
     .pipe(gulp.dest('./public'));
 });
 gulp.task('optimize-css', function() {
