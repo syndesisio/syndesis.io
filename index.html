@@ -10,7 +10,7 @@
   <meta name="generator" content="Hugo 0.20.7" />
   <link rel="icon" type="image/png" href="./images/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Raleway:400,500|Righteous" rel="stylesheet">
-  <link rel="stylesheet" href="./css/syndesis.css" integrity="sha384-/5tfCWk&#43;h6PQcMC9RyCS2QvS0lVLp&#43;9o7VnL6vqFtVrChMDM24TAVUjiSFIJcNyE" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/syndesis.css" integrity="sha384-Nz/iKgKTBN0VLK86wqSbzzWL&#43;/0HnA0a4Ru8gxCGSaJhrhKLXX78rX/gu&#43;kvq7La" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   
@@ -54,7 +54,7 @@ ga('send', 'pageview');
 
 <div id="particles-js"></div>
 <div class="jumbotron jumbotron-fluid text-center text-white">
-  <canvas class="particlesjs"></canvas>
+  <canvas id="particles"></canvas>
   <div class="container">
     <h1 class="display-4"><span class="title">Introducing</span> Syndesis</h1>
     <p class="lead">Harness the Power of Open Source in a Truly Hybrid Integration Platform.</p>
@@ -165,31 +165,29 @@ ga('send', 'pageview');
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.0.2/particles.min.js" integrity="sha384-4koXCs6rn5r6amGJpP4/zbycqdib5aLwfcr/H2QY4kPBjXVVH46zlmD9vPwNsTdG" crossorigin="anonymous"></script>
 <script>
-  (function() {
-    window.onload = function() {
-      Particles.init({
-        selector: '.particlesjs',
-        color: '#ffffff',
-        connectParticles: true,
-        maxParticles: 150,
-        responsive: [
-          {
-            breakpoint: 768,
-            options: {
-              maxParticles: 80
-            }
-          }, {
-            breakpoint: 375,
-            options: {
-              maxParticles: 50
-            }
-          }
-        ]
-      });
-    };
-  })();
+window.onload = function() {
+    connectingDots(
+      "particles",
+      {
+          
+          delay:              100,
+          
+          amount:             70,
+          
+          speed:              30,
+          
+          size:               4,
+          
+          lineWidth:          2,
+          
+          distance:           550,
+          
+          randomSize:         0.5,
+          
+          bgColor:           'rgba(0,136,206,0.7)' 
+      })
+}
 </script>
 <footer class="page-footer text-center container-fluid">
   <div class="row">
@@ -224,7 +222,7 @@ ga('send', 'pageview');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="./js/syndesis.js" integrity="sha384-3Bcb9iPx2l9wDbKO6f8XniCGmxUgW&#43;ViEHXJlybiAOTJEqFyR2Yc&#43;G6K5xEPJBP&#43;" crossorigin="anonymous"></script>
+<script src="./js/syndesis.js" integrity="sha384-A8lZE8uLD3tG8v6SnOMbm9MowwqfsC3LFwCueRyn4RRnYO/YKJwXEi0aPYJfmKj&#43;" crossorigin="anonymous"></script>
 </body>
 
 </html>
