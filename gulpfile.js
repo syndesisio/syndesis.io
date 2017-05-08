@@ -32,7 +32,7 @@ gulp.task('css:watch', gulp.series('css', function () {
 gulp.task('js', function () {
   return gulp.src(jsLibs)
     .pipe(plugins.concat('syndesis.js'))
-    .pipe(plugins.uglifyjs())
+    .pipe(plugins.uglify())
     .pipe(gulp.dest('./themes/syndesis/static/js'));
 });
 gulp.task('js:watch', gulp.series('js', function () {
