@@ -1,7 +1,7 @@
 {{ partial "header.html" . }}
 <div id="particles-js"></div>
 <div class="jumbotron jumbotron-fluid text-center text-white">
-  <canvas class="particlesjs"></canvas>
+  <canvas id="particles"></canvas>
   <div class="container">
     <h1 class="display-4"><span class="title">Introducing</span> Syndesis</h1>
     <p class="lead">Harness the Power of Open Source in a Truly Hybrid Integration Platform.</p>
@@ -112,30 +112,28 @@
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.0.2/particles.min.js" integrity="sha384-4koXCs6rn5r6amGJpP4/zbycqdib5aLwfcr/H2QY4kPBjXVVH46zlmD9vPwNsTdG" crossorigin="anonymous"></script>
 <script>
-  (function() {
-    window.onload = function() {
-      Particles.init({
-        selector: '.particlesjs',
-        color: '#ffffff',
-        connectParticles: true,
-        maxParticles: 150,
-        responsive: [
-          {
-            breakpoint: 768,
-            options: {
-              maxParticles: 80
-            }
-          }, {
-            breakpoint: 375,
-            options: {
-              maxParticles: 50
-            }
-          }
-        ]
-      });
-    };
-  })();
+window.onload = function() {
+    connectingDots(
+      "particles",
+      {
+          // How many ms to wait between frames (determines FPS)
+          delay:              100,
+          // How many particles
+          amount:             70,
+          // How fast should the particles move
+          speed:              30,
+          // Size of particles in px
+          size:               4,
+          // Connection width in px
+          lineWidth:          2,
+          // Max distances between particles where a connection should be drawn
+          distance:           550,
+          // Bluriness
+          randomSize:         0.5,
+          // Background color
+          bgColor:           'rgba(0,136,206,0.7)' //'hsla(190,60%,45%, 0.1)'
+      })
+}
 </script>
 {{ partial "footer.html" . }}
