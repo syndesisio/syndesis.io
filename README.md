@@ -14,7 +14,7 @@
 Run `gulp` and open your browser at http://localhost:1313.
 
 ### Building
-Run `gulp build` to build site into `docs` directory, which GitHub will serve from.
+Run `gulp build` to build site into `public` directory, which will be pushed to gh-pages branch on github.
 
 ## Publishing
-`gulp build && git add -A . && git push`
+`./publish-to-gh-pages.sh`
