@@ -1,7 +1,7 @@
 name = "Syndesis"
-license = "Apache-2.0"
+license = "MIT"
 licenselink = "https://github.com/syndesisio/syndesis-theme/blob/master/LICENSE.md"
-description = ""
+description = "A flexible, customizable, open source platform that provides core integration capabilities as a service."
 homepage = "https://syndesisio.github.com/syndesis-theme"
 tags = []
 features = []

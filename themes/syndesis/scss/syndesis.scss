@@ -1,10 +1,16 @@
-@import "colors";
+@import './bootstrap/_variables';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 
-@import "bootstrap/variables";
-@import "../../../node_modules/bootstrap/scss/bootstrap";
-
-@import "icons";
-@import "github-corner";
+@import 'blog';
+@import 'colors';
+@import 'docs';
+@import 'external';
+@import 'faq';
+@import 'footer';
+@import 'github-corner';
+@import 'home';
+@import 'navbar';
+@import 'toc';
 
 body {
   padding-top: 100px;
@@ -25,9 +31,3 @@ body {
   height: 100px;
   visibility: hidden;
 }
-
-@import "toc";
-@import "home";
-@import "navbar";
-@import "footer";
-@import "blog";
