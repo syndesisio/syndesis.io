@@ -1,4 +1,10 @@
-{{ partial "header.html" . }}
+{{ define "title" }}{{ .Site.Title}}{{end}}
+
+{{ define "pagejs" }}
+<script src="/js/connectingDots.js"></script>  
+{{ end }}
+
+{{ define "main" }}
 <div class="jumbotron jumbotron-fluid text-center text-white">
   <canvas id="particles"></canvas>
   <div class="container">
@@ -111,28 +117,4 @@
     </div>
   </div>
 </div>
-<script>
-window.onload = function() {
-    connectingDots(
-      "particles",
-      {
-          // How many ms to wait between frames (determines FPS)
-          delay:              100,
-          // How many particles
-          amount:             70,
-          // How fast should the particles move
-          speed:              30,
-          // Size of particles in px
-          size:               4,
-          // Connection width in px
-          lineWidth:          2,
-          // Max distances between particles where a connection should be drawn
-          distance:           550,
-          // Bluriness
-          randomSize:         0.5,
-          // Background color
-          bgColor:           'rgba(0,136,206,0.7)' //'hsla(190,60%,45%, 0.1)'
-      })
-}
-</script>
-{{ partial "footer.html" . }}
+{{ end }}
