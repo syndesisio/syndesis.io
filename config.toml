@@ -1,7 +1,7 @@
 baseURL = "https://syndesis.io/"
 languageCode = "en-gb"
 enableGitInfo = true
-title = "Syndesis"
+title = "syndesis"
 theme = "syndesis"
 relativeURLs = true
 googleAnalytics = "UA-98663114-1"
