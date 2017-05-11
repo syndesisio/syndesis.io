@@ -37,10 +37,6 @@ jobs:
 
       - deploy:
           command: |
-            if [[ "${CIRCLE_PROJECT_USERNAME}" != "jimmidyson" && "${CIRCLE_PROJECT_USERNAME}" != "syndesisio" ]]; then
-              exit 0
-            fi
-
             if [[ "${CIRCLE_BRANCH}" != "master" ]]; then
               exit 0
             fi

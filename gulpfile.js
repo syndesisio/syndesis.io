@@ -58,7 +58,13 @@ gulp.task('hugo:serve', function (cb) {
 gulp.task('hugo', function (cb) {
   var exec = require('child_process').exec;
 
-  exec('hugo', function (err, stdout, stderr) {
+  var githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
+  var baseURLArg = '';
+  if (githubProject && githubProject !== "syndesisio" && process.env['CIRCLE_PROJECT_REPONAME']) {
+    baseURLArg = ' --baseURL https://' + githubProject + '.github.io/' + process.env['CIRCLE_PROJECT_REPONAME'];
+  }
+
+  exec('hugo' + baseURLArg, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);

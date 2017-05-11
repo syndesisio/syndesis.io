@@ -17,3 +17,9 @@ googleAnalytics = "UA-98663114-1"
     weight = -120
     identifier = "faq"
     url = "/faq/"
+
+[[menu.topnav]]
+    name = "blog"
+    weight = -130
+    identifier = "blog"
+    url = "/blog/"

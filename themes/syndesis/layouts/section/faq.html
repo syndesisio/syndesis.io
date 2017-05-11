@@ -3,6 +3,6 @@
 {{ define "main" }}
 <div class="container">
   <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  {{ .Content | safeHTML }}
 </div>
 {{ end }}
