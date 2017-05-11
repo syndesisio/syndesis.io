@@ -5,3 +5,15 @@ title = "syndesis"
 theme = "syndesis"
 relativeURLs = true
 googleAnalytics = "UA-98663114-1"
+
+[[menu.topnav]]
+    name = "code"
+    weight = -110
+    identifier = "code"
+    url = "https://github.com/syndesisio"
+
+[[menu.topnav]]
+    name = "faq"
+    weight = -120
+    identifier = "faq"
+    url = "/faq/"

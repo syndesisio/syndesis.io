@@ -27,17 +27,11 @@
 
 <body>
   {{ partial "github-corner.html" .}}
-  <nav class="navbar fixed-top navbar-inverse bg-primary navbar-toggleable-md sps">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-nav" aria-controls="top-nav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
-    {{ block "nav" . }}{{ end }}
-  </nav>
+  {{ partial "topnav" . }}
   {{ block "main" . }}{{ end }}
   {{ partial "footer" . }}
 
   <script src="/js/syndesis.js"></script>
-  {{ block "pagejs" . }}<!-- Empty by default --> {{ end }}
+  {{ block "pagejs" . }}{{ end }}
 </body>
 </html>
