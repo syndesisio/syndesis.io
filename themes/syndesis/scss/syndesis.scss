@@ -1,7 +1,15 @@
-@import "./bootstrap/_variables";
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import './bootstrap/_variables';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
 
-@import "icons";
+@import 'blog';
+@import 'colors';
+@import 'icons';
+
+body {
+  color: $pf-black-800;
+  font-family: 'Open Sans', 'Open Sans Condensed', 'Raleway', Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -48,12 +56,31 @@
     text-shadow: 1px 2px 2px rgba(0,0,0,0.5);
   }
 
-  .btn-outline-learn-more {
-    @include button-outline-variant($white, $brand-primary);
+  .btn-get-started {
+    background-color: $pf-white;
+    border: solid 1px $pf-white;
+    border-radius: 12px;
+    color: $pf-blue-300;
+
+    &:hover {
+      background-color: $pf-blue-300;
+      border: solid 1px $pf-blue-300;
+      border-radius: 12px;
+      color: $pf-white;
+    }
   }
 
-  .btn-get-started {
-    @include button-variant($brand-primary, $white, $brand-primary);
+  .btn-outline-learn-more {
+    background: transparent;
+    border: solid 1px $pf-white;
+    border-radius: 12px;
+    color: $pf-white;
+
+    &:hover, &:focus {
+      background: $pf-white;
+      border: solid 1px $pf-white;
+      color: $pf-blue-500;
+    }
   }
 }
 
@@ -63,8 +90,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .mailing-list {
+  border-color: #0088ce;
+  box-shadow: 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  -webkit-box-shadow: inset 0 1px 0 hsla(0,0%,100%,.15), 0 1px 1px rgba(0,0,0,.075);
 
   .lead {
     text-shadow: none;
@@ -72,6 +102,12 @@
 
   .btn {
     font-weight: bold;
+  }
+
+  .btn-primary {
+    -webkit-box-shadow: 0 0 0;
+    -moz-box-shadow: 0 0 0;
+    box-shadow: 0 0 0;
   }
 }
 
@@ -81,36 +117,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 footer.page-footer {
-  background-color: #000;
-  color: $white;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+background-color: #000;
+color: $white;
+padding-top: 5rem;
+padding-bottom: 5rem;
 
-  .btn-primary {
-    @include button-variant($white, #a30000, #000);
-    font-weight: bold;
-    width: 40%;
+.btn-primary {
+@include button-variant($white, #a30000, #000);
+font-weight: bold;
+width: 40%;
 
-    @include media-breakpoint-down(lg) {
-      width: 70%;
-    }
+@include media-breakpoint-down(lg) {
+  width: 70%;
+}
 
-    @include media-breakpoint-down(md) {
-      width: 60%;
-    }
+@include media-breakpoint-down(md) {
+  width: 60%;
+}
 
-    @include media-breakpoint-down(xs) {
-      width: 70%;
-    }
-  }
+@include media-breakpoint-down(xs) {
+  width: 70%;
+}
+}
 
-  .rh-logo {
-    padding-top: 3rem;
-  }
+.rh-logo {
+padding-top: 3rem;
+}
 
-  h4 {
-    font-family: $font-family-base;
-  }
+h4 {
+font-family: $font-family-base;
+}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -118,11 +154,11 @@ footer.page-footer {
 ////////////////////////////////////////////////////////////////////////////////
 
 #particles {
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  opacity: 0.5;
+left: 0;
+position: absolute;
+top: 0;
+width: 100%;
+opacity: 0.5;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -130,8 +166,8 @@ footer.page-footer {
 ////////////////////////////////////////////////////////////////////////////////
 
 .full-width-feature {
-  .screenshot {
-    width: 100%;
-    box-shadow: 2px 4px 4px rgba(0,0,0,0.5);
-  }
+.screenshot {
+width: 100%;
+box-shadow: 2px 4px 4px rgba(0,0,0,0.5);
+}
 }
