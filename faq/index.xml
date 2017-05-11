@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FAQ on syndesis</title>
+    <link>https://syndesis.io/faq/</link>
+    <description>Recent content in FAQ on syndesis</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 11 May 2017 16:19:47 +0100</lastBuildDate>
+    
+	<atom:link href="https://syndesis.io/faq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
