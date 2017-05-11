@@ -61,7 +61,7 @@ gulp.task('hugo', function (cb) {
   var githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
   var baseURLArg = '';
   if (githubProject && githubProject !== "syndesisio" && process.env['CIRCLE_PROJECT_REPONAME']) {
-    baseURLArg = ' --baseURL https://' + githubProject + '.github.io/' + process.env['CIRCLE_PROJECT_REPONAME'];
+    baseURLArg = ' --baseURL https://' + githubProject + '.github.io/' + process.env['CIRCLE_PROJECT_REPONAME'] + '/';
   }
 
   exec('hugo' + baseURLArg, function (err, stdout, stderr) {

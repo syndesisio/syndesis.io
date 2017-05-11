@@ -3,7 +3,7 @@ languageCode = "en-gb"
 enableGitInfo = true
 title = "syndesis"
 theme = "syndesis"
-relativeURLs = true
+canonifyURLs = true
 googleAnalytics = "UA-98663114-1"
 
 [[menu.topnav]]
