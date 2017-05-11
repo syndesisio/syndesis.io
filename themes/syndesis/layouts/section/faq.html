@@ -1,12 +1,8 @@
-{{ define "header"}}{{ partial "header" .}}{{end}}
+{{ define "title" }}{{ .Title }}{{end}}
 
 {{ define "main" }}
 <div class="container">
   <h1>{{ .Title }}</h1>
   {{ .Content | safeHTML }}
 </div>
-{{ end }}
-
-{{ define "footer" }} 
-  {{ partial "footer" . }} 
 {{ end }}

@@ -1,0 +1,24 @@
+{{ define "main"}}
+<div itemscope
+     itemtype="http://schema.org/BlogPosting"
+     class="container">
+  {{ template "_internal/schema.html" .}}
+  <div>
+    <div itemprop="articleBody">
+      {{ .Content | safeHTML }}
+    </div>
+
+    <div>
+      {{ partial "blog/byauthor" .}}
+      {{ partial "blog/related-content" .}}
+    </div>
+
+    {{ if .Site.DisqusShortname }}
+    <article>
+      {{ template "_internal/disqus.html" .}}
+    </article>
+    {{ end }}
+
+  </div>
+</div>
+{{ end }}

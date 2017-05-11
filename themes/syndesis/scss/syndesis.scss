@@ -2,7 +2,15 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 @import "icons";
+@import "github-corner";
 
+body {
+  padding-top: 100px;
+
+  &.page {
+    padding-top: 74px;
+  }
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // NAVBAR
@@ -17,12 +25,25 @@
   cursor: pointer;
 }
 
-.sps--abv {
+.nav-link {
+  font-weight: $font-weight-bold;
+  font-size: 1.1rem;
+
+  &:hover {
+    border-bottom: 1px dashed #fff;
+  }
+
+  &:active, &:focus {
+    border-bottom: 1px solid #fff;
+  }
+}
+
+.page .sps--abv {
   background-color: transparent !important;
   transition: background-color 800ms ease-in-out;
 }
 
-.sps--blw {
+.page .sps--blw {
   background-color: inherit;
   transition: background-color 800ms ease-in-out;
 }
@@ -34,7 +55,8 @@
 
 .jumbotron {
   position: relative;
-  margin-bottom: 0;
+  margin-top: -74px;
+  padding-top: 74px;
 
   h1,h2,h3,h4,h5,h6 {
     text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
@@ -134,4 +156,13 @@ footer.page-footer {
     width: 100%;
     box-shadow: 2px 4px 4px rgba(0,0,0,0.5);
   }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// BLOG
+////////////////////////////////////////////////////////////////////////////////
+
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
 }
