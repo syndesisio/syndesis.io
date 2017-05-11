@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="/css/syndesis.css">
 </head>
 
-<body>
+<body class="{{ .Type }}">
   {{ partial "github-corner.html" .}}
   {{ partial "topnav" . }}
   {{ block "main" . }}{{ end }}
