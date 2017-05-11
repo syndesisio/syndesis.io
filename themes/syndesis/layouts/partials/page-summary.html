@@ -1,12 +1,13 @@
 <div itemscope
      itemtype="http://schema.org/CreativeWork">
   <h2 class="title">
-    <a href="{{ .Permalink }}"
-       itemprop="headline">{{ .Title }}
-    </a>
+    <a href="{{ .RelPermalink }}" itemprop="headline">{{ .Title }}</a>
   </h2>
-  <hr>
-  {{ if .Description }}
-  <p itemprop="about">{{ .Description }}</p>
-  {{ end }}
+  <p class="blog-post-meta">{{ dateFormat "Monday, Jan 2, 2006" .Date }}</p>
+  <p class="summary">
+    {{ .Summary }}
+  </p>
+  <p>
+    <a class="btn btn-outline-info" href="{{ .RelPermalink }}">Read More…</a>
+  </p>
 </div>

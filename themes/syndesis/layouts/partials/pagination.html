@@ -1,0 +1,24 @@
+{{ if or (.Paginator.HasPrev) (.Paginator.HasNext) }}
+<hr>
+<nav aria-label="Page navigation">
+  <ul class="pagination pagination-sm justify-content-center">
+    <li class="page-item{{if not .Paginator.HasPrev }} disabled{{ end }}">
+      <a class="page-link" href="{{if .Paginator.HasPrev }}{{ .Paginator.Prev.URL }}{{ end }}" aria-label="Next">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    <li>
+      <a href=""
+         class="button round small outline">Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
+      </a>
+    </li>
+    <li class="page-item{{if not .Paginator.HasNext }} disabled{{ end }}">
+      <a class="page-link" href="{{if .Paginator.HasNext }}{{ .Paginator.Next.URL }}{{ end }}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+{{ end }}

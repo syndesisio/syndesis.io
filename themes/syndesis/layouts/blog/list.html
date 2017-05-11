@@ -3,8 +3,7 @@
   <h1>{{ .Title }}</h1>
   {{ .Content | safeHTML }}
   <div class="articles">
-    {{ range .Paginator.Pages }}{{ partial "page-summary" .}}{{ end }}
-    <section>{{ partial "pagination" .}}</section>
+    {{ range .Paginator.Pages }}{{ partial "page-summary" . }}<hr/>{{ end }}
   </div>
 </div>
 {{ end }}
