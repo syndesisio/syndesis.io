@@ -67,7 +67,9 @@ gulp.task('hugo', function (cb) {
 
 gulp.task('optimize-html', function() {
   return gulp.src(['./public/**/*.html'])
-    .pipe(plugins.cacheBust())
+    .pipe(plugins.cacheBust({
+      type: 'timestamp'
+    }))
     .pipe(plugins.htmlmin({
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
