@@ -3,16 +3,16 @@
 
 name = "Syndesis"
 license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE.md"
-description = ""
-homepage = "http://siteforthistheme.com/"
+licenselink = "https://github.com/syndesisio/syndesis/blob/master/LICENSE.md"
+description = "A flexible, customizable, open source platform that provides core integration capabilities as a service."
+homepage = "http://www.syndesis.io/"
 tags = []
 features = []
 min_version = "0.20.6"
 
 [author]
-  name = ""
-  homepage = ""
+  name = "Red Hat, Inc."
+  homepage = "http://www.redhat.com/"
 
 # If porting an existing theme
 [original]
