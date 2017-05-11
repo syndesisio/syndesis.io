@@ -2,6 +2,7 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 @import "icons";
+@import "github-corner";
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -15,6 +16,19 @@
 
 .navbar-toggler {
   cursor: pointer;
+}
+
+.nav-link {
+  font-weight: $font-weight-bold;
+  font-size: 1.1rem;
+
+  &:hover {
+    border-bottom: 1px dashed #fff;
+  }
+
+  &:active, &:focus {
+    border-bottom: 1px solid #fff;
+  }
 }
 
 .sps--abv {
