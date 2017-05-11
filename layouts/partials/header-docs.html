@@ -1,0 +1,61 @@
+{{ define "header" }} {{ partial "github-corner" .}} {{ end }}
+
+<nav class="navbar fixed-top bg-primary navbar-toggleable-md sps">
+    <!--<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-nav" aria-controls="top-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>-->
+    <a class="navbar-brand" href="{{ .Site.BaseURL }}">syndesis</a>
+    <div class="collapse navbar-collapse" id="top-nav-non-splash">
+      <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        <li>
+          <a href="{{ .URL }}" {{if  $currentPage.IsMenuCurrent "main" . }} class="active"{{end}}>{{ .Name }}</a>
+        </li>
+        {{end}}
+        <li class="nav-item">
+          <a class="nav-link disabled" href="/page">{{ .Page.Kind }}</a>
+        </li>
+        <li class="nav-item">
+          This is the Docs Header.
+        </li>
+      </ul>
+      <!--
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      -->
+    </div>
+  </nav>
+
+  <!--
+  <div class="show-sm">
+    <div id="nav-toggle-box">
+      <div id="nav-toggle-brand">
+        <a href="/">Kube</a>
+      </div><a data-component="toggleme" data-target="#top" href="#" id="nav-toggle"><i class="kube-menu"></i></a>
+    </div>
+  </div>
+  <div class="hide-sm" id="top">
+    <div id="top-brand">
+      <a href="/" title="home">Kube</a>
+    </div>
+    <nav id="top-nav-main">
+      <ul>
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        <li><a href="{{ .URL }}" {{if  $currentPage.IsMenuCurrent "main" . }} class="active"{{end}}>{{ .Name }}</a></li>
+        {{end}}
+      </ul>
+    </nav>
+    <nav id="top-nav-extra">
+      <ul>
+        <li>
+          <a href="/account/">Account</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  -->
+</div>

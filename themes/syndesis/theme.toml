@@ -13,9 +13,3 @@ min_version = "0.20.6"
 [author]
   name = "Red Hat, Inc."
   homepage = "http://www.redhat.com/"
-
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""
