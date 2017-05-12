@@ -10,6 +10,7 @@
 @import 'github-corner';
 @import 'home';
 @import 'navbar';
+@import 'sidenav';
 @import 'toc';
 
 body {
@@ -18,15 +19,6 @@ body {
   &.home {
     padding-top: 74px;
   }
-
-  a, a:hover, a:focus, a:visited, .btn {
-    cursor: pointer;
-    text-decoration: none;
-  }
-}
-
-.btn-info {
-  @include button-outline-variant($brand-info, $brand-primary);
 }
 
 :target::before {

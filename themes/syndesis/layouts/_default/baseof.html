@@ -26,6 +26,8 @@
 </head>
 
 <body class="{{ .Type }}{{ if .IsHome }} home{{ end }}">
+  {{ block "sidenav" . }}{{ end }}
+  
   {{ partial "github-corner.html" .}}
   {{ partial "topnav" . }}
   {{ block "main" . }}{{ end }}

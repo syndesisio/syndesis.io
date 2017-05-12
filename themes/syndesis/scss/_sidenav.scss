@@ -1,0 +1,201 @@
+@import 'colors';
+
+////////////////////////////////////////////////////////////////////////////////
+// SIDENAV
+////////////////////////////////////////////////////////////////////////////////
+
+$color_1: #656C73;
+$color_2: #ff4088;
+$color_3: #72767D;
+
+.sidenav {
+  width: 214px;
+  height: 100%;
+  position: fixed;
+  background: #ffffff;
+  overflow-y: auto;
+
+  > ul {
+    > li {
+      > ul.sub {
+        display: none;
+
+        > li {
+          > a {
+            display: block;
+          }
+        }
+      }
+    }
+
+    > li.active {
+      > ul.sub {
+        display: block;
+      }
+    }
+  }
+
+  ul {
+    > li {
+      > a {
+        .menu-arrow {
+          float: right;
+          margin-right: 8px;
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+}
+
+ul.sidebar-menu {
+  margin: -2px 0 0;
+  padding: 0;
+  margin-top: 60px;
+
+  li {
+    ul.sub {
+      margin: -2px 0 0;
+      padding: 0;
+
+      li {
+        background: #eeeeee;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+
+        &:last-child {
+          border-radius: 0 0 4px 4px;
+          -webkit-border-radius: 0 0 4px 4px;
+        }
+
+        a {
+          font-size: 12px;
+          padding: 0 0 0 32px;
+          line-height: 35px;
+          height: 35px;
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+          color: $color_1;
+          font-size: 14px;
+
+          &:hover {
+            color: $color_2;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            -ms-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            display: block;
+          }
+        }
+      }
+
+      li.active {
+        a {
+          color: $color_2;
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+          display: block;
+        }
+      }
+    }
+
+    line-height: 20px !important;
+
+    a {
+      span {
+        display: inline-block;
+      }
+
+      color: $color_3;
+      text-decoration: none;
+      display: block;
+      padding: 10px 0 10px 10px;
+      font-size: 16px;
+      font-weight: 400;
+      outline: none;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+      border-right: 1px solid #D7D7D7;
+      border-bottom: 1px solid #D7D7D7;
+      white-space: nowrap;
+
+      &:hover {
+        background: #eeeeee;
+        color: $color_2;
+        display: block;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid #ff4088;
+
+        i {
+          color: $color_2;
+        }
+      }
+
+      &:focus {
+        background: #eeeeee;
+        color: $color_2;
+        display: block;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        border-bottom: 1px solid #ff4088;
+
+        i {
+          color: $color_2;
+        }
+      }
+
+      i {
+        font-size: 18px;
+        padding-right: 6px;
+      }
+    }
+  }
+
+  li.sub-menu {
+    line-height: 15px;
+    font-size: 16px;
+  }
+
+  li.active {
+    a {
+      background: #eeeeee;
+      color: $color_2;
+      display: block;
+      -webkit-transition: all 0.3s ease;
+      -moz-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+
+      i {
+        color: $color_2;
+      }
+
+    }
+  }
+  .sub-menu {
+    li.active {
+      a {
+        border-bottom: 1px solid #ff4088;
+      }
+    }
+  }
+}

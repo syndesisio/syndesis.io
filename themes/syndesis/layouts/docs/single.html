@@ -1,0 +1,18 @@
+{{ define "main"}}
+<div itemscope
+     class="container docs article">
+  {{ template "_internal/schema.html" .}}
+    <div class="hero">
+      <h1 itemprop="headline">{{.Title}}</h1>
+      {{ if .Description }}
+      <blockquote itemprop="description">{{ .Description }}</blockquote>
+      {{ end }}
+    </div>
+    <div itemprop="articleBody"
+         class="articleBody">
+      {{ .Content | safeHTML }}
+    </div>
+
+  </div>
+</div>
+{{ end }}
