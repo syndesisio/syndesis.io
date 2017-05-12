@@ -18,6 +18,14 @@ body {
   @include button-outline-variant($brand-info, $brand-primary);
 }
 
+:target::before {
+  display: block;
+  content: " ";
+  margin-top: -100px;
+  height: 100px;
+  visibility: hidden;
+}
+
 @import "toc";
 @import "home";
 @import "navbar";
