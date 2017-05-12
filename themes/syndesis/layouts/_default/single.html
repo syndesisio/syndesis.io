@@ -1,12 +1,17 @@
-{{ define "header"}}{{ partial "header" .}}{{end}}
-
 {{ define "main" }}
 <div class="container">
   <h1>{{ .Title }}</h1>
-  {{ .Content | safeHTML }}
-</div>
+  {{ if .Params.toc }}
+  <div class="row">
+    <div class="col-xs-12 col-xl-8">
+      {{ .Content | safeHTML  }}
+    </div>
+    <div id="toc" class="col-xl-4 hidden-lg-down">
+      {{ .TableOfContents }}
+    </div>
+  </div>
+{{ else }}
+{{ .Content | safeHTML }}
 {{ end }}
-
-{{ define "footer" }} 
-  {{ partial "footer" . }} 
+</div>
 {{ end }}

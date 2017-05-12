@@ -3,7 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "repository": "git@github.com:syndesisio/syndesis.io",
-  "author": "Jimmi Dyson <jimmidyson@gmail.com>",
+  "contributors": [
+    { "name" : "Jimmi Dyson",
+      "email" : "jimmidyson@gmail.com",
+      "url" : "https://www.github.com/jimmidyson"
+    },
+    { "name" : "Rachel Yordán"
+    , "email" : "rachelyordan@gmail.com"
+    , "url" : "https://www.github.com/kahboom"
+    }
+  ],
   "license": "Apache 2.0",
   "devDependencies": {
     "bootstrap": "4.0.0-alpha.6",
