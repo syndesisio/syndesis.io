@@ -40,6 +40,11 @@
 
   .btn-get-started {
     @include button-variant($brand-primary, $brand-info, $brand-info);
+    @include hover {
+      color: $brand-info;
+      background-color: $brand-primary;
+      border-color: $brand-info;
+    }
   }
 }
 
