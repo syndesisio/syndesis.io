@@ -3,14 +3,15 @@
      itemtype="http://schema.org/BlogPosting"
      class="container">
   {{ template "_internal/schema.html" .}}
-  <div>
+    <div id="hero">
+      <h1 itemprop="headline">{{.Title}}</h1>
+      {{ if .Description }}
+      <blockquote itemprop="description">{{ .Description }}</blockquote>
+      {{ end }}
+      <time class="post-time">{{ partial "blog/meta" . }}</time>
+    </div>
     <div itemprop="articleBody">
       {{ .Content | safeHTML }}
-    </div>
-
-    <div>
-      {{ partial "blog/byauthor" .}}
-      {{ partial "blog/related-content" .}}
     </div>
 
     {{ if .Site.DisqusShortname }}

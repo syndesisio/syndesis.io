@@ -3,7 +3,7 @@
   <h2 class="title">
     <a href="{{ .RelPermalink }}" itemprop="headline">{{ .Title }}</a>
   </h2>
-  <p class="blog-post-meta">{{ dateFormat "Monday, Jan 2, 2006" .Date }}</p>
+  {{ partial "blog/meta" . }}
   <p class="summary">
     {{ .Summary }}
   </p>
