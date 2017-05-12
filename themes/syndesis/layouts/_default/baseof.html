@@ -25,9 +25,9 @@
   <link rel="stylesheet" href="/css/syndesis.css">
 </head>
 
-<body class="{{ .Type }}{{ if .IsHome }} home{{ end }}">
+<body class="{{ .Type }}{{ if .IsHome }} home{{ end }} container-fluid">
   {{ block "sidenav" . }}{{ end }}
-  
+
   {{ partial "github-corner.html" .}}
   {{ partial "topnav" . }}
   {{ block "main" . }}{{ end }}

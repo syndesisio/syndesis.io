@@ -1,26 +1,22 @@
 <nav class="navbar fixed-top navbar-inverse bg-primary navbar-toggleable-md sps sps--abv">
-  <button class="navbar-toggler navbar-toggler-right"
-          type="button"
-          data-toggle="collapse"
-          data-target="#top-nav"
-          aria-controls="top-nav"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-nav" aria-controls="top-nav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-    <a class="navbar-brand"
-       href="{{ .Site.BaseURL }}">{{ .Site.Title }}
-    </a>
-    <div class="collapse navbar-collapse"
-         id="top-nav">
+    <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+    <div class="collapse navbar-collapse" id="top-nav">
       <ul class="navbar-nav ml-auto mt-2 mt-md-0">
         {{ $page := .Page }}
         {{ range .Site.Menus.topnav }}
+<<<<<<< HEAD
           {{ $is := $page.IsMenuCurrent "topnav" . }}
           {{ $has := $page.HasMenuCurrent "topnav" . }}
           <li class="nav-item ml-lg-3 ml-0">
             <a class="nav-link{{ if or ($is) ($has) }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+=======
+          <li class="nav-item active ml-lg-3 ml-0">
+            <a class="nav-link" href="{{ .URL }}">{{ .Name }}</a>
+>>>>>>> Add sidebar for docs, cleanup corrections
           </li>
         {{ end }}
       </ul>

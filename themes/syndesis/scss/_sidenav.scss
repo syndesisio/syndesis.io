@@ -9,11 +9,12 @@ $color_2: #ff4088;
 $color_3: #72767D;
 
 .sidenav {
-  width: 214px;
+  background: $pf-white;
   height: 100%;
-  position: fixed;
-  background: #ffffff;
   overflow-y: auto;
+  position: fixed;
+  width: 214px;
+  z-index: 1;
 
   > ul {
     > li {
@@ -49,9 +50,8 @@ $color_3: #72767D;
 }
 
 ul.sidebar-menu {
-  margin: -2px 0 0;
   padding: 0;
-  margin-top: 60px;
+  margin: -2px 0 0;
 
   li {
     ul.sub {
@@ -74,20 +74,11 @@ ul.sidebar-menu {
           padding: 0 0 0 32px;
           line-height: 35px;
           height: 35px;
-          -webkit-transition: all 0.3s ease;
-          -moz-transition: all 0.3s ease;
-          -o-transition: all 0.3s ease;
-          -ms-transition: all 0.3s ease;
           transition: all 0.3s ease;
           color: $color_1;
-          font-size: 14px;
 
           &:hover {
             color: $color_2;
-            -webkit-transition: all 0.3s ease;
-            -moz-transition: all 0.3s ease;
-            -o-transition: all 0.3s ease;
-            -ms-transition: all 0.3s ease;
             transition: all 0.3s ease;
             display: block;
           }
@@ -97,10 +88,6 @@ ul.sidebar-menu {
       li.active {
         a {
           color: $color_2;
-          -webkit-transition: all 0.3s ease;
-          -moz-transition: all 0.3s ease;
-          -o-transition: all 0.3s ease;
-          -ms-transition: all 0.3s ease;
           transition: all 0.3s ease;
           display: block;
         }
@@ -121,10 +108,6 @@ ul.sidebar-menu {
       font-size: 16px;
       font-weight: 400;
       outline: none;
-      -webkit-transition: all 0.3s ease;
-      -moz-transition: all 0.3s ease;
-      -o-transition: all 0.3s ease;
-      -ms-transition: all 0.3s ease;
       transition: all 0.3s ease;
       border-right: 1px solid #D7D7D7;
       border-bottom: 1px solid #D7D7D7;
@@ -134,10 +117,6 @@ ul.sidebar-menu {
         background: #eeeeee;
         color: $color_2;
         display: block;
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        -ms-transition: all 0.3s ease;
         transition: all 0.3s ease;
         border-bottom: 1px solid #ff4088;
 
@@ -150,10 +129,6 @@ ul.sidebar-menu {
         background: #eeeeee;
         color: $color_2;
         display: block;
-        -webkit-transition: all 0.3s ease;
-        -moz-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
-        -ms-transition: all 0.3s ease;
         transition: all 0.3s ease;
         border-bottom: 1px solid #ff4088;
 
@@ -179,10 +154,6 @@ ul.sidebar-menu {
       background: #eeeeee;
       color: $color_2;
       display: block;
-      -webkit-transition: all 0.3s ease;
-      -moz-transition: all 0.3s ease;
-      -o-transition: all 0.3s ease;
-      -ms-transition: all 0.3s ease;
       transition: all 0.3s ease;
 
       i {

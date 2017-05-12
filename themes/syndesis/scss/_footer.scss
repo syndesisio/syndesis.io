@@ -2,29 +2,13 @@
 // FOOTER
 ////////////////////////////////////////////////////////////////////////////////
 
+@import 'colors';
+
 footer.page-footer {
   background-color: #000;
-  color: $white;
+  color: $pf-white;
   padding-top: 5rem;
   padding-bottom: 5rem;
-
-  .btn-primary {
-    @include button-variant($white, #a30000, #000);
-    font-weight: bold;
-    width: 40%;
-
-    @include media-breakpoint-down(lg) {
-      width: 70%;
-    }
-
-    @include media-breakpoint-down(md) {
-      width: 60%;
-    }
-
-    @include media-breakpoint-down(xs) {
-      width: 70%;
-    }
-  }
 
   .rh-logo {
     padding-top: 3rem;
