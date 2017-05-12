@@ -39,7 +39,7 @@
   }
 
   .btn-get-started {
-    @include button-variant($brand-secondary, $brand-info, $brand-info);
+    @include button-variant($brand-primary, $brand-info, $brand-info);
   }
 }
 
