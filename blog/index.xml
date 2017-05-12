@@ -17,7 +17,7 @@
       <pubDate>Wed, 10 May 2017 16:42:50 +0100</pubDate>
       
       <guid>https://syndesis.io/blog/syndesis-release-1.0.0/</guid>
-      <description>Announcing Syndesis The Integration Platform That’s For Everyone--No Coding Required. Best of All? It runs on OpenShift or Kubernetes, in the cloud or on-premise. It’s been a big week at Red Hat with preparations for Red Hat Summit, seemingly endless demo recordings, and lots of blood, sweat, and tears. So many tears. But today, our team is ecstatic to announce the release of Syndesis, a game-changing data integration platform that can be run in the cloud, requires no code whatsoever (but can be extended, should you be so inclined), and, in typical Red Hat fashion, is completely open source.</description>
+      <description>The Integration Platform That’s For Everyone - No Coding Required. Best of All? Syndesis runs in the cloud or on-premise, on OpenShift or Kubernetes. The week before Red Hat Summit is always crazy, seemingly endless demo recordings, and lots of blood, sweat, and tears. So many tears. Even more so when your project is going to have it&amp;rsquo;s first public airing. And so our team is ecstatic to announce the release of Syndesis, a game-changing data integration platform that can be run in the cloud, requires no code whatsoever (but can be extended, should you be so inclined), and, in typical Red Hat fashion, is completely open source.</description>
     </item>
     
   </channel>
