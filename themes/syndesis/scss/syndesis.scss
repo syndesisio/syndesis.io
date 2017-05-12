@@ -18,6 +18,11 @@ body {
   &.home {
     padding-top: 74px;
   }
+
+  a, a:hover, a:focus, a:visited, .btn {
+    cursor: pointer;
+    text-decoration: none;
+  }
 }
 
 .btn-info {

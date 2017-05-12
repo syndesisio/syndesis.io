@@ -3,7 +3,7 @@
      itemtype="http://schema.org/BlogPosting"
      class="container blog post">
   {{ template "_internal/schema.html" .}}
-    <div id="hero">
+    <div class="hero">
       <h1 itemprop="headline">{{.Title}}</h1>
       {{ if .Description }}
       <blockquote itemprop="description">{{ .Description }}</blockquote>
