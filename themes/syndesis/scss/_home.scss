@@ -2,16 +2,15 @@
 // NAV
 ////////////////////////////////////////////////////////////////////////////////
 
-.page .sps--abv {
+body.home .sps--abv {
   background-color: transparent !important;
   transition: background-color 800ms ease-in-out;
 }
 
-.page .sps--blw {
+body.home .sps--blw {
   background-color: inherit;
   transition: background-color 800ms ease-in-out;
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // JUMBOTRON
