@@ -1,4 +1,6 @@
-@import "./bootstrap/_variables";
+@import "colors";
+
+@import "bootstrap/variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
 @import "icons";
@@ -12,157 +14,12 @@ body {
   }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// NAVBAR
-////////////////////////////////////////////////////////////////////////////////
-
-.navbar-brand {
-  font-family: Righteous, cursive;
-  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+.btn-info {
+  @include button-outline-variant($brand-info, $brand-primary);
 }
 
-.navbar-toggler {
-  cursor: pointer;
-}
-
-.nav-link {
-  font-weight: $font-weight-bold;
-  font-size: 1.1rem;
-
-  &:hover {
-    border-bottom: 1px dashed #fff;
-  }
-
-  &:active, &:focus {
-    border-bottom: 1px solid #fff;
-  }
-}
-
-.page .sps--abv {
-  background-color: transparent !important;
-  transition: background-color 800ms ease-in-out;
-}
-
-.page .sps--blw {
-  background-color: inherit;
-  transition: background-color 800ms ease-in-out;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// JUMBOTRON
-////////////////////////////////////////////////////////////////////////////////
-
-.jumbotron {
-  position: relative;
-  margin-top: -74px;
-  padding-top: 74px;
-
-  h1,h2,h3,h4,h5,h6 {
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
-  }
-
-  .title {
-    color: #bee1f4;
-  }
-
-  .lead {
-    text-shadow: 1px 2px 2px rgba(0,0,0,0.5);
-  }
-
-  .btn-outline-learn-more {
-    @include button-outline-variant($white, $brand-primary);
-  }
-
-  .btn-get-started {
-    @include button-variant($brand-primary, $white, $brand-primary);
-  }
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// MAILING LIST
-////////////////////////////////////////////////////////////////////////////////
-
-.mailing-list {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-
-  .lead {
-    text-shadow: none;
-  }
-
-  .btn {
-    font-weight: bold;
-  }
-}
-
-
-////////////////////////////////////////////////////////////////////////////////
-// FOOTER
-////////////////////////////////////////////////////////////////////////////////
-
-footer.page-footer {
-  background-color: #000;
-  color: $white;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-
-  .btn-primary {
-    @include button-variant($white, #a30000, #000);
-    font-weight: bold;
-    width: 40%;
-
-    @include media-breakpoint-down(lg) {
-      width: 70%;
-    }
-
-    @include media-breakpoint-down(md) {
-      width: 60%;
-    }
-
-    @include media-breakpoint-down(xs) {
-      width: 70%;
-    }
-  }
-
-  .rh-logo {
-    padding-top: 3rem;
-  }
-
-  h4 {
-    font-family: $font-family-base;
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// PARTICLE.JS
-////////////////////////////////////////////////////////////////////////////////
-
-#particles {
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  opacity: 0.5;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// HOME PAGE
-////////////////////////////////////////////////////////////////////////////////
-
-.full-width-feature {
-  .screenshot {
-    width: 100%;
-    box-shadow: 2px 4px 4px rgba(0,0,0,0.5);
-  }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-// BLOG
-////////////////////////////////////////////////////////////////////////////////
-
-.blog-post-meta {
-  margin-bottom: 1.25rem;
-  color: #999;
-}
+@import "toc";
+@import "home";
+@import "navbar";
+@import "footer";
+@import "blog";

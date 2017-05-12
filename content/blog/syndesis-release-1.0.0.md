@@ -6,9 +6,11 @@ description = "The Integration Platform That’s For Everyone--No Coding Require
 title = "Announcing Syndesis"
 +++
 
-# Announcing Syndesis
+## Announcing Syndesis
 
-### The Integration Platform That’s For Everyone--No Coding Required. Best of All? It runs on OpenShift or Kubernetes, in the cloud or on-premise.
+<p class="lead">
+The Integration Platform That’s For Everyone--No Coding Required. Best of All? It runs on OpenShift or Kubernetes, in the cloud or on-premise.
+</p>
 
 It’s been a big week at Red Hat with preparations for Red Hat Summit, seemingly endless demo recordings, and lots of blood, sweat, and tears. So many tears. But today, our team is ecstatic to announce the release of Syndesis, a game-changing data integration platform that can be run in the cloud, requires no code whatsoever (but can be extended, should you be so inclined), and, in typical Red Hat fashion, is completely open source.
 

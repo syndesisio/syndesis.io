@@ -1,21 +1,12 @@
-# theme.toml template for a Hugo theme
-# See https://github.com/spf13/hugoThemes#themetoml for an example
-
 name = "Syndesis"
-license = "MIT"
-licenselink = "https://github.com/yourname/yourtheme/blob/master/LICENSE.md"
+license = "Apache-2.0"
+licenselink = "https://github.com/syndesisio/syndesis-theme/blob/master/LICENSE.md"
 description = ""
-homepage = "http://siteforthistheme.com/"
+homepage = "https://syndesisio.github.com/syndesis-theme"
 tags = []
 features = []
 min_version = "0.20.6"
 
 [author]
-  name = ""
-  homepage = ""
-
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""
+  name = "Syndesis Developers"
+  homepage = "https://syndesis.io/"

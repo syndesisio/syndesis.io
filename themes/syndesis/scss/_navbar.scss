@@ -1,0 +1,25 @@
+////////////////////////////////////////////////////////////////////////////////
+// NAVBAR
+////////////////////////////////////////////////////////////////////////////////
+
+.navbar-brand {
+  font-family: Righteous, cursive;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+}
+
+.navbar-toggler {
+  cursor: pointer;
+}
+
+.nav-link {
+  font-weight: $font-weight-bold;
+  font-size: 1.1rem;
+
+  &:hover {
+    border-bottom: 1px dashed #fff;
+  }
+
+  &:active, &:focus {
+    border-bottom: 1px solid #fff;
+  }
+}

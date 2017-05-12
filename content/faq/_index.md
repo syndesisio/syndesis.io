@@ -2,6 +2,7 @@
 draft= false
 title = "FAQ"
 description = "Asked and answered"
+toc = true
 +++
 
 ## Syndesis looks awesome. Who is it for?

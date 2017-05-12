@@ -1,0 +1,24 @@
+#TableOfContents{
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px 20px 10px 20px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 5px;
+
+    li {
+      display: inline;
+    }
+  }
+
+  &>ul>li>ul>li>a,
+  &>ul>li>a {
+    font-weight: bold;
+    margin: 0 2px;
+  }
+
+  &>ul>li>ul>li>a {
+    font-style: italic;
+  }
+}
