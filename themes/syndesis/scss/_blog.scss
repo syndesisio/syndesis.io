@@ -5,13 +5,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .blog {
-  &.post {}
+  &.post {
+    padding: 50px 0 75px;
+  }
 
-  &.list {}
-}
+  &.list {
+    padding: 50px 0 75px;
 
-.blog-post-meta {
-  margin-bottom: 1.25rem;
-  color: #999;
+    h1 {}
+
+    .articles {
+      .blog-post-meta {
+        margin-bottom: 1.25rem;
+        color: #999;
+      }
+    }
+  }
 }
 
