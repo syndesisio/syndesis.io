@@ -1,10 +1,8 @@
 +++
 draft= false
 title = "Docs"
-description = "Documentation section of Syndesis."
+description = "Documentation and guides for using and/or contributing to the Syndesis project."
 toc = true
 +++
 
-## Documentation
-
-Here you will find guides on how to use and contribute to the Syndesis project.
+Here you will find documentation and guides for using and/or contributing to the Syndesis project.
