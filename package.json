@@ -4,13 +4,15 @@
   "private": true,
   "repository": "git@github.com:syndesisio/syndesis.io",
   "contributors": [
-    { "name" : "Jimmi Dyson",
-      "email" : "jimmidyson@gmail.com",
-      "url" : "https://www.github.com/jimmidyson"
+    {
+      "name": "Jimmi Dyson",
+      "email": "jimmidyson@gmail.com",
+      "url": "https://www.github.com/jimmidyson"
     },
-    { "name" : "Rachel Yordán"
-    , "email" : "rachelyordan@gmail.com"
-    , "url" : "https://www.github.com/kahboom"
+    {
+      "name": "Rachel Yordán",
+      "email": "rachelyordan@gmail.com",
+      "url": "https://www.github.com/kahboom"
     }
   ],
   "license": "Apache 2.0",
@@ -26,11 +28,13 @@
     "gulp-postcss": "6.4.0",
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",
+    "gulp-sass-lint": "1.3.2",
     "gulp-uglify": "2.1.2",
     "gulp-uncss": "1.0.6",
     "postcss-cssnext": "2.10.0",
     "postcss-flexbugs-fixes": "2.1.1",
     "postcss-import": "9.1.0",
+    "sass-lint": "1.10.2",
     "scrollpos-styler": "0.6.1"
   }
 }
