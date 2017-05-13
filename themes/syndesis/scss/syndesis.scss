@@ -3,6 +3,7 @@
 
 @import 'blog';
 @import 'colors';
+@import 'docs';
 @import 'footer';
 @import 'github-corner';
 @import 'home';
@@ -18,7 +19,7 @@ html, body {
   .content {
     min-height: 100%;
     margin: 0 auto -50px;
-    padding: $navbar-max-height 0;
+    padding: $navbar-max-height;
   }
 }
 

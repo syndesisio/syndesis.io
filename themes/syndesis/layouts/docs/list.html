@@ -1,7 +1,7 @@
 {{ define "sidenav"}} {{ partial "sidenav" .}} {{ end }}
 
 {{ define "main"}}
-<div class="docs list">
+<div class="list">
   <h1>{{ .Title }}</h1>
   {{ .Content | safeHTML }}
   <div class="articles">

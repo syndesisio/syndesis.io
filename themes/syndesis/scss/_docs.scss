@@ -2,7 +2,16 @@
 // DOCS
 ////////////////////////////////////////////////////////////////////////////////
 
+@import 'colors';
+@import 'navbar';
+
 .docs {
-  margin-left: 248px;
+  .content {
+    padding: $navbar-max-height + 25px 0;
+
+    .list, .single {
+      margin-left: 248px;
+    }
+  }
 }
 
