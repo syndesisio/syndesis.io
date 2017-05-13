@@ -4,7 +4,11 @@
 // NAVBAR
 ////////////////////////////////////////////////////////////////////////////////
 
+$navbar-max-height: 75px;
+
 nav.navbar {
+  max-height: $navbar-max-height;
+
   .navbar-brand {
     font-family: Righteous, cursive;
     color: $pf-white !important;

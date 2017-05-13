@@ -3,9 +3,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 @import 'colors';
+@import 'navbar';
 
 .home {
-  padding-top: 74px;
+  //padding-top: $navbar-max-height;
 
   ////////////////////////////////////////////////////////////////////////////////
   // NAVBAR OVERRIDES
@@ -29,7 +30,7 @@
   .jumbotron {
     position: relative;
     margin-top: -74px;
-    padding-top: 74px;
+    padding-top: $navbar-max-height + 6px;
 
     h1,h2,h3,h4,h5,h6 {
       text-shadow: 2px 4px 3px rgba(0,0,0,0.5);

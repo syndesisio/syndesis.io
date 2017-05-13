@@ -11,11 +11,14 @@
 @import 'sidenav';
 @import 'toc';
 
-body {
-  padding-top: 100px;
+html, body {
+  height: 100%;
+  margin-top: -1px;
 
-  &.home {
-    padding-top: 74px;
+  .content {
+    min-height: 100%;
+    margin: 0 auto -50px;
+    padding: $navbar-max-height 0;
   }
 }
 
@@ -26,3 +29,4 @@ body {
   height: 100px;
   visibility: hidden;
 }
+
