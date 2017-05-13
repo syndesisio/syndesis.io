@@ -13,83 +13,54 @@ googleAnalytics = "UA-98663114-1"
     url = "https://github.com/syndesisio"
 
 [[menu.sidenav]]
-    name = "Download Hugo"
+    name = "About Syndesis"
     pre = "<i class='fa fa-download'></i>"
-    url = "https://github.com/spf13/hugo/releases"
+    url = "/about/"
     weight = -200
 [[menu.sidenav]]
-    name = "Site Showcase"
+    name = "Getting Started"
     pre = "<i class='fa fa-cubes'></i>"
-    url = "/showcase/"
+    url = "/getting-started/"
     weight = -180
 [[menu.sidenav]]
-    name = "Theme Showcase"
+    name = "User Guide"
+    identifier = "users"
     pre = "<i class='fa fa-puzzle-piece'></i>"
-    url = "http://themes.gohugo.io"
+    url = "/users/"
     weight = -170
 [[menu.sidenav]]
-    name = "Press & Articles"
-    pre = "<i class='fa fa-bullhorn'></i>"
-    url = "/community/press/"
-    weight = -160
-[[menu.sidenav]]
-    name = "Discuss Hugo"
-    pre = "<i class='fa fa-comments'></i>"
-    url = "http://discuss.gohugo.io/"
-    weight = -150
-[[menu.sidenav]]
-    name = "About Hugo"
-    identifier = "about"
-    pre = "<i class='fa fa-heart'></i>"
-    weight = -110
-[[menu.sidenav]]
-    name = "Getting Started"
-    identifier = "getting started"
+    name = "Developer Guide"
+    identifier = "developers"
     pre = "<i class='fa fa-road'></i>"
     weight = -100
 [[menu.sidenav]]
-    name = "Content"
-    identifier = "content"
+    name = "Community"
+    identifier = "community"
     pre = "<i class='fa fa-file-text'></i>"
     weight = -90
 [[menu.sidenav]]
-    name = "Themes"
-    identifier = "themes"
+    name = "Testing"
+    identifier = "testing"
     pre = "<i class='fa fa-desktop'></i>"
     weight = -85
 [[menu.sidenav]]
-    parent = "themes"
-    name = "Theme Showcase"
-    url = "http://themes.gohugo.io"
+    name = "FAQ"
+    url = "/faq/"
+    pre = "<i class='fa fa-file-text'></i>"
     weight = -170
 [[menu.sidenav]]
-    name = "Templates"
-    identifier = "layout"
-    pre = "<i class='fa fa-columns'></i>"
-    weight = -80
-[[menu.sidenav]]
-    name = "Taxonomies"
-    identifier = "taxonomy"
+    name = "Models"
+    identifier = "models"
     pre = "<i class='fa fa-tags'></i>"
     weight = -70
 [[menu.sidenav]]
-    name = "Extras"
-    identifier = "extras"
-    pre = "<i class='fa fa-gift'></i>"
-    weight = -60
-[[menu.sidenav]]
-    name = "Community"
-    identifier = "community"
-    pre = "<i class='fa fa-group'></i>"
-    weight = -50
-[[menu.sidenav]]
     parent = "community"
-    name = "Discussion Forum"
-    url = "http://discuss.gohugo.io"
+    name = "Contact Us"
+    url = "/contact/"
     weight = 150
 [[menu.sidenav]]
-    name = "Tutorials"
-    identifier = "tutorials"
+	parent = "developers"
+    name = "Architecture"
     pre = "<i class='fa fa-book'></i>"
     weight = -40
 [[menu.sidenav]]
@@ -98,13 +69,19 @@ googleAnalytics = "UA-98663114-1"
     pre = "<i class='fa fa-wrench'></i>"
     weight = -30
 [[menu.sidenav]]
-    name = "Tools"
-    url = "/tools/"
+	parent = "models"
+    name = "Connections"
+    url = "/connections/"
     pre = "<i class='fa fa-cogs'></i>"
     weight = -25
 [[menu.sidenav]]
-    name = "Hugo Cmd Reference"
-    identifier = "commands"
+	parent = "models"
+    name = "Templates"
+    url = "/templates/"
+    pre = "<i class='fa fa-cogs'></i>"
+    weight = -26
+[[menu.sidenav]]
+    name = "API Docs"
     pre = "<i class='fa fa-space-shuttle'></i>"
     weight = -20
-    url = "/commands/"
+    url = "/api-docs/"

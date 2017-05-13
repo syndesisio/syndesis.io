@@ -1,15 +1,12 @@
-@import 'colors';
-
 ////////////////////////////////////////////////////////////////////////////////
 // SIDENAV
 ////////////////////////////////////////////////////////////////////////////////
 
-$color_1: #656C73;
-$color_2: #ff4088;
-$color_3: #72767D;
+@import 'colors';
 
 .sidenav {
   background: $pf-white;
+  color: $pf-blue-400;
   height: 100%;
   overflow-y: auto;
   position: fixed;
@@ -76,10 +73,10 @@ ul.sidebar-menu {
           line-height: 35px;
           height: 35px;
           transition: all 0.3s ease;
-          color: $color_1;
+          color: $pf-black-600;
 
           &:hover {
-            color: $color_2;
+            color: $pf-blue-400;
             transition: all 0.3s ease;
             display: block;
           }
@@ -88,7 +85,7 @@ ul.sidebar-menu {
 
       li.active {
         a {
-          color: $color_2;
+          color: $pf-blue-400;
           transition: all 0.3s ease;
           display: block;
         }
@@ -102,7 +99,7 @@ ul.sidebar-menu {
         display: inline-block;
       }
 
-      color: $color_3;
+      color: $pf-black-500;
       text-decoration: none;
       display: block;
       padding: 10px 0 10px 10px;
@@ -116,25 +113,25 @@ ul.sidebar-menu {
 
       &:hover {
         background: #eeeeee;
-        color: $color_2;
+        color: $pf-blue-400;
         display: block;
         transition: all 0.3s ease;
-        border-bottom: 1px solid #ff4088;
+        border-bottom: 1px solid $pf-light-blue-300;
 
         i {
-          color: $color_2;
+          color: $pf-blue-400;
         }
       }
 
       &:focus {
         background: #eeeeee;
-        color: $color_2;
+        color: $pf-blue-400;
         display: block;
         transition: all 0.3s ease;
-        border-bottom: 1px solid #ff4088;
+        border-bottom: 1px solid $pf-light-blue-300;
 
         i {
-          color: $color_2;
+          color: $pf-blue-400;
         }
       }
 
@@ -153,12 +150,12 @@ ul.sidebar-menu {
   li.active {
     a {
       background: #eeeeee;
-      color: $color_2;
+      color: $pf-blue-400;
       display: block;
       transition: all 0.3s ease;
 
       i {
-        color: $color_2;
+        color: $pf-blue-400;
       }
 
     }
@@ -166,7 +163,7 @@ ul.sidebar-menu {
   .sub-menu {
     li.active {
       a {
-        border-bottom: 1px solid #ff4088;
+        border-bottom: 1px solid $pf-light-blue-300;
       }
     }
   }
