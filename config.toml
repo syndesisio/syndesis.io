@@ -14,7 +14,7 @@ googleAnalytics = "UA-98663114-1"
 
 [[menu.sidenav]]
     name = "About Syndesis"
-    pre = "<i class='fa fa-download'></i>"
+    pre = "<i class='fa fa-fw fa-download'></i>"
     url = "/about/"
     weight = -200
 [[menu.sidenav]]
@@ -25,33 +25,33 @@ googleAnalytics = "UA-98663114-1"
 [[menu.sidenav]]
     name = "User Guide"
     identifier = "users"
-    pre = "<i class='fa fa-puzzle-piece'></i>"
+    pre = "<i class='fa fa-fw fa-puzzle-piece'></i>"
     url = "/users/"
     weight = -170
 [[menu.sidenav]]
     name = "Developer Guide"
     identifier = "developers"
-    pre = "<i class='fa fa-road'></i>"
+    pre = "<i class='fa fa-fw fa-road'></i>"
     weight = -100
 [[menu.sidenav]]
     name = "Community"
     identifier = "community"
-    pre = "<i class='fa fa-file-text'></i>"
+    pre = "<i class='fa fa-fw fa-file-text'></i>"
     weight = -90
 [[menu.sidenav]]
     name = "Testing"
     identifier = "testing"
-    pre = "<i class='fa fa-desktop'></i>"
+    pre = "<i class='fa fa-fw fa-desktop'></i>"
     weight = -85
 [[menu.sidenav]]
     name = "FAQ"
     url = "/faq/"
-    pre = "<i class='fa fa-file-text'></i>"
+    pre = "<i class='fa fa-fw fa-file-text'></i>"
     weight = -170
 [[menu.sidenav]]
     name = "Models"
     identifier = "models"
-    pre = "<i class='fa fa-tags'></i>"
+    pre = "<i class='fa fa-fw fa-tags'></i>"
     weight = -70
 [[menu.sidenav]]
     parent = "community"
@@ -61,27 +61,27 @@ googleAnalytics = "UA-98663114-1"
 [[menu.sidenav]]
 	parent = "developers"
     name = "Architecture"
-    pre = "<i class='fa fa-book'></i>"
+    pre = "<i class='fa fa-fw fa-book'></i>"
     weight = -40
 [[menu.sidenav]]
     name = "Troubleshooting"
     identifier = "troubleshooting"
-    pre = "<i class='fa fa-wrench'></i>"
+    pre = "<i class='fa fa-fw fa-wrench'></i>"
     weight = -30
 [[menu.sidenav]]
 	parent = "models"
     name = "Connections"
     url = "/connections/"
-    pre = "<i class='fa fa-cogs'></i>"
+    pre = "<i class='fa fa-fw fa-cogs'></i>"
     weight = -25
 [[menu.sidenav]]
 	parent = "models"
     name = "Templates"
     url = "/templates/"
-    pre = "<i class='fa fa-cogs'></i>"
+    pre = "<i class='fa fa-fw fa-cogs'></i>"
     weight = -26
 [[menu.sidenav]]
     name = "API Docs"
-    pre = "<i class='fa fa-space-shuttle'></i>"
+    pre = "<i class='fa fa-fw fa-space-shuttle'></i>"
     weight = -20
     url = "/api-docs/"
