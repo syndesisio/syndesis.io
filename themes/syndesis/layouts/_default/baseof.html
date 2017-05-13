@@ -25,12 +25,16 @@
   <link rel="stylesheet" href="/css/syndesis.css">
 </head>
 
-<body class="{{ .Type }}{{ if .IsHome }} home{{ end }} container-fluid">
+<body class="{{ .Type }}{{ if .IsHome }} home{{ end }}">
   {{ block "sidenav" . }}{{ end }}
 
   {{ partial "github-corner.html" .}}
   {{ partial "topnav" . }}
-  {{ block "main" . }}{{ end }}
+
+  <div class="container-fluid">
+    {{ block "main" . }}{{ end }}
+  </div>
+
   {{ partial "footer" . }}
 
   <script src="/js/syndesis.js"></script>
