@@ -1,9 +1,14 @@
-+++
-draft= false
-title = "FAQ"
-description = "Asked and answered"
-toc = true
-+++
+---
+draft: false
+title: "FAQ"
+description: "Asked and answered"
+toc: true
+menu:
+  topnav:
+    weight: -120
+    identifier: "name"
+    name: "faq"
+---
 
 ## Syndesis looks awesome. Who is it for?
 Anyone that wants to integrate services. Syndesis includes a swish UI that enables the user to design integration flows and manage them from their browser.

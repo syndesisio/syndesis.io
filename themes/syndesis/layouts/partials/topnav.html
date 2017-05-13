@@ -6,9 +6,12 @@
     <a class="navbar-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
     <div class="collapse navbar-collapse" id="top-nav">
       <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+        {{ $page := .Page }}
         {{ range .Site.Menus.topnav }}
+          {{ $is := $page.IsMenuCurrent "topnav" . }}
+          {{ $has := $page.HasMenuCurrent "topnav" . }}
           <li class="nav-item ml-lg-3 ml-0">
-            <a class="nav-link" href="{{ .URL }}">{{ .Name }}</a>
+            <a class="nav-link{{ if or ($is) ($has) }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
           </li>
         {{ end }}
       </ul>
