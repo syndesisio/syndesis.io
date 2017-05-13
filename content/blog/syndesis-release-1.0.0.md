@@ -1,9 +1,12 @@
-+++
-date = "2017-05-10T16:42:50+01:00"
-draft = false
-weight = 180
-title = "Announcing Syndesis"
-+++
+---
+date: "2017-05-10T16:42:50+01:00"
+draft: false
+weight: 180
+title: "Announcing Syndesis"
+menu:
+  topnav:
+    parent: blog
+---
 <p class="lead">
 The Integration Platform That’s For Everyone - No Coding Required. Best of All? Syndesis runs in the cloud or on-premise, on OpenShift or Kubernetes.
 </p>
