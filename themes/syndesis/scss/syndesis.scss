@@ -22,7 +22,12 @@ body {
 
     @include media-breakpoint-up(lg) {
       margin-left: 214px;
-      margin-right: 314px;
+      margin-right: 214px;
+
+      &.with-toc {
+        margin-left: 214px;
+        margin-right: 314px;
+      }
     }
   }
 }
