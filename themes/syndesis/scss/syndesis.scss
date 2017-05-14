@@ -16,7 +16,12 @@ html, body {
   height: 100%;
 }
 
-body {
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+#wrapper, #main {
   >.container-fluid {
     padding-top: $navbar-max-height + 26px;
 
@@ -29,6 +34,14 @@ body {
         margin-right: 314px;
       }
     }
+  }
+}
+
+#main {
+  padding-bottom: 20rem;
+
+  @include media-breakpoint-down(sm) {
+    padding-bottom: 32rem;
   }
 }
 

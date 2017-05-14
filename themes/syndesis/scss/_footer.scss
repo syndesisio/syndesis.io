@@ -9,6 +9,14 @@
   color: $pf-white;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  height: 20rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    height: 32rem;
+  }
 
   .btn-primary {
     @include button-variant($pf-white, $pf-red-200, $pf-black);

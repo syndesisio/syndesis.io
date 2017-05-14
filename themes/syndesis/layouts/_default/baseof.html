@@ -27,13 +27,15 @@
 
 <body class="{{ .Type }}{{ if .IsHome }} home{{ end }}">
   {{ block "sidenav" . }}{{ end }}
+  <div id="wrapper">
 
-  {{ partial "github-corner.html" .}}
-  {{ partial "topnav" . }}
+    {{ partial "github-corner.html" .}}
+    {{ partial "topnav" . }}
 
-  {{ block "main" . }}{{ end }}
+    <div id="main">{{ block "main" . }}{{ end }}</div>
 
-  {{ partial "footer" . }}
+    {{ partial "footer" . }}
+  </div>
 
   <script src="/js/syndesis.js"></script>
   {{ block "pagejs" . }}{{ end }}
