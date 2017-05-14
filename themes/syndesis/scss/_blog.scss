@@ -6,9 +6,6 @@
 
 .blog {
   .post {
-    padding: 50px 0 75px;
-
-
     //----- Hero: Includes the title, published date, time to read ----------------->>
     .hero {
       h1 {
@@ -31,11 +28,7 @@
   }
 
   .list {
-    padding: 50px 0 75px;
-
     .articles {
-      padding: 35px 0;
-
       .blog-post-meta {
         margin-bottom: 1.25rem;
         color: $pf-black-500;

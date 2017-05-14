@@ -1,17 +1,13 @@
 {{ define "main" }}
-<div class="faq">
-  <h1>{{ .Title }}</h1>
-  {{ if .Params.toc }}
-  <div class="row">
-    <div class="col-xs-12 col-xl-8">
-      {{ .Content | safeHTML  }}
-    </div>
-    <div id="toc" class="col-xl-4 hidden-lg-down">
-      {{ .TableOfContents }}
-    </div>
+<div class="container-fluid">
+  <div>
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.toc }}
+      <div id="toc" class="hidden-md-down">
+        {{ .TableOfContents }}
+      </div>
+    {{ end }}
+    {{ .Content | safeHTML }}
   </div>
-{{ else }}
-{{ .Content | safeHTML }}
-{{ end }}
 </div>
 {{ end }}

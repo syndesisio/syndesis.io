@@ -5,13 +5,13 @@
 @import 'colors';
 
 .page-footer {
-  background-color: #000;
+  background-color: $pf-black;
   color: $pf-white;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 
   .btn-primary {
-    @include button-variant($pf-white, #a30000, #000);
+    @include button-variant($pf-white, $pf-red-200, $pf-black);
     font-weight: bold;
     width: 40%;
 
@@ -29,7 +29,7 @@
   }
 
   .rh-logo {
-    padding-top: 3rem;
+    padding-top: 2rem;
   }
 
   h4 {

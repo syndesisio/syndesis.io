@@ -31,9 +31,7 @@
   {{ partial "github-corner.html" .}}
   {{ partial "topnav" . }}
 
-  <div class="container-fluid content">
-    {{ block "main" . }}{{ end }}
-  </div>
+  {{ block "main" . }}{{ end }}
 
   {{ partial "footer" . }}
 

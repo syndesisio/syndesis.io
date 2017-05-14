@@ -14,12 +14,16 @@
 
 html, body {
   height: 100%;
-  margin-top: -1px;
+}
 
-  .content {
-    min-height: 100%;
-    margin: 0 auto -50px;
-    padding: $navbar-max-height + 25px 165px;
+body {
+  >.container-fluid {
+    padding-top: $navbar-max-height + 26px;
+
+    @include media-breakpoint-up(lg) {
+      margin-left: 214px;
+      margin-right: 314px;
+    }
   }
 }
 

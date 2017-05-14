@@ -5,14 +5,11 @@
 @import 'colors';
 
 .sidenav {
-  background: $pf-white;
-  color: $pf-blue-400;
-  height: 100%;
+  color: $brand-primary;
   overflow-y: auto;
   position: fixed;
   top: 74px;
   width: 214px;
-  z-index: 1;
 
   > ul {
     > li {
@@ -76,7 +73,7 @@ ul.sidebar-menu {
           color: $pf-black-600;
 
           &:hover {
-            color: $pf-blue-400;
+            color: $brand-primary;
             transition: all 0.3s ease;
             display: block;
           }
@@ -85,7 +82,7 @@ ul.sidebar-menu {
 
       li.active {
         a {
-          color: $pf-blue-400;
+          color: $brand-primary;
           transition: all 0.3s ease;
           display: block;
         }
@@ -113,25 +110,25 @@ ul.sidebar-menu {
 
       &:hover {
         background: #eeeeee;
-        color: $pf-blue-400;
+        color: $brand-primary;
         display: block;
         transition: all 0.3s ease;
-        border-bottom: 1px solid $pf-light-blue-300;
+        border-bottom: 1px solid $brand-secondary;
 
         i {
-          color: $pf-blue-400;
+          color: $brand-primary;
         }
       }
 
       &:focus {
         background: #eeeeee;
-        color: $pf-blue-400;
+        color: $brand-primary;
         display: block;
         transition: all 0.3s ease;
-        border-bottom: 1px solid $pf-light-blue-300;
+        border-bottom: 1px solid $brand-secondary;
 
         i {
-          color: $pf-blue-400;
+          color: $brand-primary;
         }
       }
 
@@ -150,12 +147,12 @@ ul.sidebar-menu {
   li.active {
     a {
       background: #eeeeee;
-      color: $pf-blue-400;
+      color: $brand-primary;
       display: block;
       transition: all 0.3s ease;
 
       i {
-        color: $pf-blue-400;
+        color: $brand-primary;
       }
 
     }
@@ -163,7 +160,7 @@ ul.sidebar-menu {
   .sub-menu {
     li.active {
       a {
-        border-bottom: 1px solid $pf-light-blue-300;
+        border-bottom: 1px solid $brand-secondary;
       }
     }
   }

@@ -19,7 +19,7 @@ googleAnalytics = "UA-98663114-1"
     weight = -200
 [[menu.sidenav]]
     name = "Getting Started"
-    pre = "<i class='fa fa-cubes'></i>"
+    pre = "<i class='fa fa-fw fa-cubes'></i>"
     url = "/getting-started/"
     weight = -180
 [[menu.sidenav]]
