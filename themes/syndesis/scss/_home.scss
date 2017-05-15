@@ -27,7 +27,7 @@
 
   .jumbotron {
     position: relative;
-    padding-top: $navbar-max-height + 15px;
+    padding-top: $navbar-min-height + 16px;
 
     h1,h2,h3,h4,h5,h6 {
       text-shadow: 2px 4px 3px rgba(0,0,0,0.5);

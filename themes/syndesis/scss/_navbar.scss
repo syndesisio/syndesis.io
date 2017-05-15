@@ -4,10 +4,10 @@
 // NAVBAR
 ////////////////////////////////////////////////////////////////////////////////
 
-$navbar-max-height: 74px;
+$navbar-min-height: 74px;
 
 nav.navbar {
-  max-height: $navbar-max-height;
+  min-height: $navbar-min-height;
 
   .navbar-brand {
     font-family: Righteous, cursive;

@@ -23,7 +23,7 @@ html, body {
 
 #wrapper, #main {
   >.container-fluid {
-    padding-top: $navbar-max-height + 26px;
+    padding-top: $navbar-min-height + 26px;
 
     @include media-breakpoint-up(lg) {
       margin-left: 214px;
