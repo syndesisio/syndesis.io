@@ -16,7 +16,7 @@
 
   @include media-breakpoint-down(md) {
     left: -214px;
-    transition: all .2s ease-out;
+    transition: width .2s ease-out;
 
     &.active {
       left: 0;
