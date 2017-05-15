@@ -7,7 +7,8 @@ var jsLibs = [
   './node_modules/scrollpos-styler/scrollPosStyler.js',
   './node_modules/jquery/dist/jquery.slim.min.js',
   './node_modules/tether/dist/js/tether.min.js',
-  './node_modules/bootstrap/dist/js/bootstrap.min.js'
+  './node_modules/bootstrap/dist/js/bootstrap.min.js',
+  './themes/syndesis/js/**/*.js'
 ];
 
 function sriTransformer(tHash) {
@@ -90,7 +91,7 @@ gulp.task('optimize-css', function() {
   return gulp.src(['./public/**/*.css'])
     .pipe(plugins.uncss({
       html: ['./public/**/*.html'],
-      ignore: [/^\.sps.*/, /.collapse.show$/, /^.collapsing$/]
+      ignore: [/^\.sps.*/, /.collapse.show$/, /^.collapsing$/, /.sidenav.active$/]
     }))
     .pipe(gulp.dest('./public'));
 });

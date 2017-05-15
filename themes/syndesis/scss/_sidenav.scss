@@ -6,11 +6,28 @@
 
 .sidenav {
   color: $brand-primary;
+  background-color: $pf-white;
   overflow-y: auto;
   position: fixed;
+  left: 0;
   top: 74px;
   width: 214px;
   z-index: 100;
+
+  @include media-breakpoint-down(md) {
+    left: -214px;
+    transition: all .2s ease-out;
+
+    &.active {
+      left: 0;
+    }
+
+    .nav-button {
+      padding: 26px 15px;
+      border-right: 1px solid #D7D7D7;
+      border-bottom: 1px solid #D7D7D7;
+    }
+  }
 
   > ul {
     > li {
@@ -70,12 +87,12 @@ ul.sidebar-menu {
           padding: 0 0 0 32px;
           line-height: 35px;
           height: 35px;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
           color: $pf-black-600;
 
           &:hover {
             color: $brand-primary;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             display: block;
           }
         }
@@ -84,7 +101,7 @@ ul.sidebar-menu {
       li.active {
         a {
           color: $brand-primary;
-          transition: all 0.3s ease;
+          transition: all 0.2s ease;
           display: block;
         }
       }
@@ -104,7 +121,7 @@ ul.sidebar-menu {
       font-size: 16px;
       font-weight: 400;
       outline: none;
-      transition: all 0.3s ease;
+      transition: all 2s ease;
       border-right: 1px solid #D7D7D7;
       border-bottom: 1px solid #D7D7D7;
       white-space: nowrap;
@@ -113,7 +130,7 @@ ul.sidebar-menu {
         background: #eeeeee;
         color: $brand-primary;
         display: block;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         border-bottom: 1px solid $brand-secondary;
 
         i {
@@ -125,7 +142,7 @@ ul.sidebar-menu {
         background: #eeeeee;
         color: $brand-primary;
         display: block;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
         border-bottom: 1px solid $brand-secondary;
 
         i {
@@ -150,7 +167,7 @@ ul.sidebar-menu {
       background: #eeeeee;
       color: $brand-primary;
       display: block;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
 
       i {
         color: $brand-primary;

@@ -26,13 +26,14 @@
 </head>
 
 <body class="{{ .Type }}{{ if .IsHome }} home{{ end }}">
-  {{ block "sidenav" . }}{{ end }}
   <div id="wrapper">
 
     {{ partial "github-corner.html" .}}
     {{ partial "topnav" . }}
 
-    <div id="main">{{ block "main" . }}{{ end }}</div>
+    <div id="main">
+      {{ block "main" . }}{{ end }}
+    </div>
 
     {{ partial "footer" . }}
   </div>

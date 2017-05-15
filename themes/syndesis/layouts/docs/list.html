@@ -1,7 +1,6 @@
-{{ define "sidenav"}} {{ partial "sidenav" .}} {{ end }}
-
 {{ define "main"}}
 <div class="container-fluid">
+  {{ partial "sidenav" .}}
   <div class="list">
     <h1>{{ .Title }}</h1>
     {{ .Content | safeHTML }}

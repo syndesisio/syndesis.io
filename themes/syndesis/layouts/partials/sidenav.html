@@ -1,27 +1,30 @@
 <aside>
-  <div id="sidebar" class="sidenav nav-collapse hidden-md-down">
+  <p class="hidden-lg-up">
+    <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Show nav</button>
+  </p>
+  <div id="sidebar" class="sidenav">
     <ul class="sidebar-menu">
+      <li class="nav-button hidden-lg-up"><button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button></li>
       {{ $currentNode := . }}
       {{ range .Site.Menus.sidenav }}
       {{ if .HasChildren }}
 
       <li class="sub-menu{{if $currentNode.HasMenuCurrent "sidenav" . }} active{{end}}">
-      <a href="javascript:;" class="">
-        {{ .Pre }}
-        <!--<i class="icon_desktop"></i>-->
-        <span>{{ .Name }}</span>
-        <span class="menu-arrow fa {{if $currentNode.HasMenuCurrent "sidenav" . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
-      </a>
-      <ul class="sub{{if $currentNode.HasMenuCurrent "sidenav" . }} open{{end}}">
-      {{ range .Children }}
-      <li{{if $currentNode.IsMenuCurrent "sidenav" . }} class="active"{{end}}><a href="{{.URL}}">{{ .Name }}</a> </li>
-      {{ end }}
-    </ul>
+        <a href="javascript:;" class="">
+          {{ .Pre }}
+          <span>{{ .Name }}</span>
+          <span class="menu-arrow fa {{if $currentNode.HasMenuCurrent "sidenav" . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
+        </a>
+        <ul class="sub{{if $currentNode.HasMenuCurrent "sidenav" . }} open{{end}}">
+        {{ range .Children }}
+          <li{{if $currentNode.IsMenuCurrent "sidenav" . }} class="active"{{end}}><a href="{{.URL}}">{{ .Name }}</a></li>
+        {{ end }}
+        </ul>
+      </li>
     {{else}}
     <li>
       <a class="" href="{{.URL}}">
         {{ .Pre }}
-        <!--<i class="icon_house_alt"></i>-->
         <span>{{ .Name }}</span>
       </a>
       {{end}}
