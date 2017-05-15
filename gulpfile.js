@@ -92,7 +92,7 @@ gulp.task('optimize-css', function() {
   return gulp.src(['./public/**/*.css'])
     .pipe(plugins.uncss({
       html: ['./public/**/*.html'],
-      ignore: [/^\.sps.*/, /.collapse.show$/, '.collapsing', '.sidenav.active', '.anchorjs-icon']
+      ignore: [/^\.sps.*/, /\.collapse\.show$/, '.collapsing', '.sidenav.active', '.anchorjs-icon']
     }))
     .pipe(gulp.dest('./public'));
 });
