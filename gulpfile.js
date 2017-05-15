@@ -90,7 +90,7 @@ gulp.task('optimize-css', function() {
   return gulp.src(['./public/**/*.css'])
     .pipe(plugins.uncss({
       html: ['./public/**/*.html'],
-      ignore: [/^\.sps.*/]
+      ignore: [/^\.sps.*/, /.collapse.show$/, /^.collapsing$/]
     }))
     .pipe(gulp.dest('./public'));
 });
