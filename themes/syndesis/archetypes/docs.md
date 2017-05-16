@@ -5,7 +5,8 @@ weight: 20
 draft: false
 bref: ""
 toc: true
-sidebar: sidenavmenu:
+sidebar: sidenav
+menu:
   sidenav:
     name: ""
     pre: "<i class='fa fa-fw fa-download'></i>"

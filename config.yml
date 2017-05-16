@@ -1,0 +1,17 @@
+baseURL: "https://syndesis.io/"
+languageCode: "en-gb"
+title: "syndesis"
+theme: "syndesis"
+canonifyURLs: true
+googleAnalytics: "UA-98663114-1"
+metaDataFormat: "yaml"
+pygmentsCodeFences: true
+pygmentsCodeFencesGuessSyntax: true
+pygmentsStyle: github
+
+menu:
+  topnav:
+  - name: "code"
+    weight: -110
+    identifier: "code"
+    url: "https://github.com/syndesisio"
