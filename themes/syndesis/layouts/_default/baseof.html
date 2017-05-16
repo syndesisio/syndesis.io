@@ -31,7 +31,7 @@
     {{ partial "topnav" . }}
 
     <div id="main"{{ if not .IsHome }} class="d-flex flex-row"{{ end}}>
-      {{ if not .IsHome }}<div class="sidenav">{{ if isset .Params "sidebar" }}{{ partial "sidenav" . }}{{ end }}</div>{{ end }}
+      {{ if not .IsHome }}<div id="sidebar" class="sidenav">{{ if isset .Params "sidebar" }}{{ partial "sidenav" . }}{{ end }}</div>{{ end }}
       <div class="main-content">
         {{ block "main" . }}{{ end }}
       </div>

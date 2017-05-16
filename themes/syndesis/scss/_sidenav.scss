@@ -7,21 +7,28 @@
 .sidenav {
   color: $brand-primary;
   background-color: $pf-white;
-  flex: 0 0 214px;
   margin-top: -26px;
-
-  @extend .hidden-md-down;
 
   ul {
     list-style: none;
   }
 
+  @include media-breakpoint-up(lg) {
+    flex: 0 0 214px;
+  }
+
   @include media-breakpoint-down(md) {
-    left: -214px;
+    flex: none;
+    width: 214px;
     transition: all .2s ease-in-out;
+    position: absolute;
+    margin-left: -214px;
+    z-index: 10000;
+    overflow-y: auto;
+    height: calc(100% - 74px - 20rem);
 
     &.active {
-      left: 0;
+      margin-left: 0;
     }
 
     .nav-button {
@@ -29,6 +36,10 @@
       border-right: 1px solid #D7D7D7;
       border-bottom: 1px solid #D7D7D7;
     }
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: calc(100% - 74px - 32rem);
   }
 
   > ul {

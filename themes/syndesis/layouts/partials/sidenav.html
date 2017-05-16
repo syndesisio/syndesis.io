@@ -6,12 +6,11 @@
     <li class="nav-button hidden-lg-up"><button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button></li>
     {{ range $menu }}
     {{ if .HasChildren }}
-
     <li class="sub-menu{{ if $currentNode.HasMenuCurrent $menuName . }} active{{end}}">
-      <a href="javascript:;" class="">
+      <a href="{{ .URL }}" class="">
         {{ .Pre }}
         <span>{{ .Name }}</span>
-        <span class="menu-arrow fa {{if $currentNode.HasMenuCurrent $menuName . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
+        <span class="menu-arrow fa {{if $currentNode.IsMenuCurrent $menuName . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
       </a>
       <ul class="sub{{if $currentNode.HasMenuCurrent $menuName . }} open{{end}}">
       {{ range .Children }}
@@ -20,13 +19,13 @@
       </ul>
     </li>
   {{else}}
-  <li>
-    <a class="" href="{{.URL}}">
-      {{ .Pre }}
-      <span>{{ .Name }}</span>
-    </a>
-    {{end}}
-  </li>
+    <li{{ if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}>
+      <a class="" href="{{.URL}}">
+        {{ .Pre }}
+        <span>{{ .Name }}</span>
+      </a>
+      {{end}}
+    </li>
   {{end}}
   </ul>
 </aside>

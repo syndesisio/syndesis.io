@@ -1,5 +1,6 @@
 {{ define "main" }}
 <div>
+  <button type="button" class="btn btn-primary btn-sm hidden-lg-up" data-toggle="offcanvas" data-target="#sidebar">Show nav</button>
   <h1>{{ .Title }}</h1>
   {{ .Content | safeHTML }}
 </div>
