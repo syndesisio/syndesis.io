@@ -16,29 +16,37 @@ toc: true
 weight: 20
 ---
 
-We aim to make it as simple as possible for users to try out Syndesis. If you want to try out locally on your laptop, follow the [Minishift]({{< relref "#minishift" >}}) instructions.
+We aim to make it as simple as possible for users to try out Syndesis. If you want to try out locally on your laptop, follow the [Using Minishift]({{< relref "#using-minishift" >}}) instructions.
 
-## Minishift
+- - -
+
+## Using Minishift
 
 Minishift is a tool that helps you run OpenShift locally by running a single-node OpenShift cluster inside a VM locally. With Minishift you can easily try out Syndesis without requiring a "real" cluster or servers, a laptop will suffice.
 
 ### Prerequisites
 
-#### Minishift
+#### Minishift itself
 
-You're going to need a working Minishift installation, which is really easy. If you haven't got minishift already installed, please follow the [Minishift installation documentation](https://docs.openshift.org/latest/minishift/getting-started/installing.html).
+You're going to need a working Minishift installation, which is really easy. If you haven't got Minishift already installed, please follow the [Minishift installation documentation](https://docs.openshift.org/latest/minishift/getting-started/installing.html).
 
 #### GitHub registered application
 
-The other prerequisite is that you have a GitHub application registered at https://github.com/settings/developers. For the registration, please use as callback URL the output of `https://syndesis.$(minishift ip).xip.io`. Then you get a `<GITHUB_CLIENT_ID>` and a `<GITHUB_CLIENT_SECRET>`. These should be used in the commands below.
+You also need a GitHub application registered at https://github.com/settings/developers. While registering, you'll need to provide a callback URL. The callback URL will be the output of:
+
+```bash
+$ echo https://syndesis.$(minishift ip).xip.io
+```
+
+Once you've registered the applicatin, you will get a `<GITHUB_CLIENT_ID>` and a `<GITHUB_CLIENT_SECRET>`. These should be used in the commands below.
 
 ### Template selection
 
-The template to use in the installation instructions depend on your use case:
+Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.openshift.org/latest/dev_guide/templates.html).The template to use in the installation instructions depend on your use case:
 
-* **Developer** : Use the template `syndesis-dev` which directly references Docker images without image streams. Then when before building you images e.g. with `mvn fabric8:build` set your `DOCKER_HOST` envvar to use the Minishift Docker daemon via `eval $(minishift docker-env)`. After you have created a new image you simply only need to kill the appropriate pod so that the new pod spinning up will use the freshly created image. 
+* **Developer** : Use the template `syndesis-dev` which directly references Docker images without image streams. Then when before building you images e.g. with `mvn fabric8:build` set your `DOCKER_HOST` envvar to use the Minishift Docker daemon via `eval $(minishift docker-env)`. After you have created a new image you simply only need to kill the appropriate pod so that the new pod spinning up will use the freshly created image.
 
-* **Tester** / **User** : In case you only want to have the latest version of Syndesis on your local Minishift installation, use the template `syndesis` which uses image stream refering to the published Docker Hub images. Minishift will update its images and trigger a redeployment when the images at Docker Hub changes. Therefor it checks every 15 minutes for a change image. You do not have to do anything to get your application updated except for waiting on Minishift to pick up ew images.
+* **Tester** / **User** : In case you only want to have the latest version of Syndesis on your local Minishift installation, use the template `syndesis` which uses image stream refering to the published Docker Hub images. Minishift will update its images and trigger a redeployment when the images at Docker Hub changes. Therefor it checks every 15 minutes for a changed image. You do not have to do anything to get your application updated, except for waiting on Minishift to pick up new images.
 
 Depending on your role please use the appropriate template in the instructions below.
 
@@ -92,3 +100,5 @@ $ watch oc get pods
 ```
 
 You should now be able to open `https://syndesis.$(minishift ip).xip.io` in your browser.
+
+- - -
