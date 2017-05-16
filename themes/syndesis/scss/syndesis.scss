@@ -19,22 +19,7 @@ html, body {
 #wrapper {
   min-height: 100%;
   position: relative;
-}
-
-#wrapper, #main {
-  >.container-fluid {
-    padding-top: $navbar-min-height + 26px;
-
-    @include media-breakpoint-up(lg) {
-      margin-left: 214px;
-      margin-right: 214px;
-
-      &.with-toc {
-        margin-left: 214px;
-        margin-right: 314px;
-      }
-    }
-  }
+  padding-top: $navbar-min-height + 26px;
 }
 
 #main {
@@ -42,6 +27,11 @@ html, body {
 
   @include media-breakpoint-down(sm) {
     padding-bottom: 32rem;
+  }
+
+  .main-content {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 

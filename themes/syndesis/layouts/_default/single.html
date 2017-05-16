@@ -1,13 +1,6 @@
 {{ define "main" }}
-<div class="container-fluid{{ if .Params.toc }} with-toc{{ end }}">
-  <div>
-    <h1>{{ .Title }}</h1>
-    {{ if .Params.toc }}
-      <div id="toc" class="hidden-md-down">
-        {{ .TableOfContents }}
-      </div>
-    {{ end }}
-    {{ .Content | safeHTML }}
-  </div>
+<div>
+  <h1>{{ .Title }}</h1>
+  {{ .Content | safeHTML }}
 </div>
 {{ end }}

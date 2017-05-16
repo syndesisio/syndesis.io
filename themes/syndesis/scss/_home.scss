@@ -5,7 +5,19 @@
 @import 'colors';
 @import 'navbar';
 
-.home {
+body.home {
+
+  #wrapper {
+    padding-top: $navbar-min-height;
+  }
+
+  #main, #main .main-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
   ////////////////////////////////////////////////////////////////////////////////
   // NAVBAR OVERRIDES
   ////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +40,7 @@
   .jumbotron {
     position: relative;
     padding-top: $navbar-min-height + 16px;
+    margin-top: -$navbar-min-height;
 
     h1,h2,h3,h4,h5,h6 {
       text-shadow: 2px 4px 3px rgba(0,0,0,0.5);

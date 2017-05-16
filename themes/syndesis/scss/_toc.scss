@@ -1,15 +1,20 @@
 @import 'colors';
 
+.no-toc {
+  @include media-breakpoint-up(lg) {
+    flex: 0 0 214px;
+  }
+}
+
+.toc {
+  @include media-breakpoint-up(lg) {
+    flex: 0 0 314px;
+  }
+}
+
 #TableOfContents{
   background-color: rgba(0, 0, 0, 0.1);
   padding: 10px 20px 10px 20px;
-  width: 214px;
-  position: fixed;
-  right: 0;
-
-  @include media-breakpoint-up(lg) {
-    width: 314px;
-  }
 
   ul {
     list-style: none;

@@ -4,15 +4,3 @@
 
 @import 'colors';
 @import 'navbar';
-
-.docs {
-  .content {
-    padding-top: $navbar-min-height + 26px;
-    padding-bottom: $navbar-min-height + 26px;
-
-    .list, .single {
-      margin-left: 248px;
-    }
-  }
-}
-

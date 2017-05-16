@@ -1,39 +1,34 @@
 <aside>
-  <p class="hidden-lg-up">
-    <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Show nav</button>
-  </p>
-  <div id="sidebar" class="sidenav">
-    <ul class="sidebar-menu">
-      <li class="nav-button hidden-lg-up"><button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button></li>
-      {{ $currentNode := . }}
-      {{ range .Site.Menus.sidenav }}
-      {{ if .HasChildren }}
+  <ul class="sidebar-menu">
+    <li class="nav-button hidden-lg-up"><button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button></li>
+    {{ $currentNode := . }}
+    {{ range .Site.Menus.sidenav }}
+    {{ if .HasChildren }}
 
-      <li class="sub-menu{{if $currentNode.HasMenuCurrent "sidenav" . }} active{{end}}">
-        <a href="javascript:;" class="">
-          {{ .Pre }}
-          <span>{{ .Name }}</span>
-          <span class="menu-arrow fa {{if $currentNode.HasMenuCurrent "sidenav" . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
-        </a>
-        <ul class="sub{{if $currentNode.HasMenuCurrent "sidenav" . }} open{{end}}">
-        {{ range .Children }}
-          <li{{if $currentNode.IsMenuCurrent "sidenav" . }} class="active"{{end}}><a href="{{.URL}}">{{ .Name }}</a></li>
-        {{ end }}
-        </ul>
-      </li>
-    {{else}}
-    <li>
-      <a class="" href="{{.URL}}">
+    <li class="sub-menu{{if $currentNode.HasMenuCurrent $currentNode.Params.sidebar . }} active{{end}}">
+      <a href="javascript:;" class="">
         {{ .Pre }}
         <span>{{ .Name }}</span>
+        <span class="menu-arrow fa {{if $currentNode.HasMenuCurrent $currentNode.Params.sidebar . }}fa-angle-down{{else}}fa-angle-right{{end}}"></span>
       </a>
-      {{end}}
+      <ul class="sub{{if $currentNode.HasMenuCurrent $currentNode.Params.sidebar . }} open{{end}}">
+      {{ range .Children }}
+        <li{{if $currentNode.IsMenuCurrent $currentNode.Params.sidebar . }} class="active"{{end}}><a href="{{.URL}}">{{ .Name }}</a></li>
+      {{ end }}
+      </ul>
     </li>
+  {{else}}
+  <li>
+    <a class="" href="{{.URL}}">
+      {{ .Pre }}
+      <span>{{ .Name }}</span>
+    </a>
     {{end}}
-    <li> <a href="https://github.com/spf13/hugo/issues" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
-    {{ if .IsPage }}
-    {{ $File := .File }}  {{with $File.Path }}<li><a href="https://github.com/spf13/hugo/edit/master/docs/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank"><i class='fa fa-edit'></i> Refine this Page</a> </li>{{end}}
-    {{ end }}
-    </ul>
-  </div>
+  </li>
+  {{end}}
+  <li> <a href="https://github.com/spf13/hugo/issues" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+  {{ if .IsPage }}
+  {{ $File := .File }}  {{with $File.Path }}<li><a href="https://github.com/spf13/hugo/edit/master/docs/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank"><i class='fa fa-edit'></i> Refine this Page</a> </li>{{end}}
+  {{ end }}
+  </ul>
 </aside>

@@ -7,12 +7,10 @@
 .sidenav {
   color: $brand-primary;
   background-color: $pf-white;
-  overflow-y: auto;
-  position: fixed;
-  left: 0;
-  top: 74px;
-  width: 214px;
-  z-index: 100;
+  flex: 0 0 214px;
+  margin-top: -26px;
+
+  @extend .hidden-md-down;
 
   ul {
     list-style: none;
@@ -20,7 +18,7 @@
 
   @include media-breakpoint-down(md) {
     left: -214px;
-    transition: width .2s ease-out;
+    transition: all .2s ease-in-out;
 
     &.active {
       left: 0;

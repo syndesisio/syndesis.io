@@ -1,11 +1,9 @@
 {{ define "main"}}
-<div class="container-fluid">
-  <div class="list">
-    <h1>{{ .Title }}</h1>
-    {{ .Content | safeHTML }}
-    <div class="articles">
-      {{ range .Paginator.Pages }}{{ partial "page-summary" . }}<hr/>{{ end }}
-    </div>
+<div class="list">
+  <h1>{{ .Title }}</h1>
+  {{ .Content | safeHTML }}
+  <div class="articles">
+    {{ range .Paginator.Pages }}{{ partial "page-summary" . }}<hr/>{{ end }}
   </div>
 </div>
 {{ end }}

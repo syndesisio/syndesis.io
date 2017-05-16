@@ -1,4 +1,11 @@
 .github-corner {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 74px;
+  height: 74px;
+  z-index: 1050;
+
   &:hover .octo-arm {
     animation: octocat-wave 560ms ease-in-out
   }
