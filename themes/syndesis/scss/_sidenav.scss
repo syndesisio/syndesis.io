@@ -8,6 +8,7 @@
   color: $brand-primary;
   background-color: $pf-white;
   margin-top: -26px;
+  border-right: 1px solid #d7d7d7;
 
   ul {
     list-style: none;
@@ -33,7 +34,6 @@
 
     .nav-button {
       padding: 26px 15px;
-      border-right: 1px solid #D7D7D7;
       border-bottom: 1px solid #D7D7D7;
     }
   }
@@ -135,7 +135,6 @@ ul.sidebar-menu {
       font-weight: 400;
       outline: none;
       transition: all 2s ease;
-      border-right: 1px solid #D7D7D7;
       border-bottom: 1px solid #D7D7D7;
       white-space: nowrap;
 
