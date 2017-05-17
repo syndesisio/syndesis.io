@@ -6,6 +6,7 @@ draft: false
 menu:
   sidenav:
     pre: <i class='fa fa-fw fa-rocket'></i>
+    weight: -200
   topnav:
     name: quickstart
     identifier: quickstart
