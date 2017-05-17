@@ -2,18 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://syndesis.io/quickstart/</loc>
+    <lastmod>2017-05-16T15:58:18+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/blog/syndesis-release-1.0.0/</loc>
-    <lastmod>2017-05-13T10:51:32+01:00</lastmod>
+    <lastmod>2017-05-10T16:42:50+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://syndesis.io/</loc>
-    <lastmod>2017-05-13T10:51:32+01:00</lastmod>
+    <lastmod>2017-05-16T15:58:18+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/roadmap/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/about/</loc>
   </url>
   
   <url>
     <loc>https://syndesis.io/blog/</loc>
-    <lastmod>2017-05-13T10:51:32+01:00</lastmod>
+    <lastmod>2017-05-10T16:42:50+01:00</lastmod>
   </url>
   
   <url>
@@ -22,8 +35,15 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/faq/</loc>
-    <lastmod>2017-05-13T10:51:32+01:00</lastmod>
   </url>
   
   <url>
