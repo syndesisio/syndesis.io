@@ -2,14 +2,24 @@
 // FOOTER
 ////////////////////////////////////////////////////////////////////////////////
 
-footer.page-footer {
-  background-color: #000;
-  color: $white;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+@import 'colors';
+
+.page-footer {
+  background-color: $pf-black;
+  color: $pf-white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  height: 20rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    height: 32rem;
+  }
 
   .btn-primary {
-    @include button-variant($white, #a30000, #000);
+    @include button-variant($pf-white, $pf-red-200, $pf-black);
     font-weight: bold;
     width: 40%;
 
@@ -27,7 +37,7 @@ footer.page-footer {
   }
 
   .rh-logo {
-    padding-top: 3rem;
+    padding-top: 2rem;
   }
 
   h4 {

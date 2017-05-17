@@ -26,10 +26,26 @@
 </head>
 
 <body class="{{ .Type }}{{ if .IsHome }} home{{ end }}">
-  {{ partial "github-corner.html" .}}
-  {{ partial "topnav" . }}
-  {{ block "main" . }}{{ end }}
-  {{ partial "footer" . }}
+  <div id="wrapper">
+    {{ partial "github-corner.html" .}}
+    {{ partial "topnav" . }}
+
+    <div id="main"{{ if not .IsHome }} class="d-flex flex-row"{{ end}}>
+      {{ if not .IsHome }}<div id="sidebar" class="sidenav{{ if not (isset .Params "sidebar") }} no-sidebar{{ end }}">{{ if isset .Params "sidebar" }}{{ partial "sidenav" . }}{{ end }}</div>{{ end }}
+      <div class="main-content">
+        {{ block "main" . }}{{ end }}
+      </div>
+      {{ if .Params.toc }}
+        <div class="toc hidden-md-down">
+          {{ .TableOfContents }}
+        </div>
+      {{ else }}
+        <div class="no-toc hidden-md-down"></div>
+      {{ end}}
+    </div>
+
+    {{ partial "footer" . }}
+  </div>
 
   <script src="/js/syndesis.js"></script>
   {{ block "pagejs" . }}{{ end }}

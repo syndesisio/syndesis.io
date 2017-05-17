@@ -1,8 +1,39 @@
+@import 'colors';
+
 ////////////////////////////////////////////////////////////////////////////////
 // BLOG
 ////////////////////////////////////////////////////////////////////////////////
 
-.blog-post-meta {
-  margin-bottom: 1.25rem;
-  color: #999;
+.blog {
+  .post {
+    //----- Hero: Includes the title, published date, time to read ----------------->>
+    .hero {
+      h1 {
+        padding: 0 0 5px;
+      }
+
+      time {
+        .blog-post-meta {
+          color: $pf-black-500;
+        }
+      }
+    }
+
+    .articleBody {
+      p.lead {
+        color: $pf-black-600 !important;
+        padding: 12px 0;
+      }
+    }
+  }
+
+  .list {
+    .articles {
+      .blog-post-meta {
+        margin-bottom: 1.25rem;
+        color: $pf-black-500;
+      }
+    }
+  }
 }
+

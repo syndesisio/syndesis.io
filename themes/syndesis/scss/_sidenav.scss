@@ -1,0 +1,199 @@
+////////////////////////////////////////////////////////////////////////////////
+// SIDENAV
+////////////////////////////////////////////////////////////////////////////////
+
+@import 'colors';
+
+.sidenav {
+  color: $brand-primary;
+  background-color: $pf-white;
+  margin-top: -26px;
+  margin-left: 0;
+  border-right: 1px solid #d7d7d7;
+  flex: 0 0 214px;
+  transition: all .2s ease-in-out;
+
+  &.no-sidebar {
+    border-right: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  @include media-breakpoint-down(md) {
+    flex: none;
+    width: 214px;
+    position: absolute;
+    margin-left: -214px;
+    z-index: 10000;
+    overflow-y: auto;
+    height: calc(100% - 74px - 20rem);
+
+    &.active {
+      margin-left: 0;
+    }
+
+    .nav-button {
+      padding: 26px 15px;
+      border-bottom: 1px solid #D7D7D7;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    height: calc(100% - 74px - 32rem);
+  }
+
+  > ul {
+    > li {
+      > ul.sub {
+        display: none;
+
+        > li {
+          > a {
+            display: block;
+          }
+        }
+      }
+    }
+
+    > li.active {
+      > ul.sub {
+        display: block;
+      }
+    }
+  }
+
+  ul {
+    > li {
+      > a {
+        .menu-arrow {
+          float: right;
+          margin-right: 8px;
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+}
+
+ul.sidebar-menu {
+  padding: 0;
+  margin: -2px 0 0;
+
+  li {
+    ul.sub {
+      margin: -2px 0 0;
+      padding: 0;
+
+      li {
+        background: #eeeeee;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+
+        &:last-child {
+          border-radius: 0 0 4px 4px;
+          -webkit-border-radius: 0 0 4px 4px;
+        }
+
+        a {
+          font-size: 12px;
+          padding: 0 0 0 32px;
+          line-height: 35px;
+          height: 35px;
+          transition: all 0.2s ease;
+          color: $pf-black-600;
+
+          &:hover {
+            color: $brand-primary;
+            transition: all 0.2s ease;
+            display: block;
+          }
+        }
+      }
+
+      li.active {
+        a {
+          color: $brand-primary;
+          transition: all 0.2s ease;
+          display: block;
+        }
+      }
+    }
+
+    line-height: 20px !important;
+
+    a {
+      span {
+        display: inline-block;
+      }
+
+      color: $pf-black-500;
+      text-decoration: none;
+      display: block;
+      padding: 10px 0 10px 10px;
+      font-size: 16px;
+      font-weight: 400;
+      outline: none;
+      transition: all 0.2s ease;
+      border-bottom: 1px solid #D7D7D7;
+      white-space: nowrap;
+
+      &:hover {
+        background: #eeeeee;
+        color: $brand-primary;
+        display: block;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid $brand-secondary;
+
+        i {
+          color: $brand-primary;
+        }
+      }
+
+      &:focus {
+        background: #eeeeee;
+        color: $brand-primary;
+        display: block;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid $brand-secondary;
+
+        i {
+          color: $brand-primary;
+        }
+      }
+
+      i {
+        font-size: 18px;
+        padding-right: 6px;
+      }
+    }
+  }
+
+  li.sub-menu {
+    line-height: 15px;
+    font-size: 16px;
+  }
+
+  li.active {
+    a {
+      background: #eeeeee;
+      color: $brand-primary;
+      display: block;
+      transition: all 0.2s ease;
+
+      i {
+        color: $brand-primary;
+      }
+
+    }
+  }
+  .sub-menu {
+    li.active {
+      a {
+        border-bottom: 1px solid $brand-secondary;
+      }
+    }
+  }
+}

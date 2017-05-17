@@ -3,11 +3,16 @@ draft: false
 title: "FAQ"
 description: "Asked and answered"
 toc: true
+sidebar: sidenav
 menu:
   topnav:
     weight: -120
     identifier: "name"
     name: "faq"
+  
+  sidenav:
+    pre: "<i class='fa fa-fw fa-file-text'></i>"
+    weight: -170
 ---
 
 ## Syndesis looks awesome. Who is it for?

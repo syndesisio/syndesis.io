@@ -1,17 +1,7 @@
 {{ define "main" }}
-<div class="container">
+<div>
+  <button type="button" class="btn btn-primary btn-sm hidden-lg-up" data-toggle="offcanvas" data-target="#sidebar">Show nav</button>
   <h1>{{ .Title }}</h1>
-  {{ if .Params.toc }}
-  <div class="row">
-    <div class="col-xs-12 col-xl-8">
-      {{ .Content | safeHTML  }}
-    </div>
-    <div id="toc" class="col-xl-4 hidden-lg-down">
-      {{ .TableOfContents }}
-    </div>
-  </div>
-{{ else }}
-{{ .Content | safeHTML }}
-{{ end }}
+  {{ .Content | safeHTML }}
 </div>
 {{ end }}
