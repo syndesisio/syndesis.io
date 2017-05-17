@@ -15,6 +15,7 @@
 
 html, body {
   height: 100%;
+  width: 100%;
 }
 
 #wrapper {
@@ -33,6 +34,11 @@ html, body {
   .main-content {
     padding-left: 15px;
     padding-right: 15px;
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      width: calc(100% - 214px - 314px);
+    }
   }
 }
 

@@ -8,7 +8,10 @@
   color: $brand-primary;
   background-color: $pf-white;
   margin-top: -26px;
+  margin-left: 0;
   border-right: 1px solid #d7d7d7;
+  flex: 0 0 214px;
+  transition: all .2s ease-in-out;
 
   &.no-sidebar {
     border-right: none;
@@ -18,14 +21,9 @@
     list-style: none;
   }
 
-  @include media-breakpoint-up(lg) {
-    flex: 0 0 214px;
-  }
-
   @include media-breakpoint-down(md) {
     flex: none;
     width: 214px;
-    transition: all .2s ease-in-out;
     position: absolute;
     margin-left: -214px;
     z-index: 10000;
