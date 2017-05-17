@@ -52,18 +52,15 @@ Depending on your role please use the appropriate template in the instructions b
 
 ### Deployment instructions
 
-Fire up minishift if not already running. Please note that we need v1.5.1 right now
-for auto creating volumes. Alternatively you could use the provided script tools/create-pv-minishift.sh
-to create the PV on your own. Also, you need to add some memory, 4192 or more is recommended
+Fire up Minishift if it's not already running. You need to add some memory, 4192 or more is recommended, and allocate a couple of CPUs:
 
 ```bash
-$ minishift start --openshift-version=v1.5.1 --memory 4192 --cpus 2
+$ minishift start --memory 4192 --cpus 2
 ```
 
 Tip: If you want to switch the OpenShift config permanently use:
 
 ```bash
-$ minishift config set openshift-version 1.5.1
 $ minishift config set memory 4192
 $ minishift config set cpus 2
 ```
