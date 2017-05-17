@@ -23,10 +23,10 @@ Using Minishift Minishift is a tool that helps you run OpenShift locally by runn
     
     <item>
       <title>Announcing Syndesis</title>
-      <link>https://syndesis.io/blog/syndesis-release-1.0.0/</link>
+      <link>https://syndesis.io/blog/announcing-syndesis/</link>
       <pubDate>Wed, 10 May 2017 16:42:50 +0100</pubDate>
       
-      <guid>https://syndesis.io/blog/syndesis-release-1.0.0/</guid>
+      <guid>https://syndesis.io/blog/announcing-syndesis/</guid>
       <description>The Integration Platform That’s For Everyone - No Coding Required. Best of All? Syndesis runs in the cloud or on-premise, on OpenShift or Kubernetes. The week before Red Hat Summit is always crazy, seemingly endless demo recordings, and lots of blood, sweat, and tears. So many tears. Even more so when your project is going to have it&amp;rsquo;s first public airing. And so our team is ecstatic to announce the release of Syndesis, a game-changing data integration platform that can be run in the cloud, requires no code whatsoever (but can be extended, should you be so inclined), and, in typical Red Hat fashion, is completely open source.</description>
     </item>
     
@@ -52,13 +52,14 @@ JIRA Issues for Keynote</description>
     </item>
     
     <item>
-      <title>Contact Us</title>
-      <link>https://syndesis.io/contact/</link>
+      <title>Community</title>
+      <link>https://syndesis.io/community/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://syndesis.io/contact/</guid>
-      <description>A list of Syndesis points of contact and core contributors. This is likely not 100% up-to-date or correct, so feel free to correct as necessary. Also, please note that many of these hardworking folk have cross-collaborated (both UI and API, backend and API, etc).
- Fuse Engineering Manager: Aileen Cunningham Product Manager: Keith Babo Architect &amp;amp; Technical Lead: Jimmi Dyson Back-End: Claus Ibsen Hiram Chirino, Ioannis Cannellos, Kurt Stam, Luca Burgazzoli, Roland Huß, Zoran Revgart Front-End: Stan Lewis, Rachel Yordán Data Mapper: Matt Pavlovich (Media Driver) QE: David Simansky, Josef Ludvicek Support: Tova Cohen, Nichola Moore UXD: Catherine Robson, SJ Cox, Dongni Wang  Thanks to everyone for your continued hard work!</description>
+      <guid>https://syndesis.io/community/</guid>
+      <description>We  community! Contributions and feedback in whatever form are always welcome, as long as they&amp;rsquo;re constructive!
+Here are some important links:
+ Source code: GitHub organization Mailing list: Syndesis Google Group IRC: #syndesis on freenode  </description>
     </item>
     
     <item>
