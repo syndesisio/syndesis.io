@@ -31,6 +31,19 @@ Minishift is a tool that helps you run OpenShift locally by running a single-nod
 
 You're going to need a working Minishift installation, which is really easy. If you haven't got Minishift already installed, please follow the [Minishift installation documentation](https://docs.openshift.org/latest/minishift/getting-started/installing.html).
 
+Fire up Minishift if it's not already running. You need to add some memory, 4192 or more is recommended, and allocate a couple of CPUs:
+
+```bash
+$ minishift start --memory 4192 --cpus 2
+```
+
+Tip: If you want to switch the OpenShift config permanently use:
+
+```bash
+$ minishift config set memory 4192
+$ minishift config set cpus 2
+```
+
 #### GitHub registered application
 
 You also need a GitHub application registered at https://github.com/settings/developers. While registering, you'll need to provide a callback URL. The callback URL will be the output of:
@@ -52,19 +65,6 @@ Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.ope
 Depending on your role please use the appropriate template in the instructions below.
 
 ### Deployment instructions
-
-Fire up Minishift if it's not already running. You need to add some memory, 4192 or more is recommended, and allocate a couple of CPUs:
-
-```bash
-$ minishift start --memory 4192 --cpus 2
-```
-
-Tip: If you want to switch the OpenShift config permanently use:
-
-```bash
-$ minishift config set memory 4192
-$ minishift config set cpus 2
-```
 
 Set your GitHub credentials from your [registered app]({{< relref "#github-registered-application" >}}) in your shell:
 
