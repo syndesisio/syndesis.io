@@ -23,14 +23,24 @@ body.home {
   // NAVBAR OVERRIDES
   ////////////////////////////////////////////////////////////////////////////////
 
-  .sps--abv {
-    background-color: transparent !important;
-    transition: background-color 800ms ease-in-out;
-  }
+  nav.navbar {
+    &.sps--abv {
+      background-color: transparent !important;
+      transition: background-color 800ms ease-in-out;
+    }
 
-  .sps--blw {
-    background-color: inherit;
-    transition: background-color 800ms ease-in-out;
+    &.sps--blw {
+      background-color: inherit;
+      transition: background-color 800ms ease-in-out;
+    }
+
+    .collapsing, .collapse.show {
+      background-color: $brand-primary;
+      width: calc(100% + (2 * #{$navbar-padding-x}));
+      margin: calc(-#{$navbar-padding-y} - 74px) -$navbar-padding-x 0;
+      padding: calc(#{$navbar-padding-y} + 74px) $navbar-padding-x 0;
+      z-index: -1;
+    }
   }
 
 
