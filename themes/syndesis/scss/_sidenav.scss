@@ -6,7 +6,7 @@
 
 .sidenav {
   color: $brand-primary;
-  background-color: $pf-white;
+  background-color: #eee;
   margin-top: -26px;
   margin-left: 0;
   border-right: 1px solid #d7d7d7;
@@ -63,25 +63,15 @@
       }
     }
   }
-
-  ul {
-    > li {
-      > a {
-        .menu-arrow {
-          float: right;
-          margin-right: 8px;
-          margin-top: 6px;
-        }
-      }
-    }
-  }
 }
 
 ul.sidebar-menu {
   padding: 0;
   margin: -2px 0 0;
+  background-color: #eeeeee;
 
   li {
+
     ul.sub {
       margin: -2px 0 0;
       padding: 0;
@@ -174,6 +164,15 @@ ul.sidebar-menu {
   li.sub-menu {
     line-height: 15px;
     font-size: 16px;
+
+    .expander {
+      @extend .fa;
+      @extend .fa-angle-right;
+    }
+    &.active .expander {
+      @extend .fa;
+      @extend .fa-angle-down;
+    }
   }
 
   li.active {
