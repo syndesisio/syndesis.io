@@ -83,6 +83,7 @@ Deploy syndesis using the following command, replacing "syndesis-dev" with "synd
 you have just installed:
 
 ```bash
+$ oc login -u system:admin
 $ oc new-app syndesis-dev \
     -p ROUTE_HOSTNAME=syndesis.$(minishift ip).xip.io \
     -p OPENSHIFT_MASTER=$(oc whoami --show-server) \
