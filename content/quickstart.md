@@ -58,7 +58,7 @@ Once you have registered the application, you will get a `<GITHUB_CLIENT_ID>` an
 
 Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.openshift.org/latest/dev_guide/templates.html).The template to use in the installation instructions depend on your use case:
 
-* **Developer** : Use the template [`syndesis-restricted-dev`](https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-restricted-dev.yml) which directly references Docker images without image streams. Then when before building you images e.g. with `mvn fabric8:build` set your `DOCKER_HOST` envvar to use the Minishift Docker daemon via `eval $(minishift docker-env)`. After you have created a new image you simply only need to kill the appropriate pod so that the new pod spinning up will use the freshly created image.
+* **Developer** : Use the template [`syndesis-dev-restricted`](https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-dev-restricted.yml) which directly references Docker images without image streams. Then when before building you images e.g. with `mvn fabric8:build` set your `DOCKER_HOST` envvar to use the Minishift Docker daemon via `eval $(minishift docker-env)`. After you have created a new image you simply only need to kill the appropriate pod so that the new pod spinning up will use the freshly created image.
 
 * **Tester** / **User** : In case you only want to have the latest version of Syndesis on your local Minishift installation, use the template [`syndesis-restricted`](https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-restricted.yml) which uses image stream referring to the published Docker Hub images. Minishift will update its images and trigger a redeployment when the images at Docker Hub changes. Therefor it checks every 15 minutes for a changed image. You do not have to do anything to get your application updated, except for waiting on Minishift to pick up new images.
 
@@ -73,10 +73,10 @@ $ export GITHUB_CLIENT_ID=...
 $ export GITHUB_CLIENT_SECRET=...
 ```
 
-Install the OpenShift template (syndesis-restricted-dev.yml or syndesis-restricted.yml as discussed [above]({{< relref "#template-selection" >}})):
+Install the OpenShift template (syndesis-dev-restricted.yml or syndesis-restricted.yml as discussed [above]({{< relref "#template-selection" >}})):
 
 ```bash
-$ oc create -f https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-restricted-dev.yml
+$ oc create -f https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-dev-restricted.yml
 ```
 
 In order to make it easy to run Syndesis on a cluster without requiring admin rights, Syndesis takes advantage of OpenShift's ability to use a [Service Account as an OAuth client](https://docs.openshift.org/latest/architecture/additional_concepts/authentication.html#service-accounts-as-oauth-clients). Before we create the app, we'll need to create this Service Account:
@@ -85,11 +85,11 @@ In order to make it easy to run Syndesis on a cluster without requiring admin ri
 $ oc create -f https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/support/serviceaccount-as-oauthclient-restricted.yml
 ```
 
-Deploy syndesis using the following command, replacing "syndesis-restricted-dev" with "syndesis-restricted" depending on the template
+Deploy syndesis using the following command, replacing "syndesis-dev-restricted" with "syndesis-restricted" depending on the template
 you have just installed:
 
 ```bash
-$ oc new-app syndesis-restricted-dev \
+$ oc new-app syndesis-dev-restricted \
     -p ROUTE_HOSTNAME=syndesis.$(minishift ip).xip.io \
     -p OPENSHIFT_MASTER=$(oc whoami --show-server) \
     -p OPENSHIFT_PROJECT=$(oc project -q) \
