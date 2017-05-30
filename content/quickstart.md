@@ -89,7 +89,7 @@ Deploy syndesis using the following command, replacing "syndesis-restricted-dev"
 you have just installed:
 
 ```bash
-$ oc new-app syndesis-dev-restricted \
+$ oc new-app syndesis-restricted-dev \
     -p ROUTE_HOSTNAME=syndesis.$(minishift ip).xip.io \
     -p OPENSHIFT_MASTER=$(oc whoami --show-server) \
     -p OPENSHIFT_PROJECT=$(oc project -q) \
