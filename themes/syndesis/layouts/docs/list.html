@@ -1,11 +1,16 @@
-{{ define "sidebar"}}{{ partial "sidenav" .}}{{ end}}
-
 {{ define "main"}}
-<div class="list">
-  <h1>{{ .Title }}</h1>
-  {{ .Content | safeHTML }}
-  <div class="articles">
-    {{ range .Paginator.Pages }}{{ partial "page-summary" . }}<hr/>{{ end }}
+<div itemscope
+    class="article">
+  {{ template "_internal/schema.html" .}}
+  <div class="hero">
+    <h1 itemprop="headline">{{.Title}}</h1>
+    {{ if .Description }}
+    <blockquote itemprop="description">{{ .Description }}</blockquote>
+    {{ end }}
+  </div>
+  <div itemprop="articleBody"
+      class="articleBody">
+    {{ .Content | safeHTML }}
   </div>
 </div>
 {{ end }}

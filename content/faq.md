@@ -1,7 +1,6 @@
 ---
 draft: false
 title: "FAQ"
-description: "Asked and answered"
 toc: true
 sidebar: sidenav
 menu:
