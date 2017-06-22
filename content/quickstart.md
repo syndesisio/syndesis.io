@@ -17,6 +17,10 @@ toc: true
 weight: 20
 ---
 
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9vaVMbsHJqk?rel=0" frameborder="0" allowfullscreen></iframe>
+</center>
+
 We aim to make it as simple as possible for users to try out Syndesis. If you want to try out locally on your laptop, follow the [Using Minishift]({{< relref "#using-minishift" >}}) instructions.
 
 - - -
