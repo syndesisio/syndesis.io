@@ -105,7 +105,7 @@ $ oc new-app syndesis-dev-restricted \
 Wait until all pods are running:
 
 ```bash
-$ watch oc get pods
+$ oc get pods -w
 ```
 
 You should now be able to open `https://syndesis.$(minishift ip).xip.io` in your browser.
