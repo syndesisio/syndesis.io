@@ -54,10 +54,106 @@ Pretty self-explanatory: no self-merged PRs without prior approval from maintain
 
 The QE team will be assisting with manual testing and, in addition, automate the tests we provide for Syndesis. Considering we only have a handful of QE engineers and an ever growing list of requirements, we will need to assist them by providing our own E2E and unit tests when applicable and possible. This will help us get closer to maximum test coverage with more realistic expectations and is more efficient (as we will “know” and understand our code better from the get go) on a per-iteration basis.
 
-## A simple Developer Workflow with ZenHub
+## Development Workflow
 
-Each User Story translates to an “Epic” issue on syndesis-project
-For each “Epic Issue” the following sub-issues should be created:
-A “design proposal” issue in syndesis-project. It’s about creating a document in `design-proposals` in markdown format. Open a PR for it for review
-One issue in each affected sub-repo (typically syndesis-ui and syndesis-rest) to work on. PRs for this work should be connected to these issues.
-All issues at tagged with a milestone reflecting the spring they are developed in.
+We are using [ZenHub](https://www.zenhub.com/) for project management. 
+ZenHub has some advantages over plain GitHub projects (like a view across selectable repositories from various organisations) 
+We use mostly the [planning board](https://github.com/syndesisio/syndesis-project#boards?epics:settings=epicsOnly) for planning and progress tracking, however not for velocity tracking (yet).
+
+### Scenarios, Epics, Tasks
+
+The central entity in ZenHub is an _Epic_.
+An Epic is not much more than a GitHub issue with the label "Epic" attached. 
+In Scrum such an Epic is known as a "User Story".
+Each Epic references one or more _Tasks_.
+A Task is a simple GitHub issue linked to an Epic (but without a specific label).
+
+But what about epics as known from Scrum ? 
+As explained above ZenHub Epics are reserverd for user stories, so we introduced a label "Scenario" which can be attached to an Epic to mark it as a bigger story, which needs to be broken down in simple Epics.
+Epics which originate from a _Scenario_ are linked to this Scenario.
+
+Agreed, _That_ is confusing on first sight.
+So lets summarizes the relationships and clarify this structure a bit:
+
+| Scrum | ZenHub | GitHub | Description |
+| ===== | ====== | ====== | =========== |
+| Epic  | Scenario | Issue with "Epic" and "Scenario" label | High-Level story which need to be broken down into smaller Epics |
+| User Story | Epic | Issue with "Epic" label | A user story describing a feature which adds business value |
+| Task | Task | Issue linked to an Epic | Tasks about UX, UI, backend, ... to complete a Epic |
+
+As a general rule of thumb: Each Task is associated with an Epic. 
+However, there are certain GitHub issue which are neither Task nor Epic and are used for special purposes:
+
+* **Retro Action Item** for tasks resulting as action items from a retrospective
+* **Refactoring** for internal optimization task which do not have a direct business value (and hence can not be connected to an Epic)
+
+The [Syndesis Board](https://github.com/syndesisio/syndesis-project#boards) is a Kanban like board with multiple columns:
+
+| Column | Description |
+| ====== | =========== |
+| New Issues | New issues which has not been evaluated |
+| Backlog | Prioritized list of Epics to work on next |
+| Running Epics | Epics which are worked on |
+| Design Proposal Tasks | Tasks for creating design proposals |
+| In Progress Tasks | Taks which are worked on |
+| Epics Done | Epics which has been finished|
+
+### Syndesis ZenHub Flow
+
+This section explains how the process setup described above is applied to the Syndesis project.
+Syndesis itself consists of many GitHub Repos, the most important are:
+
+| Repo | Description |
+| ==== | =========== |
+| [syndesis-project](https://github.com/syndesisio/syndesis-project) | Codeless repo for project management |
+| [syndesis-ui](https://github.com/syndesisio/syndesis-ui) | Angular based user interface | 
+| [syndesis-rest](https://github.com/syndesisio/syndesis-rest) | REST services, serving syndesis-ui |
+| [syndesis-ux](https://github.com/syndesisio/syndesis-ux) | User experience designs | 
+| [syndesis-openshift-templates](https://github.com/syndesisio/syndesis-openshift-templates) | OpenShift templates for deploying Syndesis |
+| [syndesis-verifier](https://github.com/syndesisio/syndesis-verifier) | Backend verification micro service |
+
+All of these repos have their own area for GitHub issues and maybe own GitHub project boards, but they are linked together.
+
+Syndesis uses a three week long beat (or "sprint" in short, although not a 'classical' Scrum sprint).
+In the beginning is a planning meeting where product management provides the Epics and the team decides the scope for the following three weeks.
+Scenarios only play a role in the planning to cut out some Epics (which are linked to the Scenario).
+There is now work directly on Scenarios.
+Each Epic chosen is moved to column "Backlog", with the higher priority stories at top and has a milestone for this spring attached.
+
+As soon as the work starts on an Epic the Epic is moved from "Backlog" to "Running Epics".
+The first task for each story is to create a high level "Design Proposal Tasks". For such a design proposal a Task is created, linked to the Epic and moved to column "Design Proposal Tasks".
+
+The initial draft of the design proposal, which is a document in syndesis-project `proposals/` in Markdown format, should be submitted as a PR quickly so that people can review and discuss on it. 
+
+In parallel work and as a result of the overall dicussion, work on the UX design can be started in syndesis-ux. 
+For this a Task is created in syndesis-ux and linked to the Epic in syndesis-project.
+The UX design reviews itself work similar by creating a PR associated with this Task.
+This Task is moved to column "In Progress Tasks"
+
+When the design proposal is finished and the UX design is accepted (which means that the PRs are merged), then Tasks for UI and Backend are created (plus in any other repository required).
+These Tasks are connected directly to the original Epic and moved to column "In Progress Tasks".
+Work on those Taks result in associated PRs which are reviewed and eventually merged.
+
+When every Task associated with an Epic is done, the Epic issue is closed moved from "Running Epics" to "Epics Done".
+
+### Some general rules
+
+Following a set of rules which should be followed. But every rule has exceptions, which is ok, if there is a valid reason for.
+
+* For each Epic a "design proposal" has to be written.
+* Epics live in `syndesis-project` only.
+* Every Task is connected to an Epic.
+* Every Task will eventually result in a connected Pull Request (PR) _within the same repo_. 
+* Review and discussion will happen on the PR.
+* When the PR gets merged, the task is closed and done.
+* When all tasks of an epic are done, the epic is done.
+
+Beside this, you are free to cross link dependencies across repos as ZenHub dependencies (e.g. when a Task in syndesis-ui depends on a design in syndesis-ux to be finished)
+
+### Process FAQ
+
+* **How get I quick overview of all epics for a certain Sprint ?**
+  On the [Syndesis Board](https://github.com/syndesisio/syndesis-project#boards), select all repos by pushing "Show all". Then apply a milestone filter for the current sprint and within the Epics menu select "Show all epics and hide subtasks".
+
+* **How can I find all tasks for a certain Epic quickly ?**
+  On the [Syndesis Board](https://github.com/syndesisio/syndesis-project#boards) select the "Epics" tool menu and use the text search box to narrow down to epic you are looking for. Don't forget to enable all repositories with the "Show all" toolbar button.
