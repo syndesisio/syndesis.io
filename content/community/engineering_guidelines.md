@@ -58,7 +58,7 @@ The QE team will be assisting with manual testing and, in addition, automate the
 
 We are using [ZenHub](https://www.zenhub.com/) for project management. 
 ZenHub has some advantages over plain GitHub projects (like a view across selectable repositories from various organisations) 
-We use mostly the [planning board](https://github.com/syndesisio/syndesis-project#boards?epics:settings=epicsOnly) for planning and progress tracking, however not for velocity tracking (yet).
+The entry point is our [Syndesis Board](https://github.com/syndesisio/syndesis-project#boards?epics:settings=epicsOnly) for planning and progress tracking, however not for velocity tracking (yet).
 
 ### Scenarios, Epics, Tasks
 
@@ -69,11 +69,13 @@ Each Epic references one or more _Tasks_.
 A Task is a simple GitHub issue linked to an Epic (but without a specific label).
 
 But what about epics as known from Scrum ? 
-As explained above ZenHub Epics are reserverd for user stories, so we introduced a label "Scenario" which can be attached to an Epic to mark it as a bigger story, which needs to be broken down in simple Epics.
-Epics which originate from a _Scenario_ are linked to this Scenario.
+Since ZenHub Epics are reserverd for user stories, we introduced a label "Scenario" which can be attached to an Epic to mark it as a bigger story, which needs to be broken down in simple Epics.
+Epics which originate from a _Scenario_ are linked back to this Scenario.
+Scenarios only play a role in the planning to cut out Epics.
+There is no work done directly on Scenarios.
 
-Agreed, _That_ is confusing on first sight.
-So lets summarizes the relationships and clarify this structure a bit:
+Agreed, _that_ is confusing on first sight.So lets summarizes the relationships and clarify this structure a bit:
+
 
 | Scrum | ZenHub | GitHub | Description |
 | ----- | ------ | ------ | ----------- |
@@ -82,7 +84,8 @@ So lets summarizes the relationships and clarify this structure a bit:
 | Task | Task | Issue linked to an Epic | Tasks about UX, UI, backend, ... to complete a Epic |
 
 As a general rule of thumb: Each Task is associated with an Epic. 
-However, there are certain GitHub issue which are neither Task nor Epic and are used for special purposes:
+
+However, there are certain GitHub issue which are neither Task nor Epic and are used for special purpose:
 
 * **Retro Action Item** for tasks resulting as action items from a retrospective
 * **Refactoring** for internal optimization task which do not have a direct business value (and hence can not be connected to an Epic)
@@ -95,9 +98,10 @@ The [Syndesis Board](https://github.com/syndesisio/syndesis-project#boards) is a
 | Backlog | Prioritized list of Epics to work on next |
 | Running Epics | Epics which are worked on |
 | Design Proposal Tasks | Tasks for creating design proposals |
-| In Progress Tasks | Taks which are worked on |
+| In Progress Tasks | Tasks which are worked on |
 | Epics Done | Epics which has been finished|
 
+![ZenHub columns](../../images/zenhub-columns.png)
 ### Syndesis ZenHub Flow
 
 This section explains how the process setup described above is applied to the Syndesis project.
@@ -114,18 +118,16 @@ Syndesis itself consists of many GitHub Repos, the most important are:
 
 All of these repos have their own area for GitHub issues and maybe own GitHub project boards, but they are linked together.
 
-Syndesis uses a three week long beat (or "sprint" in short, although not a 'classical' Scrum sprint).
+Syndesis uses a three week long beat (or "sprint" in short, although not a 'classical' Scrum sprint in the strict sense).
 In the beginning is a planning meeting where product management provides the Epics and the team decides the scope for the following three weeks.
-Scenarios only play a role in the planning to cut out some Epics (which are linked to the Scenario).
-There is now work directly on Scenarios.
 Each Epic chosen is moved to column "Backlog", with the higher priority stories at top and has a milestone for this spring attached.
 
-As soon as the work starts on an Epic the Epic is moved from "Backlog" to "Running Epics".
-The first task for each story is to create a high level "Design Proposal Tasks". For such a design proposal a Task is created, linked to the Epic and moved to column "Design Proposal Tasks".
+As soon as work starts on an Epic it is moved from "Backlog" to "Running Epics".
+The first thing is to create a design proposal Task in the "Design Proposal Tasks" column and linked it to the Epic.
 
-The initial draft of the design proposal, which is a document in syndesis-project `proposals/` in Markdown format, should be submitted as a PR quickly so that people can review and discuss on it. 
+The initial draft of the design proposal, which is a document in syndesis-project [`proposals/`](https://github.com/syndesisio/syndesis-project/tree/master/proposals) in Markdown format, should be submitted as a PR quickly so that people can review and discuss on it. 
 
-In parallel work and as a result of the overall dicussion, work on the UX design can be started in syndesis-ux. 
+Parallel and as a result of the overall dicussion, work on the UX design can be started in [syndesis-ux](https://github.com/syndesisio/syndesis-ux). 
 For this a Task is created in syndesis-ux and linked to the Epic in syndesis-project.
 The UX design reviews itself work similar by creating a PR associated with this Task.
 This Task is moved to column "In Progress Tasks"
