@@ -76,7 +76,7 @@ Agreed, _That_ is confusing on first sight.
 So lets summarizes the relationships and clarify this structure a bit:
 
 | Scrum | ZenHub | GitHub | Description |
-| ===== | ====== | ====== | =========== |
+| ----- | ------ | ------ | ----------- |
 | Epic  | Scenario | Issue with "Epic" and "Scenario" label | High-Level story which need to be broken down into smaller Epics |
 | User Story | Epic | Issue with "Epic" label | A user story describing a feature which adds business value |
 | Task | Task | Issue linked to an Epic | Tasks about UX, UI, backend, ... to complete a Epic |
@@ -90,7 +90,7 @@ However, there are certain GitHub issue which are neither Task nor Epic and are 
 The [Syndesis Board](https://github.com/syndesisio/syndesis-project#boards) is a Kanban like board with multiple columns:
 
 | Column | Description |
-| ====== | =========== |
+| ------ | ----------- |
 | New Issues | New issues which has not been evaluated |
 | Backlog | Prioritized list of Epics to work on next |
 | Running Epics | Epics which are worked on |
@@ -104,7 +104,7 @@ This section explains how the process setup described above is applied to the Sy
 Syndesis itself consists of many GitHub Repos, the most important are:
 
 | Repo | Description |
-| ==== | =========== |
+| ---- | ----------- |
 | [syndesis-project](https://github.com/syndesisio/syndesis-project) | Codeless repo for project management |
 | [syndesis-ui](https://github.com/syndesisio/syndesis-ui) | Angular based user interface | 
 | [syndesis-rest](https://github.com/syndesisio/syndesis-rest) | REST services, serving syndesis-ui |
