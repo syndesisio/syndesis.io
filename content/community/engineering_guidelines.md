@@ -135,6 +135,8 @@ This Task is moved to column "In Progress Tasks"
 When the design proposal is finished and the UX design is accepted (which means that the PRs are merged), then Tasks for UI and Backend are created (plus in any other repository required).
 These Tasks are connected directly to the original Epic and moved to column "In Progress Tasks".
 Work on those Taks result in associated PRs which are reviewed and eventually merged.
+If the tasks are clear from the Epic and Design proposal descriptions, then no extra Task issue needs to be created, which wouldn't add any extra information.
+Instead the PR can be connected directly to the Epic and moved to the "In Progress Tasks".
 
 When every Task associated with an Epic is done, the Epic issue is closed moved from "Running Epics" to "Epics Done".
 
@@ -145,7 +147,8 @@ Following a set of rules which should be followed. But every rule has exceptions
 * For each Epic a "design proposal" has to be written.
 * Epics live in `syndesis-project` only.
 * Every Task is connected to an Epic.
-* Every Task will eventually result in a connected Pull Request (PR) _within the same repo_. 
+* Every Task will eventually result in a connected Pull Request (PR) _within the same repo_.
+* It is allowed to have PRs connected directly to the Epic.
 * Review and discussion will happen on the PR.
 * When the PR gets merged, the task is closed and done.
 * When all tasks of an epic are done, the epic is done.
