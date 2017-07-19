@@ -102,10 +102,16 @@ $ oc new-app syndesis-dev-restricted \
     -p GITHUB_OAUTH_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
 ```
 
-Wait until all pods are running:
+Wait until all pods are running. You can either use OpenShift intrinsic watch feature for a line-by-line update
 
 ```bash
 $ oc get pods -w
+```
+
+or use `watch` for a more curses like full screen user interface:
+
+```
+$ watch oc get pods
 ```
 
 You should now be able to open `https://syndesis.$(minishift ip).xip.io` in your browser.
