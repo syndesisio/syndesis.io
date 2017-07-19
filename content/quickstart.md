@@ -102,7 +102,7 @@ $ oc new-app syndesis-dev-restricted \
     -p GITHUB_OAUTH_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
 ```
 
-Wait until all pods are running. You can either use OpenShift intrinsic watch feature for a line-by-line update
+Wait until all pods are running. You can either use OpenShift's intrinsic watch feature for a line-by-line update
 
 ```bash
 $ oc get pods -w
@@ -110,7 +110,7 @@ $ oc get pods -w
 
 or use `watch` for a more curses like full screen user interface:
 
-```
+```bash
 $ watch oc get pods
 ```
 
