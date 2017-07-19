@@ -50,6 +50,14 @@ Using [zenhub.io](https://zenhub.io) allows us to link PRs to issues without nec
 
 Pretty self-explanatory: no self-merged PRs without prior approval from maintainers. Reviews are everyone's responsibility and should focus on tests and documentation as much as implementation.
 
+However, it should taken care that the PR review process does not take too long as it is easy to get lost in the reviews:
+
+* A PR which is marked as 'done' (i.e. not marked as 'work-in-progress') should be merged or rejected with 3 business days.
+* There should be at most 2 review turnarounds (i.e. reviewer requests changes - author makes changes - reviewer request final changes - author makes changes - reviewer accepts / rejects). This is **not** a hard rule, more a reminder to keep PR reviews focused.
+* If after 2 turnarounds there are outstanding review issues but the overall functionality is ok and the CI checks are succesful, it should be considered to merge the PR and to create new GitHub issues for these extra review comments.
+* Discuss only the content of the PR in the review, don't drift away and discuss issues not directly related with the PR. Instead open a new issue for anything which is discovered aside.
+* A reviewer should be actively selected by the author immediately after creating the PR, e.g. asking on IRC or mailing list.
+
 ## A pull request should include respective tests for the referenced feature (e.g. E2E, unit, integration)
 
 The QE team will be assisting with manual testing and, in addition, automate the tests we provide for Syndesis. Considering we only have a handful of QE engineers and an ever growing list of requirements, we will need to assist them by providing our own E2E and unit tests when applicable and possible. This will help us get closer to maximum test coverage with more realistic expectations and is more efficient (as we will “know” and understand our code better from the get go) on a per-iteration basis.
