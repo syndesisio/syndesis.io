@@ -162,6 +162,31 @@ You will get notified about the status of your pull request based on your GitHub
 Your request will be reviewed.  It may be merged directly, or you may receive feedback or questions on your pull
 request.
 
+### 8. Working on the backend
+
+#### Running code checks
+
+We use [Codacy](https://www.codacy.com/) for code analysis, multiple Maven plugins provided by the
+[Base POM](https://github.com/basepom/basepom) project to make our code clean and our dependencies in check. To run them
+locally run Maven build with `checks` profile turned on:
+
+```bash
+$ ./mvnw -Pchecks clean install
+```
+
+#### Deploying locally to Minishift
+
+Follow the [quickstart]({{< ref "quickstart.md" >}}) guide to get your Minishift instance up and running. After that set your Docker environment from
+Minishift and run Maven build with `-Ddeploy` property set. This will trigger `flash` and `deploy` Maven properties.
+
+```bash
+$ eval $(minishift docker-env)
+$ ./mvnw -Ddeploy
+$ oc delete pod -l component=syndesis-rest
+```
+
+After the build finishes delete the `syndesis-rest` pod
+
 [help documentation]: http://help.github.com/send-pull-requests
 [bug database]: http://bugs.dojotoolkit.org/
 [support forum]: http://dojotoolkit.org/community/
