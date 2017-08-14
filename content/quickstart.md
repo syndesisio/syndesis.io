@@ -53,7 +53,7 @@ $ minishift config set cpus 2
 You also need a GitHub application registered at https://github.com/settings/developers. While registering, you'll need to provide a callback URL. The callback URL will be the output of:
 
 ```bash
-$ echo https://syndesis.$(minishift ip).xip.io
+$ echo https://syndesis.$(minishift ip).nip.io
 ```
 
 Once you have registered the application, you will get a `<GITHUB_CLIENT_ID>` and a `<GITHUB_CLIENT_SECRET>`. These should be used in the commands below.
@@ -94,7 +94,7 @@ you have just installed:
 
 ```bash
 $ oc new-app syndesis-dev-restricted \
-    -p ROUTE_HOSTNAME=syndesis.$(minishift ip).xip.io \
+    -p ROUTE_HOSTNAME=syndesis.$(minishift ip).nip.io \
     -p OPENSHIFT_MASTER=$(oc whoami --show-server) \
     -p OPENSHIFT_PROJECT=$(oc project -q) \
     -p OPENSHIFT_OAUTH_CLIENT_SECRET=$(oc sa get-token syndesis-oauth-client) \
@@ -114,4 +114,4 @@ or use `watch` for a more curses like full screen user interface:
 $ watch oc get pods
 ```
 
-You should now be able to open `https://syndesis.$(minishift ip).xip.io` in your browser.
+You should now be able to open `https://syndesis.$(minishift ip).nip.io` in your browser.
