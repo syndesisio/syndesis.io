@@ -44,7 +44,7 @@ $ minishift start --memory 4192 --cpus 2
 Tip: If you want to switch the OpenShift config permanently use:
 
 ```bash
-$ minishift config set memory 4192
+$ minishift config set memory 8384
 $ minishift config set cpus 2
 ```
 
