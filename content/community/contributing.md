@@ -123,7 +123,7 @@ $ git commit -m "Corrects some defect, fixes #12345, refs #12346"
 
 ### 5. Rebase and Push Changes
 
-If you have been working on your contribution for a while, the upstream repository may have changed.  You may want to
+If you have been working on your contribution for a while, the upstream repository may have changed. You may want to
 ensure your work is on top of the latest changes so your pull request can be applied cleanly:
 
 ```bash
@@ -146,7 +146,7 @@ $ git push
 ### 6. Issue a Pull Request
 
 In order to have your commits merged into the main repository, you need to create a pull request.  The instructions for
-this can be found in the GitHub Help Article [Creating a Pull Request][].  Essentially you do the following:
+this can be found in the GitHub Help Article [Creating a Pull Request][]. Essentially you do the following:
 
 1. Go to the site for your repository.
 2. Click the Pull Request button.

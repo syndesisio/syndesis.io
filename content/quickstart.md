@@ -60,11 +60,11 @@ Once you have registered the application, you will get a `<GITHUB_CLIENT_ID>` an
 
 ### Template selection
 
-Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.openshift.org/latest/dev_guide/templates.html).The template to use in the installation instructions depend on your use case:
+Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.openshift.org/latest/dev_guide/templates.html). The template to use in the installation instructions depend on your use case:
 
 * **Developer** : Use the template [`syndesis-dev-restricted`](https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-dev-restricted.yml) which directly references Docker images without image streams. Then when before building you images e.g. with `mvn fabric8:build` set your `DOCKER_HOST` envvar to use the Minishift Docker daemon via `eval $(minishift docker-env)`. After you have created a new image you simply only need to kill the appropriate pod so that the new pod spinning up will use the freshly created image.
 
-* **Tester** / **User** : In case you only want to have the latest version of Syndesis on your local Minishift installation, use the template [`syndesis-restricted`](https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-restricted.yml) which uses image stream referring to the published Docker Hub images. Minishift will update its images and trigger a redeployment when the images at Docker Hub changes. Therefor it checks every 15 minutes for a changed image. You do not have to do anything to get your application updated, except for waiting on Minishift to pick up new images.
+* **Tester** / **User** : In case you only want to have the latest version of Syndesis on your local Minishift installation, use the template [`syndesis-restricted`](https://raw.githubusercontent.com/syndesisio/syndesis-openshift-templates/master/syndesis-restricted.yml) which uses image stream referring to the published Docker Hub images. Minishift will update its images and trigger a redeployment when the images at Docker Hub changes. Therefore it checks every 15 minutes for a changed image. You do not have to do anything to get your application updated, except for waiting on Minishift to pick up new images.
 
 Depending on your role please use the appropriate template in the instructions below.
 
