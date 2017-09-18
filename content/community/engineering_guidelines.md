@@ -77,7 +77,7 @@ Each Epic references one or more _Tasks_.
 A Task is a simple GitHub issue linked to an Epic (but without a specific label).
 
 But what about epics as known from Scrum ? 
-Since ZenHub Epics are reserverd for user stories, we introduced a label "Scenario" which can be attached to an Epic to mark it as a bigger story, which needs to be broken down in simple Epics.
+Since ZenHub Epics are reserved for user stories, we introduced a label "Scenario" which can be attached to an Epic to mark it as a bigger story, which needs to be broken down in simple Epics.
 Epics which originate from a _Scenario_ are linked back to this Scenario.
 Scenarios only play a role in the planning to cut out Epics.
 There is no work done directly on Scenarios.
@@ -135,14 +135,14 @@ The first thing is to create a design proposal Task in the "Design Proposal Task
 
 The initial draft of the design proposal, which is a document in syndesis-project [`proposals/`](https://github.com/syndesisio/syndesis-project/tree/master/proposals) in Markdown format, should be submitted as a PR quickly so that people can review and discuss on it. 
 
-Parallel and as a result of the overall dicussion, work on the UX design can be started in [syndesis-ux](https://github.com/syndesisio/syndesis-ux). 
+Parallel and as a result of the overall discussion, work on the UX design can be started in [syndesis-ux](https://github.com/syndesisio/syndesis-ux). 
 For this a Task is created in syndesis-ux and linked to the Epic in syndesis-project.
 The UX design reviews itself work similar by creating a PR associated with this Task.
 This Task is moved to column "In Progress Tasks"
 
 When the design proposal is finished and the UX design is accepted (which means that the PRs are merged), then Tasks for UI and Backend are created (plus in any other repository required).
 These Tasks are connected directly to the original Epic and moved to column "In Progress Tasks".
-Work on those Taks result in associated PRs which are reviewed and eventually merged.
+Work on those Tasks result in associated PRs which are reviewed and eventually merged.
 If the tasks are clear from the Epic and Design proposal descriptions, then no extra Task issue needs to be created, which wouldn't add any extra information.
 Instead the PR can be connected directly to the Epic and moved to the "In Progress Tasks".
 
