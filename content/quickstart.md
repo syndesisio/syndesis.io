@@ -48,16 +48,6 @@ $ minishift config set memory 8384
 $ minishift config set cpus 2
 ```
 
-#### GitHub registered application
-
-You also need a GitHub application registered at https://github.com/settings/developers. While registering, you'll need to provide a callback URL. The callback URL will be the output of:
-
-```bash
-$ echo https://syndesis.$(minishift ip).nip.io
-```
-
-Once you have registered the application, you will get a `<GITHUB_CLIENT_ID>` and a `<GITHUB_CLIENT_SECRET>`. These should be used in the commands below.
-
 ### Template selection
 
 Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.openshift.org/latest/dev_guide/templates.html). The template to use in the installation instructions depend on your use case:
@@ -69,13 +59,6 @@ Deploying Syndesis is made easy thanks to [OpenShift templates](https://docs.ope
 Depending on your role please use the appropriate template in the instructions below.
 
 ### Deployment instructions
-
-Set your GitHub credentials from your [registered app]({{< relref "#github-registered-application" >}}) in your shell:
-
-```bash
-$ export GITHUB_CLIENT_ID=...
-$ export GITHUB_CLIENT_SECRET=...
-```
 
 Install the OpenShift template (syndesis-dev-restricted.yml or syndesis-restricted.yml as discussed [above]({{< relref "#template-selection" >}})):
 
@@ -98,8 +81,7 @@ $ oc new-app syndesis-dev-restricted \
     -p OPENSHIFT_MASTER=$(oc whoami --show-server) \
     -p OPENSHIFT_PROJECT=$(oc project -q) \
     -p OPENSHIFT_OAUTH_CLIENT_SECRET=$(oc sa get-token syndesis-oauth-client) \
-    -p GITHUB_OAUTH_CLIENT_ID=${GITHUB_CLIENT_ID} \
-    -p GITHUB_OAUTH_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+    -p DEMO_DATA_ENABLED=true
 ```
 
 Wait until all pods are running. You can either use OpenShift's intrinsic watch feature for a line-by-line update
