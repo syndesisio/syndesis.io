@@ -11,6 +11,7 @@ jobs:
           name: Install tools
           command: |-
             yarn global add gulp-cli
+            pip install --upgrade pygments pygments-style-github
 
       - checkout
 

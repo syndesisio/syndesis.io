@@ -6,3 +6,7 @@
 /themes/syndesis/static/CNAME
 /static/CNAME
 /data/sri
+.cache
+.config
+.yarnrc
+yarn-error.log
