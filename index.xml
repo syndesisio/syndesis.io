@@ -88,7 +88,8 @@ Here are some important links:
       
       <guid>https://syndesis.io/faq/</guid>
       <description>Syndesis looks awesome. Who is it for? Anyone that wants to integrate services. Syndesis includes a swish UI that enables the user to design integration flows and manage them from their browser.
-No coding required&amp;hellip; Unless you really want to and then Syndesis allows you to dive into the code, develop your own connectors (if one doesn&amp;rsquo;t already exist), or hack on the integration definition directly.</description>
+No coding required&amp;hellip; Unless you really want to and then Syndesis allows you to dive into the code, develop your own connectors (if one doesn&amp;rsquo;t already exist), or hack on the integration definition directly.
+How to read logs?</description>
     </item>
     
   </channel>
