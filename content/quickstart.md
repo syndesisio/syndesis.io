@@ -60,6 +60,14 @@ Depending on your role please use the appropriate template in the instructions b
 
 ### Deployment instructions
 
+Before we can start installing Syndesis we have to add some policies
+
+```bash
+$ oc login -u system:admin
+$ oc adm policy add-cluster-role-to-user system:auth-delegator -z syndesis-oauth-client
+$ oc login -u developer
+```
+
 Install the OpenShift template (syndesis-dev-restricted.yml or syndesis-restricted.yml as discussed [above]({{< relref "#template-selection" >}})):
 
 ```bash
