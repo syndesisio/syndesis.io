@@ -27,7 +27,7 @@ The following examples assume that you have Minishift installed and can be calle
 To make the installation super easy, on OS X and Linux you can use the following command for a complete installation of Syndesis on Minishift in a namespace `syndesis`:
 
 ```bash
-bash <(curl -sL https://syndes.is/quickstart)
+bash <(curl -sL https://syndes.is/start)
 ```
 
 This will take some time until all images are downloaded and installed but eventually your browser should open with the landing page for Syndesis.
