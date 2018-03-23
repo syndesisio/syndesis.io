@@ -53,6 +53,10 @@ EOT
     # Switch to minishift to be safe when deleting projects
     oc config use-context "minishift"
 
+    if [ -z "$(is_logged_in)" ]; then
+        oc login -u developer -p developer
+    fi
+
     # Set project
     local project=$(readopt --project -p)
     if [ -z "${project}" ]; then
@@ -76,11 +80,15 @@ EOT
 # ========================================================================================
 
 is_minishift_running() {
-    set +e
     minishift status 2>&1 | grep -q "Running"
-    local stat=$?
-    set -e
-    if [ $stat -eq 0 ]; then
+    if [ $? -eq 0 ]; then
+      echo "true"
+    fi
+}
+
+is_logged_in() {
+    local out=$(oc get projects 2>&1)
+    if [ $? -eq 0 ]; then
       echo "true"
     fi
 }
@@ -227,7 +235,7 @@ wait_for_syndesis_to_be_ready() {
     # Patch imagestreams from "DockerImage" to "ImageStreamTag"
     oc get pods -w &
     watch_pid=$!
-    for dc in "syndesis-rest" "syndesis-ui"; do
+    for dc in "syndesis-server" "syndesis-ui" "syndesis-meta"; do
         echo "Waiting for $dc to be started"
         local replicas="$(oc get dc $dc -o jsonpath='{.status.availableReplicas}')"
         while [ "$replicas" -lt 1 ]; do
