@@ -36,8 +36,7 @@ Improving documentation Documentation is in various places in our repositories. 
       <pubDate>Tue, 16 May 2017 15:58:18 +0100</pubDate>
       
       <guid>https://syndesis.io/quickstart/</guid>
-      <description>We aim to make it as simple as possible for users to try out Syndesis. If you want to try out locally on your laptop, follow the Using Minishift instructions.
-Using Minishift Minishift is a tool that helps you run OpenShift locally by running a single-node OpenShift cluster inside a VM locally. With Minishift you can easily try out Syndesis without requiring a &amp;ldquo;real&amp;rdquo; cluster or servers, a laptop will suffice.</description>
+      <description>You can try out Syndesis very easily locally, too. All you need is a Minishift installation which is available for all the major operating systems (Linux, OS X and Windows). The following examples assume that you have Minishift installed and can be called with minishift from the command line. So, minishift is supposed to be available in your search path, i.e. located in a directory contained in your $PATH environment variable (Linux, macOS) or in a directory from your system path (Windows)</description>
     </item>
     
     <item>
