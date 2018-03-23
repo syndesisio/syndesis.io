@@ -50,6 +50,9 @@ EOT
     # Ensure OC is in the path
     eval $(minishift oc-env)
 
+    # Switch to minishift to be safe when deleting projects
+    oc config use-context "minishift"
+
     # Set project
     local project=$(readopt --project -p)
     if [ -z "${project}" ]; then
