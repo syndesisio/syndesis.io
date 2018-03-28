@@ -47,3 +47,6 @@ In this file you will find the following configuration files:
 
 - `BOOT-INF/classes/syndesis.yml`
 - `BOOT-INF/classes/mapping-step-*.json`
+
+## Is `oscerd` a bot?
+This is asked very often. No, he's human. His mom got him tested. 
