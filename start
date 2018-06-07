@@ -87,7 +87,8 @@ is_minishift_running() {
 }
 
 is_logged_in() {
-    local out=$(oc get projects 2>&1)
+    local out
+    out=$(oc get projects 2>&1)
     if [ $? -eq 0 ]; then
       echo "true"
     fi
