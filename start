@@ -68,7 +68,7 @@ EOT
     create_oauthclient "$(readopt --tag)"
 
     # Install templates
-    create_and_apply_template "${tag}"
+    create_and_apply_template "syndesis.$(minishift ip).nip.io" "${tag}"
 
     # Wait till ready
     wait_for_syndesis_to_be_ready
@@ -196,8 +196,8 @@ create_oauthclient() {
 }
 
 create_and_apply_template() {
-    local route=$1
-    local tag=${3:-}
+    local route=${1:-}
+    local tag=${2:-}
 
     if [ -z "$route" ]; then
         echo "No route given"
@@ -214,7 +214,7 @@ create_and_apply_template() {
     echo "---------------------------------------------------------------------"
     echo "Creating new-app from ${SYNDESIS_TEMPLATE}"
     oc new-app "${SYNDESIS_TEMPLATE}" \
-      -p ROUTE_HOSTNAME="syndesis.$(minishift ip).nip.io" \
+      -p ROUTE_HOSTNAME="${route}" \
       -p OPENSHIFT_MASTER="$(oc whoami --show-server)" \
       -p OPENSHIFT_PROJECT="$(oc project -q)" \
       -p OPENSHIFT_OAUTH_CLIENT_SECRET="$(oc sa get-token syndesis-oauth-client)"
