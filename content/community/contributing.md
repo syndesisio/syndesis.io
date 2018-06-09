@@ -80,8 +80,8 @@ Then you can retrieve upstream changes and rebase on them into your code like th
 $ git pull --rebase upstream master
 ```
 
-For more information on maintaining a fork, please see the GitHub Help article [Fork a Repo][] and information on
-[rebasing][] from git.
+For more information on maintaining a fork, please see the GitHub Help article [Fork a Repo](https://help.github.com/articles/fork-a-repo) and information on
+[rebasing](http://git-scm.com/book/en/Git-Branching-Rebasing) from git.
 
 ### 3. Create a Branch
 
@@ -146,12 +146,12 @@ $ git push
 ### 6. Issue a Pull Request
 
 In order to have your commits merged into the main repository, you need to create a pull request.  The instructions for
-this can be found in the GitHub Help Article [Creating a Pull Request][]. Essentially you do the following:
+this can be found in the GitHub Help Article [Creating a Pull Request](https://help.github.com/articles/creating-a-pull-request). Essentially you do the following:
 
 1. Go to the site for your repository.
 2. Click the Pull Request button.
 3. Select the feature branch from your repository.
-4. Enter a title and description of your pull request mentioning the corresponding [bug database][] ticket in the description.
+4. Enter a title and description of your pull request mentioning the corresponding [bug database](https://github.com/syndesisio/syndesis/issues) ticket in the description.
 5. Review the commit and files changed tabs.
 6. Click `Send Pull Request`
 
@@ -166,9 +166,7 @@ request.
 
 #### Running code checks
 
-We use [Codacy](https://www.codacy.com/) for code analysis, multiple Maven plugins provided by the
-[Base POM](https://github.com/basepom/basepom) project to make our code clean and our dependencies in check. To run them
-locally run Maven build with `checks` profile turned on:
+We use multiple Maven plugins configured by the [Base POM](https://github.com/basepom/basepom) project to make our code clean and our dependencies in check. To run them locally run Maven build with `checks` profile turned on:
 
 ```bash
 $ ./mvnw -Pchecks clean install
@@ -186,18 +184,3 @@ $ oc delete pod -l component=syndesis-rest
 ```
 
 After the build finishes delete the `syndesis-rest` pod
-
-[help documentation]: http://help.github.com/send-pull-requests
-[bug database]: http://bugs.dojotoolkit.org/
-[support forum]: http://dojotoolkit.org/community/
-[dojo-contrib]: http://mail.dojotoolkit.org/mailman/listinfo/dojo-contributors
-[cla]: https://js.foundation/CLA/
-[Creating a Pull Request]: https://help.github.com/articles/creating-a-pull-request
-[Fork a Repo]: https://help.github.com/articles/fork-a-repo
-[Intern]: http://theintern.io/
-[styleguide]: http://dojotoolkit.org/reference-guide/developer/styleguide.html
-[DojoDoc]: http://dojotoolkit.org/reference-guide/developer/markup.html
-[D.O.H.]: http://dojotoolkit.org/reference-guide/util/doh.html
-[dojo/util]: https://github.com/dojo/util
-[interactive rebase]: http://git-scm.com/book/en/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages
-[rebasing]: http://git-scm.com/book/en/Git-Branching-Rebasing
