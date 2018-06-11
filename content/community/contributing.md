@@ -184,3 +184,4 @@ $ oc delete pod -l component=syndesis-rest
 ```
 
 After the build finishes delete the `syndesis-rest` pod
+
