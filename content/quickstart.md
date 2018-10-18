@@ -151,7 +151,8 @@ $ oc new-app syndesis \
     -p ROUTE_HOSTNAME=syndesis.$(minishift ip).nip.io \
     -p OPENSHIFT_MASTER=$(oc whoami --show-server) \
     -p OPENSHIFT_PROJECT=$(oc project -q) \
-    -p OPENSHIFT_OAUTH_CLIENT_SECRET=$(oc sa get-token syndesis-oauth-client)
+    -p OPENSHIFT_OAUTH_CLIENT_SECRET=$(oc sa get-token syndesis-oauth-client) \
+    -p SAR_PROJECT=$(oc project -q)
 ```
 
 Wait until all pods are running. You can either use OpenShift's intrinsic watch feature for a line-by-line update
