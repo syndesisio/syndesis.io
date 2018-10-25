@@ -8,7 +8,7 @@ ARGS="$@"
 # Quickstart Startup with Minishift
 
 # Latest tagged versions
-SYNDESIS_DEFAULT_VERSION=1.3
+SYNDESIS_DEFAULT_VERSION=master
 
 # Template to use
 SYNDESIS_TEMPLATE="syndesis"
@@ -217,6 +217,7 @@ create_and_apply_template() {
       -p ROUTE_HOSTNAME="${route}" \
       -p OPENSHIFT_MASTER="$(oc whoami --show-server)" \
       -p OPENSHIFT_PROJECT="$(oc project -q)" \
+      -p SAR_PROJECT="$(oc project -q)" \
       -p OPENSHIFT_OAUTH_CLIENT_SECRET="$(oc sa get-token syndesis-oauth-client)"
     echo "---------------------------------------------------------------------"
 }
