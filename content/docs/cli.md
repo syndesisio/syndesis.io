@@ -43,38 +43,8 @@ with the following commands
 
 There are a handful of global options which can be used:
 
-<table>
-<thead>
-<tr>
-<th>Testing</th>
-<th>Two</th>
-<th>Three</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td><code>--help</code></td>
-<td>right-aligned</td>
-<td>$1600</td>
-</tr>
-
-<tr>
-<td><code>--rebase</code></td>
-<td>centered</td>
-<td>$12</td>
-</tr>
-
-<tr>
-<td><code>--verbose</code></td>
-<td>are neat</td>
-<td>$1</td>
-</tr>
-</tbody>
-</table>
-
 | Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------| -----|
 | `--help`      | right-aligned | $1600 |
 | `--rebase`      | centered      |   $12 |
 | `--verbose` | are neat      |    $1 |

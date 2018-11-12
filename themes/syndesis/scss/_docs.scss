@@ -2,16 +2,8 @@
 // DOCS
 ////////////////////////////////////////////////////////////////////////////////
 
-@import 'colors';
-@import 'navbar';
+@import "colors";
+@import "navbar";
 
 .docs {
-    table {
-        display: table;
-        empty-cells: hide;
-        overflow: auto;
-        width: 100%;
-      }
 }
-
-
