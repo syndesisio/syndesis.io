@@ -7,7 +7,7 @@ menu:
   sidenav:
     name: CLI
     weight: -400
-    parent: Docs
+    parent: Developer Docs
 toc: true
 weight: 10
 ---

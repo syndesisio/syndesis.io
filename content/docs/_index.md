@@ -6,7 +6,7 @@ sidebar: "sidenav"
 
 menu:
   sidenav:
-    name: "Docs"
+    name: "Developer Docs"
     pre: "<i class='fa fa-fw fa-group'></i>"
     weight: -180
   topnav:
