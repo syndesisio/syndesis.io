@@ -3,6 +3,7 @@ draft: false
 title: "Developer Docs"
 description: "Documentation and guides for using and/or contributing to the Syndesis project."
 sidebar: "sidenav"
+kind: doc
 
 menu:
   sidenav:
