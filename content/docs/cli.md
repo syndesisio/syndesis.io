@@ -43,7 +43,7 @@ with the following commands
 
 There are a handful of global options which can be used:
 
-| Tables        | Are           | Cool  |
+||||
 | ------------- |-------------| -----|
 | `--help`      | right-aligned | $1600 |
 | `--rebase`      | centered      |   $12 |

@@ -1,19 +1,20 @@
-@import './bootstrap/_variables';
-@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import "./bootstrap/_variables";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-@import 'blog';
-@import 'colors';
-@import 'docs';
-@import 'footer';
-@import 'github-corner';
-@import 'home';
-@import 'icons';
-@import 'navbar';
-@import 'sidenav';
-@import 'toc';
-@import 'highlighting';
+@import "blog";
+@import "colors";
+@import "docs";
+@import "footer";
+@import "github-corner";
+@import "home";
+@import "icons";
+@import "navbar";
+@import "sidenav";
+@import "toc";
+@import "highlighting";
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -57,6 +58,12 @@ html, body {
       display: table-header-group;
       vertical-align: middle;
       border-color: inherit;
+
+      th, tr {
+        :empty {
+          display: none;
+        }
+      }
     }
 
     tbody {
@@ -66,10 +73,18 @@ html, body {
     }
 
     th {
+      :empty {
+        display: none;
+      }
+
       font-weight: 600;
     }
 
     tr {
+      :empty {
+        display: none;
+      }
+
       background-color: #fff;
       border-top: 1px solid #c6cbd1;
       display: table-row;
@@ -94,4 +109,3 @@ html, body {
   height: 100px;
   visibility: hidden;
 }
-
