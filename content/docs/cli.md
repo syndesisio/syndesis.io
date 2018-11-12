@@ -44,26 +44,14 @@ with the following commands
 There are a handful of global options which can be used:
 
 ||||
-| ------------- |-------------| -----|
-| `--help`      | right-aligned | $1600 |
-| `--rebase`      | centered      |   $12 |
-| `--verbose` | are neat      |    $1 |
+| ------------- |--------| ------|
+| `--help`      | `-h`   | Print usage information. If a command is given print out commands specific options. |
+| `--rebase`    | `-r`   | Rebase your project directory before building to integrate upstream changes to your local repository. See below for details how this works. |
+| `--verbose`   | &nbsp; | Set verbose mode, which is useful mostly only for debugging the script itself. |
 
-|===
-| `--help`
-| `-h`
-| Print usage information. If a command is given print out commands specific options
 
-| `--rebase`
-| `-r`
-| Rebase your project directory before building to integrate upstream changes to your local repository. See <<syndesis-rebase,below>> for details how this works.
+_Rebase to upstream_
 
-| `--verbose`
-|
-| Set verbose mode, which is useful mostly only for debugging the script itself.
-|===
-
-Rebase to upstream
 To easily rebase on changes which have been merged upstream to master, you can use the option `--rebase` (short: `-r`).
 This command assumes that you have forked the Syndesis GitHub repositories and you have "origin" and "upstream" remotes like
 
