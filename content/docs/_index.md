@@ -12,7 +12,7 @@ menu:
     weight: -180
   topnav:
     name: "docs"
-    weight: -120
+    weight: -180
 ---
 
 This handbook contain all information required for installing, running and developing Syndesis from a developer's point of view.
