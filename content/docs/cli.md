@@ -91,44 +91,14 @@ The following commands are available:
 
 |Command      | Description|
 | ----------- | -----------|
-| build       | Used for building Syndesis and its various modules.   |
-| ui          ||
-| minishift   ||
-| install     ||
-| system-test ||
-| dev||
-| doc||
-| release||
-
-[cols="3,15",options="header"]
-|===
-| Command
-| Description
-
-| <<syndesis-build,**build**>>
-| Used for building Syndesis and its various modules.
-
-| <<syndesis-ui,**ui**>>
-| Start the UI for local development _(not implemented yet)_
-
-| <<syndesis-minishift,**minishift**>>
-| Start and install Syndesis on Minishift
-
-| <<syndesis-install,**install**>>
-| Install Syndesis in a running cluster (other than Minishift)
-
-| <<syndesis-system-test,**system-test**>>
-| Run System test against an OpenShift cluster
-
-| <<syndesis-dev,**dev**>>
-| Utility commands useful during development
-
-| <<syndesis-doc,**doc**>>
-| Generating and publish this documentation
-
-| <<syndesis-doc,**release**>>
-| Release Syndesis' Maven and NPM artefacts _(not implemented yet)_
-|===
+| build       | Used for building Syndesis and its various modules   |
+| ui          | Start the UI for local development _(not implemented yet)_ |
+| minishift   | Start and install Syndesis on Minishift |
+| install     | Install Syndesis in a running cluster (other than Minishift) |
+| system-test | Run System test against an OpenShift cluster |
+| dev         | Utility commands useful during development |
+| doc         | Generating and publish this documentation |
+| release     | Release Syndesis' Maven and NPM artifacts _(not implemented yet)_ |
 
 If no command is given, `build` is the default.
 Remember a command must be the first argument, but there are additional possibilities to specify commands:
