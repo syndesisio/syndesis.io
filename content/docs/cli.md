@@ -192,15 +192,15 @@ The following modules are available:
 
 | Module      | Description | `--all-images` | `--backend` | `--app-images` | `--infra-images` |
 | ----------- | ----------- | -------------- | ----------- | -------------- | ---------------- |
-| server      | Main backend providing a REST API for the user interface | ✔︎ | ✔︎ | ✔︎ |  |
-| ui          | The SPA user interface application | ✔︎ |  | ✔︎ |  |
-| meta        | Meta data and verifier used for verifying connections and providing connector metadata | ✔︎ | ✔︎ | ✔︎ |  |
-| connector   | All connectors used by Syndesis out of the box |  | ✔︎ |  |  |
-| integration | Support libraries for running integrations |  | ✔︎ |  |  |
-| extension   | Tools for developing and running Syndesis custom extensions |  | ✔︎ |  |  |
-| common      | Common modules containing common code |  | ✔︎ |  |  |
-| s21         | S2I base image used for building the runtime images | ✔︎ |  | ✔︎ |  |
-| operator    | Infrastructure operator for managing the application | ✔︎ |  |  | ✔︎ |
+| server      | Main backend providing a REST API for the user interface | ✔︎ | ✔︎ | ✔︎ | &nbsp; |
+| ui          | The SPA user interface application | ✔︎ | &nbsp; | ✔︎ | &nbsp; |
+| meta        | Meta data and verifier used for verifying connections and providing connector metadata | ✔︎ | ✔︎ | ✔︎ | &nbsp; |
+| connector   | All connectors used by Syndesis out of the box | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
+| integration | Support libraries for running integrations | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
+| extension   | Tools for developing and running Syndesis custom extensions | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
+| common      | Common modules containing common code | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
+| s21         | S2I base image used for building the runtime images | ✔︎ | &nbsp; | ✔︎ | &nbsp; |
+| operator    | Infrastructure operator for managing the application | ✔︎ | &nbsp; | &nbsp; | ✔︎ |
 
 
 All option ending with `-images` will also build the corresponding Docker image.
