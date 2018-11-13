@@ -72,7 +72,7 @@ With this in place, a `--rebase` performs the following steps:
   - The rebase is retried and should succeed
   - `git stash pop` brings back your changes. Stashing can fail with conflicts which you would have to resolve on your own.
 
-Development Modes
+_Development Modes_
 
 The Syndesis application consists of a set of Docker images OpenShift resources descriptors for installing Syndesis.
 For development, https://www.openshift.org/minishift/[minishift] is used, and most of the commands assume that you have minishift installed locally and executable directly from your path.
@@ -82,12 +82,23 @@ For development OpenShift S2I builds and image streams are used.
 This mode works also when running with a real OpenShift cluster and is not restricted to Minishift usage.
 The advantage is that a build automatically triggers a redeployment, so you don't have to kill any pods manually.
 
-Commands
+_Commands_
 All other options are specific to each command.
 You get a list of those options with `syndesis <cmd> -h`.
 These options are described in detail in the next sections.
 
 The following commands are available:
+
+|Command      | Description|
+| ----------- | -----------|
+| build       | Used for building Syndesis and its various modules.   |
+| ui          ||
+| minishift   ||
+| install     ||
+| system-test ||
+| dev||
+| doc||
+| release||
 
 [cols="3,15",options="header"]
 |===
@@ -146,11 +157,3 @@ yourscriptname::run() {
 }
 ```
 
-include::cmd_build.adoc[]
-include::cmd_ui.adoc[]
-include::cmd_minishift.adoc[]
-include::cmd_system_test.adoc[]
-include::cmd_dev.adoc[]
-include::cmd_doc.adoc[]
-include::cmd_release.adoc[]
-include::cmd_install.adoc[]

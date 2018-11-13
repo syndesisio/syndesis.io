@@ -8,7 +8,7 @@ kind: doc
 menu:
   sidenav:
     name: "Developer Docs"
-    pre: "<i class='fa fa-fw fa-group'></i>"
+    pre: "<i class='fa fa-fw fa-book'></i>"
     weight: -180
   topnav:
     name: "docs"
