@@ -190,6 +190,18 @@ are also option to combine modules
 
 The following modules are available:
 
+| Module      | Description | `--all-images` | `--backend` | `--app-images` | `--infra-images` |
+| ----------- | ----------- | -------------- | ----------- | -------------- | ---------------- |
+| server      |  |  |  |  |  |
+| ui          |  |  |  |  |  |
+| meta        |  |  |  |  |  |
+| connector   |  |  |  |  |  |
+| integration |  |  |  |  |  |
+| extension   |  |  |  |  |  |
+| common      |  |  |  |  |  |
+| s21         |  |  |  |  |  |
+| operator    |  |  |  |  |  |
+
 |===
 | Module | Description | `--all-images` | `--backend` | `--app-images` | `--infra-images`
 
@@ -316,7 +328,7 @@ There are three modes, how the operator can be created:
 
 See below for the details.
 
-.Load dependencies
+<i class="title">Load Dependencies</i>
 
 In any case, before you compile first you should use the option `--ensure` (short: `-e`) to setup the dependency tree.
 This will download all source dependency and cache them locally.
