@@ -74,18 +74,10 @@ body {
     }
 
     th {
-      :empty {
-        display: none;
-      }
-
       font-weight: 600;
     }
 
     tr {
-      :empty {
-        display: none;
-      }
-
       background-color: #fff;
       border-top: 1px solid #c6cbd1;
       display: table-row;
