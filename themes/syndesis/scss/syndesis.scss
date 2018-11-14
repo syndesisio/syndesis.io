@@ -40,6 +40,25 @@ body {
     @include media-breakpoint-up(lg) {
       width: calc(100% - 214px - 314px);
     }
+
+    h2 {
+      font-size: 1.75rem;
+      padding: 35px 0 10px;
+
+      &:first-of-type {
+        padding: 15px 0;
+      }
+    }
+
+    h3 {
+      color: $pf-blue;
+      font-size: 1.3em;
+      padding: 15px 0 10px;
+    }
+
+    pre {
+      background: #f7f7f8 !important;
+    }
   }
 
   table {
@@ -60,7 +79,8 @@ body {
       vertical-align: middle;
       border-color: inherit;
 
-      th, tr {
+      th,
+      tr {
         :empty {
           display: none;
         }
