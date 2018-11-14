@@ -266,7 +266,7 @@ There are three modes, how the operator can be created:
 
 See below for the details.
 
-**Load dependencies.**
+**Load dependencies**
 
 In any case, before you compile first you should use the option
 `--ensure` (short: `-e`) to setup the dependency tree. This will
@@ -277,7 +277,7 @@ this cache, use the option `--clean-cache`. This might be necessary when
 If you compile for the first time, then `--ensure` will be added
 automatically.
 
-**Compiling locally.**
+**Compiling locally**
 
 This is the fastest way for compiling the operator. Use the option
 `--local` (short: `-l`) for selecting the local compile mode.
@@ -301,7 +301,7 @@ darwin). When you use this mode with `--image` (short: `-i`) on macOS
 then go will be used as cross compiler so that the generated bimary can
 be used in a Linux image.
 
-**Compiling with a local Docker daemon.**
+**Compiling with a local Docker daemon**
 
 This is the default mode and is used also when doing the release. It use
 a builder image `syndesis/godev` which is created from the `tools/image`
@@ -320,7 +320,7 @@ the fetched dependencies can be cached in the local directories
 Also the binary will be stored in your local directory, but this will
 alway be a Linux (`amd64`) binary.
 
-**Compiling with Minishift.**
+**Compiling with Minishift**
 
 As Minishift is running in a remote VM you cannot bind a volume to your
 localhost. Therefor when running in Minishift mode the source code will
@@ -793,7 +793,7 @@ taken directly (so it’s good if you have to perform multiple runs like
 with `--dry-run`). If not provided, a new temporary directory is created
 and also *deleted* after the release run.
 
-**Persist steps**
+**Persist Steps**
 
   - Push Docker images to Docker Hub. In addition to the images that
     carry the full release version as the tag, also a tag for the *minor
@@ -1058,7 +1058,7 @@ syndesis install
 Depending on whether you have granted the current user access this step
 has to be done either as admin or as a regular user.
 
-**Example for Minishift.**
+**Example for Minishift**
 
 ``` bash
 # Enable the admin user on Minishift
@@ -1115,7 +1115,7 @@ the script until everything is set up.
 You can also automatically open Syndesis in the browser after the
 installation with `--open` (short: `-o`)
 
-### Development mode
+### Development Mode
 
 As with [syndesis minishift](#syndesis-minishift) you can also use this
 command to set up a development platform for Syndesis. *Development
@@ -1131,13 +1131,13 @@ imagestreams needs to be patched after the initial images have been
 fetched from Docker Hub. If you use the `--dev` option, then this update
 is done automatically.
 
-### Selecting the version
+### Selecting the Version
 
 With the option `--tag` you can select a specific version of Syndesis to
 install. By default, the currently checked out checked out branch is
 used.
 
-**Example.**
+**Example**
 
 ``` bash
 syndesis install --route syndesis.192.168.64.12.nip.io --tag 1.4
@@ -1151,7 +1151,7 @@ You can see a list of available tags with `git tag`. Tags prefixed with
 do not contain images streams themselves but refer to the image streams
 installed on this cluster.
 
-### Quick installation
+### Quick Installation
 
 > **Warning**
 > 
