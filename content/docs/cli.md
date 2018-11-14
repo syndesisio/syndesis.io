@@ -1,7 +1,6 @@
 ---
 draft: false
 title: "Syndesis CLI"
-description: "blah"
 sidebar: "sidenav"
 menu:
   sidenav:
@@ -182,7 +181,7 @@ install` for all Java and UI modules. Plus it also builds the
 infrastructure operator via Go (see [syndesis-build-operator](#below)
 for details)
 
-This compiles all Java and Javascript artefacts and also runs all tests
+This compiles all Java and Javascript artifacts and also runs all tests
 and code checks for the application modules.
 
 You restrict the build to certain modules, which are divided into two
