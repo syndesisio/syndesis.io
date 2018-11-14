@@ -24,7 +24,7 @@ The script can be used for various tasks which are selected by a so-called comma
 Just type `syndesis -h` to get an overview of the commands available:
 
 
-<i class="title">Usage Message</i>
+### Usage Message
 ```
 Usage: syndesis <command> [... options ...]
 
@@ -49,7 +49,7 @@ There are a handful of global options which can be used:
 | `--verbose`   | &nbsp; | Set verbose mode, which is useful mostly only for debugging the script itself. |
 
 
-<i class="title">Rebase to Upstream</i>
+### Rebase to Upstream
 
 To easily rebase on changes which have been merged upstream to master, you can use the option `--rebase` (short: `-r`).
 This command assumes that you have forked the Syndesis GitHub repositories and you have "origin" and "upstream" remotes like
@@ -72,7 +72,7 @@ With this in place, a `--rebase` performs the following steps:
   - `git stash pop` brings back your changes. Stashing can fail with conflicts which you would have to resolve on your own.
 
 
-<i class="title">Development Modes</i>
+### Development Modes
 
 The Syndesis application consists of a set of Docker images OpenShift resources descriptors for installing Syndesis.
 For development, https://www.openshift.org/minishift/[minishift] is used, and most of the commands assume that you have minishift installed locally and executable directly from your path.
@@ -83,7 +83,7 @@ This mode works also when running with a real OpenShift cluster and is not restr
 The advantage is that a build automatically triggers a redeployment, so you don't have to kill any pods manually.
 
 
-<i class="title">Commands</i>
+### Commands
 
 All other options are specific to each command.
 You get a list of those options with `syndesis <cmd> -h`.
