@@ -1,7 +1,6 @@
 ---
 draft: false
 title: "Syndesis CLI"
-description: "Buildtool \"syndesis\""
 sidebar: "sidenav"
 menu:
   sidenav:
@@ -12,6 +11,7 @@ toc: true
 weight: 10
 ---
 
+## Buildtool "syndesis"
 
 Syndesis uses a single tool for controlling various aspects of the build and developer related tasks.
 This script can be found in `$SYNDESIS_DIR/tools/bin` and is called `syndesis`.
