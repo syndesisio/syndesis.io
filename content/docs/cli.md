@@ -133,212 +133,225 @@ yourscriptname::run() {
 
 The primary goal of `syndesis build` is to build Syndesis.
 
-It is mainly a wrapper around Maven and Go but adds some convenience functionality for common developer workflows.
+It is mainly a wrapper around Maven and Go but adds some convenience
+functionality for common developer workflows.
 
 ### Usage
 
-Usage: syndesis build [... options ...]
-
-Options for build:
-
-    -b  --backend                  Build only backend modules (core, extension, integration,
-                                   connectors, server, meta)
-        --all-images               Build all modules with images: ui, server, meta, s2i, operator
-        --app-images               Build only application modules with Docker images
-                                   (ui, server, meta, s2i)
-                                   and create images
-        --infra-images             Build only infrastructure modules with Docker images
-                                   (operator) and create images
-    -m  --module <m1>,<m2>, ..     Build modules
-                                   Modules: ui, server, connector, s2i, meta, integration,
-                                   extension, common, operator
-    -d  --dependencies             Build also all project the specified module depends on
-        --skip-tests               Skip unit and system test execution
-        --skip-checks              Disable all checks
-    -f  --flash                    Skip checks and tests execution (fastest mode)
-    -i  --image                    Build Docker images, too
-                                   (for those modules creating images)
-        --docker                   Use a plain Docker build for creating images.
-                                   Used by CI for pushing to Docker Hub
-    -p  --project <project>        Specifies the project/namespace to create images in
-    -e  --ensure                   If building the operator, run 'dep ensure' before building.
-                                   Otherwise ignored.
-    -l  --local                    If building the operator, use a locally installed go
-                                   Otherwise run the Go build from a container
-                                   (either local or Minishift's Docker daemon)
-        --clean-cache              Used for the operator build to remove the local dependency cache.
-    -c  --clean                    Run clean builds (mvn clean)
-        --resume <m1>              Resume build from maven module (mvn -rf m1)
-        --batch-mode               Run mvn in batch mode
-        --camel-snapshot <version> Run a build with a specific Camel snapshot.
-                                   If no argument is given the
-                                   environment variable CAMEL_SNAPSHOT_VERSION is used or an error thrown.
-----
+    Usage: syndesis build [... options ...]
+    
+    Options for build:
+        -b  --backend                  Build only backend modules (core, extension, integration,
+                                       connectors, server, meta)
+            --all-images               Build all modules with images: ui, server, meta, s2i, operator
+            --app-images               Build only application modules with Docker images
+                                       (ui, server, meta, s2i)
+                                       and create images
+            --infra-images             Build only infrastructure modules with Docker images
+                                       (operator) and create images
+        -m  --module <m1>,<m2>, ..     Build modules
+                                       Modules: ui, server, connector, s2i, meta, integration,
+                                       extension, common, operator
+        -d  --dependencies             Build also all project the specified module depends on
+            --skip-tests               Skip unit and system test execution
+            --skip-checks              Disable all checks
+        -f  --flash                    Skip checks and tests execution (fastest mode)
+        -i  --image                    Build Docker images, too
+                                       (for those modules creating images)
+            --docker                   Use a plain Docker build for creating images.
+                                       Used by CI for pushing to Docker Hub
+        -p  --project <project>        Specifies the project/namespace to create images in
+        -e  --ensure                   If building the operator, run 'dep ensure' before building.
+                                       Otherwise ignored.
+        -l  --local                    If building the operator, use a locally installed go
+                                       Otherwise run the Go build from a container
+                                       (either local or Minishift's Docker daemon)
+            --clean-cache              Used for the operator build to remove the local dependency cache.
+        -c  --clean                    Run clean builds (mvn clean)
+            --resume <m1>              Resume build from maven module (mvn -rf m1)
+            --batch-mode               Run mvn in batch mode
+            --camel-snapshot <version> Run a build with a specific Camel snapshot.
+                                       If no argument is given the
+                                       environment variable CAMEL_SNAPSHOT_VERSION is used or an error thrown.
 
 ### Modules
-A plain `build` command without any options performs a plain `mvn install` for all Java and UI modules.
-Plus it also builds the infrastructure operator via Go (see <<below,syndesis-build-operator>> for details)
 
-This compiles all Java and Javascript artefacts and also runs all tests and code checks for the application modules.
+A plain `build` command without any options performs a plain `mvn
+install` for all Java and UI modules. Plus it also builds the
+infrastructure operator via Go (see [syndesis-build-operator](#below)
+for details)
 
-You restrict the build to certain modules, which are divided into two categories: _application modules_ which are the modules building up Syndesis.
-And _infrastructure modules_ which help in managing the application itself.
+This compiles all Java and Javascript artefacts and also runs all tests
+and code checks for the application modules.
 
-You can individually select specific modules by using the `--module` (short: `-m`) option with a comma-separated list of modules, but there
+You restrict the build to certain modules, which are divided into two
+categories: *application modules* which are the modules building up
+Syndesis. And *infrastructure modules* which help in managing the
+application itself.
+
+You can individually select specific modules by using the `--module`
+(short: `-m`) option with a comma-separated list of modules, but there
 are also option to combine modules
 
+The following modules are
+available:
 
-The following modules are available:
+| Module          | Description                                                                            | `--all-images` | `--backend` | `--app-images` | `--infra-images` |
+| --------------- | -------------------------------------------------------------------------------------- | -------------- | ----------- | -------------- | ---------------- |
+| **server**      | Main backend providing a REST API for the user interface                               | ✔︎             | ✔︎          | ✔︎             |                  |
+| **ui**          | The SPA user interface application                                                     | ✔︎             |             | ✔︎             |                  |
+| **meta**        | Meta data and verifier used for verifying connections and providing connector metadata | ✔︎             | ✔︎          | ✔︎             |                  |
+| **connector**   | All connectors used by Syndesis out of the box                                         |                | ✔︎          |                |                  |
+| **integration** | Support libraries for running integrations                                             |                | ✔︎          |                |                  |
+| **extension**   | Tools for developing and running Syndesis custom extensions                            |                | ✔︎          |                |                  |
+| **common**      | Common modules containing common code                                                  |                | ✔︎          |                |                  |
+| **s2i**         | S2I base image used for building the runtime images                                    | ✔︎             |             | ✔︎             |                  |
+| **operator**    | Infrastructure operator for managing the application                                   | ✔︎             |             |                | ✔︎               |
 
-| Module      | Description | `--all-images` | `--backend` | `--app-images` | `--infra-images` |
-| ----------- | ----------- | -------------- | ----------- | -------------- | ---------------- |
-| server      | Main backend providing a REST API for the user interface | ✔︎ | ✔︎ | ✔︎ | &nbsp; |
-| ui          | The SPA user interface application | ✔︎ | &nbsp; | ✔︎ | &nbsp; |
-| meta        | Meta data and verifier used for verifying connections and providing connector metadata | ✔︎ | ✔︎ | ✔︎ | &nbsp; |
-| connector   | All connectors used by Syndesis out of the box | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
-| integration | Support libraries for running integrations | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
-| extension   | Tools for developing and running Syndesis custom extensions | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
-| common      | Common modules containing common code | &nbsp; | ✔︎ | &nbsp; | &nbsp; |
-| s21         | S2I base image used for building the runtime images | ✔︎ | &nbsp; | ✔︎ | &nbsp; |
-| operator    | Infrastructure operator for managing the application | ✔︎ | &nbsp; | &nbsp; | ✔︎ |
+All option ending with `-images` will also build the corresponding
+Docker image.
 
+When you build individual modules you you can provide the option
+`--image` (short: `-i`) to create also the Docker image in the build,
+when the module is associated with a Docker image.
 
-All option ending with `-images` will also build the corresponding Docker image.
+By default images are build via S2I against a running Minishift. This is
+the recommended way for developing as this automatically will trigger a
+redeployment after the build. However, for certain scenarios like when
+used in a CI system or when doing the release, the image creation can be
+done against are Docker daemon when the `--docker` is given. For this to
+work you must have access to Docker daemon, which you can verify with
+`docker ps`.
 
-When you build individual modules you you can provide the option `--image` (short: `-i`) to create also the Docker image in the build, when the module is associated with a Docker image.
-
-By default images are build via S2I against a running Minishift.
-This is the recommended way for developing as this automatically will trigger a redeployment after the build.
-However, for certain scenarios like when used in a CI system or when doing the release, the image creation can be done against are Docker daemon when the `--docker` is given.
-For this to work you must have access to Docker daemon, which you can verify with `docker ps`.
-
-When the option `--dependencies` (short: `-d`) is given in addition to `--modules`, also all Maven modules which the specified modules depend on are build, too.
+When the option `--dependencies` (short: `-d`) is given in addition to
+`--modules`, also all Maven modules which the specified modules depend
+on are build, too.
 
 ### Tuning
-By default, all checks like license or code quality checks are performed.
-Also, all unit and local integration tests are run.
-A full build eats up quite some time, but you should always run at full blast before submitting a pull request.
 
-However, to speed up the turnaround, several speed-up options are available.
-The following table shows these options, and also how long a full clean build over all modules takes: (but without building images)
+By default, all checks like license or code quality checks are
+performed. Also, all unit and local integration tests are run. A full
+build eats up quite some time, but you should always run at full blast
+before submitting a pull request.
 
-|===
-|Option
-|Description
-|Time
+However, to speed up the turnaround, several speed-up options are
+available. The following table shows these options, and also how long a
+full clean build over all modules takes: (but without building
+images)
 
-| _none_
-| Default mode with all checks and tests
-|
-
-| `--skip-tests`
-| Skip all unit and local integration tests
-|
-
-| `--skip-checks`
-| Skip sanity checks like for correct license headers and
-|
-
-
-| `--flash`
-| Fastest mode with skipping all checks and tests and with even some other aggressive optimizations
-|
-
-| `--camel-snapshot <version>`
-| Sometimes it's needed to use a Camel snapshot version for building. This snapshot most be available in you local Maven repo (`~/.m2`) Use this option with the Camel version. Alternatively, you can also set the environment variable `CAMEL_SNAPSHOT` to the corresponding version.
-|===
+| Option          | Description                                                                                       | Time |
+| --------------- | ------------------------------------------------------------------------------------------------- | ---- |
+| *none*          | Default mode with all checks and tests                                                            |      |
+| `--skip-tests`  | Skip all unit and local integration tests                                                         |      |
+| `--skip-checks` | Skip sanity checks like for correct license headers and                                           |      |
+| `--flash`       | Fastest mode with skipping all checks and tests and with even some other aggressive optimizations |      |
 
 ### Infrastructure Operator
 
-`syndesis build` can also build the infrastructure operator, which is a golang program.
+`syndesis build` can also build the infrastructure operator, which is a
+golang program.
 
-You can build the operator by running `syndesis build -m operator` or
-as part of a module collection like `--all-images` or `--infra-images`
+You can build the operator by running `syndesis build -m operator` or as
+part of a module collection like `--all-images` or `--infra-images`
 
 There are three modes, how the operator can be created:
 
-* Running you go compiler locally
-* Compiling in a local Docker daemon which allows volume mounts with the localhost
-* Compiling in Minishift Docker daemon, which was made accessible via `eval $(minishift docker-env)`
+  - Running you go compiler locally
+
+  - Compiling in a local Docker daemon which allows volume mounts with
+    the localhost
+
+  - Compiling in Minishift Docker daemon, which was made accessible via
+    `eval $(minishift docker-env)`
 
 See below for the details.
 
-<i class="title">Load Dependencies</i>
+**Load dependencies.**
 
-In any case, before you compile first you should use the option `--ensure` (short: `-e`) to setup the dependency tree.
-This will download all source dependency and cache them locally.
-To get rid of this cache, use the option `--clean-cache`.
-This might be necessary when `go dep` 's cache gets into a weird state.
+In any case, before you compile first you should use the option
+`--ensure` (short: `-e`) to setup the dependency tree. This will
+download all source dependency and cache them locally. To get rid of
+this cache, use the option `--clean-cache`. This might be necessary when
+`go dep` 's cache gets into a weird state.
 
-If you compile for the first time, then `--ensure` will be added automatically.
+If you compile for the first time, then `--ensure` will be added
+automatically.
 
-.Compiling locally
+**Compiling locally.**
 
-This is the fastest way for compiling the operator.
-Use the option `--local` (short: `-l`) for selecting the local compile mode.
+This is the fastest way for compiling the operator. Use the option
+`--local` (short: `-l`) for selecting the local compile mode.
 
-It is also the recommended way when you are working on the operator.
-You project setup needs to fit however: The main project directory must be reachable as `$GOPATH/src/github.com/syndesisio/syndesis`.
-You can either move your project directory to this location or work with a symlink:
+It is also the recommended way when you are working on the operator. You
+project setup needs to fit however: The main project directory must be
+reachable as `$GOPATH/src/github.com/syndesisio/syndesis`. You can
+either move your project directory to this location or work with a
+symlink:
 
-----
+``` shell
 cd ~/Development/syndesis
 mkdir -p $GOPATH/src/github.com/syndesisio
 cd ..
 mv syndesis $GOPATH/src/github.com/syndesisio/
 ln -s $GOPATH/src/github.com/syndesisio/ syndesis
-----
+```
 
-By default this compiles into for your native architecture (amd64, darwin).
-When you use this mode with `--image` (short: `-i`) on macOS then go will be used as cross compiler so that the generated bimary can be used in a Linux image.
+By default this compiles into for your native architecture (amd64,
+darwin). When you use this mode with `--image` (short: `-i`) on macOS
+then go will be used as cross compiler so that the generated bimary can
+be used in a Linux image.
 
-.Compiling with a local Docker daemon
+**Compiling with a local Docker daemon.**
 
-This is the default mode and is used also when doing the release.
-It use a builder image `syndesis/godev` which is created from the `tools/image` directory and fetched from Docker Hub.
+This is the default mode and is used also when doing the release. It use
+a builder image `syndesis/godev` which is created from the `tools/image`
+directory and fetched from Docker Hub.
 
-For this mode to work your Docker daemon must support volume mounts to the system from where you are calling `syndesis`.
-This is the case on Linux for locally installed Docker daemon and for Mac with _Docker for Mac_.
-It is *not* the case for Minishift which runs in a disconnected VM.
-But see below how you still can use Minishift for building.
+For this mode to work your Docker daemon must support volume mounts to
+the system from where you are calling `syndesis`. This is the case on
+Linux for locally installed Docker daemon and for Mac with *Docker for
+Mac*. It is **not** the case for Minishift which runs in a disconnected
+VM. But see below how you still can use Minishift for building.
 
-`dep ensure` and `go build` will be run from this `syndesis/godev` image, but with your local directory mounted into the container so that the fetched dependencies can be cached in the local directories `dep-cache` and `vendor` so that the can be reused for the next run.
-Also the binary will be stored in your local directory, but this will alway be a Linux (`amd64`) binary.
+`dep ensure` and `go build` will be run from this `syndesis/godev`
+image, but with your local directory mounted into the container so that
+the fetched dependencies can be cached in the local directories
+`dep-cache` and `vendor` so that the can be reused for the next run.
+Also the binary will be stored in your local directory, but this will
+alway be a Linux (`amd64`) binary.
 
-.Compiling with Minishift
+**Compiling with Minishift.**
 
-As Minishift is running in a remote VM you cannot bind a volume to your localhost. Therefor when running in Minishift mode the source code will be rsynced to a directory in the Minishift VM (`rsync` will be installed in the Minishift VM on the first run).
+As Minishift is running in a remote VM you cannot bind a volume to your
+localhost. Therefor when running in Minishift mode the source code will
+be rsynced to a directory in the Minishift VM (`rsync` will be installed
+in the Minishift VM on the first run).
 
-The build with `syndesis/godev` will then be started with a volume mount to the copied directory in the VM.
-After the build the generated binary is copied back with `rsync` to your local directory.
+The build with `syndesis/godev` will then be started with a volume mount
+to the copied directory in the VM. After the build the generated binary
+is copied back with `rsync` to your local directory.
 
-The Minishift mode is automatically detected and selected if `DOCKER_CERTS` contains a path to `.minishift`.
-You enable the Minishift Docker daemon for your local CLI with `eval $(minishift docker-env)`
+The Minishift mode is automatically detected and selected if
+`DOCKER_CERTS` contains a path to `.minishift`. You enable the Minishift
+Docker daemon for your local CLI with `eval $(minishift docker-env)`
 
-Some simple benchmark reveals the following timings (in minutes) :
+Some simple benchmark reveals the following timings (in minutes)
+:
 
-|===
-| Context | Local | Local Docker (macOS) | Minishift Docker
+| Context               | Local | Local Docker (macOS) | Minishift Docker |
+| --------------------- | ----- | -------------------- | ---------------- |
+| Cold (no build cache) | 0:40  | 10:09                | 1:36             |
+| Hot (with dep cache)  | 0:08  | 2:47                 | 0:13             |
 
-| Cold (no build cache)
-| 0:40
-| 10:09
-| 1:36
-
-| Hot (with dep cache)
-| 0:08
-| 2:47
-| 0:13
-|===
-
-The fastest mode is obviously the local mode, followed surprisingly by Minishift.
-The local mode is probably slow because of how the macOS daemon mounts ts volumes (which can probably be optimized)
+The fastest mode is obviously the local mode, followed surprisingly by
+Minishift. The local mode is probably slow because of how the macOS
+daemon mounts ts volumes (which can probably be optimized)
 
 ### Examples
 
 Some common usage examples for `syndesis build` are
 
-```
+``` shell
 # Build all images (app and infrastructure) with S2I
 syndesis build --all-images
 
@@ -348,12 +361,13 @@ syndesis build --all-images
 syndesis build --app-images --flash
 
 # Create the infrastructure operator by running go locally
-# and calling `dep ensure before`
+# and calling dep ensure before
 syndesis build -m operator --local --ensure
 
 # Use a Camel snapshot for a clean build, build all modules
 syndesis build --clean --camel-snapshot 2.21.0-SNAPSHOT
 ```
+
 
 
 ## syndesis ui
@@ -370,109 +384,106 @@ Nevertheless we already start to document the feature for an "UX first" approach
 
 ## syndesis minishift
 
-With `syndesis minishift` you can adequately manage a https://www.openshift.org/minishift/[minishift] installation for hosting Syndesis.
-This command is especially useful for a simple and self-contained development workflow.
+With `syndesis minishift` you can adequately manage a
+[minishift](https://www.openshift.org/minishift/) installation for
+hosting Syndesis. This command is especially useful for a simple and
+self-contained development workflow.
 
-`syndesis minishift` requires that you have a current minishift in your path.
-You can download it directly from https://github.com/minishift/minishift/releases[GitHub].
+`syndesis minishift` requires that you have a current minishift in your
+path. You can download it directly from
+[GitHub](https://github.com/minishift/minishift/releases).
 
 ### Usage
 
-```
---install                 Install templates to a running Minishift.
--p  --project             Install into this project.
-                          Delete this project if it already exists.
-                          By default, install into the current project (without deleting)
--c  --context             Install into this context. Default is 'minishift'
---reset                   Reset and initialize the minishift installation by
-                          'minishift delete && minishift start'.
---full-reset              Full reset and initialie by
-                          'minishift stop && rm -rf ~/.minishift/* && minishift start'
---memory <mem>            How much memory to use when doing a reset. Default: 4912
---cpus <nr cpus>          How many CPUs to use when doing a reset. Default: 2
---disk-size <size>        How many disk space to use when doing a reset. Default: 20GB
---vm-driver <driver>      Which virtual machine driver to use (depends on OS)
---show-logs               Show minishift logs during startup
---openshift-version <ver> Set OpenShift version to use when reseting (default: v3.9.0)
---tag <tag>               Syndesis version/tag to install. If not given, then the latest
-                          version from master is installed
---local                   Use the local resource files instead of fetching them from GitHub
--o  --open                Open Syndesis in the browser
--y  --yes                 Assume 'yes' automatically when asking for deleting
-                          a given project.
---memory-server <mem>     Memory limit to set for syndesis-server. Specify as "800Mi"
---memory-meta <mem>       Memory limit to set for syndesis-meta. Specify as "512Mi"
---test-support            Allow test support endpoint for syndesis-server
---man                     Open HTML documentation in the Syndesis Developer Handbook
-```
+    --install                 Install templates to a running Minishift.
+    -p  --project             Install into this project.
+                              Delete this project if it already exists.
+                              By default, install into the current project (without deleting)
+    -c  --context             Install into this context. Default is 'minishift'
+    --reset                   Reset and initialize the minishift installation by
+                              'minishift delete && minishift start'.
+    --full-reset              Full reset and initialie by
+                              'minishift stop && rm -rf ~/.minishift/* && minishift start'
+    --memory <mem>            How much memory to use when doing a reset. Default: 4912
+    --cpus <nr cpus>          How many CPUs to use when doing a reset. Default: 2
+    --disk-size <size>        How many disk space to use when doing a reset. Default: 20GB
+    --vm-driver <driver>      Which virtual machine driver to use (depends on OS)
+    --show-logs               Show minishift logs during startup
+    --openshift-version <ver> Set OpenShift version to use when reseting (default: v3.9.0)
+    --tag <tag>               Syndesis version/tag to install. If not given, then the latest
+                              version from master is installed
+    --local                   Use the local resource files instead of fetching them from GitHub
+    -o  --open                Open Syndesis in the browser
+    -y  --yes                 Assume 'yes' automatically when asking for deleting
+                              a given project.
+    --memory-server <mem>     Memory limit to set for syndesis-server. Specify as "800Mi"
+    --memory-meta <mem>       Memory limit to set for syndesis-meta. Specify as "512Mi"
+    --test-support            Allow test support endpoint for syndesis-server
+    --man                     Open HTML documentation in the Syndesis Developer Handbook
 
 ### Installing Syndesis
 
-You can easily install Syndesis with the option `--install`.
-This option triggers the creation of all relevant OpenShift resources objects in the currently connected OpenShift project.
+You can easily install Syndesis with the option `--install`. This option
+triggers the creation of all relevant OpenShift resources objects in the
+currently connected OpenShift project.
 
-If you want to use a different project, then use `--project` (short: `-p`) to specify this project.
+If you want to use a different project, then use `--project` (short:
+`-p`) to specify this project.
 
-WARNING: Any existing project will be deleted first when specified with `--project`. This option is also an easy and quick way to recreate a Syndesis installation.
+> **Warning**
+> 
+> Any existing project will be deleted first when specified with
+> `--project`. This option is also an easy and quick way to recreate a
+> Syndesis installation.
 
 ### Resetting Minishift
 
-The quickest way to get a fresh Syndesis setup is to use `--project` which will install Syndesis into a clean, new project.
+The quickest way to get a fresh Syndesis setup is to use `--project`
+which will install Syndesis into a clean, new project.
 
-However, you can also recreate the whole Minishift installation with `--reset`. This will delete the Minishift VM (`minishift delete`) and create a new one (`minishift start`).
-It doesn't harm if the Minishift VM does not exist so that you can use `--reset` also on a fresh Minishift installation.
+However, you can also recreate the whole Minishift installation with
+`--reset`. This will delete the Minishift VM (`minishift delete`) and
+create a new one (`minishift start`). It doesn’t harm if the Minishift
+VM does not exist so that you can use `--reset` also on a fresh
+Minishift installation.
 
-If you want to get a real clean installation use `--full-reset` which deletes the `~/.minishift` directory which holds downloaded artefacts like the ISO image for the Minishift VM.
-Using `--full-reset` forces Minishift to re-download all those files.
+If you want to get a real clean installation use `--full-reset` which
+deletes the `~/.minishift` directory which holds downloaded artefacts
+like the ISO image for the Minishift VM. Using `--full-reset` forces
+Minishift to re-download all those files.
 
-There are several options which influence the re-creation of the VM:
+There are several options which influence the re-creation of the
+VM:
 
-
-| Option
-| Description
-| Default
-
-|`--memory`
-| Memory to use for the Minishift VM.
-| 4 GB
-
-|`--cpus`
-| Number of CPUs used for the Minishift VM.
-| 2
-
-|`--disk-size`
-| Disk space used for Minishift.
-| 20 GB
-
-|`--show-logs`
-| Whether to show OpenShift logs during startup.
-| false
-
-|`--vm-driver`
-| Which virtual machine driver to use. For OS X this can be 'virtualbox', 'xhyve' or 'vmwarefusion' (if insalled).
-|
-
-|`--openshift-version`
-| OpenShift version to use
-| 3.7.1
-
+| Option                | Description                                                                                                      | Default |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------- | ------- |
+| `--memory`            | Memory to use for the Minishift VM.                                                                              | 4 GB    |
+| `--cpus`              | Number of CPUs used for the Minishift VM.                                                                        | 2       |
+| `--disk-size`         | Disk space used for Minishift.                                                                                   | 20 GB   |
+| `--show-logs`         | Whether to show OpenShift logs during startup.                                                                   | false   |
+| `--vm-driver`         | Which virtual machine driver to use. For OS X this can be 'virtualbox', 'xhyve' or 'vmwarefusion' (if insalled). |         |
+| `--openshift-version` | OpenShift version to use                                                                                         | 3.7.1   |
 
 ### Example
 
 This short example performs the following actions:
 
-* Stops and deletes a running Minishift VM (if existent)
-* Removes `~/.minishift` (if existent)
-* Install Syndesis in OpenShift modes (S2I builds & image streams) in project `syndesis`
-* Open Syndesis UI in the default browser
+  - Stops and deletes a running Minishift VM (if existent)
 
-```
-# Complete fresh installation in project "syndesis"
-syndesis minishift --full-reset --install --project syndesis
+  - Removes `~/.minishift` (if existent)
 
-# Open Syndesis in default browser
-syndesis minishift -o
-```
+  - Install Syndesis in OpenShift modes (S2I builds & image streams) in
+    project `syndesis`
+
+  - Open Syndesis UI in the default browser
+
+<!-- end list -->
+
+    # Complete fresh installation in project "syndesis"
+    syndesis minishift --full-reset --install --project syndesis
+    
+    # Open Syndesis in default browser
+    syndesis minishift -o
 
 
 ## syndesis system-test
@@ -511,17 +522,16 @@ Dev commands are useful helpers for developing Syndesis
 
 ### Usage
 
-```
-Usage: syndesis dev [... options ...]
+    Usage: syndesis dev [... options ...]
+    
+    Options for dev:
+        --debug <name>            Setup a port forwarding to <name> pod (default: server)
 
-Options for dev:
-    --debug <name>            Setup a port forwarding to <name> pod (default: server)
-```
-
-This command enable port-forwarding of port 5005 from a specific pod (by default: "server") to port 5005 on the localhost.
-You then can point your Java IDE to port 5005 on localhost for connecting for remote debugging.
-As argument to `--debug` "server", "meta" and "atlasmap" can be used, which are our Java based services.
-
+This command enable port-forwarding of port 5005 from a specific pod (by
+default: "server") to port 5005 on the localhost. You then can point
+your Java IDE to port 5005 on localhost for connecting for remote
+debugging. As argument to `--debug` "server", "meta" and "atlasmap" can
+be used, which are our Java based services.
 
 ## syndesis doc
 

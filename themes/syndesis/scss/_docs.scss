@@ -11,6 +11,13 @@
 @import "highlighting";
 
 .docs {
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
   p i {
     &.title {
       color: $pf-blue;
