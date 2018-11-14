@@ -1,5 +1,5 @@
 baseURL: "https://syndesis.io/"
-languageCode: "en-gb"
+languageCode: "en-us"
 title: "Syndesis"
 theme: "syndesis"
 canonifyURLs: true

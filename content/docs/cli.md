@@ -1,6 +1,7 @@
 ---
 draft: false
 title: "Syndesis CLI"
+description: "blah"
 sidebar: "sidenav"
 menu:
   sidenav:
