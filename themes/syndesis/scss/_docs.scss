@@ -11,22 +11,24 @@
 @import "highlighting";
 
 .docs {
-  h2 {
-    font-size: 1.75rem;
-    padding: 35px 0 10px;
+  .docBody {
+    h2 {
+      font-size: 1.75rem;
+      padding: 35px 0 10px;
 
-    &:first-of-type {
+      &:first-of-type {
         padding: 15px 0;
+      }
     }
-  }
 
-  h3 {
-    color: $pf-blue;
-    font-size: 1.3em;
-    padding: 15px 0 10px;
-  }
+    h3 {
+      color: $pf-blue;
+      font-size: 1.3em;
+      padding: 15px 0 10px;
+    }
 
-  pre {
-    background: #f7f7f8 !important;
+    pre {
+      background: #f7f7f8 !important;
+    }
   }
 }
