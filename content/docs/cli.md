@@ -533,6 +533,7 @@ your Java IDE to port 5005 on localhost for connecting for remote
 debugging. As argument to `--debug` "server", "meta" and "atlasmap" can
 be used, which are our Java based services.
 
+
 ## syndesis doc
 
 This command is used to generated and manage this documentation which you are currently reading.
