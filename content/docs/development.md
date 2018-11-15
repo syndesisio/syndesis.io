@@ -1,7 +1,6 @@
 ---
 draft: false
 title: "Development"
-description: "Development test."
 sidebar: "sidenav"
 menu:
   sidenav:
@@ -12,4 +11,73 @@ toc: true
 weight: 20
 ---
 
-Development stuff.
+# Maven Groups
+
+Syndesis uses [Maven](http://maven.apache.org/) as build tool. Maven
+groups are used to separate the various Syndesis parts.
+
+In details Syndesis consists of the following
+groups:
+
+| Group           | Maven                     | Docker Image               | Description                                                     |
+| --------------- | ------------------------- | -------------------------- | --------------------------------------------------------------- |
+| **common**      | `io.syndesis.common`      |                            | Syndesis shared common module                                   |
+| **connector**   | `io.syndesis.connector`   |                            | Supported camel connectors                                      |
+| **rest**        | `io.syndesis.rest`        | `syndesis/syndesis-server` | REST backend for managing integrations. This is the main sever. |
+| **integration** | `io.syndesis.integration` |                            | Library used in the the integration runtimes                    |
+| **s2i**         | `io.syndesis.s2i`         | `syndesis/syndesis-s2i`    | S2I base image for building integrations                        |
+| **ui**          | `io.syndesis.ui`          | `syndesis/syndesis-ui`     | User interface SPA, talking to the REST backend                 |
+| **meta**        | `io.syndesis.meta`        | `syndesis/syndesis-meta`   | Service for connector meta-data and verification of connections |
+| **extension**   | `io.syndesis.extension`   |                            | Library and API for developing Syndesis extensions              |
+| **test**        | `io.syndesis.test`        |                            | System tests for testing the whole applications                 |
+
+**Group dependencies.**
+
+![](images/syndesis-group-dependencies.png)
+
+## Naming Conventions
+
+The following conventions are used for naming directories, modules and
+Java packages.
+
+> **Important**
+> 
+> These conventions are mandatory and should be also checked for when
+> doing pull request reviews.
+
+  - Each directory directly below `app/` is specific for a certain Maven
+    group. E.g. the directory `app/extension` is reserved for all Maven
+    modules belonging to the Maven group `io.syndesis.extension`. The
+    directory name is reflected as the last name part.
+
+  - All names (groups, modules, package) are using the **singular**
+    form. E.g. its a `io.syndesis.connector`, *not*
+    `io.syndesis.connectors`.
+
+  - Each Maven module is prefixed with the last part of the group name.
+    E.g. the directory `app/integration/api` holds a Maven module for
+    the the Maven group `io.syndesis.integration`, and the module’s
+    artefactId is `integration-api`.
+
+  - A module’s directory name is directly reflected as the last part of
+    the Maven module name. If the Maven module name consists of multiple
+    parts (e.g. artifact `integration-project-generator`), then the
+    corresponding directory is also a concatenated word (like in
+    `integration/project-generator`). Multipart names should be the
+    exception, though.
+
+  - There should be only one level deep modules, so each Maven group
+    directory holds all Maven modules flat.
+
+  - Each module has a **single** top-level package, reflecting the Maven
+    module name. E.g. for the Maven module `common-util` in group
+    `io.syndesis.common` has a single top-level package
+    `io.syndesis.common.util` This top-level package should reflect the
+    artefact name, with dashes replaced by dots.
+
+> **Note**
+> 
+> Not every module has been already transformed to this scheme. This
+> will happen step-by-step. But for new groups and modules this scheme
+> has to be followed.
+
