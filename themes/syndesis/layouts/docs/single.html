@@ -1,6 +1,6 @@
 {{ define "main"}}
 <div itemscope
-    class="article">
+    class="doc">
   {{ template "_internal/schema.html" .}}
   <div class="hero">
     <h1 itemprop="headline">{{.Title}}</h1>
@@ -8,8 +8,8 @@
     <blockquote itemprop="description">{{ .Description }}</blockquote>
     {{ end }}
   </div>
-  <div itemprop="articleBody"
-      class="articleBody">
+  <div itemprop="docBody"
+      class="docBody">
     {{ .Content | safeHTML }}
   </div>
 </div>

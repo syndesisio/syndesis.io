@@ -2,5 +2,33 @@
 // DOCS
 ////////////////////////////////////////////////////////////////////////////////
 
-@import 'colors';
-@import 'navbar';
+@import "colors";
+@import "navbar";
+@import "./bootstrap/_variables";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+@import "colors";
+@import "highlighting";
+
+.docs {
+  .docBody {
+    h2 {
+      font-size: 1.75rem;
+      padding: 35px 0 10px;
+
+      &:first-of-type {
+        padding: 15px 0;
+      }
+    }
+
+    h3 {
+      color: $pf-blue;
+      font-size: 1.3em;
+      padding: 15px 0 10px;
+    }
+
+    pre {
+      background: #f7f7f8 !important;
+    }
+  }
+}

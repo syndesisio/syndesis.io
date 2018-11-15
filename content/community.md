@@ -8,7 +8,7 @@ menu:
   sidenav:
     name: "Community"
     pre: "<i class='fa fa-fw fa-group'></i>"
-    weight: -180
+    weight: -80
   topnav:
     name: "community"
     weight: -120
