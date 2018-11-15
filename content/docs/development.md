@@ -528,3 +528,10 @@ Included in this stack are the following technologies:
   - Code Analysis: [Codelyzer](https://github.com/mgechev/codelyzer)
     (TsLint rules for static code analysis of Angular TypeScript
     projects) / WIP
+
+
+
+# REST API
+
+After you’ve set up your initial Local Development environment, you’re
+ready to contribute to the REST API.
