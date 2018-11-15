@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Syndesis CLI</title>
+      <link>https://syndesis.io/docs/cli/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/</guid>
+      <description>Buildtool &amp;ldquo;syndesis&amp;rdquo; Syndesis uses a single tool for controlling various aspects of the build and developer related tasks. This script can be found in $SYNDESIS_DIR/tools/bin and is called syndesis. It requires bash and can be used on any Unix or macOS.
+To have this script handy all the time it is recommended to either put this bin/ directory into the path or add a symlink from syndesis into a directory which is already on your execution path.</description>
+    </item>
+    
+    <item>
       <title>Engineering Guidelines</title>
       <link>https://syndesis.io/community/engineering_guidelines/</link>
       <pubDate>Fri, 19 May 2017 15:02:30 +0100</pubDate>
@@ -37,6 +47,17 @@ Improving documentation Documentation is in various places in our repositories. 
       
       <guid>https://syndesis.io/quickstart/</guid>
       <description>You can try out Syndesis very easily locally, too. All you need is a Minishift installation which is available for all the major operating systems (Linux, OS X and Windows). The following examples assume that you have Minishift installed and can be called with minishift from the command line. So, minishift is supposed to be available in your search path, i.e. located in a directory contained in your $PATH environment variable (Linux, macOS) or in a directory from your system path (Windows)</description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://syndesis.io/docs/development/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/development/</guid>
+      <description>Maven Groups Syndesis uses Maven as build tool. Maven groups are used to separate the various Syndesis parts.
+In details Syndesis consists of the following groups:
+   Group Maven Docker Image Description     common io.syndesis.common  Syndesis shared common module   connector io.syndesis.connector  Supported camel connectors   rest io.syndesis.rest syndesis/syndesis-server REST backend for managing integrations. This is the main sever.   integration io.</description>
     </item>
     
     <item>
@@ -78,6 +99,16 @@ JIRA Issues for Keynote</description>
       <description>We  community! Contributions and feedback in whatever form are always welcome, as long as they&amp;rsquo;re constructive!
 Here are some important links:
  Source code: GitHub organization Mailing list: Syndesis Google Group IRC: #syndesis on freenode  </description>
+    </item>
+    
+    <item>
+      <title>Developer Docs</title>
+      <link>https://syndesis.io/docs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/</guid>
+      <description>This handbook contain all information required for installing, running and developing Syndesis from a developer&amp;rsquo;s point of view.
+Please use the links in the sidebar on the left to navigate the Developer Docs.</description>
     </item>
     
     <item>

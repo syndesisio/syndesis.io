@@ -10,5 +10,26 @@
 	<atom:link href="https://syndesis.io/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
+    <item>
+      <title>Syndesis CLI</title>
+      <link>https://syndesis.io/docs/cli/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/</guid>
+      <description>Buildtool &amp;ldquo;syndesis&amp;rdquo; Syndesis uses a single tool for controlling various aspects of the build and developer related tasks. This script can be found in $SYNDESIS_DIR/tools/bin and is called syndesis. It requires bash and can be used on any Unix or macOS.
+To have this script handy all the time it is recommended to either put this bin/ directory into the path or add a symlink from syndesis into a directory which is already on your execution path.</description>
+    </item>
+    
+    <item>
+      <title>Development</title>
+      <link>https://syndesis.io/docs/development/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/development/</guid>
+      <description>Maven Groups Syndesis uses Maven as build tool. Maven groups are used to separate the various Syndesis parts.
+In details Syndesis consists of the following groups:
+   Group Maven Docker Image Description     common io.syndesis.common  Syndesis shared common module   connector io.syndesis.connector  Supported camel connectors   rest io.syndesis.rest syndesis/syndesis-server REST backend for managing integrations. This is the main sever.   integration io.</description>
+    </item>
+    
   </channel>
 </rss>
