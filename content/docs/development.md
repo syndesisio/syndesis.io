@@ -31,7 +31,8 @@ groups:
 | **extension**   | `io.syndesis.extension`   |                            | Library and API for developing Syndesis extensions              |
 | **test**        | `io.syndesis.test`        |                            | System tests for testing the whole applications                 |
 
-![](/images/syndesis-group-dependencies.png)
+![Figure 1. Group dependencies](/images/syndesis-group-dependencies.png)
+_Figure 1. Group dependencies_
 
 ### Naming Conventions
 
