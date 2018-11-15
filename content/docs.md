@@ -16,3 +16,5 @@ menu:
 ---
 
 This handbook contain all information required for installing, running and developing Syndesis from a developer's point of view.
+
+Please use the links in the sidebar on the left to navigate the Developer Docs.
