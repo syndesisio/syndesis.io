@@ -11,7 +11,7 @@ toc: true
 weight: 20
 ---
 
-# Maven Groups
+## Maven Groups
 
 Syndesis uses [Maven](http://maven.apache.org/) as build tool. Maven
 groups are used to separate the various Syndesis parts.
@@ -35,7 +35,7 @@ groups:
 
 ![](images/syndesis-group-dependencies.png)
 
-## Naming Conventions
+### Naming Conventions
 
 The following conventions are used for naming directories, modules and
 Java packages.
@@ -82,7 +82,7 @@ Java packages.
 > has to be followed.
 
 
-# Issue Labels
+## Issue Labels
 
 We use GitHub labels to categorize epics, issues and tasks. They are the
 foundation of our process, so please use labels for issues.
@@ -120,7 +120,7 @@ groups.
 Each label group serves a particular purpose, and for each issue and PR,
 it should be considered whether a label from a group applies.
 
-## Groups
+### Groups
 
 Labels from this group reference our application groups like "rest",
 "ui" or "connector". Each sub-team is responsible for one or more group,
@@ -151,7 +151,7 @@ below
 | **group/ui**          | User interface SPA, talking to the REST backend                 |
 | **group/uxd**         | User experience (UX) designs                                    |
 
-## Categories
+### Categories
 
 Labels from the `cat/` group are labels which can always be applied and
 which does not fit in another category. Currently we have these
@@ -172,7 +172,7 @@ categories:
 | **cat/techdoc**    | Technical developer information (likes this handbook ;-) related issues.       |
 | **cat/user-story** | A user story, which might not be an epic                                       |
 
-## Pull Requests
+### Pull Requests
 
 This category of labels is all about pull requests. All of them have a
 meaning for the [pure-bot](https://github.com/syndesisio/pure-bot) bot
@@ -190,7 +190,7 @@ involved:
 | **status/wip**          | This is a PR request label which should be used for "Work-in-Progress" kind of PRs which has been submitted for early review. If this label is present on a PR, the PR is not merged, even when it is approved. A dedicated mandatory status check `pure-bot/wip` monitors this labels and prevents merging if this label is present.                                                             |
 | **status/1.4.x**        | This pull request is against the 1.4.x patch branch (analogous labels might appear over time)                                                                                                                                                                                                                                                                                                     |
 
-## Notification
+### Notification
 
 Notification labels from the `notif/` group serve a particular purpose.
 They are used when one team wants to notify another group that a
@@ -241,7 +241,7 @@ For the future, we plan to add more of these external repos into the
 Syndesis mono repo (like documentation or QE). If this happens, then
 labels should be converted to `module/` kind of labels.
 
-## Status
+### Status
 
 Status labels are unique since they may trigger some automatic actions.
 
@@ -253,7 +253,7 @@ are:
 | **status/blocked** | The current issue is blocked by another issue. Refer to the issue itself to see what is blocking this issued. This label is purely informal. |
 
 
-# Local Development
+## Local Development
 
 If you’d like to get a local development environment up and running, for
 both the UI and REST API, this is how you’d do it.
@@ -265,7 +265,7 @@ both the UI and REST API, this is how you’d do it.
   - Callback URL Example:
     <https://syndesis.192.168.64.29.nip.io/api/v1/credentials/callback>
 
-## Requirements
+### Requirements
 
 You can follow these steps if it’s your first time setting up Syndesis,
 or if you want a fresh local installation to replace an existing one.
@@ -317,7 +317,7 @@ Please note that you need to have the `oc` binary available in your
 `PATH`. To do that, see here:
 <https://docs.openshift.org/latest/cli_reference/get_started_cli.html>
 
-## First-Time Setup
+### First-Time Setup
 
 The goal here is to download the project to your laptop/PC, and to
 install Minishift, the VM that contains OpenShift.
@@ -326,7 +326,7 @@ install Minishift, the VM that contains OpenShift.
     $ cd syndesis
     $ syndesis minishift --full-reset
 
-## Day-to-Day
+### Day-to-Day
 
 This uses an existing Minishift instance.
 
@@ -412,19 +412,19 @@ public > Tables > jsondb`. Right click, and then go to `View Data > View
 All Rows`.
 
 
-# UI
+## UI
 
 After you’ve set up your initial Local Development environment, you’re
 ready to contribute to the UI.
 
-## Install Dependencies
+### Install Dependencies
 
 From the project root directory:
 
     $ cd app/ui
     $ yarn install
 
-## Start up the App
+### Start up the App
 
 **Using Minishift resources (recommended):**
 
@@ -438,7 +438,7 @@ is failing for you, then set the `SYNDESIS_DEV_LOCAL_IP` env variable to
 your local machine’s IP address before running the yarn `yarn
 start:minishift` command.
 
-## Open in Your Browser
+### Open in Your Browser
 
 Open the Syndesis UI in your browser from the command line by running:
 
@@ -471,14 +471,14 @@ work on something minor/aesthetic in the UI.
 
     $ yarn start
 
-## Running Tests
+### Running Tests
 
 To run tests or lint there are two more commands you can run in separate
 terminals.
 
     $ yarn test
 
-## Running Linter
+### Running Linter
 
 If you don’t, the CI will, and your PR build will likely fail.
 
@@ -487,7 +487,7 @@ If you don’t, the CI will, and your PR build will likely fail.
 You should be able to access the UI in your browser at
 <http://localhost:4200>
 
-## Code Documentation
+### Code Documentation
 
 We use [Compodoc](https://compodoc.github.io/website/) for
 documentation, or
@@ -506,7 +506,7 @@ Or manually with `compodoc -s`, or `compodoc` if you want it to simply
 generate the files in the default `/documentation` directory and run it
 with an HTTP server.
 
-## Technology Stack
+### Technology Stack
 
 Included in this stack are the following technologies:
 
@@ -531,24 +531,24 @@ Included in this stack are the following technologies:
 
 
 
-# REST API
+## REST API
 
 After you’ve set up your initial Local Development environment, you’re
 ready to contribute to the REST API.
 
 
-# Troubleshooting
+## Troubleshooting
 
 When things go wrong, you want to try to identify the area that is
 causing problems (UI, REST API, etc). If it’s the UI, look for errors in
 the browser console or the terminal to see if it’s a dependency issue.
 
-## UI Dependency Issues
+### UI Dependency Issues
 
     $ rm -rf node_modules
     $ yarn install
 
-## VM Trouble
+### VM Trouble
 
 **Not getting latest API changes**
 
@@ -587,6 +587,7 @@ Other things you can try: - `rm -rf ~/.minishift` - Check the OpenShift
 console and look for logs. - Is it a xip or nip problem?
 <http://downoruprightnow.com/status/nip.io>
 
-## Still Having Trouble?
+
+### Still Having Trouble?
 
 Ask on IRC \#syndesis
