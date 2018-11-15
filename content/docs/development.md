@@ -410,3 +410,121 @@ In pgadmin you can see the table by navigating into the tree under
 `Server Groups > Servers > syndesis > Databases > syndesis > Schemas >
 public > Tables > jsondb`. Right click, and then go to `View Data > View
 All Rows`.
+
+
+# UI
+
+After you’ve set up your initial Local Development environment, you’re
+ready to contribute to the UI.
+
+## Install Dependencies
+
+From the project root directory:
+
+    $ cd app/ui
+    $ yarn install
+
+## Start up the App
+
+**Using Minishift resources (recommended):**
+
+    $ yarn start:minishift
+
+The `yarn start:minishift` command works when it can properly detect
+your local development machine’s IP address. A proxy server inside the
+minishift deployment will use that IP address to connect back to the
+development server being run by the yarn command. If detection of the IP
+is failing for you, then set the `SYNDESIS_DEV_LOCAL_IP` env variable to
+your local machine’s IP address before running the yarn `yarn
+start:minishift` command.
+
+## Open in Your Browser
+
+Open the Syndesis UI in your browser from the command line by running:
+
+``` bash
+# on macOS
+$ open https://$(oc get routes syndesis --template "{{.spec.host}}")
+```
+
+``` bash
+# on linux
+$ xdg-open https://$(oc get routes syndesis --template "{{.spec.host}}")
+```
+
+``` bash
+# on windows
+$ start https://$(oc get routes syndesis --template "{{.spec.host}}")
+```
+
+Another option is to run `minishift console`, go into **My Project** and
+click on the URL for the Syndesis app.
+
+To verify that you’re running against the development instance of the UI
+check the title of the browser tab you’ve opened and ensure it says
+`DEVELOPMENT` in in somewhere.
+
+**Not using Minishift resources** In the event that you have issues with
+Minishift. Don’t be surprised if most things don’t load and there isn’t
+any data in the UI. Only use this if you’re totally blocked and need to
+work on something minor/aesthetic in the UI.
+
+    $ yarn start
+
+## Running Tests
+
+To run tests or lint there are two more commands you can run in separate
+terminals.
+
+    $ yarn test
+
+## Running Linter
+
+If you don’t, the CI will, and your PR build will likely fail.
+
+    $ yarn lint
+
+You should be able to access the UI in your browser at
+<http://localhost:4200>
+
+## Code Documentation
+
+We use [Compodoc](https://compodoc.github.io/website/) for
+documentation, or
+[here](https://compodoc.github.io/website/guides/comments.html) to see
+how to format comments. Files get generated automatically in the
+`/documentation` directory. Read the documentation
+\[here\](<https://compodoc.github.io/website/guides/getting-started.html>)
+to see how to properly document features. You can automatically generate
+and run docs using Yarn:
+
+``` bash
+$ yarn compodoc
+```
+
+Or manually with `compodoc -s`, or `compodoc` if you want it to simply
+generate the files in the default `/documentation` directory and run it
+with an HTTP server.
+
+## Technology Stack
+
+Included in this stack are the following technologies:
+
+  - Language: [TypeScript](http://www.typescriptlang.org) (JavaScript
+    with @Types)
+
+  - Framework: [Angular](https://angular.io/)
+
+  - Testing: [Cucumber.js](https://cucumber.io/) (BDD Unit Test
+    Framework), [Karma](https://karma-runner.github.io/1.0/index.html)
+    (Unit Test Runner),
+    [Istanbul](https://github.com/gotwarlost/istanbul) (Code Coverage)
+
+  - Linting: [TsLint](https://github.com/palantir/tslint) (Linting for
+    TypeScript)
+
+  - Logging: WIP
+
+  - Code Analysis: [Codelyzer](https://github.com/mgechev/codelyzer)
+    (TsLint rules for static code analysis of Angular TypeScript
+    projects) / WIP
