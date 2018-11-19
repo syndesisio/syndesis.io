@@ -32,6 +32,8 @@ groups:
 | **test**        | `io.syndesis.test`        |                            | System tests for testing the whole applications                 |
 
 ![Figure 1. Group dependencies](/images/syndesis-group-dependencies.png)
+
+
 _Figure 1. Group dependencies_
 
 ### Naming Conventions
@@ -218,7 +220,7 @@ replacement.
 ## Source
 
 Labels starting with `source/` indicate the origin of an issue. It
-should be applied to help in triaging and priotizing.
+should be applied to help in triaging and prioritizing.
 
 | Notification  | Description                      |
 | ------------- | -------------------------------- |
