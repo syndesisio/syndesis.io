@@ -448,7 +448,7 @@ VM does not exist so that you can use `--reset` also on a fresh
 Minishift installation.
 
 If you want to get a real clean installation use `--full-reset` which
-deletes the `~/.minishift` directory which holds downloaded artefacts
+deletes the `~/.minishift` directory which holds downloaded artifacts
 like the ISO image for the Minishift VM. Using `--full-reset` forces
 Minishift to re-download all those files.
 
@@ -595,7 +595,7 @@ supported:
 Use `syndesis release` for performing a release of Syndesis. A Syndesis
 release consists of:
 
-  - Maven artefacts of the backend and runtime services
+  - Maven artifacts of the backend and runtime services
 
   - Docker images pushed to Docker Hub
 
@@ -605,7 +605,7 @@ This chapter describes how you can efficiently perform a release and how
 to troubleshoot if something goes wrong. This documentation might also
 be interesting to you even when you do not perform a release on your
 own, as it might help you to understand how the various Syndesis
-artefacts fit together.
+artifacts fit together.
 
 ### Usage
 
@@ -619,10 +619,10 @@ artefacts fit together.
     
     Options for release:
     -n  --dry-run                 Dry run, which performs the whole build but does no tagging,
-                                  artefact upload or pushing Docker images
+                                  artifact upload or pushing Docker images
         --release-version <ver>   Version to release (e.g. "1.2.1"). This is a mandatory argument.
         --snapshot-release        Snapshot release which can be created on a daily basis.
-                                  A timestamped version will be created automatically, and no Maven artefacts
+                                  A timestamped version will be created automatically, and no Maven artifacts
                                   are pushed to maven central. No moving tag will be moved, too.
         --dev-version <version>   Next development version. If not given, set to
                                   "<major>.<minor>-SNAPSHOT" as calculated from
@@ -673,7 +673,7 @@ look like:
   - Redirect the full output to `/tmp/build.log` but still print the
     main steps to the console.
 
-  - Make only a dry run, without pushing any artefacts out nor checking
+  - Make only a dry run, without pushing any artifacts out nor checking
     in any changed files.
 
 ### Preparations
@@ -681,7 +681,7 @@ look like:
 To perform a release, certain preconditions need to be given.
 
 First of all, you need to have access to the various systems to which
-release artefacts are uploaded:
+release artifacts are uploaded:
 
   - You need to be logged in to [Docker Hub](https://hub.docker.com/)
     and your account needs to have write access to the
@@ -689,12 +689,12 @@ release artefacts are uploaded:
     organisation.
 
   - You have `gpg` to have installed and set up a gpg-agent for being
-    able to sign Maven artefacts during deployment in a non-interactive
+    able to sign Maven artifacts during deployment in a non-interactive
     mode.
 
   - You need to have access to the "syndesis" account on
     ([oss.sonatype.org](http://oss.sonatype.org/\)) for being able to
-    publish Maven artefacts. This credential needs to be added to either
+    publish Maven artifacts. This credential needs to be added to either
     your `~/.m2/settings.xml` or you can use an settings file with the
     `--settings-xml` option. The credential needs to be added to the
     server with the id `oss-sonatype-staging`.
@@ -743,7 +743,7 @@ A release consist of several different steps, which can be grouped into
 two groups:
 
   - **Build steps** are performed to build the release and create the
-    artefacts. Also during the build Maven artefacts are uploaded to the
+    artifacts. Also during the build Maven artifacts are uploaded to the
     staging area for publishing to Maven central
 
   - **Persist steps** are then used for releasing objects, pushing
@@ -767,9 +767,9 @@ two groups:
     streams included in these templates refer to Docker images with the
     new version.
 
-  - Now run an `mvn -Prelease clean deploy` to deploy all artefacts to a
+  - Now run an `mvn -Prelease clean deploy` to deploy all artifacts to a
     new staging repository on oss.sonatype.org, the platform for release
-    artefacts on Maven central. The staging repository on this Sonatype
+    artifacts on Maven central. The staging repository on this Sonatype
     Nexus is validated and closed.
 
   - If `--docker-user` and `--docker-password` is given, then a `docker
@@ -803,7 +803,7 @@ and also *deleted* after the release run.
     version.
 
   - The staging repository on Sonatype is released. It will take a bit,
-    but the artefact should then be downloadable from [Maven
+    but the artifact should then be downloadable from [Maven
     central](https://search.maven.org/) soon after.
 
   - Commit all modified local files to the local Git repo.
@@ -895,7 +895,7 @@ minishift`.
 
 In detail, a snapshot release differs from a normal release as it:
 
-  - …​ doesn’t release artefacts on Maven central, but pushes Docker
+  - …​ doesn’t release artifacts on Maven central, but pushes Docker
     images and creates a Git tag for referencing the proper templates.
 
   - …​ skips all checks and tests when building to maximise the
