@@ -430,6 +430,10 @@ currently connected OpenShift project.
 If you want to use a different project, then use `--project` (short:
 `-p`) to specify this project.
 
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa warning"></i> Any existing project will be deleted first when specified with `--project`. This option is also an easy and quick way to recreate a Syndesis installation.
+</div>
+
 > **Warning**
 > 
 > Any existing project will be deleted first when specified with

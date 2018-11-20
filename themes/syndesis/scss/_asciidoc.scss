@@ -62,10 +62,13 @@ This is by NO means really an admonition--it's just a Bootstrap alert
 with Font Awesome, made to look a little bit more like an admonition in the meantime.
 **/
 .admonition {
+  display: table;
+  
   .fa {
+    display: table-cell;
     font-size: x-large;
     padding-right: 0.75em;
-    vertical-align: bottom;
+    vertical-align: middle;
   }
 
   .caution:before {
