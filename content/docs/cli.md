@@ -372,15 +372,9 @@ syndesis build --clean --camel-snapshot 2.21.0-SNAPSHOT
 
 ## syndesis ui
 
-"syndesis ui" is not implemented yet
-****
-This is just a placeholder, still in the planning phased.
-Nevertheless we already start to document the feature for an "UX first" approach.
-****
-
-### Usage
-
----
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa note"></i> "syndesis ui" is not implemented yet.
+</div>
 
 ## syndesis minishift
 
@@ -1102,11 +1096,9 @@ option. By default, you are asked whether you want to delete the project
 for recreation. You can switch off the security question with the option
 `--yes` (short: `-y`).
 
-> **Warning**
-> 
-> Don’t use `syndesis install --project $(oc project -q) --yes`. You’ll
-> shoot yourself into the foot. Ask the author if you want to know more
-> details.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa warning"></i> Don’t use `syndesis install --project $(oc project -q) --yes`. You’ll shoot yourself into the foot. Ask the author if you want to know more details.
+</div>
 
 If you want to wait until everything is running (including fetching of
 the Docker images), you can specify `--watch` (short: `-w`) which blocks
@@ -1153,10 +1145,9 @@ installed on this cluster.
 
 ### Quick Installation
 
-> **Warning**
-> 
-> The following scripts are not yet updated and probably don’t work as
-> expected. Please stay tuned.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa warning"></i> The following scripts are not yet updated and probably don’t work as expected. Please stay tuned.
+</div>
 
 If you only want to install Syndesis without developing for, there is
 even an easier without checking out Syndesis into a local Git
