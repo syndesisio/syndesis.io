@@ -26,14 +26,13 @@ body {
 }
 
 #main {
-  padding-bottom: 20rem;
+    padding-bottom: 25rem;
 
   @include media-breakpoint-down(sm) {
     padding-bottom: 32rem;
   }
 
   .main-content {
-    margin-bottom: 8em;
     padding-left: 15px;
     padding-right: 15px;
     width: 100%;
