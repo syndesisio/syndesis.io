@@ -41,10 +41,9 @@ _Figure 1. Group dependencies_
 The following conventions are used for naming directories, modules and
 Java packages.
 
-> **Important**
-> 
-> These conventions are mandatory and should be also checked for when
-> doing pull request reviews.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa important"></i> These conventions are mandatory and should be also checked for when doing pull request reviews.
+</div>
 
   - Each directory directly below `app/` is specific for a certain Maven
     group. E.g. the directory `app/extension` is reserved for all Maven
@@ -76,25 +75,20 @@ Java packages.
     `io.syndesis.common.util` This top-level package should reflect the
     artefact name, with dashes replaced by dots.
 
-> **Note**
-> 
-> Not every module has been already transformed to this scheme. This
-> will happen step-by-step. But for new groups and modules this scheme
-> has to be followed.
 
+
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa note"></i> Not every module has been already transformed to this scheme. This will happen step-by-step. But for new groups and modules this scheme has to be followed.
+</div>
 
 ## Issue Labels
 
 We use GitHub labels to categorize epics, issues and tasks. They are the
 foundation of our process, so please use labels for issues.
 
-> **Caution**
-> 
-> Labels are living entities. This document describes the current status
-> and might be slightly outdated. Please send a PR to adopt this section
-> if the label structure changes. Also feel free to discuss the label
-> structure anytime. It’s essential that labels describe our process,
-> not that we have to adapt our process for these labels.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa caution"></i> Labels are living entities. This document describes the current status and might be slightly outdated. Please send a PR to adopt this section if the label structure changes. Also feel free to discuss the label structure anytime. It’s essential that labels describe our process, not that we have to adapt our process for these labels.
+</div>
 
 Labels are grouped. Each label consists of two parts: A **Group** and a
 **Name** which are separated by a slash (`/`). For example, the label
