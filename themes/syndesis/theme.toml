@@ -12,12 +12,6 @@ min_version = "0.20.6"
   homepage = "https://syndesis.io/"
 
 [[docs.sidenav]]
-    name = "code"
-    weight = -110
-    identifier = "code"
-    url = "https://github.com/syndesisio"
-
-[[docs.sidenav]]
     name = "faq"
     weight = -120
     identifier = "faq"
