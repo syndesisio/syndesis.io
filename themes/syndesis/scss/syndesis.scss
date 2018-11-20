@@ -1,6 +1,7 @@
 @import "./bootstrap/_variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+@import "asciidoc";
 @import "blog";
 @import "colors";
 @import "docs";
@@ -58,59 +59,6 @@ body {
 
     pre {
       background: #f7f7f8 !important;
-    }
-  }
-
-  table {
-    //display: block;
-    display: table;
-    border-collapse: collapse;
-    //border-collapse: separate;
-    border-color: grey;
-    border-spacing: 2px;
-    empty-cells: hide;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-    overflow: auto;
-    width: 100%;
-
-    thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
-
-      th,
-      tr {
-        :empty {
-          display: none;
-        }
-      }
-    }
-
-    tbody {
-      display: table-row-group;
-      vertical-align: middle;
-      border-color: inherit;
-    }
-
-    th {
-      font-weight: 600;
-    }
-
-    tr {
-      background-color: #fff;
-      border-top: 1px solid #c6cbd1;
-      display: table-row;
-    }
-
-    tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-
-    td,
-    th {
-      border: 1px solid #dfe2e5;
-      padding: 6px 13px;
     }
   }
 }
