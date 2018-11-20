@@ -46,7 +46,7 @@ Improving documentation Documentation is in various places in our repositories. 
       <pubDate>Tue, 16 May 2017 15:58:18 +0100</pubDate>
       
       <guid>https://syndesis.io/quickstart/</guid>
-      <description>You can try out Syndesis very easily locally, too. All you need is a Minishift installation which is available for all the major operating systems (Linux, OS X and Windows). The following examples assume that you have Minishift installed and can be called with minishift from the command line. So, minishift is supposed to be available in your search path, i.e. located in a directory contained in your $PATH environment variable (Linux, macOS) or in a directory from your system path (Windows)</description>
+      <description>You can try out Syndesis very easily locally, too. All you need is a Minishift installation which is available for all the major operating systems (Linux, OS X and Windows). The following examples assume that you have Minishift installed and can be called with minishift from the command line. So, minishift is supposed to be available in your search path, i.e. located in a directory contained in your $PATH environment variable (Linux, macOS) or in a directory from your system path (Windows).</description>
     </item>
     
     <item>
@@ -108,7 +108,7 @@ Here are some important links:
       
       <guid>https://syndesis.io/docs/</guid>
       <description>This handbook contain all information required for installing, running and developing Syndesis from a developer&amp;rsquo;s point of view.
-Please use the links in the sidebar on the left to navigate the Developer Docs.</description>
+ Please use the links in the sidebar on the left to navigate the Developer Docs.  </description>
     </item>
     
     <item>
