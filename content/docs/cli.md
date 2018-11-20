@@ -510,7 +510,9 @@ Options for system-test:
 
 ### How it works
 
-NOTE: This section needs a more detailed explanation how the systems tests are working in detail.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa note"></i> This section needs a more detailed explanation how the systems tests are working in detail.
+</div>
 
 
 
@@ -654,24 +656,24 @@ An example run for a dry run for `1.3.1` release on the current branch
 look like:
 
 ``` bash
-./tools/bin/syndesis release           \ 
-    --release-version 1.3.1            \ 
-    --local-maven-repo /tmp/clean-repo \ 
-    --log /tmp/build.log               \ 
-    --dry-run                            
+./tools/bin/syndesis release            1
+    --release-version 1.3.1             2
+    --local-maven-repo /tmp/clean-repo  3
+    --log /tmp/build.log                4
+    --dry-run                           5
 ```
 
-  - Always run `syndesis` from the repo and branch you want to release.
+  1. Always run `syndesis` from the repo and branch you want to release.
 
-  - The release version is mandatory and must be in the format
+  2. The release version is mandatory and must be in the format
     `<major>.<minor>.<patch>`.
 
-  - Use a clean local Maven repository to avoid side effects
+  3. Use a clean local Maven repository to avoid side effects
 
-  - Redirect the full output to `/tmp/build.log` but still print the
+  4. Redirect the full output to `/tmp/build.log` but still print the
     main steps to the console.
 
-  - Make only a dry run, without pushing any artifacts out nor checking
+  5. Make only a dry run, without pushing any artifacts out nor checking
     in any changed files.
 
 ### Preparations
@@ -830,11 +832,11 @@ remote repository. You can omit this with the option `--no-git-push`. If
 to so, the last step can also be performed manually afterwards with:
 
 ``` bash
-git push 1.2.8
-git push -f 1.2 
+git push 1.2.8   
+git push -f 1.2   1
 ```
 
-  - Using `-f` as the minor tag needs to be moved.
+  1. Using `-f` as the minor tag needs to be moved.
 
 Please be careful to **not** push the master branch upstream (i.e. do
 **not** a plain `git push`). We only want to have the tag with all the
@@ -909,20 +911,20 @@ In detail, a snapshot release differs from a normal release as it:
 
 ``` bash
 syndesis release \
-     --snapshot-release \                   
-     --local-maven-repo /tmp/clean-repo \   
-     --git-remote origin \                  
-     --docker-user "${DOCKER_USER}" \       
+     --snapshot-release \                   1
+     --local-maven-repo /tmp/clean-repo \   2
+     --git-remote origin \                  3
+     --docker-user "${DOCKER_USER}" \       4
      --docker-password "${DOCKER_PASSWORD}"
 ```
 
-  - Enable snapshot release with a version in the format 1.3.5-20180419
+  1. Enable snapshot release with a version in the format 1.3.5-20180419
 
-  - Point to an empty repository to avoid side effects when building
+  2. Point to an empty repository to avoid side effects when building
 
-  - Push to the origin repository
+  3. Push to the origin repository
 
-  - Docker credentials required for pushing to Docker Hub
+  4. Docker credentials required for pushing to Docker Hub
 
 A daily Jenkins job with this configuration run on
 <https://ci.fabric8.io> for creating a daily snapshots.
