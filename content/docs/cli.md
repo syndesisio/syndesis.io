@@ -75,8 +75,8 @@ With this in place, a `--rebase` performs the following steps:
 ### Development Modes
 
 The Syndesis application consists of a set of Docker images OpenShift resources descriptors for installing Syndesis.
-For development, https://www.openshift.org/minishift/[minishift] is used, and most of the commands assume that you have minishift installed locally and executable directly from your path.
-Minishift can be downloaded and installed from https://github.com/minishift/minishift/releases
+For development, [minishift](https://www.openshift.org/minishift/) is used, and most of the commands assume that you have minishift installed locally and executable directly from your path.
+Minishift can be downloaded and installed from https://github.com/minishift/minishift/releases.
 
 For development OpenShift S2I builds and image streams are used.
 This mode works also when running with a real OpenShift cluster and is not restricted to Minishift usage.
@@ -178,7 +178,7 @@ functionality for common developer workflows.
 
 A plain `build` command without any options performs a plain `mvn
 install` for all Java and UI modules. Plus it also builds the
-infrastructure operator via Go (see [syndesis-build-operator](#below)
+infrastructure operator via Go (see [syndesis-build-operator](#infrastructure-operator)
 for details)
 
 This compiles all Java and Javascript artifacts and also runs all tests
@@ -453,7 +453,7 @@ VM:
 | `--cpus`              | Number of CPUs used for the Minishift VM.                                                                        | 2       |
 | `--disk-size`         | Disk space used for Minishift.                                                                                   | 20 GB   |
 | `--show-logs`         | Whether to show OpenShift logs during startup.                                                                   | false   |
-| `--vm-driver`         | Which virtual machine driver to use. For OS X this can be 'virtualbox', 'xhyve' or 'vmwarefusion' (if insalled). |         |
+| `--vm-driver`         | Which virtual machine driver to use. For OS X this can be 'virtualbox', 'xhyve' or 'vmwarefusion' (if installed). |         |
 | `--openshift-version` | OpenShift version to use                                                                                         | 3.7.1   |
 
 ### Example
@@ -650,11 +650,11 @@ An example run for a dry run for `1.3.1` release on the current branch
 look like:
 
 ``` bash
-./tools/bin/syndesis release            1
-    --release-version 1.3.1             2
-    --local-maven-repo /tmp/clean-repo  3
-    --log /tmp/build.log                4
-    --dry-run                           5
+./tools/bin/syndesis release \           1
+    --release-version 1.3.1 \            2
+    --local-maven-repo /tmp/clean-repo \ 3
+    --log /tmp/build.log \               4
+    --dry-run                            5
 ```
 
   1. Always run `syndesis` from the repo and branch you want to release.
@@ -687,7 +687,7 @@ release artifacts are uploaded:
     mode.
 
   - You need to have access to the "syndesis" account on
-    ([oss.sonatype.org](http://oss.sonatype.org/\)) for being able to
+    ([oss.sonatype.org](https://oss.sonatype.org/) for being able to
     publish Maven artifacts. This credential needs to be added to either
     your `~/.m2/settings.xml` or you can use an settings file with the
     `--settings-xml` option. The credential needs to be added to the
@@ -1149,16 +1149,11 @@ installed on this cluster.
   <i class="fa warning"></i> The following scripts are not yet updated and probably don’t work as expected. Please stay tuned.
 </div>
 
-If you only want to install Syndesis without developing for, there is
-even an easier without checking out Syndesis into a local Git
-repository.
+If you only want to install Syndesis without developing for, there is even an easier without checking out Syndesis into a local Git repository.
 
-You can directly use the standalone installation script
-[syndesis-install](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis)
-for installing Syndesis. Just download this
-[script](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis),
-save it as "syndesis-install" and then call it
-with
+You can directly use the standalone installation script [syndesis-install](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis)
+for installing Syndesis. Just download this [script](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis),
+save it as "syndesis-install" and then call it with
 
 ``` bash
 bash install-syndesis --route $(oc project -q).6a63.fuse-ignite.openshiftapps.com --open
@@ -1166,8 +1161,7 @@ bash install-syndesis --route $(oc project -q).6a63.fuse-ignite.openshiftapps.co
 
 Or, if you feel fancy (and trust us), then you can directly install the
 latest version of Syndesis by deleting and recreating the current
-project with a single
-line:
+project with a single line:
 
 ``` bash
 bash <(curl -sL https://bit.ly/syndesis-install) -p $(oc project -q) -r $(oc project -q).6a63.fuse-ignite.openshiftapps.com -o
@@ -1176,5 +1170,4 @@ bash <(curl -sL https://bit.ly/syndesis-install) -p $(oc project -q) -r $(oc pro
 All you need is to have `bash`, `curl` and `oc` installed and you need
 to be connected to an OpenShift cluster.
 
-Use `install-syndesis --help` for a list of options (which is a subset
-of `syndesis install` described above)
+Use `install-syndesis --help` for a list of options (which is a subset of `syndesis install` described above).
