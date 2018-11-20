@@ -434,12 +434,6 @@ If you want to use a different project, then use `--project` (short:
   <i class="fa warning"></i> Any existing project will be deleted first when specified with `--project`. This option is also an easy and quick way to recreate a Syndesis installation.
 </div>
 
-> **Warning**
-> 
-> Any existing project will be deleted first when specified with
-> `--project`. This option is also an easy and quick way to recreate a
-> Syndesis installation.
-
 ### Resetting Minishift
 
 The quickest way to get a fresh Syndesis setup is to use `--project`
