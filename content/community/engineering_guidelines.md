@@ -30,10 +30,6 @@ As an alternative to or extension of the [guideline above]({{< relref "#discuss-
 
 Features normally span more than one component. Having relevant people assigned to an issue from the start will hopefully gain more complete ownership from beginning to end. As an example, for a feature that adds new pages to the UI, it is expected that UX, UI, backend, QE, and docs would all be involved. Let's call these "feature miniteams". Miniteams are adhoc teams and people can be expected to be a member of multiple miniteams at one time.
 
-## Commit messages should follow the Conventional Commits standardized commit message format
-
-This allows for automated changelog generation. Recommended tooling includes [Commitizen](https://github.com/commitizen/cz-cli) to make get the format correct rather than hand crafting. Commits should be linted in future in CI but aren't just yet... coming soon! See [Conventional Commits](http://conventionalcommits.org/) for details on the commit format.
-
 ## Every pull request must be linked to an issue
 
 This allows discussion on the particular feature or bug in the issue before necessarily any coding takes place. This does not mean that there should only be one pull request for an issue.
