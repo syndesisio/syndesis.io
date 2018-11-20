@@ -75,8 +75,8 @@ With this in place, a `--rebase` performs the following steps:
 ### Development Modes
 
 The Syndesis application consists of a set of Docker images OpenShift resources descriptors for installing Syndesis.
-For development, https://www.openshift.org/minishift/[minishift] is used, and most of the commands assume that you have minishift installed locally and executable directly from your path.
-Minishift can be downloaded and installed from https://github.com/minishift/minishift/releases
+For development, [minishift](https://www.openshift.org/minishift/) is used, and most of the commands assume that you have minishift installed locally and executable directly from your path.
+Minishift can be downloaded and installed from https://github.com/minishift/minishift/releases.
 
 For development OpenShift S2I builds and image streams are used.
 This mode works also when running with a real OpenShift cluster and is not restricted to Minishift usage.
@@ -178,7 +178,7 @@ functionality for common developer workflows.
 
 A plain `build` command without any options performs a plain `mvn
 install` for all Java and UI modules. Plus it also builds the
-infrastructure operator via Go (see [syndesis-build-operator](#below)
+infrastructure operator via Go (see [syndesis-build-operator](#infrastructure-operator)
 for details)
 
 This compiles all Java and Javascript artifacts and also runs all tests
@@ -372,15 +372,9 @@ syndesis build --clean --camel-snapshot 2.21.0-SNAPSHOT
 
 ## syndesis ui
 
-"syndesis ui" is not implemented yet
-****
-This is just a placeholder, still in the planning phased.
-Nevertheless we already start to document the feature for an "UX first" approach.
-****
-
-### Usage
-
----
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa note"></i> "syndesis ui" is not implemented yet.
+</div>
 
 ## syndesis minishift
 
@@ -430,11 +424,9 @@ currently connected OpenShift project.
 If you want to use a different project, then use `--project` (short:
 `-p`) to specify this project.
 
-> **Warning**
-> 
-> Any existing project will be deleted first when specified with
-> `--project`. This option is also an easy and quick way to recreate a
-> Syndesis installation.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa warning"></i> Any existing project will be deleted first when specified with `--project`. This option is also an easy and quick way to recreate a Syndesis installation.
+</div>
 
 ### Resetting Minishift
 
@@ -448,7 +440,7 @@ VM does not exist so that you can use `--reset` also on a fresh
 Minishift installation.
 
 If you want to get a real clean installation use `--full-reset` which
-deletes the `~/.minishift` directory which holds downloaded artefacts
+deletes the `~/.minishift` directory which holds downloaded artifacts
 like the ISO image for the Minishift VM. Using `--full-reset` forces
 Minishift to re-download all those files.
 
@@ -461,7 +453,7 @@ VM:
 | `--cpus`              | Number of CPUs used for the Minishift VM.                                                                        | 2       |
 | `--disk-size`         | Disk space used for Minishift.                                                                                   | 20 GB   |
 | `--show-logs`         | Whether to show OpenShift logs during startup.                                                                   | false   |
-| `--vm-driver`         | Which virtual machine driver to use. For OS X this can be 'virtualbox', 'xhyve' or 'vmwarefusion' (if insalled). |         |
+| `--vm-driver`         | Which virtual machine driver to use. For OS X this can be 'virtualbox', 'xhyve' or 'vmwarefusion' (if installed). |         |
 | `--openshift-version` | OpenShift version to use                                                                                         | 3.7.1   |
 
 ### Example
@@ -512,7 +504,9 @@ Options for system-test:
 
 ### How it works
 
-NOTE: This section needs a more detailed explanation how the systems tests are working in detail.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa note"></i> This section needs a more detailed explanation how the systems tests are working in detail.
+</div>
 
 
 
@@ -595,7 +589,7 @@ supported:
 Use `syndesis release` for performing a release of Syndesis. A Syndesis
 release consists of:
 
-  - Maven artefacts of the backend and runtime services
+  - Maven artifacts of the backend and runtime services
 
   - Docker images pushed to Docker Hub
 
@@ -605,7 +599,7 @@ This chapter describes how you can efficiently perform a release and how
 to troubleshoot if something goes wrong. This documentation might also
 be interesting to you even when you do not perform a release on your
 own, as it might help you to understand how the various Syndesis
-artefacts fit together.
+artifacts fit together.
 
 ### Usage
 
@@ -619,10 +613,10 @@ artefacts fit together.
     
     Options for release:
     -n  --dry-run                 Dry run, which performs the whole build but does no tagging,
-                                  artefact upload or pushing Docker images
+                                  artifact upload or pushing Docker images
         --release-version <ver>   Version to release (e.g. "1.2.1"). This is a mandatory argument.
         --snapshot-release        Snapshot release which can be created on a daily basis.
-                                  A timestamped version will be created automatically, and no Maven artefacts
+                                  A timestamped version will be created automatically, and no Maven artifacts
                                   are pushed to maven central. No moving tag will be moved, too.
         --dev-version <version>   Next development version. If not given, set to
                                   "<major>.<minor>-SNAPSHOT" as calculated from
@@ -656,24 +650,24 @@ An example run for a dry run for `1.3.1` release on the current branch
 look like:
 
 ``` bash
-./tools/bin/syndesis release           \ 
-    --release-version 1.3.1            \ 
-    --local-maven-repo /tmp/clean-repo \ 
-    --log /tmp/build.log               \ 
-    --dry-run                            
+./tools/bin/syndesis release \           1
+    --release-version 1.3.1 \            2
+    --local-maven-repo /tmp/clean-repo \ 3
+    --log /tmp/build.log \               4
+    --dry-run                            5
 ```
 
-  - Always run `syndesis` from the repo and branch you want to release.
+  1. Always run `syndesis` from the repo and branch you want to release.
 
-  - The release version is mandatory and must be in the format
+  2. The release version is mandatory and must be in the format
     `<major>.<minor>.<patch>`.
 
-  - Use a clean local Maven repository to avoid side effects
+  3. Use a clean local Maven repository to avoid side effects
 
-  - Redirect the full output to `/tmp/build.log` but still print the
+  4. Redirect the full output to `/tmp/build.log` but still print the
     main steps to the console.
 
-  - Make only a dry run, without pushing any artefacts out nor checking
+  5. Make only a dry run, without pushing any artifacts out nor checking
     in any changed files.
 
 ### Preparations
@@ -681,7 +675,7 @@ look like:
 To perform a release, certain preconditions need to be given.
 
 First of all, you need to have access to the various systems to which
-release artefacts are uploaded:
+release artifacts are uploaded:
 
   - You need to be logged in to [Docker Hub](https://hub.docker.com/)
     and your account needs to have write access to the
@@ -689,12 +683,12 @@ release artefacts are uploaded:
     organisation.
 
   - You have `gpg` to have installed and set up a gpg-agent for being
-    able to sign Maven artefacts during deployment in a non-interactive
+    able to sign Maven artifacts during deployment in a non-interactive
     mode.
 
   - You need to have access to the "syndesis" account on
-    ([oss.sonatype.org](http://oss.sonatype.org/\)) for being able to
-    publish Maven artefacts. This credential needs to be added to either
+    ([oss.sonatype.org](https://oss.sonatype.org/) for being able to
+    publish Maven artifacts. This credential needs to be added to either
     your `~/.m2/settings.xml` or you can use an settings file with the
     `--settings-xml` option. The credential needs to be added to the
     server with the id `oss-sonatype-staging`.
@@ -743,7 +737,7 @@ A release consist of several different steps, which can be grouped into
 two groups:
 
   - **Build steps** are performed to build the release and create the
-    artefacts. Also during the build Maven artefacts are uploaded to the
+    artifacts. Also during the build Maven artifacts are uploaded to the
     staging area for publishing to Maven central
 
   - **Persist steps** are then used for releasing objects, pushing
@@ -767,9 +761,9 @@ two groups:
     streams included in these templates refer to Docker images with the
     new version.
 
-  - Now run an `mvn -Prelease clean deploy` to deploy all artefacts to a
+  - Now run an `mvn -Prelease clean deploy` to deploy all artifacts to a
     new staging repository on oss.sonatype.org, the platform for release
-    artefacts on Maven central. The staging repository on this Sonatype
+    artifacts on Maven central. The staging repository on this Sonatype
     Nexus is validated and closed.
 
   - If `--docker-user` and `--docker-password` is given, then a `docker
@@ -803,7 +797,7 @@ and also *deleted* after the release run.
     version.
 
   - The staging repository on Sonatype is released. It will take a bit,
-    but the artefact should then be downloadable from [Maven
+    but the artifact should then be downloadable from [Maven
     central](https://search.maven.org/) soon after.
 
   - Commit all modified local files to the local Git repo.
@@ -832,11 +826,11 @@ remote repository. You can omit this with the option `--no-git-push`. If
 to so, the last step can also be performed manually afterwards with:
 
 ``` bash
-git push 1.2.8
-git push -f 1.2 
+git push 1.2.8   
+git push -f 1.2   1
 ```
 
-  - Using `-f` as the minor tag needs to be moved.
+  1. Using `-f` as the minor tag needs to be moved.
 
 Please be careful to **not** push the master branch upstream (i.e. do
 **not** a plain `git push`). We only want to have the tag with all the
@@ -895,7 +889,7 @@ minishift`.
 
 In detail, a snapshot release differs from a normal release as it:
 
-  - …​ doesn’t release artefacts on Maven central, but pushes Docker
+  - …​ doesn’t release artifacts on Maven central, but pushes Docker
     images and creates a Git tag for referencing the proper templates.
 
   - …​ skips all checks and tests when building to maximise the
@@ -911,20 +905,20 @@ In detail, a snapshot release differs from a normal release as it:
 
 ``` bash
 syndesis release \
-     --snapshot-release \                   
-     --local-maven-repo /tmp/clean-repo \   
-     --git-remote origin \                  
-     --docker-user "${DOCKER_USER}" \       
+     --snapshot-release \                   1
+     --local-maven-repo /tmp/clean-repo \   2
+     --git-remote origin \                  3
+     --docker-user "${DOCKER_USER}" \       4
      --docker-password "${DOCKER_PASSWORD}"
 ```
 
-  - Enable snapshot release with a version in the format 1.3.5-20180419
+  1. Enable snapshot release with a version in the format 1.3.5-20180419
 
-  - Point to an empty repository to avoid side effects when building
+  2. Point to an empty repository to avoid side effects when building
 
-  - Push to the origin repository
+  3. Push to the origin repository
 
-  - Docker credentials required for pushing to Docker Hub
+  4. Docker credentials required for pushing to Docker Hub
 
 A daily Jenkins job with this configuration run on
 <https://ci.fabric8.io> for creating a daily snapshots.
@@ -1102,11 +1096,9 @@ option. By default, you are asked whether you want to delete the project
 for recreation. You can switch off the security question with the option
 `--yes` (short: `-y`).
 
-> **Warning**
-> 
-> Don’t use `syndesis install --project $(oc project -q) --yes`. You’ll
-> shoot yourself into the foot. Ask the author if you want to know more
-> details.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa warning"></i> Don’t use `syndesis install --project $(oc project -q) --yes`. You’ll shoot yourself into the foot. Ask the author if you want to know more details.
+</div>
 
 If you want to wait until everything is running (including fetching of
 the Docker images), you can specify `--watch` (short: `-w`) which blocks
@@ -1153,21 +1145,15 @@ installed on this cluster.
 
 ### Quick Installation
 
-> **Warning**
-> 
-> The following scripts are not yet updated and probably don’t work as
-> expected. Please stay tuned.
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa warning"></i> The following scripts are not yet updated and probably don’t work as expected. Please stay tuned.
+</div>
 
-If you only want to install Syndesis without developing for, there is
-even an easier without checking out Syndesis into a local Git
-repository.
+If you only want to install Syndesis without developing for, there is even an easier without checking out Syndesis into a local Git repository.
 
-You can directly use the standalone installation script
-[syndesis-install](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis)
-for installing Syndesis. Just download this
-[script](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis),
-save it as "syndesis-install" and then call it
-with
+You can directly use the standalone installation script [syndesis-install](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis)
+for installing Syndesis. Just download this [script](https://raw.githubusercontent.com/syndesisio/syndesis/master/tools/bin/install-syndesis),
+save it as "syndesis-install" and then call it with
 
 ``` bash
 bash install-syndesis --route $(oc project -q).6a63.fuse-ignite.openshiftapps.com --open
@@ -1175,8 +1161,7 @@ bash install-syndesis --route $(oc project -q).6a63.fuse-ignite.openshiftapps.co
 
 Or, if you feel fancy (and trust us), then you can directly install the
 latest version of Syndesis by deleting and recreating the current
-project with a single
-line:
+project with a single line:
 
 ``` bash
 bash <(curl -sL https://bit.ly/syndesis-install) -p $(oc project -q) -r $(oc project -q).6a63.fuse-ignite.openshiftapps.com -o
@@ -1185,5 +1170,4 @@ bash <(curl -sL https://bit.ly/syndesis-install) -p $(oc project -q) -r $(oc pro
 All you need is to have `bash`, `curl` and `oc` installed and you need
 to be connected to an OpenShift cluster.
 
-Use `install-syndesis --help` for a list of options (which is a subset
-of `syndesis install` described above)
+Use `install-syndesis --help` for a list of options (which is a subset of `syndesis install` described above).

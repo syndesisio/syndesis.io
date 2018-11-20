@@ -1,0 +1,93 @@
+/***
+Temporary workarounds for switching from Asciidoc to Markdown.
+***/
+
+// Alternating colors for table rows
+
+#main {
+    table {
+    display: table;
+    border-collapse: collapse;
+    border-color: grey;
+    border-spacing: 2px;
+    empty-cells: hide;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    overflow: auto;
+    width: 100%;
+
+    thead {
+      display: table-header-group;
+      vertical-align: middle;
+      border-color: inherit;
+
+      th,
+      tr {
+        :empty {
+          display: none;
+        }
+      }
+    }
+
+    tbody {
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    tr {
+      background-color: #fff;
+      border-top: 1px solid #c6cbd1;
+      display: table-row;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+
+    td,
+    th {
+      border: 1px solid #dfe2e5;
+      padding: 6px 13px;
+    }
+  }
+}
+
+/** Admonition
+This is by NO means really an admonition--it's just a Bootstrap alert
+with Font Awesome, made to look a little bit more like an admonition in the meantime.
+**/
+.admonition {
+  display: table;
+  
+  .fa {
+    display: table-cell;
+    font-size: x-large;
+    padding-right: 0.75em;
+    vertical-align: middle;
+  }
+
+  .caution:before {
+    content: "\f06d";
+    color: #bf3400;
+  }
+
+  .important:before {
+    content: "\f06a";
+    color: #bf0000;
+  }
+
+  .note:before {
+    content: "\f05a";
+    color: #19407c;
+  }
+
+  .warning:before {
+    content: "\f071";
+    color: #bf6900;
+  }
+}

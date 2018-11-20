@@ -19,8 +19,7 @@ weight: 20
 
 You can try out Syndesis very easily locally, too.
 All you need is a [Minishift](https://www.openshift.org/minishift/) installation which is available for all the  major operating systems (Linux, OS X and Windows).
-The following examples assume that you have Minishift installed and can be called with `minishift` from the command line. So, `minishift` is supposed to be available in your search path, i.e. located in a directory contained in your `$PATH` environment variable (Linux, macOS) or in a directory from your system path (Windows)
-
+The following examples assume that you have Minishift installed and can be called with `minishift` from the command line. So, `minishift` is supposed to be available in your search path, i.e. located in a directory contained in your `$PATH` environment variable (Linux, macOS) or in a directory from your system path (Windows).
 
 ## Rocket launch
 

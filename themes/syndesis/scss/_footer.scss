@@ -6,12 +6,13 @@
 
 .page-footer {
   background-color: $pf-black;
+  bottom: 0;
   color: $pf-white;
+  height: 20rem;
+  margin-top: 8em;
   padding-top: 2rem;
   padding-bottom: 2rem;
-  height: 20rem;
   position: absolute;
-  bottom: 0;
   width: 100%;
 
   .row {
