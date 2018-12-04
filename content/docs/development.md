@@ -106,7 +106,6 @@ groups.
 | **ext/**    | Reference to external projects                                                                                                     |       |
 | **source/** | Where did the issue originate from (stakeholders)? i.e. `source/qe` indicates that QE raised this issue.                           |       |
 | **group/**  | Internal Syndesis modules                                                                                                          |       |
-| **source/** | Which external group has created the issue                                                                                         |       |
 | **notif/**  | Notification label which can be added and removed to ping certain subteams                                                         |       |
 | **pr/**     | Labels which are only relevant for pull request and which have also some semantics for the bot managing pull requests              |       |
 | **size/**   | Tee shirt size for issues. Sizing is a subjective assessment and should be done relative to other issues.                          | ✔︎    |
