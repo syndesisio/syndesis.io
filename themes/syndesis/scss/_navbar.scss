@@ -9,16 +9,6 @@ $navbar-min-height: 74px;
 nav.navbar {
   min-height: $navbar-min-height;
 
-  .navbar-brand {
-    font-family: Righteous, cursive;
-    color: $pf-white !important;
-    text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-
-    @include hover-focus {
-      color: $pf-white !important;
-    }
-  }
-
   .nav-link {
     font-weight: 700;
     font-size: 1.1rem;
