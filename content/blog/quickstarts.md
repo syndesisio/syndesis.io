@@ -1,5 +1,5 @@
 ---
-date: "2019-01-28T21:02:42:50+01:00"
+date: "2019-01-28T21:02:42+01:00"
 draft: false
 weight: 180
 title: "Hello World Syndesis!"
