@@ -167,3 +167,9 @@ $ watch oc get pods
 ```
 
 You should now be able to open `https://syndesis.$(minishift ip).nip.io` in your browser.
+
+## Run som QuickStarts
+
+You are now ready to run your first integrations. We've prepared a bunch of QuickStarts that you can either import or build from scratch with the accompanying instructions. Here is a link to these QuickStarts
+
+https://github.com/syndesisio/syndesis-quickstarts#lets-run-some-quickstarts
