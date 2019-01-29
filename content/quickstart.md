@@ -61,19 +61,19 @@ Opening http://syndesis.192.168.64.56.nip.io
 
 Here you will be first asked twice to add a security exception for Minishift's self-signed certificate. Please allow this exception:
 
-![security exception](../images/security_exception.png)
+![security exception](https://syndesis.io/images/security_exception.png)
 
 Then you reach the OpenShift login mask asked to login. Just use "developer" / "developer" as credentials
 
-![login](../images/login.png)
+![login](https://syndesis.io/images/login.png)
 
 Finally you are asked to grant OpenShift permissions to this account which you should accept
 
-![grant](../images/grant.png)
+![grant](https://syndesis.io/images/grant.png)
 
 Et voilà, welcome in Syndesisland !
 
-![syndesis](../images/landing_page.png)
+![syndesis](https://syndesis.io/images/landing_page.png)
 
 
 ## Using "syndesis" CLI tool
@@ -167,3 +167,9 @@ $ watch oc get pods
 ```
 
 You should now be able to open `https://syndesis.$(minishift ip).nip.io` in your browser.
+
+## Let's run some QuickStarts!
+
+You are now ready to run your first integration. We've prepared a bunch of QuickStarts to get you going. You can either import or build them from scratch with the accompanying instructions. Here is a link to the QuickStart repositories
+
+https://github.com/syndesisio/syndesis-quickstarts#lets-run-some-quickstarts
