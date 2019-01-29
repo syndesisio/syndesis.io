@@ -1,3 +1,14 @@
+---
+date: "2019-01-28T21:02:42:50+01:00"
+draft: false
+weight: 180
+title: "Hello World Syndesis!"
+menu:
+  topnav:
+    parent: blog
+---
+
+
 # Hello World Syndesis!
 
 Syndesis is an open Source Integration Platform As A Service (IPaaS), on premise or in the cloud, with no coding required. 
