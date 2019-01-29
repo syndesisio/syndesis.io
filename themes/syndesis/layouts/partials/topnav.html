@@ -2,9 +2,13 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#top-nav" aria-controls="top-nav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a href="{{ .Site.BaseURL }}" title="{{ .Site.Title }}" class="logo-wrapper">
-    <img src="/images/syndesis_logo_full_darkbkg.svg" alt="{{ .Site.Title }} Logo" height="80%" width="75%">
+  <!--
+  <a href="{{ .Site.BaseURL }}" title="{{ .Site.Title }}">
+      <img src="/images/syndesis_logo_full_darkbkg.svg" alt="{{ .Site.Title }} Logo" width="75%">
   </a>
+-->
+  <svg id="artwork" xmlns="http://www.w3.org/2000/svg" width="230" height="48" viewBox="0 0 230 48"></svg>
+
   <div class="collapse navbar-collapse" id="top-nav">
     <ul class="navbar-nav ml-auto mt-2 mt-md-0 mr-lg-4">
       {{ $page := .Page }}
