@@ -22,3 +22,4 @@ Here are some important links:
 * **Source code:** [GitHub organization](https://github.com/syndesisio)
 * **Mailing list:** [Syndesis Google Group](https://groups.google.com/forum/#!forum/syndesis)
 * **IRC:** [#syndesis on freenode](irc://freenode.net/syndesis)
+* **Twitter:** [@Syndesisio](https://twitter.com/syndesisio)
