@@ -61,19 +61,19 @@ Opening http://syndesis.192.168.64.56.nip.io
 
 Here you will be first asked twice to add a security exception for Minishift's self-signed certificate. Please allow this exception:
 
-![security exception](../images/security_exception.png)
+![security exception](https://syndesis.io/images/security_exception.png)
 
 Then you reach the OpenShift login mask asked to login. Just use "developer" / "developer" as credentials
 
-![login](../images/login.png)
+![login](https://syndesis.io/images/login.png)
 
 Finally you are asked to grant OpenShift permissions to this account which you should accept
 
-![grant](../images/grant.png)
+![grant](https://syndesis.io/images/grant.png)
 
 Et voilà, welcome in Syndesisland !
 
-![syndesis](../images/landing_page.png)
+![syndesis](https://syndesis.io/images/landing_page.png)
 
 
 ## Using "syndesis" CLI tool
