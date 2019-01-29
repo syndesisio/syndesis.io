@@ -12,6 +12,16 @@
     
     
     <item>
+      <title></title>
+      <link>https://syndesis.io/blog/quickstarts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/blog/quickstarts/</guid>
+      <description>Hello World Syndesis! Syndesis is an open Source Integration Platform As A Service (IPaaS), on premise or in the cloud, with no coding required. A business analyst can set up their own Twitter to Salesforce campaign and deploy the integration in a container on OpenShift.
+The easiest way to try Syndesis is to use a trial of the product called Fuse Online. You can sign up at https://www.redhat.com/en/technologies/jboss-middleware/fuse-online, and skip right to the QuickStart section.</description>
+    </item>
+    
+    <item>
       <title>Announcing Syndesis</title>
       <link>https://syndesis.io/blog/announcing-syndesis/</link>
       <pubDate>Wed, 10 May 2017 16:42:50 +0100</pubDate>
