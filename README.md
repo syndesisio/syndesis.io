@@ -50,7 +50,10 @@ Then publish to GitHub pages with:
 
 `$ ./publish-to-gh-pages.sh`
 
+
+
 ## Testing
 
-We test with BrowserStack:
-<a href="https://www.browserstack.com/" rel="nofollow">![BrowerStack](./static/images/Browserstack-logo@2x.png)]</a>
+We use BrowserStack to test the community site across major browsers.
+
+<a href="https://www.browserstack.com/" rel="nofollow" target="_blank">![BrowerStack](./static/images/Browserstack-logo@2x.png)</a>
