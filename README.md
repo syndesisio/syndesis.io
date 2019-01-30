@@ -56,4 +56,4 @@ Then publish to GitHub pages with:
 
 We use BrowserStack to test the community site across major browsers.
 
-<a href="https://www.browserstack.com/" rel="nofollow" target="_blank">![BrowerStack](./static/images/browserstack-logo-150.png)</a>
+<a href="https://www.browserstack.com/" rel="nofollow">![BrowerStack](./static/images/browserstack-logo-150.png)</a>
