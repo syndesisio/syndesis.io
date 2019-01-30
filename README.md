@@ -48,6 +48,12 @@ $ gulp build && git add -A . && git push
 
 Then publish to GitHub pages with:
 
-
-
 `$ ./publish-to-gh-pages.sh`
+
+
+
+## Testing
+
+We use BrowserStack to test the community site across major browsers.
+
+<a href="https://www.browserstack.com/" rel="nofollow">![BrowerStack](./static/images/browserstack-logo-150.png)</a>
