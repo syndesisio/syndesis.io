@@ -53,4 +53,4 @@ Then publish to GitHub pages with:
 ## Testing
 
 We test with BrowserStack:
-![img][https://www.browserstack.com/](static/Browserstack-logo@2x.png)
+<a href="https://www.browserstack.com/" rel="nofollow">![BrowerStack](static/Browserstack-logo@2x.png)]</a>
