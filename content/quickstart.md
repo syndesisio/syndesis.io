@@ -172,4 +172,4 @@ You should now be able to open `https://syndesis.$(minishift ip).nip.io` in your
 
 You are now ready to run your first integration. We've prepared a bunch of QuickStarts to get you going. You can either import or build them from scratch with the accompanying instructions. Here is a link to the QuickStart repositories
 
-https://github.com/syndesisio/syndesis-quickstarts#lets-run-some-quickstarts
+https://github.com/syndesisio/syndesis-quickstarts/blob/master/README.md#lets-run-some-quickstarts
