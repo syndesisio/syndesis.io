@@ -6,10 +6,20 @@
     <description>Recent content in Blog on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 28 Jan 2019 21:02:42 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 13 Feb 2019 21:02:42 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Full integration to Salesforce with Red Hat Integration</title>
+      <link>https://syndesis.io/blog/full-integration/</link>
+      <pubDate>Wed, 13 Feb 2019 21:02:42 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/full-integration/</guid>
+      <description>Series of 3 blog posts by Christina Lin
+Read more..</description>
+    </item>
     
     <item>
       <title>Hello World Syndesis!</title>

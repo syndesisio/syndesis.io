@@ -61,6 +61,16 @@ In details Syndesis consists of the following groups:
     </item>
     
     <item>
+      <title>Full integration to Salesforce with Red Hat Integration</title>
+      <link>https://syndesis.io/blog/full-integration/</link>
+      <pubDate>Wed, 13 Feb 2019 21:02:42 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/full-integration/</guid>
+      <description>Series of 3 blog posts by Christina Lin
+Read more..</description>
+    </item>
+    
+    <item>
       <title>Hello World Syndesis!</title>
       <link>https://syndesis.io/blog/quickstarts/</link>
       <pubDate>Mon, 28 Jan 2019 21:02:42 +0100</pubDate>
