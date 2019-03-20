@@ -1,281 +1,29 @@
 #!/bin/bash
 
-set -o pipefail
-set -eu
-ARGS="$@"
-
-# =================================
-# Quickstart Startup with Minishift
-
-# Latest tagged versions
-SYNDESIS_DEFAULT_VERSION=master
-
-# Template to use
-SYNDESIS_TEMPLATE="syndesis"
-
-# Minishift params
-DEFAULT_OPENSHIFT_VERSION="v3.10.0"
-DEFAULT_CPUS="2"
-DEFAULT_DISK_SIZE="20GB"
-DEFAULT_RAM="4912"
-
-run() {
-    tag=$(readopt --tag -t)
-    if [ -z "$tag" ]; then
-        tag=$SYNDESIS_DEFAULT_VERSION
-    fi
-
-    cat <<EOT
+cat <<EOT
 =====================================================================
-SYNDESIS ${tag} QUICKSTART
+SYNDESIS QUICKSTART
 
 Hybrid integration on OpenShift made easy
 =====================================================================
 
 EOT
 
-    # Check for a minishift installation, offer to install on
-    which minishift &>/dev/null
-    if [ $? -ne 0 ]; then
-        echo "ERROR: No 'minishift' found in path."
-        echo "Please install the latest Minishift release from https://github.com/MiniShift/minishift"
-        exit 1
-    fi
+read -p "This install will reset your current MiniShift. OK to continue? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
 
-    # Startup minishift, possibly creating syndesis
-    if [ -z "$(is_minishift_running)" ]; then
-        start_minishift
-    fi
+  wget https://github.com/syndesisio/syndesis/archive/master.zip
+  unzip ./master.zip 'syndesis-master/tools/bin/*'
+  if [ -d ".syndesis" ]; then
+    rm -fr .syndesis
+  fi
+  mkdir .syndesis
+  mv syndesis-master/tools/bin ./.syndesis
+  rm -fr syndesis-master
+  rm master.zip
 
-    # Ensure OC is in the path
-    eval $(minishift oc-env)
+  ./.syndesis/bin/syndesis minishift --install --full-reset --open
 
-    # Switch to minishift to be safe when deleting projects
-    oc config use-context "minishift"
-
-    if [ -z "$(is_logged_in)" ]; then
-        oc login -u developer -p developer
-    fi
-
-    # Set project
-    local project=$(readopt --project -p)
-    if [ -z "${project}" ]; then
-        project="syndesis"
-    fi
-    recreate_project $project "$(hasflag --yes -y)"
-
-    # Create oauth client
-    create_oauthclient "$(readopt --tag)"
-
-    # Install templates
-    create_and_apply_template "syndesis.$(minishift ip).nip.io" "${tag}"
-
-    # Wait till ready
-    wait_for_syndesis_to_be_ready
-
-    # Fireup browser
-    open_url "$(minishift openshift service syndesis-oauthproxy -n $project --url)"
-}
-
-# ========================================================================================
-
-is_minishift_running() {
-    minishift status 2>&1 | grep -q "Running"
-    if [ $? -eq 0 ]; then
-      echo "true"
-    fi
-}
-
-is_logged_in() {
-    local out
-    out=$(oc get projects 2>&1)
-    if [ $? -eq 0 ]; then
-      echo "true"
-    fi
-}
-
-start_minishift() {
-    local memory=$(readopt --memory)
-    local cpus=$(readopt --cpus)
-    local disksize=$(readopt --disk-size)
-    local openshift_version=$(readopt --openshift-version)
-    local show_logs_arg=""
-    if [ $(hasflag --show-logs --show-log) ]; then
-        show_logs_args="--show-libmachine-logs=true "
-    fi
-    echo "---------------------------------------------------------------------"
-    echo "Starting minishift ...."
-    echo
-    minishift start ${show_logs_arg:-}--memory ${memory:-$DEFAULT_RAM} --cpus ${cpus:-$DEFAULT_CPUS} --disk-size ${disksize:-$DEFAULT_DISK_SIZE} --openshift-version ${openshift_version:-$DEFAULT_OPENSHIFT_VERSION}
-    echo "---------------------------------------------------------------------"
-}
-
-# Checks if a flag is present in the arguments.
-hasflag() {
-    filters="$@"
-    for var in $ARGS; do
-        for filter in $filters; do
-          if [ "$var" = "$filter" ]; then
-              echo 'true'
-              return
-          fi
-        done
-    done
-}
-
-# Read the value of an option.
-readopt() {
-    filters="$@"
-    next=false
-    for var in $ARGS; do
-        if $next; then
-            echo $var
-            break;
-        fi
-        for filter in $filters; do
-            if [[ "$var" = ${filter}* ]]; then
-                local value="${var//${filter}=/}"
-                if [ "$value" != "$var" ]; then
-                    echo $value
-                    return
-                fi
-                next=true
-            fi
-        done
-    done
-}
-
-recreate_project() {
-    local project=$1
-    local dont_ask=${2:-false}
-
-    if [ -z "$project" ]; then
-        echo "No project given"
-        exit 1
-    fi
-
-    # Delete project if existing
-    if oc get project "${project}" >/dev/null 2>&1 ; then
-        if [ $dont_ask != "true" ]; then
-            echo =============== WARNING -- Going to delete project ${project}
-            oc get all -n $project
-            echo ============================================================
-            read -p "Do you really want to delete the existing project '$project' ? yes/[no] : " choice
-            echo
-            if [ "$choice" != "yes" ] && [ "$choice" != "y" ]; then
-                echo "Aborting on user's request"
-                exit 1
-            fi
-        fi
-        echo "Deleting project ${project}"
-        oc delete project "${project}"
-    fi
-
-    # Create project afresh
-    echo "---------------------------------------------------------------------"
-    echo "Creating project ${project}"
-    for i in {1..10}; do
-        if oc new-project "${project}" >/dev/null 2>&1 ; then
-            break
-        fi
-        echo "Project still exists. Sleeping 10s ..."
-        sleep 10
-    done
-    oc project "${project}"
-    echo "---------------------------------------------------------------------"
-}
-
-create_oauthclient() {
-    local tag=${1:-master}
-    echo "---------------------------------------------------------------------"
-    echo "Creating ServiceAccount for OAuthClient"
-    create_openshift_resource \
-        "install/support/serviceaccount-as-oauthclient-restricted.yml" \
-        "$tag"
-    echo "---------------------------------------------------------------------"
-}
-
-create_and_apply_template() {
-    local route=${1:-}
-    local tag=${2:-}
-
-    if [ -z "$route" ]; then
-        echo "No route given"
-        exit 1
-    fi
-
-    echo "---------------------------------------------------------------------"
-    echo "Creating Tempate ${SYNDESIS_TEMPLATE}"
-    create_openshift_resource \
-        "install/${SYNDESIS_TEMPLATE}.yml" \
-        "$tag"
-    echo "---------------------------------------------------------------------"
-    echo
-    echo "---------------------------------------------------------------------"
-    echo "Creating new-app from ${SYNDESIS_TEMPLATE}"
-    oc new-app "${SYNDESIS_TEMPLATE}" \
-      -p ROUTE_HOSTNAME="${route}" \
-      -p OPENSHIFT_MASTER="$(oc whoami --show-server)" \
-      -p OPENSHIFT_PROJECT="$(oc project -q)" \
-      -p SAR_PROJECT="$(oc project -q)" \
-      -p OPENSHIFT_OAUTH_CLIENT_SECRET="$(oc sa get-token syndesis-oauth-client)"
-    echo "---------------------------------------------------------------------"
-}
-
-create_openshift_resource() {
-    local resource=${1:-}
-    local tag=${2:-}
-
-    oc create -f https://raw.githubusercontent.com/syndesisio/syndesis/${tag:-master}/${resource}
-}
-
-wait_for_syndesis_to_be_ready() {
-    echo "---------------------------------------------------------------------"
-    echo "Waiting for Syndesis to become ready"
-
-    # Wait a bit to start image fetching
-    # Patch imagestreams from "DockerImage" to "ImageStreamTag"
-    oc get pods -w &
-    watch_pid=$!
-    for dc in "syndesis-server" "syndesis-ui" "syndesis-meta"; do
-        echo "Waiting for $dc to be started"
-        local replicas="$(oc get dc $dc -o jsonpath='{.status.availableReplicas}')"
-        while [ "$replicas" -lt 1 ]; do
-            echo "Sleeping 10s ..."
-            sleep 10
-            replicas=$(oc get dc $dc -o jsonpath="{.status.availableReplicas}")
-        done
-    done
-    kill $watch_pid
-    echo "---------------------------------------------------------------------"
-}
-
-open_url() {
-    local url=$1
-    echo "---------------------------------------------------------------------"
-    echo "Opening $url"
-    local cmd="$(probe_commands open xdg-open chrome firefox)"
-    if [ -z "$cmd" ]; then
-        echo "Cannot find command for opening URL:"
-        echo $url
-        exit 1
-    fi
-    exec $cmd $url
-    echo "---------------------------------------------------------------------"
-}
-
-probe_commands() {
-    for cmd in $@; do
-      local ret=$(which $cmd 2>/dev/null)
-      if [ $? -eq 0 ]; then
-          echo $ret
-          return
-      fi
-    done
-}
-
-
-# =================================================================
-
-# Fireup
-run
+fi
