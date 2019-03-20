@@ -14,7 +14,7 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
-  wget https://github.com/syndesisio/syndesis/archive/master.zip
+  curl -LO https://github.com/syndesisio/syndesis/archive/master.zip
   unzip ./master.zip 'syndesis-master/tools/bin/*'
   if [ -d ".syndesis" ]; then
     rm -fr .syndesis
