@@ -33,22 +33,15 @@ This will take some time until all images are downloaded and installed but event
 
 ```
 =====================================================================
-SYNDESIS 1.3 QUICKSTART
+SYNDESIS QUICKSTART
 
 Hybrid integration on OpenShift made easy
 =====================================================================
 
----------------------------------------------------------------------
-Starting minishift ....
+This install will reset your current MiniShift. OK to continue? y
+--2019-03-20 08:42:12--  https://github.com/syndesisio/syndesis/archive/master.zip
+Resolving github.com (github.com)... 192.30.253.113, 192.30.253.112
 
--- Starting profile 'minishift'
--- Checking if requested OpenShift version 'v3.7.1' is valid ... OK
--- Checking if requested OpenShift version 'v3.7.1' is supported ... OK
--- Checking if requested hypervisor 'xhyve' is supported on this platform ... OK
--- Checking if xhyve driver is installed ...
-   Driver is available at /usr/local/bin/docker-machine-driver-xhyve
-   Checking for setuid bit ... OK
--- Checking the ISO URL ... OK
 ....
 ....
 Sleeping 10s ...
