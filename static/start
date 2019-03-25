@@ -9,7 +9,7 @@ Hybrid integration on OpenShift made easy
 
 EOT
 
-read -p "This install will reset your current MiniShift. OK to continue? " -n 1 -r
+read -p "This install will reset your current MiniShift. OK to continue [y/N]? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
