@@ -14,16 +14,16 @@ echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
 
+  tempDir=$(mktemp -d)
+  pushd $tempDir
   curl -LO https://github.com/syndesisio/syndesis/archive/master.zip
   unzip ./master.zip 'syndesis-master/tools/bin/*'
-  if [ -d ".syndesis" ]; then
-    rm -fr .syndesis
-  fi
   mkdir .syndesis
   mv syndesis-master/tools/bin ./.syndesis
   rm -fr syndesis-master
   rm master.zip
 
   ./.syndesis/bin/syndesis minishift --install --full-reset --open
+  popd
 
 fi
