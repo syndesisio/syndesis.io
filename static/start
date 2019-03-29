@@ -7,6 +7,9 @@ SYNDESIS QUICKSTART
 Hybrid integration on OpenShift made easy
 =====================================================================
 
+Prerequisites: Minishift https://www.okd.io/minishift/
+Quickstarts: https://github.com/syndesisio/syndesis-quickstarts/blob/master/README.md#lets-run-some-quickstarts
+
 EOT
 
 read -p "This install will reset your current MiniShift. OK to continue [y/N]? " -n 1 -r
