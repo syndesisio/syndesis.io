@@ -23,11 +23,7 @@ The following examples assume that you have Minishift installed and can be calle
 
 ## Rocket launch
 
-To make the installation super easy, on macOS and Linux you can use the following command for a complete installation of Syndesis on Minishift in the namespace `syndesis`, which will be created on the fly if it does not exist:
-
-```bash
-bash <(curl -sL https://syndes.is/start)
-```
+Follow the instructions on our QuickStart project https://github.com/syndesisio/syndesis-quickstarts/blob/master/README.md#syndesis-quickstarts
 
 This will take some time until all images are downloaded and installed but eventually your browser should open with the landing page for Syndesis.
 
