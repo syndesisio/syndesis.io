@@ -48,5 +48,30 @@ In this file you will find the following configuration files:
 - `BOOT-INF/classes/syndesis.yml`
 - `BOOT-INF/classes/mapping-step-*.json`
 
+## How to clean a local `minishift` installation ?
+After a while of local test and debugging you may end up with your local environment filling up the dedicated space. If you're using the `syndesis` CLI then you will need to login with `admin` privileges to your local cluster and execute the clean up command:
+
+```
+# Login as admin
+oc login
+
+# Remove the completed pods
+syndesis --dev cleanup
+``` 
+
+## How to enable Data Virtualizations ?
+Syndesis creates and manages data virtualizations to expose as data source connections. In order to enable them you can use the `syndesis` CLI and add the `--datavirt` option to your `syndesis install` command. If you already have a running installation and you want to enable the Data Virtualizations you will have to scale up the `komodo-server` pod and edit the `syndesis-ui` config map in order to enable it:
+
+```
+...
+  "datavirt": {
+    "dvUrl": "/vdb-builder/v1/",
+    "enabled": 1
+  },
+...
+``` 
+
+Save to config and deploy again the `syndesis-ui` to have the Data Virtualizations enabled.
+
 ## Is `oscerd` a bot ?
 This is asked very often. No, he's human. His mom got him tested. 

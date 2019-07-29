@@ -83,7 +83,7 @@ Java packages.
 
 ## Issue Labels
 
-We use GitHub labels to categorize epics, issues and tasks. They are the
+We use [GitHub labels](https://github.com/syndesisio/syndesis/labels) to categorize epics, issues and tasks. They are the
 foundation of our process, so please use labels for issues.
 
 <div class="alert alert-info admonition" role="alert">
