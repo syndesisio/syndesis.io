@@ -19,6 +19,7 @@ We <i class="fa fa-heart text-danger"></i> community! Contributions and feedback
 Here are some important links:
 
 * **QuickStarts:** [QuickStarts](https://github.com/syndesisio/syndesis-quickstarts#syndesis-quickstarts)
+* **Questions:** [StackOverflow](https://stackoverflow.com/questions/tagged/syndesis)
 * **Source code:** [GitHub organization](https://github.com/syndesisio)
 * **Mailing list:** [Syndesis Google Group](https://groups.google.com/forum/#!forum/syndesis)
 * **IRC:** [#syndesis on freenode](irc://freenode.net/syndesis)
