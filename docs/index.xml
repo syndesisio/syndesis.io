@@ -31,5 +31,15 @@ In details Syndesis consists of the following groups:
    Group Maven Docker Image Description     common io.syndesis.common  Syndesis shared common module   connector io.syndesis.connector  Supported camel connectors   rest io.syndesis.rest syndesis/syndesis-server REST backend for managing integrations. This is the main sever.   integration io.</description>
     </item>
     
+    <item>
+      <title>Syndesis connectors development</title>
+      <link>https://syndesis.io/docs/connectors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/</guid>
+      <description>One of the most important features of Syndesis is to be able to connect to a variety of sources and destinations. This middleware product will transparently take care of the integration of such data source/destination. It just requires a custom development of the specific transport involved in the chosen component.
+Since Apache Camel is providing a large offering of integrations components, Syndesis does offer the possibility to use them thanks to a proxy component whose goal is to identify the component and provide the correct configuration settings to make them available through the user interface.</description>
+    </item>
+    
   </channel>
 </rss>

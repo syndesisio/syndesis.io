@@ -25,6 +25,10 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/docs/connectors/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/blog/full-integration/</loc>
     <lastmod>2019-02-13T21:02:42+01:00</lastmod>
   </url>
