@@ -11,14 +11,14 @@ toc: true
 weight: 20
 ---
 
-One of the most important features of Syndesis is to be able to connect to a variety of sources and destinations. The middleware developed is going to take care of transparently of the integration to such source/destination of data requiring a custom development of the specific transport involved in the chosen component.
+One of the most important features of Syndesis is to be able to connect to a variety of sources and destinations. This middleware product will transparently take care of the integration of such data source/destination. It just requires a custom development of the specific transport involved in the chosen component.
 
 Since Apache Camel is providing a large [offering of integrations components](https://camel.apache.org/components.html), Syndesis does offer the possibility to use them thanks to a proxy component whose goal is to identify the component and provide the correct configuration settings to make them available through the user interface.
 
 ### Tutorial
 We will use as a reference the development of a connector for MongoDB and we will try to show explicitly all the configuration and development you will have to perform in order to develop your own connector.
 
-If you haven’t done yet, fork the syndesis project, check it out locally and familiarize with its structure. Also you may want to read the [engineering guidelines](https://syndesis.io/community/contributing/#1-fork-the-repository) before starting to work on it.
+If you haven’t done it yet, fork the syndesis project, check it out locally and familiarize with its structure. Also you may want to read the [engineering guidelines](https://syndesis.io/community/contributing/#1-fork-the-repository) before starting to work on it.
 ### Camel upstream component
 The first thing you will have to do is to have a look at the list of camel components provided in the introduction. Fortunately there is quite a lot of components available, so you should be lucky as in the example I’m going to show for [MongoDB](https://camel.apache.org/mongodb.html).
 
@@ -41,7 +41,7 @@ As there is not yet an archetype available, we need to make some manual `pom.xml
 
 Next step is to create the minimum viable pom in order to be able to wrap all the needed dependencies for our connector.
 ###### Connector description
-Almost all related to the project is managed by the connector parent pom. So, you just have to provide the name of this new dependency:
+Almost everything related to the project is managed by the connector parent pom. So, you just have to provide the name of this new dependency:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <!-- Copyright (C) 2016 Red Hat, Inc. Licensed under the Apache ...-->
@@ -59,7 +59,7 @@ Almost all related to the project is managed by the connector parent pom. So, yo
         <name>Connector :: MongoDB</name>
         <packaging>jar</packaging>
 
-You will have to change the version and name of your connector accordingly. 
+You will have to change the version and name of your connector accordingly. You will can find the latest version in the `app/pom.xml` parent pom.
 ###### Dependencies
 Next section is related to the dependencies. You can start with the basic ones and then iteratively adding the ones needed by your development:
 
@@ -310,7 +310,7 @@ At this stage we have our connector, so, we can even try to include in Syndesis 
 
 There is a class you have to extend in order to benefit all the environment provided by Syndesis and Camel and just worry about making your testsuite: [io.syndesis.connector.support.test.ConnectorTestSupport](https://github.com/syndesisio/syndesis/blob/master/app/connector/support/test/src/main/java/io/syndesis/connector/support/test/ConnectorTestSupport.java) that is extending the upstream Camel supporting test class [org.apache.camel.test.junit4.CamelTestSupport](https://github.com/apache/camel/blob/master/components/camel-test/src/main/java/org/apache/camel/test/junit4/CamelTestSupport.java).
 
-As far as you progress with the development of your test suit you will be able to discover all the features offered by these 2 classes. For the first iteration you will have to just provide the implementation of an abstract method that would take care of building the final route (involving your connector too!). Here is a simple test for the MongoDB:
+As long as you progress with the development of your test suit you will be able to discover all the features offered by these 2 classes. For the first iteration you will have to just provide the implementation of an abstract method that would take care of building the final route (involving your connector too!). Here is a simple test for the MongoDB:
 
     @Override
     protected List<Step> createSteps() {
