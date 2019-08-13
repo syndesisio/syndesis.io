@@ -56,7 +56,7 @@ After a while of local test and debugging you may end up with your local environ
 oc login
 
 # Remove the completed pods
-syndesis --dev cleanup
+syndesis dev --cleanup
 ``` 
 
 ## How to enable Data Virtualizations ?
