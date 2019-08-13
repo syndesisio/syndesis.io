@@ -5,7 +5,7 @@ sidebar: "sidenav"
 menu:
   sidenav:
     name: Development
-    weight: -400
+    weight: 2
     parent: Developer Docs
 toc: true
 weight: 20
