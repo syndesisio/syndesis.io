@@ -8,7 +8,7 @@ Hybrid integration on OpenShift made easy
 =====================================================================
 
 Prerequisites: Minishift https://www.okd.io/minishift/
-Quickstarts: https://github.com/syndesisio/syndesis-quickstarts/blob/master/README.md#lets-run-some-quickstarts
+Quickstarts: https://github.com/syndesisio/syndesis-quickstarts/blob/master/README.md#4-lets-run-some-quickstarts
 
 EOT
 
