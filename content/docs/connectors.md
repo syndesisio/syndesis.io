@@ -5,7 +5,7 @@ sidebar: "sidenav"
 menu:
   sidenav:
     name: Connectors development
-    weight: 3
+    weight: 4
     parent: Developer Docs
 toc: true
 weight: 20

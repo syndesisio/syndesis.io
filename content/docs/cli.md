@@ -5,7 +5,7 @@ sidebar: "sidenav"
 menu:
   sidenav:
     name: CLI
-    weight: 1
+    weight: 3
     parent: Developer Docs
 toc: true
 weight: 10
