@@ -28,7 +28,9 @@ Before deep dive in the diagram illustration, let's recap the list of main compo
 
 Here is a bottom up view (from integration platform to UI) of Syndesis. As the aim of the document is to highlight the backend components we feel it more natural to start the dissertation from the target integration runtime.
 
-![diagram](/static/images/syndesis_be_architecture.png)
+![diagram](/images/syndesis_be_architecture.png)
+
+_Figure 1. Backend architecture_
 
 When you want to create an integration, you generally starts with the definition of how this integration will interact with the integration platform runtime. In Syndesis this is mediated by the _ComponentProxy_ whose goal is to decouple the Syndesis specific model from the integration platform. Through the development of a _Connector_ you will therefore be able to bring your integration platform functionality in Syndesis: in the case depicted you will be able to port any Camel component into Syndesis by developing a _Connector_. The whole list of connectors will be finally your list of available sources/destination that you will be able to use in your Syndesis installation.
 
