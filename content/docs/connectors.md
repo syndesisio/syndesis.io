@@ -218,7 +218,7 @@ Here you have to retake the analysis you did when you selected your components a
 
     {
       "description": "Mongo DB connector.",
-      "icon": "data:image/svg+xml;base64,aFancyBase64CodeHere!![...see Appendix A]",
+      "icon": "assets:mongodb.png",
       "id": "mongodb",
       "name": "MongoDB",
       "properties": {
@@ -616,17 +616,23 @@ Last configuration you have to apply is adding a tag to let the GUI know to enab
      ]
     }
 
-### Appendix A - Base64 image conversion
-Older UI of Syndesis uses a base 64 encoded image built from a binary. You can use the following script to convert any generic image to base64:
+### Appendix A - Icons and metadata
+As you may have noticed, when we created the descriptor for the connector we referenced an image in the `icon` parameter. In order to provide this image available to the `UI` you will have to drop such image in the `app/ui-react/syndesis/public/icons/` folder.
 
-    #!/bin/bash
+Another useful flag you may be interested to use is the `Technology Preview` tag, that is generally used to identify some connector that lack certain features but that is already available to be used. Typically these connectors are made `General Available` in the following version of the product. This is the flag to use in such situations:
     
-    mimetype=$(file -bN --mime-type "$1")
-    content=$(base64 -w0 < "$1")
-    echo "data:$mimetype;base64,$content"
+    {
+      "version": 4,
+      "actions": [
+    ...
+      "id": "mongodb3",
+      "metadata": {
+        "tech-preview": true
+      },
+      "name": "MongoDB", 
+    ...
+    }
     
-Just copy the output to your json descriptor file.
-
 ### Reference used
 
 - [Syndesis documentation](https://github.com/syndesisio/syndesis/blob/ed4f0f14e755a3cada1a18c95562b3f4a316fd6b/doc/integrating-applications/topics/r_develop-connector-extensions.adoc)
