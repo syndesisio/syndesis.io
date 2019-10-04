@@ -6,7 +6,7 @@
     <description>Recent content in Blog on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 04 Oct 2019 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 04 Oct 2019 09:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Community meeting the 15th of October!</title>
       <link>https://syndesis.io/blog/meeting-15-october-2019/</link>
-      <pubDate>Fri, 04 Oct 2019 12:00:00 +0000</pubDate>
+      <pubDate>Fri, 04 Oct 2019 09:00:00 +0000</pubDate>
       
       <guid>https://syndesis.io/blog/meeting-15-october-2019/</guid>
       <description>There will be a new community meeting of Syndesis the 15th of October, at 13:00 UTC.
