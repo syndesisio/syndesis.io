@@ -17,7 +17,7 @@ A `datashape` is a way to describe any inbound/outbound message format and to al
 
 ### JSON Descriptor
 
-When you [develop a new Syndesis connector](connectors.md) you must specify a file descriptor that defines several properties of the source/destination involved. The section related to the data shapes is defined by the `descriptor.inputDataShape` and `descriptor.outputDataShape`. The format is the same, but, as the name let it guess, you will be able to specify a different format if the data you're describing is the input or the output of the connector involved.
+When you [develop a new Syndesis connector](../connectors/) you must specify a file descriptor that defines several properties of the source/destination involved. The section related to the data shapes is defined by the `descriptor.inputDataShape` and `descriptor.outputDataShape`. The format is the same, but, as the name let it guess, you will be able to specify a different format if the data you're describing is the input or the output of the connector involved.
 ```
 {
   "actions": [
@@ -86,7 +86,7 @@ Also `none` is useful if you don't expect any data at all (tipically in the sour
 
 ##### Static vs Dynamic datashape
 
-The above example is showing a "static" configuration of a datashape that will be available along the always the same once it has been deployed to your platform. Most of the time this is not useful, as your data shape vary depending on the parameters configuration submitted by the final user. `dymanic` tag comes to rescue!
+The above example is showing a "static" configuration of a datashape that will be always the same once it has been deployed to your platform. Most of the time this is not useful, as your data shape vary depending on the parameters configuration submitted by the final user. `dymanic` tag comes to rescue!
 ```
 {
   "actions": [
@@ -100,13 +100,13 @@ The above example is showing a "static" configuration of a datashape that will b
         "dynamic"
       ]
 ```
-When this is set, you're instructing Syndesis gui to look up for the `meta` information to be retrieved dynamically and according the parameters that the user is submitting in each step of the integration configuration, including the `datashape`s. The GUI is triggering a call to the `server` that will forward the request to the `meta` which is finally the one that knows how to retrieve such information (see [backend architecture diagram](backend_architecture.md)).
+When this is set, you're instructing Syndesis gui to look up for the `meta` information to be retrieved dynamically and according the parameters that the user is submitting in each step of the integration configuration, including the `datashape`s. The GUI is triggering a call to the `server` that will forward the request to the `meta` which is finally the one that knows how to retrieve such information (see [backend architecture diagram](../backend_architecture/)).
 
 Let's then discover how to develop such extension and how to recover dynamically `metadata` in Syndesis.
 
 ### Development example
 
-In order to simplify the discussion, let's follow up with the same example provided in the [connector development guideline](connectors.md).
+In order to simplify the discussion, let's follow up with the same example provided in the [connector development guideline](../connectors/).
 
 We expect our integration to be able to handle any input coming from any source with the format expected by the collection provided by the user. So we'll define dynamically a `json-schema` that will read the specification directly from the database (at runtime). The output expected is a generic `json-instance`, as there are several operations that our producer can perform.
 ```
