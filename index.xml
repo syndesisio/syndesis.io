@@ -61,6 +61,16 @@ In details Syndesis consists of the following groups:
     </item>
     
     <item>
+      <title>Syndesis Data Shapes</title>
+      <link>https://syndesis.io/docs/datashapes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/datashapes/</guid>
+      <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
+A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+    </item>
+    
+    <item>
       <title>Syndesis backend architecture</title>
       <link>https://syndesis.io/docs/backend_architecture/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
