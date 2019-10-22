@@ -276,12 +276,12 @@ This first part describes the information such as a name you want to assign to t
                   },
                   "collection": {
                     "deprecated": false,
-    ...
+                    ...
                     "type": "string"
                   },
                   "operation": {
                     "deprecated": false,
-    ...
+                    ...
                     "type": "string"
                   }              
                 }
@@ -305,6 +305,8 @@ In order to perform such operation I need to know the following 3 parameters: `d
     }
 
 The last part of the descriptor is used to declare maven dependencies. The above one should work from most of the case if the development conventions are respected.
+
+For the complete detail of the connector descriptor configuration, please [see the dedicate section](https://syndesis.io/docs/connector-schema/).
 ### Unit test preparation
 At this stage we have our connector, so, we can even try to include in Syndesis bundle, deploy and make a real integration. However, a better strategy is to make some unit test in order to verify that our integration is not going to fail and to serve as regression for the future.
 
@@ -380,7 +382,7 @@ The connector proxy development expected by Syndesis has taken in consideration 
             "connectorCustomizers": [
               "io.syndesis.connector.mongo.MongoCustomizer"
             ],        
-    ...
+            ...
           "id": "io.syndesis.connector:connector-mongodb-to",
           "name": "Mongo to",
           "pattern": "To"
@@ -390,7 +392,7 @@ What Syndesis connector is expecting there is an implementation of the [io.synde
 
     public class MongoCustomizer implements ComponentProxyCustomizer, CamelContextAware {
         private CamelContext camelContext;
-    ...
+        ...
         @Override
         public void customize(ComponentProxyComponent component, Map<String, Object> options) {
             if (!options.containsKey("connectionBean")) {
@@ -426,11 +428,11 @@ We’ve described how to use a connector customizer specific of a certain action
     {
       "actions": [
         {
-    ...
+            ...
             "connectorCustomizers": [
               "io.syndesis.connector.mongo.MongoOperationCustomizer"
             ],        
-    ...
+            ...
           "pattern": "From"
         }    
       ],
@@ -610,7 +612,7 @@ Last configuration you have to apply is adding a tag to let the GUI know to enab
 
      "id": "mongodb3",
      "name": "MongoDB",
-    ...
+        ...
      "tags": [
        "verifier"
      ]
@@ -624,13 +626,13 @@ Another useful flag you may be interested to use is the `Technology Preview` tag
     {
       "version": 4,
       "actions": [
-    ...
+        ...
       "id": "mongodb3",
       "metadata": {
         "tech-preview": true
       },
       "name": "MongoDB", 
-    ...
+        ...
     }
     
 ### Reference used
