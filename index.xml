@@ -61,6 +61,15 @@ In details Syndesis consists of the following groups:
     </item>
     
     <item>
+      <title>Syndesis Connector Schema explained</title>
+      <link>https://syndesis.io/docs/connector-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connector-schema/</guid>
+      <description>As we&amp;rsquo;ve already seen in the Connector Development guidelines, the connection to or from a generic data source is proxied by the presence of the Connector Proxy component. In this page you will find how to configure it in all its details. The descriptor does a fundamental job in linking together the GUI (who will use the configuration to dynamically define the connector behavior), the server, the meta (which can be required to serve certain meta information dynamically) and finally the integration platform runtime where the application will run (being Apache Camel the one we use as reference).</description>
+    </item>
+    
+    <item>
       <title>Syndesis Data Shapes</title>
       <link>https://syndesis.io/docs/datashapes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
