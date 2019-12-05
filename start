@@ -26,10 +26,10 @@ then
   rm -fr syndesis-master
   rm master.zip
 
-  if [[ "$OSTYPE" == "darwin" ]]; then
+  if [[ "$OSTYPE" == "darwin"* ]]; then
     echo "Hyperkit support only on OSX"
     ./.syndesis/bin/syndesis minishift --install --full-reset --nodev --open --vm-driver hyperkit
-  elif
+  else
     ./.syndesis/bin/syndesis minishift --install --full-reset --nodev --open
   fi
   popd
