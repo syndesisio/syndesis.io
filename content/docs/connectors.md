@@ -1,322 +1,373 @@
 ---
 draft: false
-title: "Syndesis connectors development"
+title: "Developing Syndesis connectors"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: Connectors development
+    name: Developing Syndesis connectors
     weight: 4
     parent: Developer Docs
 toc: true
 weight: 20
 ---
 
-One of the most important features of Syndesis is to be able to connect to a variety of sources and destinations. This middleware product will transparently take care of the integration of such data source/destination. It just requires a custom development of the specific transport involved in the chosen component.
+If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.
 
-Since Apache Camel is providing a large [offering of integrations components](https://camel.apache.org/components.html), Syndesis does offer the possibility to use them thanks to a proxy component whose goal is to identify the component and provide the correct configuration settings to make them available through the user interface.
+This documentation provides details about developing, testing, and deploying a new Syndesis connector. It uses the example of creating the MongoDB connector to illustrate internal behavior and analyze development choices.
 
-### Tutorial
-We will use as a reference the development of a connector for MongoDB and we will try to show explicitly all the configuration and development you will have to perform in order to develop your own connector.
+Before you start to develop a connector, you should:
 
-If you haven’t done it yet, fork the syndesis project, check it out locally and familiarize with its structure. Also you may want to read the [engineering guidelines](https://syndesis.io/community/contributing/#1-fork-the-repository) before starting to work on it.
-### Camel upstream component
-The first thing you will have to do is to have a look at the list of camel components provided in the introduction. Fortunately there is quite a lot of components available, so you should be lucky as in the example I’m going to show for [MongoDB](https://camel.apache.org/mongodb.html).
+ - [Fork the Syndesis project](https://github.com/syndesisio/syndesis) and become familiar with its structure.
+ - [Learn about Syndesis development.](https://syndesis.io/docs/development/)
+ - [Read the Syndesis engineering guidelines.](https://syndesis.io/community/contributing/#1-fork-the-repository)
 
-If by any chance you are out of luck and the component is not available, well, it is a good opportunity to contribute by [developing the component yourself](http://oscerd.github.io/2016/07/06/contributing-camel-components/). 
+### Overview of how to develop a connector
+A connector is essentially a proxy for a [Camel component](https://camel.apache.org/components,html). A connector configures the underlying component and creates endpoints according to options that are defined in the connector definition and in user-supplied options that the Syndesis web interface collects.
 
-First thing to do is to familiarize with the URI structure that the component is going to use in camel. For the MongoDB example this is a typical example:
+Before you start to develop a connector, become familiar with the tasks that you will need to accomplish.
 
-    mongodb:connectionBean?database=databaseName&collection=collectionName&operation=operationName[&moreOptions...]
+**Prerequisites**
 
-The most important thing you have to check is the protocol. In this example is “mongodb”, so, make sure to take note of that one as it will be the way to configure and identify the component on the Camel catalog from now onward.
-Also it is quite important for you to identify which are the parameters used, in particular the mandatory ones and which are needed for producer or for consumer purpose and their type: typically they are text representing a configuration, but in some circumstances they may represent more complex java objects such as a Datasource or a connection bean of some sort.
+ - Familiarity with Maven
+ - Familiarity with Camel 
+ - Experience programming
 
-I would even suggest to make some experiment and test directly on the upstream component in order to familiarize with the component itself. Finally, your goal is to integrate on Syndesis, but this will end up in a Camel route deployed (probably to a container), so, you better know what to expect there. There are [endless example you can run](https://github.com/apache/camel/tree/master/examples), so you will be easily find the one for your component too.
+**General procedure**
 
-At this stage we should have enough clarity on what our component does, which is the expected URI structure and the expected configuration settings.
-###### Changes in existing camel components
-If you are going to make any changes to the existing camel components, in order to be able to use them properly make sure to bring the correct version and to rebuild the `camel-catalog` dependency. This one is used at runtime by Syndesis to read configuration information such as the expected parameters, so, any change must be reflected by refreshing this dependency as well.
-### Maven project structure
-As there is not yet an archetype available, we need to make some manual `pom.xml` configuration in order to prepare our project. In order to maintain the original structure of the project you will have to create a connector folder under the `app/connector` directory. In order to maintain the convention, call it `connector-nameOfComponent` (ie, `connector-mongodb`).
+1. Learn about the Camel component that the connector will use. In particular, determine whether the connector will need to customize any behavior defined in the Camel component.
+2. Configure a Maven project for developing the connector.
+3. Define the connector definition JSON file.
+4. Create a unit test for the connector.
+5. Optional. Customize the behavior of one or more connector actions.
+6. Optional. Customize the general behavior of the connector.
+7. Provide a connector icon. 
+8. Integrate the new connector with existing Syndesis connectors.
+9. Verify connections that are created from the new connector.
 
-Next step is to create the minimum viable pom in order to be able to wrap all the needed dependencies for our connector.
-###### Connector description
-Almost everything related to the project is managed by the connector parent pom. So, you just have to provide the name of this new dependency:
+### Learning about the Camel component that the connector uses
+Typically, you are developing a Syndesis connector that uses an existing Apache Camel component. For example, the Syndesis MongoDB connector uses the [Apache Camel MongoDB component](https://camel.apache.org/components/latest/mongodb-component.html).
 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!-- Copyright (C) 2016 Red Hat, Inc. Licensed under the Apache ...-->
-    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-        <parent>
-            <groupId>io.syndesis.connector</groupId>
-            <artifactId>connector-parent</artifactId>
-            <version>1.7-SNAPSHOT</version>
-            <relativePath>../pom.xml</relativePath>
-        </parent>
+If you want to develop a connector for which a Camel component does not yet exist, you will need to develop the Camel component first. See [Contributing new components to the Apache Camel project](https://oscerd.github.io/2016/07/06/contributing-camel-components/).
+
+Learn as much as you can about the Camel component that your connector will use. In particular:
+
+ - Learn about the URI structure that the component uses in Camel. For the MongoDB component uses this structure:
+
+    `mongodb:connectionBean?database=databaseName&collection=collectionName&operation=operationName[&moreOptions...]`
+
+    The most important thing you must know is the protocol. In this example, the protocol is **mongodb**. Specification of the protocol is how you will configure and identify the component in the Camel catalog that the connector uses.
     
-        <modelVersion>4.0.0</modelVersion>
-        <artifactId>connector-mongodb</artifactId>
-        <name>Connector :: MongoDB</name>
-        <packaging>jar</packaging>
+ - Identify the Camel component parameters that are important for connector development:
+    - Required parameters
+    - Parameters needed for consumer endpoints
+    - Parameters needed for producer endpoints
+    
+ - You must know the expected type for each parameter value. Often, a parameter requires a string value that indicates a configuration option. But sometimes a parameter value must be something more complicated, such as a Java object that represents a data source or a connection bean.
+ 
+  - Experiment with the Camel component as a way to learn about it.    
+      When your new connector is deployed, it will be used in a Camel route that is running, typically, in a container. Consequently, you want to be familiar with how the Camel component behaves in a deployed Camel route in a container. [Look at examples that use the Camel component](https://github.com/apache/camel/tree/master/examples) that your connector will use.
 
-You will have to change the version and name of your connector accordingly. You will can find the latest version in the `app/pom.xml` parent pom.
-###### Dependencies
-Next section is related to the dependencies. You can start with the basic ones and then iteratively adding the ones needed by your development:
+If you are going to make any changes to an existing Camel component, be sure to bring the correct Camel component version into your project. You must also rebuild the `camel-catalog` dependency since Syndesis uses this dependency at runtime to read configuration information, such as the expected parameters. Any changes that you make to the Camel component must be reflected by refreshing this dependency.
 
-        <dependencies>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-core</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>io.syndesis.common</groupId>
-                <artifactId>common-model</artifactId>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>io.syndesis.integration</groupId>
-                <artifactId>integration-component-proxy</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>org.mongodb</groupId>
-                <artifactId>mongo-java-driver</artifactId>
-            </dependency>
+### Configuring a Maven project for developing a connector
+There is not yet a Maven archetype for creating a Syndesis connector. Consequently, you must manually configure a `pom.xml` file for the Maven project that you will use to develop the connector.
 
-Of course you can skip the `mongodb` related dependencies in your development.
-We also want to include the testing dependencies that will help us in setting up all the unit test we will need:
+**Procedure**
+
+1. In your local Syndesis clone, in the `app/connector` folder, create a folder for your new connector. For example, the MongoDB connector is in the `app/connector/mongodb` folder.
+
+2. In the folder that you just created, create the minimum viable `pom.xml` file that wraps all needed dependencies for your new connector. Be sure to maintain the structure of the sample file shown here.
+
+    1. Add the connector description.
+    
+        Almost everything related to the project is managed by the 
+        `connector-parent` artifact. You just have to provide the name of this new dependency:
+
+                <?xml version="1.0" encoding="UTF-8"?>
+                <!-- Copyright (C) 2016 Red Hat, Inc. Licensed under the Apache ...-->
+                <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                    <parent>
+                                <groupId>io.syndesis.connector</groupId>
+                                <artifactId>connector-parent</artifactId>
+                                <version>1.7-SNAPSHOT</version>
+                                <relativePath>../pom.xml</relativePath>
+                    </parent>
+    
+                    <modelVersion>4.0.0</modelVersion>
+                    <artifactId>connector-mongodb</artifactId>
+                    <name>Connector :: MongoDB</name>
+                    <packaging>jar</packaging>
+            
+        Change the `<version>`, the second `<artifactId`> and the `<name>` as needed. The value of the second `<artifactId>` element should follow the convention shown in this example. That is, the format for the value is `connector-`*camel-component-name*.    
+        
+    2.  Add the basic dependencies to the connector’s `pom.xml` file as well as the dependencies needed to develop your connector. For example:
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.camel</groupId>
+                        <artifactId>camel-core</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.syndesis.common</groupId>
+                        <artifactId>common-model</artifactId>
+                        <scope>provided</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.syndesis.integration</groupId>
+                        <artifactId>integration-component-proxy</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-databind</artifactId>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.mongodb</groupId>
+                        <artifactId>mongo-java-driver</artifactId>
+                    </dependency>
+            
+        In the `pom.xml` file for your connector, you can of course omit the MongoDB dependency. You might notice that the `camel-mongodb` dependency is not yet specified. This is addressed later.
+
+    3. Add the testing dependencies that will help you set up a unit test. For example: 
 
             <!-- Testing -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <scope>test</scope>
-            </dependency>        
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.syndesis.connector</groupId>
-                <artifactId>connector-support-test</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-annotations</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate.validator</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>javax.el</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.camel</groupId>
-                <artifactId>camel-mongodb3</artifactId>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>de.flapdoodle.embed</groupId>
-                <artifactId>de.flapdoodle.embed.mongo</artifactId>
-                <scope>test</scope>
-            </dependency>
-            <!-- Analyzer is requiring to explicit this dependency -->
-            <dependency>
-                <groupId>de.flapdoodle.embed</groupId>
-                <artifactId>de.flapdoodle.embed.process</artifactId>
-                <version>1.50.2</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-
-The last three dependencies are specific to this sample development, the rest is needed by any generic test case. Please notice that in our first development we scope `camel-mongodb3` dependency as runtime: this is because during the first development we won’t make explicit use of this dependency, only the unit test and finally the integration will do that.
-###### Plugins
-The last part of the pom is related to the plugins configuration:
-
-        <build>
-            <resources>
-                <resource>
-                    <directory>src/main/resources</directory>
-                    <filtering>true</filtering>
-                </resource>
-            </resources>
-    
-            <plugins>
-                <plugin>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <configuration>
-                        <delimiters>
-                            <delimiter>@</delimiter>
-                        </delimiters>
-                    </configuration>
-                </plugin>
-    
-                <plugin>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <scope>test</scope>
+                </dependency>        
+                <dependency>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-test</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.assertj</groupId>
+                    <artifactId>assertj-core</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
                     <groupId>io.syndesis.connector</groupId>
-                    <artifactId>connector-support-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>inspections</id>
-                            <phase>process-classes</phase>
-                            <goals>
-                                <goal>generate-connector-inspections</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </build>
-    </project>
+                    <artifactId>connector-support-test</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-annotations</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.hibernate.validator</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>javax.el</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-mongodb3</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+                <dependency>
+                    <groupId>de.flapdoodle.embed</groupId>
+                    <artifactId>de.flapdoodle.embed.mongo</artifactId>
+                    <scope>test</scope>
+                </dependency>
+                <!-- Analyzer is requiring to explicit this dependency -->
+                <dependency>
+                    <groupId>de.flapdoodle.embed</groupId>
+                    <artifactId>de.flapdoodle.embed.process</artifactId>
+                    <version>1.50.2</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
 
-You can make an exact copy of this part as we are introducing a utility that will help you setting up a descriptor configuration file through the execution of the phase highlighted in the code above.
+        The last three dependencies are specific to the MongoDB example. The rest are needed by any generic test case. Initially, the scope of the `camel-mongodb3` dependency is `runtime`. This is because initial development does not explicitly use this dependency. Only the unit test and finally the integration will do that.
+        
+    4. Configure plugins in the `pom.xml` file. For example:         
 
-At this stage you can set up your IDE in order to get the maven project and also execute `mvn install` to confirm that the structure of the project is fine (although empty).
-###### Syndesis CLI
-We will make use of `mvn` directly in order to see all low level details but there is a cool [CLI for Syndesis](https://syndesis.io/docs/cli/) project with more advanced features that you may get familiarity with during your Syndesis development.
-### JSON Schema definition
-Now that you have a valid maven structure you will have to define the descriptor information that describes your connector. The whole explanation of all the parameters is provided in a [dedicated document](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.3/html-single/integrating_applications_with_fuse_online/index#about-extension-definitions_extensions). In the first iteration we will use just a few of them.
+                <build>
+                    <resources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </resources>
+    
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-resources-plugin</artifactId>
+                            <configuration>
+                                <delimiters>
+                                    <delimiter>@</delimiter>
+                                </delimiters>
+                            </configuration>
+                        </plugin>
+    
+                        <plugin>
+                            <groupId>io.syndesis.connector</groupId>
+                            <artifactId>connector-support-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>inspections</id>
+                                    <phase>process-classes</phase>
+                                    <goals>
+                                        <goal>generate-connector-inspections</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </build>
+            </project>
 
-The connector support plugin mentioned in the previous chapter is going to take care of validating the structure of such descriptor that is expected to be found at `/META-INF/syndesis/connector` directory. Also recall the URI scheme of the component and create a json empty file named after it (in our example, `mongodb.json`).
+3. Set up your IDE to get the Maven project for developing the connector.
 
-    $ mkdir -p src/main/resources/META-INF/syndesis/connector
-    $ touch src/main/resources/META-INF/syndesis/connector/mongodb.json
+4. Run `mvn install` to confirm that the structure of the project is valid, though empty.
 
-Let’s run now the validation and, since the descriptor is still empty, let’s expect an error too!
+**Additional resource**
+There is a new [Syndesis project CLI](https://syndesis.io/docs/cli/) with more advanced features that you might want to use to develop your connector.
 
-    $ mvn process-classes
-    ….
-    [ERROR] Failed to execute goal io.syndesis.connector:connector-support-maven-plugin:1.7-SNAPSHOT:generate-connector-inspections (inspections) on project connector-mongodb: Execution inspections of goal io.syndesis.connector:connector-support-maven-plugin:1.7-SNAPSHOT:generate-connector-inspections failed: unhandled token type NOT_AVAILABLE -> [Help 1]
+### Specifying a connector definition JSON file
+Each connector must have a `.json` file that defines the connector by specifying values for data structures such as name, description, supported actions, and dependencies. The purpose of the connector’s JSON file is to provide enough information for the underlying Camel component to create the route and endpoints. This is where you apply what you learned about the Camel component that your connector uses.
 
-No fear. The plugin is your friend and is there to drive you through the correct development of the connector notifying any configuration error. We are going to fix in a minute.
-#### Basic descriptor
-The goal of the descriptor is to provide to Syndesis enough information on which are the expected parameters that are needed by the upstream component in order to create a route and be able to properly create endpoints with such configuration.
-Here you have to retake the analysis you did when you selected your components and recall all those options required and the one you want to provide in order to customize in on Syndesis. I will split the configuration to ease the explanation:
+For new connectors, it is not yet possible to automatically generate the connector definition JSON file from Java code.
 
-    {
-      "description": "Mongo DB connector.",
-      "icon": "assets:mongodb.png",
-      "id": "mongodb",
-      "name": "MongoDB",
-      "properties": {
-        "host": {
-          "componentProperty": true,
-          "deprecated": false,
-          "displayName": "Database host",
-          "group": "common",
-          "javaType": "java.lang.String",
-          "kind": "property",
-          "label": "",
-          "labelHint": "Database host.",
-          "order": "1",
-          "required": true,
-          "secret": false,
-          "tags": [],
-          "type": "string"
-        }
-      },
+**Prerequisites**
+Familiarity with the requirements, parameters, and behavior of the Camel component that the connector uses. 
 
-This first part describes the information such as a name you want to assign to this connector and the possibility to include an icon embedded as base64. An important part to understand is represented by the properties that represent which are the common configuration expected by this component. In general you may expect here to have information on how to connect to a certain datasource: in my example I just need to identify the host where the database is located, assuming the default port and public access to the db. In a second iteration I will add those properties there as well.
+**Procedure**
 
-      "actions": [
+1. Create an empty file that will contain the connector definition. You must follow the folder hierarchy and naming conventions used by other connectors. For example, the following commands create the connector definition JSON file for the MongoDB connector:
+
+        $ cd app/connector/mongodb
+        $ mkdir -p src/main/resources/META-INF/syndesis/connector
+        $ touch src/main/resources/META-INF/syndesis/connector/mongodb.json
+
+2. Run the validation tool be expect an error because the `.json` file is still empty.  
+
+        $ mvn process-classes
+        ...
+        [ERROR] Failed to execute goal io.syndesis.connector:connector-support-maven-plugin:1.7-SNAPSHOT:generate-connector-inspections (inspections) on project connector-mongodb: Execution inspections of goal io.syndesis.connector:connector-support-maven-plugin:1.7-SNAPSHOT:generate-connector-inspections failed: unhandled token type NOT_AVAILABLE -> [Help 1]
+        
+    The plugin guides you to correctly develop the connector by notifying you of any configuration errors. 
+
+3. In the empty connector `.json` file, specify the basic description of the connector, including its name, description, ID, icon, and any properties that provide configuration parameters that are required by the underlying Camel component. The following example, which is part of the MongoDB connector, shows that the Camel MongoDB component requires specification of a MongoDB database host.
+
         {
-          "actionType": "connector",
-          "description": "Mongo DB producer",
-          "descriptor": {
-            "componentScheme": "mongodb",     
-            "inputDataShape": {
-              "kind": "json-schema"
-            },
-            "outputDataShape": {
-              "kind": "json-schema"
+          "description": "Mongo DB connector.",
+          "icon": "assets:mongodb.png",
+          "id": "mongodb",
+          "name": "MongoDB",
+          "properties": {
+            "host": {
+              "componentProperty": true,
+              "deprecated": false,
+              "displayName": "Database host",
+              "group": "common",
+              "javaType": "java.lang.String",
+              "kind": "property",
+              "label": "",
+              "labelHint": "Database host.",
+              "order": "1",
+              "required": true,
+              "secret": false,
+              "tags": [],
+              "type": "string"
             }
           },
-          "id": "io.syndesis.connector:connector-mongodb-producer",
-          "name": "Mongo DB producer",
-          "pattern": "To",
-          "propertyDefinitionSteps": [
+
+4. Define the behavior of connections that will be created from this connector by adding action specifications. An action is an operation that the connection performs according to the pattern specified in the JSON file. Typically, this is a `From` pattern for consumer endpoints and a `To` pattern for producer endpoints. You can also specify a `Pipe` pattern. Add an action specification for every operation that you want a connection to perform.
+
+    The following example shows more of the JSON file for the MongoDB connector. This section specifies the MongoDB producer action.
+
+            "actions": [
               {
-                "description": "Enter a database.",
-                "name": "Database",
-                "properties": {
-                  "database": {
-                    "deprecated": false,
-                    "displayName": "Database name",
-                    "group": "common",
-                    "javaType": "java.lang.String",
-                    "kind": "path",
-                    "labelHint": "Database name",
-                    "placeholder": "database",
-                    "required": true,
-                    "secret": false,
-                    "type": "string"
+                "actionType": "connector",
+                "description": "Mongo DB producer",
+                "descriptor": {
+                  "componentScheme": "mongodb",     
+                  "inputDataShape": {
+                    "kind": "json-schema"
                   },
-                  "collection": {
-                    "deprecated": false,
-                    ...
-                    "type": "string"
-                  },
-                  "operation": {
-                    "deprecated": false,
-                    ...
-                    "type": "string"
-                  }              
-                }
-            }    
-            ]
-        }    
-      ],
+                  "outputDataShape": {
+                    "kind": "json-schema"
+                  }
+                },
+                "id": "io.syndesis.connector:connector-mongodb-producer",
+                "name": "Mongo DB producer",
+                "pattern": "To",
+                "propertyDefinitionSteps": [
+                    {
+                      "description": "Enter a database.",
+                      "name": "Database",
+                      "properties": {
+                        "database": {
+                          "deprecated": false,
+                          "displayName": "Database name",
+                          "group": "common",
+                          "javaType": "java.lang.String",
+                          "kind": "path",
+                          "labelHint": "Database name",
+                          "placeholder": "database",
+                          "required": true,
+                          "secret": false,
+                          "type": "string"
+                        },
+                        "collection": {
+                          "deprecated": false,
+                          ...
+                          "type": "string"
+                        },
+                        "operation": {
+                          "deprecated": false,
+                          ...
+                          "type": "string"
+                        }              
+                      }
+                  }    
+                  ]
+              }    
+            ],
 
-The second part of the descriptor is where we introduce to provide the expected behavior of our component. We can define “actions” that are going to be performed over the connection according to the pattern specified (mainly `From` for a consumer and `To` for a producer type - also `Pipe` exists and can be configured).
+    This action definition specifies a producer endpoint that performs certain operations at the end of a route. For example, suppose that you want to obtain data from a source, such as a SQL database or a Twitter feed, and write that data to a collection in a MongoDB database. To write to a MongoDB database, the connection must have values for three parameters: `database`, `collection` and `operation`. The `propertyDefinitionSteps` object specifies these parameters. When someone creates a connection from your new connector and adds the connection to an integration, the user interface prompts for values for the parameters that you specify in a `propertyDefinitionSteps` object, that is, `database`, `collection`, and `operation` in this example.
 
-Here we just want to use the connector as a producer of data in order to perform certain operations as final result of a route. As an example, we want to get data from a certain source (a sql db, your twitter mentions, …) and write to a mongoDB database and collection.
+5. Declare Maven dependencies in the connector definition JSON file. Typically, if you are following connector development conventions, you just need to add the following: 
 
-In order to perform such operation I need to know the following 3 parameters: `database`, `collection` and `operation`. Therefore in the `propertiesDefinitionStep` we include them. The runtime result will be that we’re going to be prompted from the GUI to provide those configuration every time that we’ll create a new integration on Syndesis.
+          "dependencies": [
+            {
+              "id": "@project.groupId@:@project.artifactId@:@project.version@",
+              "type": "MAVEN"
+            }
+          ]
 
-      "dependencies": [
-        {
-          "id": "@project.groupId@:@project.artifactId@:@project.version@",
-          "type": "MAVEN"
-        }
-      ]
-    }
+**Additional resources** 
 
-The last part of the descriptor is used to declare maven dependencies. The above one should work from most of the case if the development conventions are respected.
+ - [Requirements in an extension definition JSON file](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.5/html/integrating_applications_with_fuse_online/customizing_ug#about-extension-definitions_extensions)
+ 
+ - [Syndesis connector schema explained](https://syndesis.io/docs/connector-schema/)
+ 
+### Example of creating a unit test for a connector
+With a Maven project, the connector’s definition JSON file, and the Java classes that implement the connector, you have a connector that you can try to include in a Syndesis bundle and deploy. However, before you do that, create a unit test that verifies that the connector will work correctly.
 
-For the complete detail of the connector descriptor configuration, please [see the dedicate section](https://syndesis.io/docs/connector-schema/).
-### Unit test preparation
-At this stage we have our connector, so, we can even try to include in Syndesis bundle, deploy and make a real integration. However, a better strategy is to make some unit test in order to verify that our integration is not going to fail and to serve as regression for the future.
+The [org.apache.camel.test.junit4.CamelTestSupport](https://github.com/apache/camel/blob/master/components/camel-test/src/main/java/org/apache/camel/test/junit4/CamelTestSupport.java) class provides upstream Camel support for testing. The [io.syndesis.connector.support.test.ConnectorTestSupport](https://github.com/syndesisio/syndesis/blob/master/app/connector/support/test/src/main/java/io/syndesis/connector/support/test/ConnectorTestSupport.java) class extends the `CamelTestSupport` class. By extending the `ConnectorTestSupport` class, you can benefit from the environment provided by Camel and Syndesis.
 
-There is a class you have to extend in order to benefit all the environment provided by Syndesis and Camel and just worry about making your testsuite: [io.syndesis.connector.support.test.ConnectorTestSupport](https://github.com/syndesisio/syndesis/blob/master/app/connector/support/test/src/main/java/io/syndesis/connector/support/test/ConnectorTestSupport.java) that is extending the upstream Camel supporting test class [org.apache.camel.test.junit4.CamelTestSupport](https://github.com/apache/camel/blob/master/components/camel-test/src/main/java/org/apache/camel/test/junit4/CamelTestSupport.java).
+As you develop a test suite, you will learn about the features offered by these two classes. For the first iteration, implement an abstract method that builds the final route, which includes your new connector. The following example code is a simple test for the MongoDB connector:
 
-As long as you progress with the development of your test suit you will be able to discover all the features offered by these 2 classes. For the first iteration you will have to just provide the implementation of an abstract method that would take care of building the final route (involving your connector too!). Here is a simple test for the MongoDB:
-
-    @Override
-    protected List<Step> createSteps() {
-        return Arrays.asList(
+        @Override
+        protected List<Step> createSteps() {
+            return Arrays.asList(
                 newSimpleEndpointStep("direct", builder -> builder.putConfiguredProperty("name", "start")),
                 newEndpointStep("mongodb", "io.syndesis.connector:connector-mongodb-producer",
                     builder -> {},
@@ -327,316 +378,390 @@ As long as you progress with the development of your test suit you will be able 
                         builder.putConfiguredProperty("operation", "insert");
                     })
                 );
-    }
-The mother class will use this method in order to build a route that would consume from a [direct component](https://camel.apache.org/direct.html) named start and produce to the mongodb component through the usage of the connector we’ve just created. Please notice that we are configuring a connector endpoint with the identification provided in the json descriptor and passing the map of parameters expected by the implementation: `database`, `collection` and `operation` (this component expect a further one named `connectionBean`, we’ll come back to this in a while).
-
-The last step is to provide the test case, here one as a reference:
-
-    @Test
-    public void mongoInsertTest() {
-        // When
-        // Given
-        String uniqueId = UUID.randomUUID().toString();
-        String message = String.format("{\"test\":\"unit\",\"uniqueId\":\"%s\"}", uniqueId);
-        template().sendBody("direct:start", message);
-        // Then
-        List<Document> docsFound = collection.find(Filters.eq("uniqueId", uniqueId)).into(new ArrayList<Document>());
-        assertEquals(1, docsFound.size());
-    }
-
-In order to kick off the integration we will use the `template()` method offered by the super class, providing as a body a simple json text with a unique field in it. We do expect that the route configured above would use the insert operation to write this json into the database and the collection specified.
-As a simple assert condition we verify that the content of a json field corresponds to the one that the same test has produced.
-
-In your development you may use a similar strategy when you need to produce some data to your connector and an approach with [Mock component](http://camel.apache.org/mock.html) when you need to consume data from your connector.
-###### Connection Bean
-To have a complete test you will need the possibility to either mock the service that is providing the connection to your component or a real instance of it. In the example it translates into a real instance of MongoDB to connect to (or an embedded instance of a MongoDB).
-
-Depending on the component you’re going to use you may expect to create some sort of connection on demand or to pass it through properties or context configuration. In the example proposed here, the component is expecting a connection bean to be available in Camel Context:
-    
-    @Override
-    public void postProcessTest() {
-        MongoClient mongoClient = new MongoClient("localhost");
-        context().getRegistry(JndiRegistry.class).bind("mongoConnection", mongoClient);
-    }
-
-The method used here is inherited from the `CamelTestSupport` class and it’s called as soon a context has been created. What we’re doing is to wire a bean with a reference that will be looked up at runtime by the `camel-mongodb3` component.
-### Customization development
-The goal of this first part of the tutorial is to show how to possibly make an integration without adding any customization or further functionality to the upstream component. There may be certain connector that would not require anything else and they would work just setting the proper configuration through the descriptor and defining the proper actions.
-
-However we do expect some sort of customization almost always because we likely have to deal with connection configuration as our components are typically bound to services responding to certain protocols.
-As an example, the development done so far would work only for test because it expects such a connection bean injected before to execute the integration. This is a typical use case that call out for a custom connector integration.
-
-We will see two different approaches when you want to perform a connector customization taking as a reference the need to configure directly in the connector a connection bean.
-
-As soon as you start the customization you may need to change the scope of the camel component in your maven configuration to be available at compile time (remind, at the beginning we scoped `camel-mongodb3` as runtime).
-##### Customizer
-The connector proxy development expected by Syndesis has taken in consideration the possibility to include any customization during the lifecycle of the connector action you’ve configured. Recall the configuration we’ve provided above: here we can introduce a new variable named connectorCustomizers whose goal is to enrich the behavior of the connector when that is created:
-
-    {
-      "actions": [
-        {
-          "actionType": "connector",
-          "description": "Mongo DB to",
-          "descriptor": {
-            "componentScheme": "mongodb",
-            "connectorCustomizers": [
-              "io.syndesis.connector.mongo.MongoCustomizer"
-            ],        
-            ...
-          "id": "io.syndesis.connector:connector-mongodb-to",
-          "name": "Mongo to",
-          "pattern": "To"
         }
 
-What Syndesis connector is expecting there is an implementation of the [io.syndesis.integration.component.proxy.ComponentProxyCustomizer](https://github.com/syndesisio/syndesis/blob/master/app/integration/component-proxy/src/main/java/io/syndesis/integration/component/proxy/ComponentProxyCustomizer.java) functional interface. Let’s illustrate it through the example:
+The parent class uses this method to build a route that consumes data from a [direct component](https://camel.apache.org/direct.html) named `start` and produces data for the `mongodb` component by using the new connector. This code configures a connector endpoint with the identification that is defined in the connector’s JSON file and passes the map of parameters expected by the implementation: `database`, `collection` and `operation`. (This component also expects a `connectionBean` parameter and this is discussed later.)
 
-    public class MongoCustomizer implements ComponentProxyCustomizer, CamelContextAware {
-        private CamelContext camelContext;
-        ...
+The last step is to provide the test case. Here is an example of a MongoDB test case: 
+
+        @Test
+        public void mongoInsertTest() {
+            // When
+            // Given
+            String uniqueId = UUID.randomUUID().toString();
+            String message = String.format("{\"test\":\"unit\",\"uniqueId\":\"%s\"}", uniqueId);
+            template().sendBody("direct:start", message);
+            // Then
+            List<Document> docsFound = collection.find(Filters.eq("uniqueId", uniqueId)).into(new ArrayList<Document>());
+            assertEquals(1, docsFound.size());
+        }
+
+To trigger the integration, the code calls the `template()` method, which is provided by the super class, and provides a body that contains a simple JSON text string with a unique field in it. The route configured above invokes the insert operation to write this JSON into the specified collection in the specified database.
+
+Finally, as a simple assert condition, the code verifies that the content of a JSON field corresponds to the one that the same test has produced.
+
+In your development, use a similar strategy when you need to produce some data for your connector. Follow the approach of using a [mock component](http://camel.apache.org/mock.html) when you need to consume data from your connector.
+
+###### Connection bean
+To develop a complete test, you need to do one of the following:
+
+ - Create a mock service that provides the connection to the Camel component.
+ - Use an actual service instance. 
+
+In this example, an embedded instance of MongoDB provides the connection. Depending on the Camel component you are using, you might create some sort of connection on demand or to pass it through properties or context configuration. In the example shown here, the component is expecting a connection bean to be available in a Camel `Context`:
+    
         @Override
-        public void customize(ComponentProxyComponent component, Map<String, Object> options) {
-            if (!options.containsKey("connectionBean")) {
-                try {
-                    String host = (String) options.get("host");
-                    MongoClient mongoClient = new MongoClient(host);
-                     options.put("mongoConnection", mongoClient);
-                } catch (@SuppressWarnings("PMD.AvoidCatchingGenericException") Exception e) {
-                    throw new IllegalArgumentException(e);
+        public void postProcessTest() {
+            MongoClient mongoClient = new MongoClient("localhost");
+            context().getRegistry(JndiRegistry.class).bind("mongoConnection", mongoClient);
+        }
+
+The method used here is inherited from the `CamelTestSupport` class and it is called as soon a context has been created. This wires a bean with a reference that the `camel-mongodb3` component looks up at runtime. 
+
+### Customizing the behavior of an action in a connector
+As the previous sections show, it is possible to develop a connector without customizing the behavior of the Camel component. Some Syndesis connectors do not require customization. Such connectors provide the needed features through correct specification of the JSON connector definition file, including the definition of relevant actions.
+
+However, customizing a connector is often needed because:
+
+ - Connecting to a particular Camel component requires configuration that is bound to services that use certain protocols.
+
+ - A connection bean is missing. For example, the connector development described so far would work only for a test case because the connector expects a connection bean to be injected before execution of the integration.
+
+ There are two different approaches for customizing a connector by configuring a connection bean. The first approach, described here, is to customize one or more actions. The second approach, described in the next section, is to customize the connector by defining a component delegate.
+ 
+ As soon as you start customizing your connector, in your Maven `pom.xml` file, you might need to change the scope of the Camel component to be available at compile time. For example, without customizations, the `camel-mongodb` component scope of test is okay.
+ 
+ Syndesis connector proxy development makes it possible to define the exact action behavior you need because you can customize behavior through the lifecycle of a connector action. That is, you can define:
+ 
+  - Behavior that occurs before or after execution of the action itself
+  - Behavior when creating the connection action
+  
+ The following section of the MongoDB connector definition JSON file introduces the `connectorsCustomizers` variable, which customizes the behavior of the action in which it is specified:
+
+        {
+          "actions": [
+            {
+              "actionType": "connector",
+              "description": "Mongo DB to",
+              "descriptor": {
+                "componentScheme": "mongodb",
+                "connectorCustomizers": [
+                  "io.syndesis.connector.mongo.MongoCustomizer"
+                ],        
+                ...
+              "id": "io.syndesis.connector:connector-mongodb-to",
+              "name": "Mongo to",
+              "pattern": "To"
+            }
+
+In the `connectorCustomizers` object, specify an implementation of the 
+[io.syndesis.integration.component.proxy.ComponentProxyCustomizer](https://github.com/syndesisio/syndesis/blob/master/app/integration/component-proxy/src/main/java/io/syndesis/integration/component/proxy/ComponentProxyCustomizer.java) interface. For example:
+
+        public class MongoCustomizer implements ComponentProxyCustomizer,     CamelContextAware {
+            private CamelContext camelContext;
+            ...
+            @Override
+            public void customize(ComponentProxyComponent component, Map<String, Object> options) {
+                if (!options.containsKey("connectionBean")) {
+                    try {
+                        String host = (String) options.get("host");
+                        MongoClient mongoClient = new MongoClient(host);
+                        options.put("mongoConnection", mongoClient);
+                    } catch (@SuppressWarnings("PMD.AvoidCatchingGenericException") Exception e) {
+                        throw new IllegalArgumentException(e);
+                    }
                 }
+            }
+
+In this example, the `customize()` method:
+
+ - Obtains information about the MongoDB host, which is defined as a parameter in the connector definition JSON file. When this connector is used to create a connection in the user interface, the user specifies the host.
+ 
+  - Creates a connection.
+
+ - Injects the connection into the bean reference that the Camel component is expecting.
+            
+Typically, you must provide a similar implementation to set up the proper connection settings or possibly to transform the parameters that are passed by your user in some other object.
+
+In this example, the implementation of the `CamelContextAware` interface wires the runtime Camel context into the `MongoCustomizer` class. This makes the runtime Camel context available in a `MongoCustomizer` instance, if you need it.
+
+With the `MongoCustomizer` class defined, you can change the test case by removing the context injection. In the unit test example, you would remove the `postProcessTest()` method. This method is replaced by setting the host from the properties that are passed into the connector. For example:
+
+        ...
+        builder -> {
+            builder.putConfiguredProperty("connectionBean", "connectionBeanContextRef");
+        builder.putConfiguredProperty("host", “localhost”);
+            builder.putConfiguredProperty("database", DATABASE);
+        ...
+
+The connector is now ready to be tested in a Syndesis integration.
+
+###### Multiple action customizations
+Sometimes, a connector requires the same customization for several actions. In this case, rather than copying the same configuration to these actions, configure the customized behavior for the connector rather than for each action. Also, it is possible to have more than one instance of `connectorCustomizers` in the connector definition JSON file. In the following example, you can see a configuration that defines both a generic connector customizer and a specific action customizer:
+
+        {
+          "actions": [
+            {
+                ...
+                "connectorCustomizers": [
+                  "io.syndesis.connector.mongo.MongoOperationCustomizer"
+                ],        
+                ...
+              "pattern": "From"
+            }    
+          ],
+          "configuredProperties": {},
+          "connectorCustomizers": [
+            "io.syndesis.connector.mongo.MongoClientCustomizer"
+          ],   
+          "description": "Mongo DB connector.",
+        ...
+        }
+
+The two definitions of `connectorCustomizers` work together to customize the general behavior as well as the behavior of a specific action.
+
+##### Customizing general behavior in a connector
+Another approach to customization is to define a component delegate, which lets you control behavior through the lifecycle of the Camel component. A series of customizable methods that you define specifies the needed behaviors. These methods are exposed in the `ComponentProxyComponent` class that your connector class must extend.
+
+In your connector definition JSON file, add a `connectorFactory` parameter. The following segment of the MongoDB JSON file provides an example:
+
+        {
+          "description": "Mongo DB connector.",
+          "connectorFactory": "io.syndesis.connector.mongo.MongoConnectorFactory",
+          "icon": "assets:mongodb.svg",
+          "id": "mongodb",
+         ...
+
+This configuration instructs the Syndesis connector manager to instantiate the `MongoConnectorFactory` class whenever the connector manager needs to create a MongoDB connector. The `MongoConnectorFactory` class implements the [`ComponentProxyFactory`](https://github.com/syndesisio/syndesis/blob/master/app/integration/component-proxy/src/main/java/io/syndesis/integration/component/proxy/ComponentProxyFactory.java)) interface, as shown in this example:
+
+        public class MongoConnectorFactory implements ComponentProxyFactory{
+            @Override
+            public ComponentProxyComponent newInstance(String componentId, String componentScheme) {
+                return new MongoConnector(componentId,componentScheme);
             }
         }
 
-The customize method is the one that will take care to get information on the `host` (provided as a connection parameter of your connector json!), create a connection and inject the connection into the bean reference expected by the component.
+The real logic is in the connector class that you define. This class must extend the [`ComponentProxyComponent`](https://github.com/syndesisio/syndesis/blob/master/app/integration/component-proxy/src/main/java/io/syndesis/integration/component/proxy/ComponentProxyComponent.java) class, which provides integration with the Camel component. If you do not specify any customization, this default class is the one that your Syndesis connector uses.
 
-Typically you will have to provide a similar implementation in order to set up the proper connection settings or if by any chance you need to transform the parameters passed by your user in something else.
+The following sample code customizes component behavior by providing a connection bean that is available at runtime:
 
-One thing you may notice is that in this example we’ve implemented the `CamelContextAware` interface whose goal is to wire the runtime Camel context into this class and make it available for anything you may need to do with it. This is something you may not need to do.
-
-As soon as this change is applied we can change the test case removing the context injection and setting the host in the properties passed into the connector:
-
-    ...
-    builder -> {
-        builder.putConfiguredProperty("connectionBean", "connectionBeanContextRef");
-    builder.putConfiguredProperty("host", “localhost”);
-        builder.putConfiguredProperty("database", DATABASE);
-    ...
-
-This is now ready to be tested in a real Syndesis integration!
-###### Multiple connector customizer
-We’ve described how to use a connector customizer specific of a certain action. It means that if you have several actions using the same connection customizer you should copy the same configuration in all the actions. In order to prevent this you can configure this behavior on the generic connector configuration and even have more than one customizer at a time. As an example here you can see a configuration where we defined a specific operation customizer and a generic connector customizer:
-
-    {
-      "actions": [
-        {
-            ...
-            "connectorCustomizers": [
-              "io.syndesis.connector.mongo.MongoOperationCustomizer"
-            ],        
-            ...
-          "pattern": "From"
-        }    
-      ],
-      "configuredProperties": {},
-      "connectorCustomizers": [
-        "io.syndesis.connector.mongo.MongoClientCustomizer"
-      ],   
-      "description": "Mongo DB connector.",
-    ...
-    }
-
-You can notice the presence of two different customizer that can work together to customize either a general behavior or a specific one bound to an action.
-##### ComponentDelegate
-A second approach to customization is possible through the definition of a component delegate, whose goal is to have a more advanced control on the whole lifecycle of the component itself thanks to the presence of a series of customizable methods.
-
-Let’s retake the first json descriptor and let’s add a new parameter:
-
-    {
-      "description": "Mongo DB connector.",
-      "connectorFactory": "io.syndesis.connector.mongo.MongoConnectorFactory",
-      "icon": "data:image/svg+xml;base64,aFancyBase64CodeHere!![...]",
-      "id": "mongodb",
-    …
-
-With this configuration we’re telling Syndesis connector manager to call this component factory (which implements [ComponentProxyFactory](https://github.com/syndesisio/syndesis/blob/master/app/integration/component-proxy/src/main/java/io/syndesis/integration/component/proxy/ComponentProxyFactory.java)) whenever it has to create a new connector:
-
-    public class MongoConnectorFactory implements ComponentProxyFactory{
+        @SuppressWarnings("PMD.SignatureDeclareThrowsException")
         @Override
-        public ComponentProxyComponent newInstance(String componentId, String componentScheme) {
-            return new MongoConnector(componentId,componentScheme);
+        protected Map<String, String> buildEndpointOptions(String remaining, Map<String, Object> options) throws Exception {
+             if(this.getCamelContext().getRegistry().lookup(remaining) == null){
+                 String host = (String) options.get("host");
+               MongoClient mongoClient = new MongoClient(host);
+                 options.put("mongoConnection", mongoClient);
+            }
+            return super.buildEndpointOptions(remaining, options);
         }
-    }
 
-The real logic is actually developed from the connector class that have to extend the [ComponentProxyComponent](https://github.com/syndesisio/syndesis/blob/master/app/integration/component-proxy/src/main/java/io/syndesis/integration/component/proxy/ComponentProxyComponent.java) class whose goal is to provide the integration with the camel component. If you don’t specify any customization, this default class is the one that will be used behind the scene by Syndesis connector.
+However, the typical workflow, which many connectors perform, expects a complete new delegate component to be created by calling the `createDelegateComponent()` method.
 
-Let’s see through an example how we can perform the customization needed by our component (ie providing a connection bean available at runtime):
+If you need to handle only changes in the `Exchange` object, another approach is to use the available pre/post producer/consumer processors, as shown in this example:
 
-    @SuppressWarnings("PMD.SignatureDeclareThrowsException")
-    @Override
-    protected Map<String, String> buildEndpointOptions(String remaining, Map<String, Object> options) throws Exception {
-        if(this.getCamelContext().getRegistry().lookup(remaining) == null){
-            String host = (String) options.get("host");
-           MongoClient mongoClient = new MongoClient(host);
-            options.put("mongoConnection", mongoClient);
+        MongoConnector(String componentId, String componentScheme) {
+            super(componentId, componentScheme);
+            this.setBeforeProducer(this::beforeProduced);
         }
-        return super.buildEndpointOptions(remaining, options);
-    }
-
-The typical workflow however would expect to either create a complete new delegate component by extending the `createDelegateComponent(...)` method. You will find many connectors performing such operation.
-Another approach when you just have to deal with changes in the `Exchange` would be to use the pre/post producer and consumer processors available, here is an example:
-
-    MongoConnector(String componentId, String componentScheme) {
-        super(componentId, componentScheme);
-        this.setBeforeProducer(this::beforeProduced);
-    }
     
-    public void beforeProduced(Exchange exchange) throws Exception{
-           … do something with the Exchange
-    }
+        public void beforeProduced(Exchange exchange) throws Exception{
+              ... do something with the Exchange
+        }
 
-As you can see, through delegate approach you have a higher degree of flexibility that should help you fixing most of the features you need to develop.
+By using a component delegate, you have a higher degree of flexibility for implementing the features that you need to develop. To verify that the connector is working as expected, you can reuse the same unit test. You can then create integrations that test connector behavior in Syndesis.
 
-We can reuse the same unit test in order to verify that the component is working as expected and then make some real integration test on Syndesis.
-### Local integration test
-As soon as you’ve prepared your implementation and this has been tested properly through unit test, you will be able to integrate the new connector to the rest of components in Syndesis. The process would require you to edit a few `pom.xml` in order to let the different Syndesis modules know about the availability of this new component.
+### Providing an icon for a connector 
 
-    app/connector/pom.xml
-    app/connector/support/catalog/pom.xml
-    app/integration/bom/pom.xml
-    app/integration/bom-camel-k/pom.xml
-    app/meta/pom.xml
-    app/pom.xml
+To show the flow of an integration, Syndesis displays icons that identify the applications that the integration is connecting to. When you develop a connector, you should provide an image that Syndesis can use as the connector icon and as the icon for connections created from the connector.
 
-In the first pom (which is your connector parent pom) you must find the modules list and add an entry with your new module, whilst in the rest you must find the connector dependency list and just include your newly created dependency (plus the version in some of them, just copy a reference from another sample connector).
+**Prerequisites**
 
-Try to maintain the alphabetical order so that it would be easier to spot any dependency when you’re looking for it.
+ - An image that represents the application that your connector accesses
+ - A connector definition JSON file that defines your connector
 
-You may now be able to execute the build of the whole syndesis either directly through mvn execution at base application path (app/pom.xml) or through the syndesis CLI. The second option is preferred as we will use shortly for deployment as well:
+**Procedure**
 
-    $ syndesis build
+1. Add an image to the Syndesis `app/ui-react/syndesis/public/icons` folder. The image should identify the application that your connector accesses. For example, the image for the MongoDB connector is `mongodb.png`: ![MongoDB icon](/images/syndesimongodb.png) 
 
-The build will take some time as it compiles and test all the modules. There are several shortcut and flags you can use to accelerate this process, [see guidelines here](https://syndesis.io/docs/cli/).
-###### First deployment
-As soon as the build completed you are ready to deploy the application in your local minishift environment. You can run the following command to do so:
+2. In the connector definition JSON file, specify the `icon` attribute. with the name of your image file. Follow the format shown here:
 
-    $ syndesis minishift --install --local
+        "description": "Read and write MongoDB collections",
+        "icon": "assets:mongodb.png",
+        "id": "mongodb3",
 
-You may take a base installation remotely if you don’t use the `--local` flag. You can also specify a base tag from where your installation starts (ie, `--tag 1.7`).
+3. Optional. If your connector is not yet ready for a production environment, set the `tech-preview` attribute in the connector definition JSON file. For example:
+ 
+        "description": "Read and write MongoDB collections",
+        "icon": "assets:mongodb.png",
+        "id": "mongodb3",
+        "metadata": {
+        "tech-preview": "true"
 
-Make sure your minishift has started correctly (`$ minishift start`) and that you’ve logged in with proper development profiles (`$ oc login`) in order to grant the `fabric8` maven plugin the proper privileges either in first deployment and any following one.
-###### Following deployment
-Once your application is up and running, you may decide to make changes to the connector. So, after building and setting the proper dependencies in the poms mentioned above, you can refresh the local deployment with the new changes by updating 2 modules:
+    Remember to remove or unset `tech-preview` when the connector has all needed features and can be used in production.
 
-    $ syndesis build -f -i -m server
-    $ syndesis build -f -i -m s2i
+### Integrating a new connector with existing connectors 
 
-The `server` component is taking care of setting the metadata used by the UI in order to configure your integration (ie, the parameters), whilst the `s2i` component is taking care of the creation of the Camel route itself by allowing the integration deploy to be bound to a docker image and deployed to the platform through the project-generator. Depending on the change you’ve performed you may need to build again also integration and meta or the same connector catalog. In such a situation it’s safer to rebuild the whole backend modules by running the following statement:
+After you implement and successfully test a new connector, integrate the new connector with the other Syndesis components. When review and testing is complete, submit a pull request.
 
-    $ syndesis build -f -i -b
+**Procedure**
 
-The `-i` or `--image` flag will instruct your local installation to refresh the deployment on your local environment and be able therefore to apply the changes you’ve built.
-###### Remote deployment
-Once you have all ready, tested and carefully reviewed, then, [proceed with a PR and follow the rest of the process](https://syndesis.io/community/contributing/#submitting-a-pull-request). As soon as the feature is merged on master you will be able to test your feature on the staging environment as well.
-### Connection verifier
-During the configuration of a new connection you will typically end up making requests to an external system with specific user credentials. Syndesis offers a feature to validate such connection parameters directly from the UI, so let’s see which are the development needed to make it happens.
+1. To indicate to other Syndesis modules that a new connector is available, in the `syndesis` directory, edit the following `pom.xml` files:
 
-<mark>WARNING</mark>: you should consider adding the `verifier` on Syndesis instead of the camel upstream component only if there is any specific requirement that is impeding you to do that upstream. The normal process should be providing the verifier upstream first and later be able to just use the class from the verifier descriptor.
+        app/connector/pom.xml
+        app/connector/support/catalog/pom.xml
+        app/integration/bom/pom.xml
+        app/integration/bom-camel-k/pom.xml
+        app/meta/pom.xml
+        app/pom.xml
 
-The first thing is to have a look at your json descriptor file and recall the id you’ve provided to the connector:
+    In the `app/connector/pom.xml` file, which is the parent `pom.xml` file for your connector, find the modules list and add an entry for your new module. In the rest of the `pom.xml` files, find the connector `<dependencies>` list and add an entry for your new connector. Some files might require specification of a version number. Copy and edit an existing entry. Try to maintain alphabetical order so that it is easier to find a particular dependency.
 
-    …
-      "id": "mongodb",
-    …
+2. Build Syndesis by invoking the following command:
 
-Let’s create a new resource file following the structure here:
+        $ syndesis build
 
-    $ mkdir -p src/main/resources/META-INF/syndesis/connector/verifier
-    $ touch src/main/resources/META-INF/syndesis/connector/verifier/mongodb
-
-The meta component will take care of looking that descriptor when invoked. The file will simply provide a configuration with the name of the class that you are going to develop:
-
-    class=io.syndesis.connector.mongo.verifier.MongoDBVerifier
-
-Then, the following step will be to develop the business logic expected according to a specific class we must extend:
-
-    public class MongoDBVerifier extends ComponentVerifier {
-       public MongoDBVerifier() {
-           super("mongodb");
-       }
+    This is preferred because the same command can deploy Syndesis. Alternatively, you can build Syndesis by executing Maven at the base application path, which is `app/pom.xml`.
     
-       @Override
-       protected ComponentVerifierExtension resolveComponentVerifierExtension(CamelContext context, String scheme) {
-           return new MongoConnectorVerifierExtension(context);
-       }
-    }
+    The build takes some time as it compiles and tests all modules. There are several [shortcuts and flags that you can use to accelerate this process](https://syndesis.io/docs/cli/).
+    
+3. Start minishift:
 
-Please notice that you are providing in the constructor, the name of your component (same of the verifier in this case). Finally we delegate the verification to a further class:
+        $ minishift start
 
-    public class MongoConnectorVerifierExtension extends DefaultComponentVerifierExtension {
+4. Log in with the proper development profile, for example:
+
+        $ oc login -u developer -p developer
+
+    This grants the required deployment privileges to `fabric8-maven-plugin`.
+
+5. After the build completes, deploy Syndesis in your local minishift environment by invoking the following command: 
+
+        $ syndesis minishift --install --local
+
+    Omit the `--local` option for a remote installation.
+    Optionally, specify a base tag, such as `--tag 1.8` to indicate where to start the installation.
     
-       public MongoConnectorVerifierExtension(CamelContext camelContext) {
-           super("mongodb", camelContext);
-       }
+6. When Syndesis is running, iteratively: 
+
+    1. Test your connector by creating and using it in an integration. 
     
-       @Override
-       public Result verifyParameters(Map<String, Object> parameters) {
-           ResultBuilder builder = ResultBuilder.withStatusAndScope(Result.Status.OK, Scope.PARAMETERS)
-                   .error(ResultErrorHelper.requiresOption("host", parameters))
-           return builder.build();
-       }
+    2. Update the connector as needed.
     
-       @Override
-       public Result verifyConnectivity(Map<String, Object> parameters) {
-           return ResultBuilder.withStatusAndScope(Result.Status.OK, Scope.CONNECTIVITY)
-                   .error(parameters, this::verifyCredentials)
-                   .build();
-       }
+    3. Refresh your deployment to add your changes by updating two Syndesis modules. To do this, invoke the following commands: 
     
-       private void verifyCredentials(ResultBuilder builder, Map<String, Object> parameters) {
-           try (MongoClient mongoClient = new MongoClient(parameters.get("host"))) {
-               // Just ping the server
-               mongoClient.getConnectPoint();
-           } catch (Exception e) {
-               ResultErrorBuilder errorBuilder = ResultErrorBuilder.withCodeAndDescription(
-                       VerificationError.StandardCode.GENERIC,
-                       e.getMessage());
-               builder.error(errorBuilder.build());
+            $ syndesis build -f -i -m server
+            $ syndesis build -f -i -m s2i      
+
+        The `server` module sets the metadata (parameter values) that the Syndesis user interface needs to configure an integration. The `s2i` module:
+
+         - Creates the Camel route by binding the integration runtime to a docker image
+         - Provides Camel dependencies and configuration
+         - Deploys the integration to the platform, Camel in this case, through the Syndesis `project-generator` module
+
+    4. Optionally, rebuild the Syndesis backend modules by invoking the following command:
+
+            $ syndesis build -f -i -b
+
+        The `-i` or `--image` flag instructs your local installation to refresh the deployment in your local environment. This applies your changes.
+
+        For a change to metadata information, such as a datashape change, or a change related to the connector definition JSON file, rebuilding backend modules is not required.
+        
+7. After careful review and successful local testing, [create a pull request](https://syndesis.io/community/contributing/#submitting-a-pull-request). 
+
+8. After your updates are merged to Syndesis `master`, test your connector in the [Syndesis staging environment](https://syndesis-staging.b6ff.rh-idev.openshiftapps.com.). Syndesis uses CircleCI pipelines to keep its staging environment up to date.    
+
+### Verifying connections that are created from a connector
+Using a connector to create a connection typically requires a request that contains specific user credentials and that goes to an external system. Syndesis provides a feature for validating the configuration of this kind of connection directly from the user interface. Several development tasks are required to implement connection validation from the user interface.
+
+The typical procedure is to add the connection verifier to the upstream platform, for example, to the Camel component that the connector uses. In other words, you provide the verifier upstream first and then later you use the class from the verifier descriptor. If there is a specific requirement that prevents adding the verifier upstream, only then should you consider adding the verifier to Syndesis.
+
+**Procedure**
+
+1. Examine your connector definition JSON file to obtain the id that it specifies for the connector. For example:
+
+        ...
+          "id": "mongodb",
+        ...
+
+2. Create a new resource file and use the structure shown in the following commands. 
+In this example, the result is the resource file for the MongoDB connector: 
+
+        $ cd ~/syndesis/app/connector/mongodb
+        $ mkdir -p src/main/resources/META-INF/syndesis/connector/verifier
+        $ touch src/main/resources/META-INF/syndesis/connector/verifier/mongodb
+
+    The `META-INF/syndesis/connector/meta/mongodb3` class, when invoked, takes care of looking up the connector definition JSON file.
+    
+3. In the `verifier` resource file, specify the name of the verifier class that you plan to develop. For example, the content of the `verifier/mongodb` resource file is:     
+
+        class=io.syndesis.connector.mongo.verifier.MongoDBVerifier
+        
+4. Develop the required business logic in a class that extends the `ComponentVerifier` class, which is defined in `syndesis/app/connector/support/verifier/src/main/java/io/syndesis/connector/support/verifier/api/`. For example:
+
+        public class MongoDBVerifier extends ComponentVerifier {
+            public MongoDBVerifier() {
+                super("mongodb");
+            }
+    
+           @Override
+           protected ComponentVerifierExtension resolveComponentVerifierExtension(CamelContext context, String scheme) {
+               return new MongoConnectorVerifierExtension(context);
            }
-       }
-    }
+        }
 
-Through the `verifyParameters` method you will check which are the mandatory parameters needed by your connection validation, in our sample case we just need the host parameter to perform the following `verifyConnectivity` which is in charge to perform a connection test against the host provided as a parameter.
-
-Please, consider that we are using a further `verifyCredentials` method reference as we eventually will provide more advanced test than simply connecting to the server. In fact, although we are just catching a generic exception, we will likely want to catch different specialized exceptions and provide also specific message for every error we may face (authentication failed, network failures, files missing, …).
-
-Last configuration you have to apply is adding a tag to let the GUI know to enable verification on this component:
-
-     "id": "mongodb3",
-     "name": "MongoDB",
-        ...
-     "tags": [
-       "verifier"
-     ]
-    }
-
-### Appendix A - Icons and metadata
-As you may have noticed, when we created the descriptor for the connector we referenced an image in the `icon` parameter. In order to provide this image available to the `UI` you will have to drop such image in the `app/ui-react/syndesis/public/icons/` folder.
-
-Another useful flag you may be interested to use is the `Technology Preview` tag, that is generally used to identify some connector that lack certain features but that is already available to be used. Typically these connectors are made `General Available` in the following version of the product. This is the flag to use in such situations:
+    Notice that the constructor provides the name of the Camel component that the connector uses. In the `verifier` folder, the file must have this same name. 
     
-    {
-      "version": 4,
-      "actions": [
-        ...
-      "id": "mongodb3",
-      "metadata": {
-        "tech-preview": true
-      },
-      "name": "MongoDB", 
-        ...
-    }
+5. Delegate the verification to a further class:     
+
+        public class MongoConnectorVerifierExtension extends DefaultComponentVerifierExtension {
     
-### Reference used
+           public MongoConnectorVerifierExtension(CamelContext camelContext) {
+               super("mongodb", camelContext);
+           }
+    
+           @Override
+           public Result verifyParameters(Map<String, Object> parameters) {
+               ResultBuilder builder = ResultBuilder.withStatusAndScope(Result.Status.OK, Scope.PARAMETERS)
+                       .error(ResultErrorHelper.requiresOption("host", parameters))
+               return builder.build();
+           }
+    
+           @Override
+           public Result verifyConnectivity(Map<String, Object> parameters) {
+               return ResultBuilder.withStatusAndScope(Result.Status.OK, Scope.CONNECTIVITY)
+                       .error(parameters, this::verifyCredentials)
+                       .build();
+           }
+    
+           private void verifyCredentials(ResultBuilder builder, Map<String, Object> parameters) {
+               try (MongoClient mongoClient = new MongoClient(parameters.get("host"))) {
+                   // Just ping the server
+                   mongoClient.getConnectPoint();
+               } catch (Exception e) {
+                   ResultErrorBuilder errorBuilder = ResultErrorBuilder.withCodeAndDescription(
+                           VerificationError.StandardCode.GENERIC,
+                           e.getMessage());
+                   builder.error(errorBuilder.build());
+               }
+           }
+        }
 
-- [Syndesis documentation](https://github.com/syndesisio/syndesis/blob/ed4f0f14e755a3cada1a18c95562b3f4a316fd6b/doc/integrating-applications/topics/r_develop-connector-extensions.adoc)
-- [Fuse online documentation](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.3/html-single/integrating_applications_with_fuse_online/index#develop-connector-extensions_extensions)
+    In the `verifyParameters()` method, indicate the parameters that are required for connection validation. In the MongoDB example, only the `host` parameter is required to verify connectivity.
 
+    Consider that this example defines a further `verifyCredentials()` method for eventually defining a more advanced test than simply connecting to the server. Initially, the method just catches a generic exception. A more advanced approach is to catch different specialized exceptions and provide specific messages for the error that might occur, such as authentication failed, network failure, file missing, and so on.
+
+6. In the connector definition JSON file, add a tag to indicate to the user interface how to enable verification of this connector. For example:
+
+         "id": "mongodb3",
+         "name": "MongoDB",
+            ...
+         "tags": [
+           "verifier"
+         ]
+        }
+    
+### Additional resources
+
+- [Developing extensions](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.5/html/integrating_applications_with_fuse_online/customizing_ug#developing-extensions_custom)
+- [Brief example of developing a connector extension](https://access.redhat.com/documentation/en-us/red_hat_fuse/7.5/html/integrating_applications_with_fuse_online/customizing_ug#develop-connector-extensions_extensions)
