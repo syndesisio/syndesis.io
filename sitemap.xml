@@ -21,6 +21,10 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/docs/connectors/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/docs/development/</loc>
   </url>
   
@@ -34,10 +38,6 @@
   
   <url>
     <loc>https://syndesis.io/docs/backend_architecture/</loc>
-  </url>
-  
-  <url>
-    <loc>https://syndesis.io/docs/connectors/</loc>
   </url>
   
   <url>

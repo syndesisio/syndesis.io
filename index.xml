@@ -50,6 +50,17 @@ Improving documentation Documentation is in various places in our repositories. 
     </item>
     
     <item>
+      <title>Developing Syndesis connectors</title>
+      <link>https://syndesis.io/docs/connectors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/</guid>
+      <description>If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.
+This documentation provides details about developing, testing, and deploying a new Syndesis connector. It uses the example of creating the MongoDB connector to illustrate internal behavior and analyze development choices.
+Before you start to develop a connector, you should:</description>
+    </item>
+    
+    <item>
       <title>Development</title>
       <link>https://syndesis.io/docs/development/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -87,16 +98,6 @@ A datashape is a way to describe any inbound/outbound message format and to allo
       <guid>https://syndesis.io/docs/backend_architecture/</guid>
       <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
 Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
-    </item>
-    
-    <item>
-      <title>Syndesis connectors development</title>
-      <link>https://syndesis.io/docs/connectors/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/connectors/</guid>
-      <description>One of the most important features of Syndesis is to be able to connect to a variety of sources and destinations. This middleware product will transparently take care of the integration of such data source/destination. It just requires a custom development of the specific transport involved in the chosen component.
-Since Apache Camel is providing a large offering of integrations components, Syndesis does offer the possibility to use them thanks to a proxy component whose goal is to identify the component and provide the correct configuration settings to make them available through the user interface.</description>
     </item>
     
     <item>
