@@ -86,7 +86,7 @@ Also `none` is useful if you don't expect any data at all (tipically in the sour
 
 ##### Static vs Dynamic datashape
 
-The above example is showing a "static" configuration of a datashape that will be always the same once it has been deployed to your platform. Most of the time this is not useful, as your data shape vary depending on the parameters configuration submitted by the final user. `dymanic` tag comes to rescue!
+The above example is showing a "static" configuration of a datashape that will be always the same once it has been deployed to your platform. Most of the time this is not useful, as your data shape vary depending on the parameters configuration submitted by the final user. `dynamic` tag comes to rescue!
 ```
 {
   "actions": [
@@ -111,7 +111,6 @@ In order to simplify the discussion, let's follow up with the same example provi
 We expect our integration to be able to handle any input coming from any source with the format expected by the collection provided by the user. So we'll define dynamically a `json-schema` that will read the specification directly from the database (at runtime). The output expected is a generic `json-instance`, as there are several operations that our producer can perform.
 ```
 {
-  "version": 4,
   "actions": [
     {
       "actionType": "connector",

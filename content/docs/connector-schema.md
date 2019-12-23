@@ -202,7 +202,7 @@ Array of parameters object expected by the connector. This field is used by the 
 
 ##### tags
 
-A list of open text labels, can be used by GUI to perform certain actions based on it. Particularly important is the [`verifier` tag](https://syndesis.io/docs/connectors/#connection-verifier) which the GUI uses to provide a `Connection` verification function.
+A list of open text labels, can be used by GUI to perform certain actions based on it. Particularly important is the [`verifier` tag](https://syndesis.io/docs/connectors/#connection-verifier) which the GUI uses to provide a `Connection` verification function. From version 2.0 it is available also the `dynamic` tag which allow any connector to provide dynamic properties to the connection page.
 
 ### Catalog
 
