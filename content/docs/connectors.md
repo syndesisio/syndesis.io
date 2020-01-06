@@ -237,6 +237,7 @@ There is not yet a Maven archetype for creating a Syndesis connector. Consequent
 4. Run `mvn install` to confirm that the structure of the project is valid, though empty.
 
 **Additional resource**
+
 There is a new [Syndesis project CLI](https://syndesis.io/docs/cli/) with more advanced features that you might want to use to develop your connector.
 
 ### Specifying a connector definition JSON file
@@ -245,6 +246,7 @@ Each connector must have a `.json` file that defines the connector by specifying
 For new connectors, it is not yet possible to automatically generate the connector definition JSON file from Java code.
 
 **Prerequisites**
+
 Familiarity with the requirements, parameters, and behavior of the Camel component that the connector uses. 
 
 **Procedure**
@@ -582,7 +584,7 @@ To show the flow of an integration, Syndesis displays icons that identify the ap
 
 **Procedure**
 
-1. Add an image to the Syndesis `app/ui-react/syndesis/public/icons` folder. The image should identify the application that your connector accesses. For example, the image for the MongoDB connector is `mongodb.png`: ![MongoDB icon](/images/syndesimongodb.png) 
+1. Add an image to the Syndesis `app/ui-react/syndesis/public/icons` folder. The image should identify the application that your connector accesses. For example, the image for the MongoDB connector is `mongodb.png`: ![MongoDB icon](/images/mongodb.png) 
 
 2. In the connector definition JSON file, specify the `icon` attribute. with the name of your image file. Follow the format shown here:
 
@@ -669,7 +671,7 @@ After you implement and successfully test a new connector, integrate the new con
         
 7. After careful review and successful local testing, [create a pull request](https://syndesis.io/community/contributing/#submitting-a-pull-request). 
 
-8. After your updates are merged to Syndesis `master`, test your connector in the [Syndesis staging environment](https://syndesis-staging.b6ff.rh-idev.openshiftapps.com.). Syndesis uses CircleCI pipelines to keep its staging environment up to date.    
+8. After your updates are merged to Syndesis `master`, open an incognito browser window and test your connector in the [Syndesis staging environment](https://syndesis-staging.b6ff.rh-idev.openshiftapps.com.). Syndesis uses CircleCI pipelines to keep its staging environment up to date.    
 
 ### Verifying connections that are created from a connector
 Using a connector to create a connection typically requires a request that contains specific user credentials and that goes to an external system. Syndesis provides a feature for validating the configuration of this kind of connection directly from the user interface. Several development tasks are required to implement connection validation from the user interface.
