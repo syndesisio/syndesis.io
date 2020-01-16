@@ -18,7 +18,8 @@ A `datashape` is a way to describe any inbound/outbound message format and to al
 ### JSON Descriptor
 
 When you [develop a new Syndesis connector](../connectors/) you must specify a file descriptor that defines several properties of the source/destination involved. The section related to the data shapes is defined by the `descriptor.inputDataShape` and `descriptor.outputDataShape`. The format is the same, but, as the name let it guess, you will be able to specify a different format if the data you're describing is the input or the output of the connector involved.
-```
+
+```json
 {
   "actions": [
     {
@@ -37,7 +38,7 @@ When you [develop a new Syndesis connector](../connectors/) you must specify a f
 ```
 First of all, let's explore a complete description of a datashape (we use as an example an `inputDataShape` but the same is valid for the output):
 
-```
+```json
         "inputDataShape": {
           "name": "my data shape",
           "description": "my data shape description",
@@ -61,6 +62,7 @@ First of all, let's explore a complete description of a datashape (we use as an 
           ]
         },
 ```
+
 Don't worry, the above is the full definition, in majority of the cases you won't need to define all those configuration. Let's explain briefly what everything stands for.
 
 The `kind` parameter is the most important as it is used by Syndesis to convert any input/output message to the specified `kind`. This is the only required field when declaring a datashape, so, most of the times, you will finally end up just setting this and the `specification` field when configuring your connector. We allow the following values:
@@ -87,7 +89,8 @@ Also `none` is useful if you don't expect any data at all (tipically in the sour
 ##### Static vs Dynamic datashape
 
 The above example is showing a "static" configuration of a datashape that will be always the same once it has been deployed to your platform. Most of the time this is not useful, as your data shape vary depending on the parameters configuration submitted by the final user. `dynamic` tag comes to rescue!
-```
+
+```json
 {
   "actions": [
     {
@@ -109,7 +112,8 @@ Let's then discover how to develop such extension and how to recover dynamically
 In order to simplify the discussion, let's follow up with the same example provided in the [connector development guideline](../connectors/).
 
 We expect our integration to be able to handle any input coming from any source with the format expected by the collection provided by the user. So we'll define dynamically a `json-schema` that will read the specification directly from the database (at runtime). The output expected is a generic `json-instance`, as there are several operations that our producer can perform.
-```
+
+```json
 {
   "actions": [
     {
@@ -131,15 +135,20 @@ We expect our integration to be able to handle any input coming from any source 
 ```
 
 As we've marked the connector as dynamic we will have to instruct the platform how to properly retrieve the meta-information. We need to create a simple file beside the main json descriptor under
+
 ```
 META-INF/syndesis/connector/meta/mongodb3
 ```
+
 This will contain a simple configuration pointing at the right java class:
+
 ```
 class=io.syndesis.connector.mongo.meta.MongoDBMetadataRetrieval
 ```
+
 The class has to extend `io.syndesis.connector.support.verifier.api.ComponentMetadataRetrieval` with only a method, whose goal is to either retrieve the meta information you need, or, adapt the ones that may be already provided by the upstream component that you're extending from Camel. You should possibly adopt this last strategy deferring to the platform (Camel in our case) the duty to retrieve such meta information.
-```
+
+```java
 public final class MongoDBMetadataRetrieval extends ComponentMetadataRetrieval {
     @Override
     protected SyndesisMetadata adapt(CamelContext context, String componentId, String actionId, Map<String, Object> properties, MetaDataExtension.MetaData metadata) {
@@ -156,6 +165,7 @@ public final class MongoDBMetadataRetrieval extends ComponentMetadataRetrieval {
     }
 }
 ```
+
 The example above should ease the discussion. Our goal in Syndesis is to _adapt_ the meta information coming from the upstream platform: in our case, the payload retrieved in the `metadata` parameter is a json-schema payload that the `camel-mongodb` component is getting on our behalf - it uses the information in the properties to query the database and collection and return the expected [json-schema validator](https://docs.mongodb.com/manual/core/schema-validation/#json-schema). Of course, this business logic may be different in each component, but the principle is the same: getting the meta information on the source/destination, parse it here and adapt according to Syndesis data model.
 
 As we'de delegated the complex stuff to the platform, the rest is to simply adapt the format. You can see that we're setting a nice `name` and `description`, the `kind` as json-schema and the retrieved `specification`. Finally we're calling the `SyndesisMetadata.of(...)` that will set the datashape both for input and output. Cool, with this example you will be able now to _adapt_ dynamically the datashape for any kind of connector, as you likely will have a different data structure for each of them.
