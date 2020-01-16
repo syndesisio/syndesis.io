@@ -51,7 +51,7 @@ gulp.task('watch', gulp.parallel(gulp.series('fonts', 'fonts:watch'), gulp.serie
 gulp.task('hugo:serve', function (cb) {
   var exec = require('child_process').exec;
 
-  exec('hugo serve', function (err, stdout, stderr) {
+  exec('hugo serve --bind 0.0.0.0', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
