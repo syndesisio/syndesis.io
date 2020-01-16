@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on Syndesis</title>
@@ -43,6 +43,16 @@ In details Syndesis consists of the following groups:
     </item>
     
     <item>
+      <title>Syndesis backend architecture</title>
+      <link>https://syndesis.io/docs/backend_architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/backend_architecture/</guid>
+      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
+Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
+    </item>
+    
+    <item>
       <title>Syndesis Connector Schema explained</title>
       <link>https://syndesis.io/docs/connector-schema/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -59,16 +69,6 @@ In details Syndesis consists of the following groups:
       <guid>https://syndesis.io/docs/datashapes/</guid>
       <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
 A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
-    </item>
-    
-    <item>
-      <title>Syndesis backend architecture</title>
-      <link>https://syndesis.io/docs/backend_architecture/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/backend_architecture/</guid>
-      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
-Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
     </item>
     
   </channel>
