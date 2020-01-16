@@ -17,16 +17,19 @@ As we've already seen in the [Connector Development guidelines](https://syndesis
 
 The features required by the proxy are expressed through a configuration file defined as a [_json-schema_](https://github.com/syndesisio/syndesis/blob/master/app/connector/support/maven-plugin/src/main/resources/connector-schema.json). Each connector development will be validating this schema through a maven plugin that you can execute as a standalone task through:
 
-```
-mvn process-classes
+```shell
+$ mvn process-classes
 ```
 The validator (and later the other packaging processes) is expecting a descriptor in the following location:
+
 ```
 syndesis/app/connector/<connectorName>/src/main/resources/META-INF/syndesis/connector/<connectorId>.json
 ```
+
 where `<connectorName>` is the directory holding your development and `<connectorId>` is the `id` you're going to set in the descriptor.
 In order to proper develop your connector and get the full of `Syndesis` you must be aware of how this is working and what each properties is supposed to mean. Let's examine the _json-schema_ in detail:
-```
+
+```json
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
@@ -55,9 +58,11 @@ In order to proper develop your connector and get the full of `Syndesis` you mus
   "additionalProperties": false
 }
 ```
+
 ##### actions
 Every connector is able to perform one or more different actions. An action will let you define what an integration has to do, if it is expected to produce or consume data and how to decorate those data according to the integration platform you're targeting. As this can get a bit complex, let's review all the properties, and then drill down the most important ones:
-```
+
+```json
     "actions": {
       "type": "array",
       "items": [
@@ -102,6 +107,7 @@ Every connector is able to perform one or more different actions. An action will
       ]
     },
 ```
+
 * **actionType**: you must configure using `connector`. Also `step` type exists but it's reserved for extensions development. 
 * **description**: a text description for this action
 * **descriptor**: detailed configuration for this action - see next chapter
@@ -113,25 +119,27 @@ Every connector is able to perform one or more different actions. An action will
 
 ###### Descriptor
 Let's dig a little bit more into the _descriptor_ parameter, as it defines in detail the behavior of the action and which is the business logic that drives it.
+
+```json
+  "descriptor": {
+    "type": "object",
+    "properties": {
+      "componentScheme": {...},
+      "configuredProperties": {...},
+      "connectorFactory": {...},
+      "connectorCustomizers": {...},
+      "inputDataShape": {...},
+      "outputDataShape": {...},
+      "propertyDefinitionSteps": {...},
+      "standardizedErrors": {...},
+    "required": [
+      "inputDataShape",
+      "outputDataShape"
+    ],
+    "additionalProperties": false
+  },
 ```
-            "descriptor": {
-              "type": "object",
-              "properties": {
-                "componentScheme": {...},
-                "configuredProperties": {...},
-                "connectorFactory": {...},
-                "connectorCustomizers": {...},
-                "inputDataShape": {...},
-                "outputDataShape": {...},
-                "propertyDefinitionSteps": {...},
-                "standardizedErrors": {...},
-              "required": [
-                "inputDataShape",
-                "outputDataShape"
-              ],
-              "additionalProperties": false
-            },
-```
+
 * **componentScheme**: represents the URI scheme of the component you'd like to use (particularly useful for Camel integration platform). You can define this at **action** level to override **connector** level.
 * **configuredProperties**: constant parameters object expected by this action
 * **connectorFactory**: fully qualified java class name to which you will delegate the **action** lifecycle management (see [component delegate](https://syndesis.io/docs/connectors/#componentdelegate))
@@ -165,7 +173,7 @@ Fully qualified java class name to which you will delegate the **connector** lif
 
 List of dependencies needed by the connector in order to work correctly. Supported values: `MAVEN`, `EXTENSION`, `EXTENSION_TAG`, `ICON`. All connectors must define their self maven dependency as defined below:
 
-```
+```json
   "dependencies": [
     {
       "id": "@project.groupId@:@project.artifactId@:@project.version@",
