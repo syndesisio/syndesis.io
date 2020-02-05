@@ -6,10 +6,22 @@
     <description>Recent content in Blog on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 01 Jan 2020 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 09:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Community meeting the 29th of January!</title>
+      <link>https://syndesis.io/blog/meeting-29-january-2020/</link>
+      <pubDate>Wed, 29 Jan 2020 09:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/blog/meeting-29-january-2020/</guid>
+      <description>There will be a new community meeting of Syndesis the 29th of January, at 13:00 UTC.
+We will meet through Google Hangouts on this room.
+There is an agenda that can be edited to add more talking points. The idea is to focus on building a stronger and bigger community.
+You are welcome to join this meeting or join us in any of our community networking places.</description>
+    </item>
     
     <item>
       <title>Syndesis at FOSDEM 2020</title>
