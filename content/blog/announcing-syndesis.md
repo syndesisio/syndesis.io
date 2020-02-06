@@ -22,4 +22,4 @@ Java devs will be happy to hear that the magic that allows this data integration
 
 Syndesis is simple to deploy on OpenShift or Kubernetes; so it is completely up to you whether you want to run it on your choice of cloud provider or even on-premise.
 
-We are eager to hear feedback, so please let us know what your thoughts are by [contacting us](/contact).
+We are eager to hear feedback, so please let us know what your thoughts are by [contacting us](/community).
