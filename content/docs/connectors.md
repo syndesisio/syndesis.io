@@ -22,7 +22,7 @@ Before you start to develop a connector, you should:
  - [Read the Syndesis engineering guidelines.](https://syndesis.io/community/contributing/#1-fork-the-repository)
 
 ### Overview of how to develop a connector
-A connector is essentially a proxy for a [Camel component](https://camel.apache.org/components,html). A connector configures the underlying component and creates endpoints according to options that are defined in the connector definition and in user-supplied options that the Syndesis web interface collects.
+A connector is essentially a proxy for a [Camel component](https://camel.apache.org/components.html). A connector configures the underlying component and creates endpoints according to options that are defined in the connector definition and in user-supplied options that the Syndesis web interface collects.
 
 Before you start to develop a connector, become familiar with the tasks that you will need to accomplish.
 
