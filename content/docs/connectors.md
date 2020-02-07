@@ -738,7 +738,7 @@ After you implement and successfully test a new connector, integrate the new con
 
 7. After careful review and successful local testing, [create a pull request](https://syndesis.io/community/contributing/#submitting-a-pull-request).
 
-8. After your updates are merged to Syndesis `master`, open an incognito browser window and test your connector in the [Syndesis staging environment](https://syndesis-staging.b6ff.rh-idev.openshiftapps.com.). Syndesis uses CircleCI pipelines to keep its staging environment up to date.
+8. After your updates are merged to Syndesis `master`, open an incognito browser window and test your connector in the [Syndesis staging environment](https://syndesis-staging.b6ff.rh-idev.openshiftapps.com). Syndesis uses CircleCI pipelines to keep its staging environment up to date.
 
 ### Verifying connections that are created from a connector
 Using a connector to create a connection typically requires a request that contains specific user credentials and that goes to an external system. Syndesis provides a feature for validating the configuration of this kind of connection directly from the user interface. Several development tasks are required to implement connection validation from the user interface.
