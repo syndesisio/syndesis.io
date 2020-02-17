@@ -318,7 +318,16 @@ install Minishift, the VM that contains OpenShift.
 
     $ git pull https://github.com/syndesisio/syndesis.git # or own fork
     $ cd syndesis
-    $ syndesis minishift --full-reset
+    
+    # install minishift
+    $ syndesis minishift --full-reset --project syndesis --maven-mirror 
+    
+    # install syndesis with jaeger addon
+    $ syndesis minishift --install --project syndesis --nodev --app-options " --addons jaeger"
+
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa important"></i> The jaeger is installed to support the activity log backed by jaeger opentracing, which is faster than the activity log stored in postgresql.
+</div>
 
 ### Day-to-Day
 
@@ -372,6 +381,13 @@ good to make sure those are invoked.
     $ yarn start:minishift
     $ open https://$(oc get routes syndesis --template "{{.spec.host}}")
 
+**Prune resources**
+
+You can free some disk space by removing and pruning obsolete resources from openshift.
+
+    $ syndesis dev --cleanup
+    
+    
 **Resetting the Database**
 
 This step is optional. This command expects Minishift to be running
@@ -576,10 +592,51 @@ not be necessary for just building and updating the version.
 **VM Trouble**
 
     $ syndesis build
+    
+**Pods self updating**. Ocasionally you can notice some syndesis pods may have been updated, it occurs
+because the image streams are pointing to dockerhub and whenever there is an update of that image on
+dockerhub, then your local pod will be updated. To prevent theses updates, set the DEV_SUPPORT=true 
+environment variable on syndesis-operator deployment config.
+
+    $ oc set env dc/syndesis-operator DEV_SUPPORT=true
+    
 
 Other things you can try: - `rm -rf ~/.minishift` - Check the OpenShift
 console and look for logs. - Is it a xip or nip problem?
 <http://downoruprightnow.com/status/nip.io>
+
+
+### Diagnostics
+
+**Examining logs**
+
+When a problem occur, the first thing should be to examine the logs.
+
+    # syndesis-server pod
+    $ oc logs -f `oc get -o name pod -l syndesis.io/component=syndesis-server`
+    
+    # twilog integration
+    $ oc logs -f `oc get -o name pod -l syndesis.io/type=integration -l syndesis.io/integration=i-twilog`
+    
+    # postgresql log
+    $ oc logs -f `oc get -o name pod -l syndesis.io/component=syndesis-db` -c postgresql
+
+You can examine the pod initialization events and many other details about the pod.
+
+    $ oc describe `oc get -o name pod -l syndesis.io/component=syndesis-server`
+
+**Enable the java debug agent on a pod**
+    
+    # to enable debug on an integration of name twilog
+    $ oc set env `oc get dc -o name|grep twilog` JAVA_DEBUG=true
+    
+    # to enable debug on syndesis-server
+    $ oc set env dc/syndesis-server JAVA_DEBUG=true
+
+**Connect to postgresql database** You can use `psql` tool to connect to the postgresql database.
+
+    $ oc port-forward `oc get -o name pod -l syndesis.io/component=syndesis-db` 5432:5432
+    $ psql -U syndesis -h localhost syndesis
 
 
 ### Still Having Trouble?

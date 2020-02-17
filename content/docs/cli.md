@@ -30,11 +30,18 @@ Usage: syndesis <command> [... options ...]
 
 with the following commands
 
-   build            Build Syndesis
-   dev              Developer tools
+   build            Build Syndesis builds
+   completion       Shell completion
+   crc              Initialize and manage a developer environment using OCP4 CodeReady Containers
+   dev              Syndesis developer tools
    doc              Generate Syndesis Developer Handbook (SDH)
+   install          Install Syndesis to a connected OpenShift cluster
+   integration-test  Run integration tests
+   kamel            Tools for developing integrations using Camel K
    minishift        Initialize and manage a Minishift developer environment
+   release          Perform a release
    system-test      Run system tests
+   ui               Syndesis UI tasks
 
 "build" is the default command if no command is specified.
 ```
@@ -61,6 +68,8 @@ origin    git@github.com:rhuss/syndesis.git (push)
 upstream  https://github.com/syndesisio/syndesis (fetch)
 upstream  https://github.com/syndesisio/syndesis (push)
 ```
+
+Use the following command to add the upstream syndesis repository: `git remote add upstream git@github.com:syndesisio/syndesis.git`
 
 With this in place, a `--rebase` performs the following steps:
 
@@ -141,39 +150,38 @@ functionality for common developer workflows.
     Usage: syndesis build [... options ...]
     
     Options for build:
-        -b  --backend                  Build only backend modules (core, extension, integration,
-                                       connectors, server, meta)
-            --all-images               Build all modules with images: ui, server, meta, s2i, operator
-            --app-images               Build only application modules with Docker images
-                                       (ui, server, meta, s2i)
+        -b  --backend                  Build only backend modules (core, extension, integration, connectors, server, meta)
+            --all-images               Build all modules with images: ui-react, server, meta, s2i, operator, upgrade
+            --app-images               Build only application modules with Docker images (ui-react, server, meta, s2i)
                                        and create images
-            --infra-images             Build only infrastructure modules with Docker images
-                                       (operator) and create images
+            --infra-images             Build only infrastructure modules with Docker images (operator, upgrade) and create images
         -m  --module <m1>,<m2>, ..     Build modules
-                                       Modules: ui, server, connector, s2i, meta, integration,
-                                       extension, common, operator
+                                       Modules: ui-react, server, connector, s2i, meta, integration, extension, common, operator, upgrade
+                                       Submodules: defined with [groupId]:artifactId (e.g. :connector-sql)
         -d  --dependencies             Build also all project the specified module depends on
-            --skip-tests               Skip unit and system test execution
+            --skip-tests               Skip unit, integration and system test execution
             --skip-checks              Disable all checks
         -f  --flash                    Skip checks and tests execution (fastest mode)
-        -i  --image                    Build Docker images, too
-                                       (for those modules creating images)
-            --docker                   Use a plain Docker build for creating images.
-                                       Used by CI for pushing to Docker Hub
-        -p  --project <project>        Specifies the project/namespace to create images in
-        -e  --ensure                   If building the operator, run 'dep ensure' before building.
-                                       Otherwise ignored.
-        -l  --local                    If building the operator, use a locally installed go
-                                       Otherwise run the Go build from a container
-                                       (either local or Minishift's Docker daemon)
+        -i  --image                    Build Docker via s2i images, too (for those modules creating images)
+            --docker                   Use a plain Docker build for creating images. Used by CI for pushing to Docker Hub
+        -p  --project <project>        Specifies the project / namespace to create images
+        -g  --goals <g1>,<g2>, ..      Use custom Maven goals to execute for the build. Default goal is `install`
+        -s  --settings <path>          Path to Maven settings.xml
+        -l  --local                    If building the operators, use a locally installed go
+                                       Otherwise run the Go build from a container (either local or Minishift's Docker  daemon)
             --clean-cache              Used for the operator build to remove the local dependency cache.
         -c  --clean                    Run clean builds (mvn clean)
+            --incremental [ref]        Run an incremental build, i.e. skip building of a module if committed or uncomitted changes
+                                       against [ref] (default master) are not part of that module
             --resume <m1>              Resume build from maven module (mvn -rf m1)
             --batch-mode               Run mvn in batch mode
-            --camel-snapshot <version> Run a build with a specific Camel snapshot.
-                                       If no argument is given the
-                                       environment variable CAMEL_SNAPSHOT_VERSION is used or an error thrown.
-
+            --camel-snapshot <version> Run a build with a specific Camel snapshot. The
+                                       environment variable CAMEL_SNAPSHOT_VERSION is used and you need to set it or an error will be thrown.
+            --maven-mirror <url>       Use the maven mirror for the build, e.g. a maven repo proxy in OpenShift. If no
+                                       argument is given, the MAVEN_MIRROR_URL environment variable is used or
+                                       'http://nexus.myproject:8081/nexus/content/groups/public', if none is set.
+                                       See also https://docs.openshift.com/container-platform/3.5/dev_guide/app_tutorials/maven_tutorial.html
+            --man                      Open HTML documentation in the Syndesis Developer Handbook
 ### Modules
 
 A plain `build` command without any options performs a plain `mvn
@@ -245,6 +253,21 @@ images)
 | `--skip-tests`  | Skip all unit and local integration tests                                                         |      |
 | `--skip-checks` | Skip sanity checks like for correct license headers and                                           |      |
 | `--flash`       | Fastest mode with skipping all checks and tests and with even some other aggressive optimizations |      |
+
+### Maven mirror
+
+At build time the dependencies are downloaded from maven central repository, 
+it is recommended to install a local maven repository manager on your openshift 
+to also serve as repository for the `s2i` builds running in openshift. If you 
+want to have the local maven repository automatically created, you can specify
+the `--maven-mirror` parameter when installing minishift.
+
+To build syndesis modules with the local maven mirror, use the `--maven-mirror`
+parameter, example:
+
+``` shell
+syndesis build -m server -d -i -f --maven-mirror
+```
 
 ### Infrastructure Operator
 
@@ -389,31 +412,41 @@ path. You can download it directly from
 
 ### Usage
 
-    --install                 Install templates to a running Minishift.
-    -p  --project             Install into this project.
-                              Delete this project if it already exists.
-                              By default, install into the current project (without deleting)
-    -c  --context             Install into this context. Default is 'minishift'
-    --reset                   Reset and initialize the minishift installation by
-                              'minishift delete && minishift start'.
-    --full-reset              Full reset and initialie by
-                              'minishift stop && rm -rf ~/.minishift/* && minishift start'
-    --memory <mem>            How much memory to use when doing a reset. Default: 4912
-    --cpus <nr cpus>          How many CPUs to use when doing a reset. Default: 2
-    --disk-size <size>        How many disk space to use when doing a reset. Default: 20GB
-    --vm-driver <driver>      Which virtual machine driver to use (depends on OS)
-    --show-logs               Show minishift logs during startup
-    --openshift-version <ver> Set OpenShift version to use when reseting (default: v3.9.0)
-    --tag <tag>               Syndesis version/tag to install. If not given, then the latest
-                              version from master is installed
-    --local                   Use the local resource files instead of fetching them from GitHub
-    -o  --open                Open Syndesis in the browser
-    -y  --yes                 Assume 'yes' automatically when asking for deleting
-                              a given project.
-    --memory-server <mem>     Memory limit to set for syndesis-server. Specify as "800Mi"
-    --memory-meta <mem>       Memory limit to set for syndesis-meta. Specify as "512Mi"
-    --test-support            Allow test support endpoint for syndesis-server
-    --man                     Open HTML documentation in the Syndesis Developer Handbook
+        --install                 Install to a running Minishift.
+        --app-options             Operator parameters when installing the app.
+                                  Use quotes and start with a space before appending the options (example: " --addons jaeger").
+    -p  --project                 Install into this project. Delete this project if it already exists.
+                                  By default, install into the current project (without deleting)
+        --profile <profile>       Use the given minishift profile
+        --reset                   Reset and initialize the minishift installation by
+                                  'minishift delete && minishift start'.
+        --full-reset              Full reset and initialie by
+                                  'minishift stop && rm -rf ~/.minishift/* && minishift start'
+        --operator-only           Only install the operator but no custom resource
+        --memory <mem>            How much memory to use when doing a reset. Default: 4912
+        --cpus <nr cpus>          How many CPUs to use when doing a reset. Default: 2
+        --disk-size <size>        How many disk space to use when doing a reset. Default: 20GB
+        --vm-driver <driver>      Which virtual machine driver to use (depends on OS)
+        --show-logs               Show minishift logs during startup
+        --openshift-version <ver> Set OpenShift version to use when reseting (default: v3.11.0)
+        --tag <tag>               Syndesis version/tag to install. If not given, then the latest
+                                  version from master is installed
+        --local                   Use the local resource files instead of fetching them from GitHub
+    -f  --force-binary-download   By default if the binary cli is present in the expected path, it will
+                                  be used. With this option enabled, the binary will be removed and downloaded,
+                                  ensuring it is the latest version
+    -o  --open                    Open Syndesis in the browser
+    -y  --yes                     Assume 'yes' automatically when asking for deleting
+                                  a given project.
+        --camel-k <version>       Install the Camel-K operator with version <version>
+                                  (version is optional)
+        --camel-k-options "opts"  Options used when installing the camel-k operator.
+                                  Use quotes and start with a space before appending the options.
+        --maven-mirror            Install Maven Mirror to be used with --maven-mirror when building.
+        --deploy-latest           Deploy latest tags from dockerhub.
+        --nodev                   Do not set the devSupport flag in CR (deploys all images)
+        --custom-resource         Provide a custom resource to be installed by the operator
+        --man                     Open HTML documentation in the Syndesis Developer Handbook
 
 ### Installing Syndesis
 
@@ -422,11 +455,39 @@ triggers the creation of all relevant OpenShift resources objects in the
 currently connected OpenShift project.
 
 If you want to use a different project, then use `--project` (short:
-`-p`) to specify this project.
+`-p`) to specify this project. We strongly recommend to use the 
+project name `syndesis`, as the syndesis-operator uses it as default
+namespace.
 
 <div class="alert alert-info admonition" role="alert">
   <i class="fa warning"></i> Any existing project will be deleted first when specified with `--project`. This option is also an easy and quick way to recreate a Syndesis installation.
 </div>
+
+
+### Setting a maven repository manager
+
+To reduce build time, it is recommended to setup a local maven repository
+manager, you can use the `--maven-mirror` parameter when installing 
+minishift, this it will instal nexus on a nexus project.
+
+### Use the latest syndesis-operator
+
+The `syndesis-operator` is an important part of syndesis, to update image
+streams, manage syndesis components in openshift and much more. The 
+`syndesis-operator` is placed in `$HOME/.syndesis/bin/syndesis-operator` and 
+then later installed in openshift. Use the `-f` parameter to download the 
+latest `syndesis-operator` release.
+
+### Installing an addon
+
+There are some additional software packaged as `addon` such as: jaeger, 
+data virtualization, camel-k, knative, etc. You can install syndesis
+with these addons by using the `--app-options` parameter, for example, to 
+install syndesis with camel-k:
+
+``` bash
+syndesis minishift --install --project syndesis --app-options " --addons camelk"
+```
 
 ### Resetting Minishift
 
@@ -468,11 +529,13 @@ This short example performs the following actions:
     project `syndesis`
 
   - Open Syndesis UI in the default browser
+  
+  - Install a nexus maven repository manager in project `nexus`
 
 <!-- end list -->
 
     # Complete fresh installation in project "syndesis"
-    syndesis minishift --full-reset --install --project syndesis
+    syndesis minishift --full-reset --install --project syndesis --maven-mirror
     
     # Open Syndesis in default browser
     syndesis minishift -o
@@ -519,14 +582,41 @@ Dev commands are useful helpers for developing Syndesis
     Usage: syndesis dev [... options ...]
     
     Options for dev:
-        --debug <name>            Setup a port forwarding to <name> pod (default: server)
+    --debug <name>            Setup a port forwarding to <name> pod (default: server)
+    --cookie                  Loads a local valid cookie to access Syndesis APIs when using Minishift
+    --cleanup                 Removes 'Completed' pods
+    --cleanup --nuke          Remove all Syndesis created OpenShift objects and remove all data from the database
+                              (both switches need to be specified)
+    --refresh                 Used in conjuction with --cookie, forces a refresh of the cookie.
+                              Ex: curl -k --cookie $(syndesis dev --cookie --refresh)  "https://$(oc get route syndesis  --template={{.spec.host}})/api/v1/connections"
+    --update-manifest <name>  Updates the json manifest for the given connector
+    --install-maven-mirror    Install Maven Nexus app as mirror to current cluster.
+    --version                 Show running version of cluster
+    --man                     Open HTML documentation in the Syndesis Developer Handbook
 
-This command enable port-forwarding of port 5005 from a specific pod (by
+### Debug a syndesis component
+
+The `--debug` parameter enable port-forwarding of port 5005 from a specific pod (by
 default: "server") to port 5005 on the localhost. You then can point
 your Java IDE to port 5005 on localhost for connecting for remote
 debugging. As argument to `--debug` "server", "meta" and "atlasmap" can
 be used, which are our Java based services.
+For this to work the running pod must have been started with java debug agent enabled.
+You can enable it by setting the environment variabel JAVA_DEBUG=true to the 
+deployment config, for example, the following command will enable java debug agent 
+in the syndesis-server deployment config and the pod will be restarted.
 
+``` bash
+oc set env dc/syndesis-server JAVA_DEBUG=true
+```
+
+### Prune old stuff
+
+As the syndesis components are updated or integrations installed, after days 
+or weeks many old syndesis components such as images, deployment configs, 
+builds are stored and consumes space, it may slow the system down. So, you
+can free space by pruning old stuff from openshift by using the `--cleanup`
+parameter.
 
 ## syndesis doc
 

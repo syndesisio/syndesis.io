@@ -682,7 +682,7 @@ After you implement and successfully test a new connector, integrate the new con
 
     This is preferred because the same command can deploy Syndesis. Alternatively, you can build Syndesis by executing Maven at the base application path, which is `app/pom.xml`.
 
-    The build takes some time as it compiles and tests all modules. There are several [shortcuts and flags that you can use to accelerate this process](https://syndesis.io/docs/cli/).
+    The build takes some time as it compiles and tests all modules. There are several [shortcuts and flags that you can use to accelerate this process](https://syndesis.io/docs/cli/#syndesis-build).
 
 3. Start minishift:
 
@@ -714,7 +714,7 @@ After you implement and successfully test a new connector, integrate the new con
     2. Update the connector as needed.
 
     3. Refresh your deployment to add your changes by updating two Syndesis modules. To do this, invoke the following commands: 
-
+    
     ```shell
     $ syndesis build -f -i -m server
     $ syndesis build -f -i -m s2i
@@ -735,6 +735,23 @@ After you implement and successfully test a new connector, integrate the new con
         The `-i` or `--image` flag instructs your local installation to refresh the deployment in your local environment. This applies your changes.
 
         For a change to metadata information, such as a datashape change, or a change related to the connector definition JSON file, rebuilding backend modules is not required.
+        
+    When you change any connector or integration (app/integration package) code, the resulting jar files should be placed in the `app/s2i/target/image/repository/`,
+    this repository is used to build the integrations at runtime. After building the integration or connector project, the s2i project doesn't detect
+    these changes, so for this moment, you should remove the package from `app/s2i/target/image/repository/` before `s2i` build. As an example, if you changed 
+    the `TwitterCustomizer` class, you can do theses steps to ensure the changes are seem when the integration is running:
+    
+    ```shell
+    # this is the same as mvn -Pflash install in the app/connector/twitter directory
+    $ syndesis build -f -m io.syndesis.connector:connector-twitter
+    
+    # remove the twitter connector artifact from the s2i image repository
+    $ rm -rf app/s2i/target/image/repository/io/syndesis/connector/connector-twitter/
+    
+    # build the s2i will update the maven repository in app/s2i/target/image/repository
+    $ syndesis build -f -i -m s2i
+    ```
+
 
 7. After careful review and successful local testing, [create a pull request](https://syndesis.io/community/contributing/#submitting-a-pull-request).
 
