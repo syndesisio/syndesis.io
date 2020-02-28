@@ -6,7 +6,7 @@
     <description>Recent content on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 29 Jan 2020 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2020 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -98,6 +98,16 @@ Disclaimer: the content illustrated here is related to version 1.8, it can chang
       <guid>https://syndesis.io/docs/datashapes/</guid>
       <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
 A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+    </item>
+    
+    <item>
+      <title>MongoDB connector General Available</title>
+      <link>https://syndesis.io/blog/20200228_mongodb/</link>
+      <pubDate>Fri, 28 Feb 2020 12:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/20200228_mongodb/</guid>
+      <description>MongoDB connector was first introduced in Syndesis 1.8 as tech preview feature. We&amp;rsquo;ve worked hard during the development of version 1.9 and have it now as a general available feature!
+Document-oriented databases have become extremely popular in the last years becoming one of the most important NO SQL choice out there. Without any doubt, MongoDB is the most prominent solution in this space. The easiest way to learn about this connector is to play around with the MongoDB Quickstart.</description>
     </item>
     
     <item>

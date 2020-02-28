@@ -6,10 +6,20 @@
     <description>Recent content in Blog on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 29 Jan 2020 09:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 28 Feb 2020 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MongoDB connector General Available</title>
+      <link>https://syndesis.io/blog/20200228_mongodb/</link>
+      <pubDate>Fri, 28 Feb 2020 12:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/20200228_mongodb/</guid>
+      <description>MongoDB connector was first introduced in Syndesis 1.8 as tech preview feature. We&amp;rsquo;ve worked hard during the development of version 1.9 and have it now as a general available feature!
+Document-oriented databases have become extremely popular in the last years becoming one of the most important NO SQL choice out there. Without any doubt, MongoDB is the most prominent solution in this space. The easiest way to learn about this connector is to play around with the MongoDB Quickstart.</description>
+    </item>
     
     <item>
       <title>Community meeting the 29th of January!</title>
