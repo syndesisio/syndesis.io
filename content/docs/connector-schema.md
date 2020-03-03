@@ -5,7 +5,7 @@ sidebar: "sidenav"
 menu:
   sidenav:
     name: Connector Schema explained
-    weight: 6
+    weight: 5
     parent: Developer Docs
 toc: true
 weight: 20

@@ -5,7 +5,7 @@ sidebar: "sidenav"
 menu:
   sidenav:
     name: Data Shapes
-    weight: 5
+    weight: 6
     parent: Developer Docs
 toc: true
 weight: 20
