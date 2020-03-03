@@ -6,10 +6,20 @@
     <description>Recent content in Blog on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 28 Feb 2020 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Connection autodiscovery</title>
+      <link>https://syndesis.io/blog/2020/03/02/autodiscovery/</link>
+      <pubDate>Mon, 02 Mar 2020 12:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/2020/03/02/autodiscovery/</guid>
+      <description>One of the most important reason why we are developing an IPAAS is to make citizen integrators life simpler. This persona must be able to quickly create integrations by composing heterogeneous sources of data. One of the typical gap that she finds is to be aware of which are those sources available. The expected scenario is to know before-hand the host names of databases, queues, REST endpoints&amp;hellip;
+Datasource dashboard What if this information is automatically discovered by the platform?</description>
+    </item>
     
     <item>
       <title>MongoDB connector General Available</title>

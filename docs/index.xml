@@ -53,6 +53,16 @@ Disclaimer: the content illustrated here is related to version 1.8, it can chang
     </item>
     
     <item>
+      <title>Syndesis Connection Autodiscovery</title>
+      <link>https://syndesis.io/docs/autodiscovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/autodiscovery/</guid>
+      <description>Any integration you need to create typically starts and ends to a data source. Thanks to Syndesis you will be able to discover automatically any of those data sources and make easier the configuration of connection for the citizen integrator. Any connector can provide the &amp;ldquo;Connection Autodiscovery&amp;rdquo; feature by making a little extra development and using any kind of service registry you have at your disposal.
+JSON Descriptor The first thing we need to do is to configure the json connector configuration.</description>
+    </item>
+    
+    <item>
       <title>Syndesis Connector Schema explained</title>
       <link>https://syndesis.io/docs/connector-schema/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

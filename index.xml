@@ -6,7 +6,7 @@
     <description>Recent content on Syndesis</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 28 Feb 2020 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -82,6 +82,16 @@ Disclaimer: the content illustrated here is related to version 1.8, it can chang
     </item>
     
     <item>
+      <title>Syndesis Connection Autodiscovery</title>
+      <link>https://syndesis.io/docs/autodiscovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/autodiscovery/</guid>
+      <description>Any integration you need to create typically starts and ends to a data source. Thanks to Syndesis you will be able to discover automatically any of those data sources and make easier the configuration of connection for the citizen integrator. Any connector can provide the &amp;ldquo;Connection Autodiscovery&amp;rdquo; feature by making a little extra development and using any kind of service registry you have at your disposal.
+JSON Descriptor The first thing we need to do is to configure the json connector configuration.</description>
+    </item>
+    
+    <item>
       <title>Syndesis Connector Schema explained</title>
       <link>https://syndesis.io/docs/connector-schema/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -98,6 +108,16 @@ Disclaimer: the content illustrated here is related to version 1.8, it can chang
       <guid>https://syndesis.io/docs/datashapes/</guid>
       <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
 A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+    </item>
+    
+    <item>
+      <title>Connection autodiscovery</title>
+      <link>https://syndesis.io/blog/2020/03/02/autodiscovery/</link>
+      <pubDate>Mon, 02 Mar 2020 12:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/2020/03/02/autodiscovery/</guid>
+      <description>One of the most important reason why we are developing an IPAAS is to make citizen integrators life simpler. This persona must be able to quickly create integrations by composing heterogeneous sources of data. One of the typical gap that she finds is to be aware of which are those sources available. The expected scenario is to know before-hand the host names of databases, queues, REST endpoints&amp;hellip;
+Datasource dashboard What if this information is automatically discovered by the platform?</description>
     </item>
     
     <item>
