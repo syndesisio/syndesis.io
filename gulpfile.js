@@ -114,5 +114,45 @@ gulp.task('watch', gulp.parallel(function() {
 
 gulp.task('optimize', gulp.series('optimize-html', 'optimize-css', 'optimize-js'));
 
+gulp.task('manual:export', (cb) => {
+  const svn  = require('node-svn-ultimate');
+  return svn.commands.export('https://github.com/syndesisio/syndesis/trunk/doc', 'build/documentation', {
+    quiet: true,
+    force: true
+  }, cb)
+});
+
+gulp.task('manual:render', (cb) => {
+  const Asciidoctor = require('asciidoctor.js');
+  const asciidoctor = Asciidoctor();
+  const logger = asciidoctor.MemoryLogger.$new();
+
+  const sections = ['tutorials', 'integrating-applications', 'connecting', 'developing_extensions', 'managing_environments'];
+
+  for (const section of sections) {
+    asciidoctor.LoggerManager.setLogger(logger);
+    asciidoctor.convertFile(`build/documentation/${section}/master.adoc`, {
+      'doctype': 'book',
+      'safe': 'safe',
+      'mkdirs': true,
+      'to_file': `public/manual/${section}/index.html`
+    });
+
+    const messages = logger.getMessages();
+    const hasErrors = messages.find(m => m.severity === 'ERROR');
+
+    if (hasErrors) {
+      const text = messages
+        .map(m => `${m.severity}: ${m.message['text']}`)
+        .join('\n');
+      cb(new Error(text));
+    }
+  }
+
+  cb();
+});
+
+gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
+gulp.task('manual', gulp.series('manual:export', 'manual:render'));
 gulp.task('build', gulp.series('fonts', 'css', 'js', 'hugo', 'optimize'));
 gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'watch', 'hugo:serve')));
