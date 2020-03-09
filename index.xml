@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Syndesis</title>
+    <title>Syndesis - Open source integration platform</title>
     <link>https://syndesis.io/</link>
-    <description>Recent content on Syndesis</description>
+    <description>Recent content on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Mon, 02 Mar 2020 12:00:00 +0100</lastBuildDate>
@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Syndesis CLI</title>
+      <title>CLI - Command Line Interface</title>
       <link>https://syndesis.io/docs/cli/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -31,7 +31,7 @@ To have this script handy all the time it is recommended to either put this bin/
     </item>
     
     <item>
-      <title>Contributing to Syndesis</title>
+      <title>How to contribute to Syndesis</title>
       <link>https://syndesis.io/community/contributing/</link>
       <pubDate>Fri, 19 May 2017 14:40:12 +0100</pubDate>
       
@@ -50,7 +50,46 @@ Improving documentation Documentation is in various places in our repositories. 
     </item>
     
     <item>
-      <title>Developing Syndesis connectors</title>
+      <title>Backend architecture</title>
+      <link>https://syndesis.io/docs/backend_architecture/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/backend_architecture/</guid>
+      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
+Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
+    </item>
+    
+    <item>
+      <title>Connection Autodiscovery</title>
+      <link>https://syndesis.io/docs/autodiscovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/autodiscovery/</guid>
+      <description>Any integration you need to create typically starts and ends to a data source. Thanks to Syndesis you will be able to discover automatically any of those data sources and make easier the configuration of connection for the citizen integrator. Any connector can provide the &amp;ldquo;Connection Autodiscovery&amp;rdquo; feature by making a little extra development and using any kind of service registry you have at your disposal.
+JSON Descriptor The first thing we need to do is to configure the json connector configuration.</description>
+    </item>
+    
+    <item>
+      <title>Connector Schema</title>
+      <link>https://syndesis.io/docs/connector-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connector-schema/</guid>
+      <description>As we&amp;rsquo;ve already seen in the Connector Development guidelines, the connection to or from a generic data source is proxied by the presence of the Connector Proxy component. In this page you will find how to configure it in all its details. The descriptor does a fundamental job in linking together the GUI (who will use the configuration to dynamically define the connector behavior), the server, the meta (which can be required to serve certain meta information dynamically) and finally the integration platform runtime where the application will run (being Apache Camel the one we use as reference).</description>
+    </item>
+    
+    <item>
+      <title>Data Shapes</title>
+      <link>https://syndesis.io/docs/datashapes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/datashapes/</guid>
+      <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
+A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+    </item>
+    
+    <item>
+      <title>How to develop a connector</title>
       <link>https://syndesis.io/docs/connectors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -61,53 +100,14 @@ Before you start to develop a connector, you should:</description>
     </item>
     
     <item>
-      <title>Development</title>
+      <title>Project development</title>
       <link>https://syndesis.io/docs/development/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://syndesis.io/docs/development/</guid>
       <description>Maven Groups Syndesis uses Maven as build tool. Maven groups are used to separate the various Syndesis parts.
 In details Syndesis consists of the following groups:
-   Group Maven Docker Image Description     common io.syndesis.common  Syndesis shared common module   connector io.syndesis.connector  Supported camel connectors   rest io.syndesis.rest syndesis/syndesis-server REST backend for managing integrations. This is the main sever.   integration io.</description>
-    </item>
-    
-    <item>
-      <title>Syndesis backend architecture</title>
-      <link>https://syndesis.io/docs/backend_architecture/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/backend_architecture/</guid>
-      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
-Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
-    </item>
-    
-    <item>
-      <title>Syndesis Connection Autodiscovery</title>
-      <link>https://syndesis.io/docs/autodiscovery/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/autodiscovery/</guid>
-      <description>Any integration you need to create typically starts and ends to a data source. Thanks to Syndesis you will be able to discover automatically any of those data sources and make easier the configuration of connection for the citizen integrator. Any connector can provide the &amp;ldquo;Connection Autodiscovery&amp;rdquo; feature by making a little extra development and using any kind of service registry you have at your disposal.
-JSON Descriptor The first thing we need to do is to configure the json connector configuration.</description>
-    </item>
-    
-    <item>
-      <title>Syndesis Connector Schema explained</title>
-      <link>https://syndesis.io/docs/connector-schema/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/connector-schema/</guid>
-      <description>As we&amp;rsquo;ve already seen in the Connector Development guidelines, the connection to or from a generic data source is proxied by the presence of the Connector Proxy component. In this page you will find how to configure it in all its details. The descriptor does a fundamental job in linking together the GUI (who will use the configuration to dynamically define the connector behavior), the server, the meta (which can be required to serve certain meta information dynamically) and finally the integration platform runtime where the application will run (being Apache Camel the one we use as reference).</description>
-    </item>
-    
-    <item>
-      <title>Syndesis Data Shapes</title>
-      <link>https://syndesis.io/docs/datashapes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/datashapes/</guid>
-      <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
-A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+   Group Maven Docker Image Description     common io.syndesis.common  Syndesis shared common module   connector io.syndesis.connector  Supported camel connectors   server (fka rest) io.syndesis.server syndesis/syndesis-server Backend for storing integrations and REST endpoint to interact with ui   integration io.</description>
     </item>
     
     <item>
@@ -122,10 +122,10 @@ Datasource dashboard What if this information is automatically discovered by the
     
     <item>
       <title>MongoDB connector General Available</title>
-      <link>https://syndesis.io/blog/20200228_mongodb/</link>
+      <link>https://syndesis.io/blog/2020/02/28/mongodb/</link>
       <pubDate>Fri, 28 Feb 2020 12:00:00 +0100</pubDate>
       
-      <guid>https://syndesis.io/blog/20200228_mongodb/</guid>
+      <guid>https://syndesis.io/blog/2020/02/28/mongodb/</guid>
       <description>MongoDB connector was first introduced in Syndesis 1.8 as tech preview feature. We&amp;rsquo;ve worked hard during the development of version 1.9 and have it now as a general available feature!
 Document-oriented databases have become extremely popular in the last years becoming one of the most important NO SQL choice out there. Without any doubt, MongoDB is the most prominent solution in this space. The easiest way to learn about this connector is to play around with the MongoDB Quickstart.</description>
     </item>
@@ -217,15 +217,6 @@ JIRA Issues for Keynote</description>
     </item>
     
     <item>
-      <title>About</title>
-      <link>https://syndesis.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/about/</guid>
-      <description>Syndesis is a flexible, customizable platform that provides core integration capabilities as a service. It can be run on the cloud or on premises with OpenShift or Kubernetes, is fully extensible and, best of all, is open source.</description>
-    </item>
-    
-    <item>
       <title>Community</title>
       <link>https://syndesis.io/community/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -255,6 +246,16 @@ Here are some important links:
       <description>Syndesis looks awesome. Who is it for? Anyone that wants to integrate services. Syndesis includes a swish UI that enables the user to design integration flows and manage them from their browser.
 No coding required&amp;hellip; Unless you really want to and then Syndesis allows you to dive into the code, develop your own connectors (if one doesn&amp;rsquo;t already exist), or hack on the integration definition directly.
 How to read logs?</description>
+    </item>
+    
+    <item>
+      <title>What is Syndesis</title>
+      <link>https://syndesis.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/about/</guid>
+      <description>Syndesis is a flexible, customizable platform that provides core integration capabilities as a service. It can be run on the cloud or on premises with OpenShift or Kubernetes, is fully extensible and, best of all, is open source.
+Open source IPAAS Gartner defines an Integration Platform As A Service as is a suite of cloud services enabling development, execution and governance of integration flows connecting any combination of on premises and cloud-based processes, services, applications and data within individual or across multiple organizations.</description>
     </item>
     
   </channel>

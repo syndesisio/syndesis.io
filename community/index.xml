@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Communities on Syndesis</title>
+    <title>Communities on Syndesis - Open source integration platform</title>
     <link>https://syndesis.io/community/</link>
-    <description>Recent content in Communities on Syndesis</description>
+    <description>Recent content in Communities on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Fri, 19 May 2017 15:02:30 +0100</lastBuildDate>
@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Contributing to Syndesis</title>
+      <title>How to contribute to Syndesis</title>
       <link>https://syndesis.io/community/contributing/</link>
       <pubDate>Fri, 19 May 2017 14:40:12 +0100</pubDate>
       

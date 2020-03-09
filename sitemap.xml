@@ -22,14 +22,6 @@
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/connectors/</loc>
-  </url>
-  
-  <url>
-    <loc>https://syndesis.io/docs/development/</loc>
-  </url>
-  
-  <url>
     <loc>https://syndesis.io/docs/backend_architecture/</loc>
   </url>
   
@@ -46,12 +38,20 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/docs/connectors/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/development/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/blog/2020/03/02/autodiscovery/</loc>
     <lastmod>2020-03-02T12:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syndesis.io/blog/20200228_mongodb/</loc>
+    <loc>https://syndesis.io/blog/2020/02/28/mongodb/</loc>
     <lastmod>2020-02-28T12:00:00+01:00</lastmod>
   </url>
   
@@ -111,10 +111,6 @@
   </url>
   
   <url>
-    <loc>https://syndesis.io/about/</loc>
-  </url>
-  
-  <url>
     <loc>https://syndesis.io/categories/</loc>
   </url>
   
@@ -136,6 +132,10 @@
   
   <url>
     <loc>https://syndesis.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/about/</loc>
   </url>
   
 </urlset>

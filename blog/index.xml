@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog on Syndesis</title>
+    <title>Blog on Syndesis - Open source integration platform</title>
     <link>https://syndesis.io/blog/</link>
-    <description>Recent content in Blog on Syndesis</description>
+    <description>Recent content in Blog on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     <lastBuildDate>Mon, 02 Mar 2020 12:00:00 +0100</lastBuildDate>
@@ -23,10 +23,10 @@ Datasource dashboard What if this information is automatically discovered by the
     
     <item>
       <title>MongoDB connector General Available</title>
-      <link>https://syndesis.io/blog/20200228_mongodb/</link>
+      <link>https://syndesis.io/blog/2020/02/28/mongodb/</link>
       <pubDate>Fri, 28 Feb 2020 12:00:00 +0100</pubDate>
       
-      <guid>https://syndesis.io/blog/20200228_mongodb/</guid>
+      <guid>https://syndesis.io/blog/2020/02/28/mongodb/</guid>
       <description>MongoDB connector was first introduced in Syndesis 1.8 as tech preview feature. We&amp;rsquo;ve worked hard during the development of version 1.9 and have it now as a general available feature!
 Document-oriented databases have become extremely popular in the last years becoming one of the most important NO SQL choice out there. Without any doubt, MongoDB is the most prominent solution in this space. The easiest way to learn about this connector is to play around with the MongoDB Quickstart.</description>
     </item>
