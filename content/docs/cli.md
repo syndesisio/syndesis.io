@@ -1,10 +1,10 @@
 ---
 draft: false
-title: "Syndesis CLI"
+title: "CLI - Command Line Interface"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: CLI
+    name: CLI - Command Line Interface
     weight: 3
     parent: Developer Docs
 toc: true

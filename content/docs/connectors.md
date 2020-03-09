@@ -1,10 +1,10 @@
 ---
 draft: false
-title: "Developing Syndesis connectors"
+title: "How to develop a connector"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: Developing Syndesis connectors
+    name: Develop a connector
     weight: 4
     parent: Developer Docs
 toc: true

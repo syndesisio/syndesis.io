@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "Syndesis Connection Autodiscovery"
+title: "Connection Autodiscovery"
 sidebar: "sidenav"
 menu:
   sidenav:

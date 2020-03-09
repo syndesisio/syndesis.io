@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "Syndesis backend architecture"
+title: "Backend architecture"
 sidebar: "sidenav"
 menu:
   sidenav:

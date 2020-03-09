@@ -1,10 +1,10 @@
 ---
 draft: false
-title: "Syndesis Connector Schema explained"
+title: "Connector Schema"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: Connector Schema explained
+    name: Connector Schema
     weight: 5
     parent: Developer Docs
 toc: true
