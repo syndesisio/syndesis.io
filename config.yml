@@ -1,6 +1,6 @@
 baseURL: "https://syndesis.io/"
 languageCode: "en-gb"
-title: "Syndesis"
+title: "Syndesis - Open source integration platform"
 theme: "syndesis"
 canonifyURLs: true
 googleAnalytics: "UA-98663114-1"

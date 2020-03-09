@@ -1,10 +1,10 @@
 ---
 draft: false
-title: "Development"
+title: "Project development"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: Development
+    name: Project development
     weight: 1
     parent: Developer Docs
 toc: true
@@ -22,10 +22,10 @@ In details Syndesis consists of the following groups:
 | --------------- | ------------------------- | -------------------------- | --------------------------------------------------------------- |
 | **common**      | `io.syndesis.common`      |                            | Syndesis shared common module                                   |
 | **connector**   | `io.syndesis.connector`   |                            | Supported camel connectors                                      |
-| **rest**        | `io.syndesis.rest`        | `syndesis/syndesis-server` | REST backend for managing integrations. This is the main sever. |
+| **server** (fka **rest**)     | `io.syndesis.server`      | `syndesis/syndesis-server` | Backend for storing integrations and REST endpoint to interact with `ui` |
 | **integration** | `io.syndesis.integration` |                            | Library used in the the integration runtimes                    |
 | **s2i**         | `io.syndesis.s2i`         | `syndesis/syndesis-s2i`    | S2I base image for building integrations                        |
-| **ui**          | `io.syndesis.ui`          | `syndesis/syndesis-ui`     | User interface SPA, talking to the REST backend                 |
+| **ui**          | `io.syndesis.ui`          | `syndesis/syndesis-ui`     | User interface SPA, talking to the `server REST` backend endpoint                |
 | **meta**        | `io.syndesis.meta`        | `syndesis/syndesis-meta`   | Service for connector meta-data and verification of connections |
 | **extension**   | `io.syndesis.extension`   |                            | Library and API for developing Syndesis extensions              |
 | **test**        | `io.syndesis.test`        |                            | System tests for testing the whole applications                 |

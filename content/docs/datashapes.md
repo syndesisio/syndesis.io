@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "Syndesis Data Shapes"
+title: "Data Shapes"
 sidebar: "sidenav"
 menu:
   sidenav:

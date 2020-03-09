@@ -8,7 +8,7 @@ menu:
     weight: -400
     parent: Community
 sidebar: sidenav
-title: "Contributing to Syndesis"
+title: "How to contribute to Syndesis"
 toc: true
 weight: 20
 ---
