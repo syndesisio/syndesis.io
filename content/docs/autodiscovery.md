@@ -11,11 +11,16 @@ toc: true
 weight: 20
 ---
 
-Any integration you need to create typically starts and ends to a data source. Thanks to Syndesis you will be able to discover automatically any of those data sources and make easier the configuration of connection for the citizen integrator. Any connector can provide the "Connection Autodiscovery" feature by making a little extra development and using any kind of `service registry` you have at your disposal.
+Most steps on any integration have an input data source coming from the previous step and output another data source to the following step. Each type of connector expects different data sources. These data source formats are the ones used on the mapping steps to match the output of one step to the input of the following step. 
 
-### JSON Descriptor
+But sometimes we don't have a pre-defined format for those data sources, but a format that is dependent on the context. For example, if we are querying a database, the data format will depend on the query we are executing and the parameters we use on that query.
 
-The first thing we need to do is to configure the json connector configuration. We just have to add the `dynamic` tag to the connection section:
+On Syndesis we can define automatically those data sources formats. Any connector can provide the `Connection Autodiscovery` feature by implementing an auto discovery of metadata.
+
+## JSON Descriptor
+
+The first thing we need to do is to configure the json connector configuration. We add the `dynamic` tag to the connection section. This tag will let Syndesis know that metadata of this connector have to be loaded on runtime.
+
 
 ```json
 {
@@ -34,7 +39,11 @@ The first thing we need to do is to configure the json connector configuration. 
 }
 ```
 
-The next step is to extend the connector `meta` development. If it does not exist, you can [create a new one by following this tutorial](/docs/datashapes/#development-example). The implementation must override `ComponentMetadataRetrieval` that implements `MetadataRetrieval`. 
+Full documentation about this connector configuration format can be found on the [Connector Schema](/docs/connector-schema) section.
+
+## Metadata Retrieval
+
+Now we need to extend the connector metadata retrieval. If it does not exist, you can [create a new one by following this tutorial](/docs/datashapes/#development-example). The implementation must override `ComponentMetadataRetrieval`, which implements `MetadataRetrieval`. 
 
 ```java
     public interface MetadataRetrieval {
@@ -50,7 +59,7 @@ The next step is to extend the connector `meta` development. If it does not exis
 }
 ```
 
-We must develop the `fetchProperties(...)` in order to read dynamically the information and return it into the `SyndesisMetadataProperties` object. The `UI` will take care to render this information to the user that will be finally able to choose among the results provided.
+We have to implement the `fetchProperties` function in order to generate dynamically this information, which will be return in the form of a `SyndesisMetadataProperties` object. The user interface will take care to render this information to the user as if it was statically defined on the JSON Descriptor.
 
 ```java
     @Override
@@ -68,30 +77,8 @@ It's important to familiarize with the list of properties configured for this co
 
 Let's leverage this feature to offer a stronger and much integrated IPAAS capability.
 
-## Cloud native platform registry
+### Cloud native platform registry
 
-Syndesis is targeted for cloud native platforms and here you typically have the possibility to manage also your data sources. You can therefore think to substitute that `service registry` with any inner implementation offered by the PAAS. As an example, you can use the [Kubernetes Client library](https://github.com/fabric8io/kubernetes-client).
+Syndesis is targeted for cloud native platforms where you can query for resources and configurations. You can therefore think to substitute that `service registry` with any inner implementation offered by your environment. 
 
-The idea is that you can get any information you want by querying the client. You must configure properly permissions in order to be able to trigger the information you need. As an example, the `kafka` connector implementation we did is querying the `k8s client` to dynamically recover all the brokers available in the platform.
-
-```java
-    @Override
-    public SyndesisMetadataProperties fetchProperties(CamelContext context, String componentId,
-                                                      Map<String, Object> properties) {
-        List<PropertyPair> brokers = new ArrayList<>();
-        try (KubernetesClient client = createKubernetesClient()) {
-            client.customResourceDefinitions().list().getItems()
-                .stream().filter(KafkaMetaDataRetrieval::isKafkaCustomResourceDefinition)
-                .forEach(kafka -> processKafkaCustomResourceDefinition(brokers, client, kafka));
-        } catch (Exception t) {
-            LOG.warn("Couldn't auto discover any broker.");
-            LOG.debug("Couldn't auto discover any broker.", t);
-        }
-
-        Map<String, List<PropertyPair>> dynamicProperties = new HashMap<>();
-        dynamicProperties.put("brokers", brokers);
-        return new SyndesisMetadataProperties(dynamicProperties);
-    }
-```
-
-We list all the `CRD`s, filtering only the kafka ones we need. From there we parse the result and get the broker URI that we'll return to the final user.
+As an example, the `kafka` connector uses the [Kubernetes Client library](https://github.com/fabric8io/kubernetes-client) to query Custom Resource Descriptions (CDR) and list all the [Kafka brokers](https://kafka.apache.org/) available in the platform. This information is then used by the user interface to fill an auto-completion field when creating connections. You can [check the source code here](https://github.com/syndesisio/syndesis/blob/master/app/connector/kafka/src/main/java/io/syndesis/connector/kafka/KafkaMetaDataRetrieval.java#L75-L95)
