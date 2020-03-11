@@ -105,10 +105,13 @@ A datashape is a way to describe any inbound/outbound message format and to allo
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://syndesis.io/docs/day_to_day/</guid>
-      <description>This uses an existing Minishift instance.
-NOTE: If you already followed the First-Time Setup section, you do not need to follow this. The Minishift VM will already have been started. Simply skip to the
-Get the Latest Changes $ git checkout master $ git pull upstream master $ git checkout &amp;lt;branch&amp;gt; $ git rebase master Start of the Day Make sure Minishift is running.
-$ minishift status Which should look like:</description>
+      <description>Minishift We are assuming an existing Minishift instance.
+Startup Make sure Minishift is running.
+$ minishift status Which should look like:
+$ minishift status Minishift: Running If it says something like:
+$ minishift status Minishift: Stopped Then start minishift with:
+$ minishift start Environment This step is required regardless of whether it’s a first-time install or not. It logs you in and points OpenShift to use Minishift resources.
+$ oc login -u developer $ eval $(minishift oc-env) $ eval $(minishift docker-env) The eval’s set a number of environment variables, like change the $PATH and $DOCKER_HOST, so each time you do a Syndesis build it’s good to make sure those are invoked.</description>
     </item>
     
     <item>
@@ -142,6 +145,16 @@ Before you start to develop a connector, you should:</description>
       <description>Maven Groups Syndesis uses Maven as build tool. Maven groups are used to separate the various Syndesis parts.
 In details Syndesis consists of the following groups:
    Group Package Docker Image Description     common io.syndesis.common  Syndesis shared common module   connector io.syndesis.connector  Supported connectors   dv io.syndesis.dv  Tool that manages dynamic VDBs for the Teiid OpenShift Deployment.   extension io.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://syndesis.io/docs/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/troubleshooting/</guid>
+      <description>Common Problems When things go wrong, you want to try to identify the area that is causing problems (UI, REST API, etc). If it’s the UI, look for errors in the browser console or the terminal to see if it’s a dependency issue.
+UI Dependency Issues $ rm -rf node_modules $ yarn install Not getting latest API changes This is a known issue. This is the workaround for using the latest REST image from the Docker stream.</description>
     </item>
     
     <item>
