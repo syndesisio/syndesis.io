@@ -12,8 +12,24 @@
         <span class="mr-1 expander"></span>
       </a>
       <ul class="sub collapse{{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}">
-      {{ range .Children }}
-        <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a href="{{.URL}}">{{ .Name }}</a></li>
+      {{ range .Children }}      
+        {{ if .HasChildren }}
+        <li class="sub-menu{{ if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} active{{end}}">
+          <a class="d-flex justify-content-between" href="{{ .URL }}">
+            <span>{{ .Pre }} {{ .Name }}</span>
+            <span class="mr-1 expander"></span>
+          </a>
+          <ul class="sub collapse{{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}">
+          {{ range .Children }}
+            <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a  class="pl-5 d-flex justify-content-between" href="{{.URL}}">
+            <span>{{ .Pre }} {{ .Name }}</span></a></li>
+          {{ end }}
+          </ul>
+        {{else}}
+        <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a  class="d-flex justify-content-between" href="{{.URL}}">
+            <span>{{ .Pre }} {{ .Name }}</span></a></li>
+        {{end}}
+        
       {{ end }}
       </ul>
     </li>

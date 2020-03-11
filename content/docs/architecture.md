@@ -1,12 +1,15 @@
 ---
+bref: ""
+description: ""
 draft: false
-title: "Backend architecture"
-sidebar: "sidenav"
 menu:
   sidenav:
-    name: Backend architecture
-    weight: 2
-    parent: Developer Docs
+    weight: -200
+    name: Architecture
+    identifier: Architecture
+    parent: "Developer Docs"
+sidebar: sidenav
+title: "Architecture"
 toc: true
 weight: 20
 ---

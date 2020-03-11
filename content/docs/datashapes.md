@@ -4,9 +4,9 @@ title: "Data Shapes"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: Data Shapes
+    name: "Data Shapes"
     weight: 6
-    parent: Developer Docs
+    parent: "Develop a connector"
 toc: true
 weight: 20
 ---

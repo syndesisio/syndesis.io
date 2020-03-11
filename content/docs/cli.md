@@ -4,7 +4,7 @@ title: "CLI - Command Line Interface"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: CLI - Command Line Interface
+    name: "CLI - Command Line Interface"
     weight: 3
     parent: Developer Docs
 toc: true

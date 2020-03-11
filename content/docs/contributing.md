@@ -6,7 +6,7 @@ menu:
   sidenav:
     name: Contributing
     weight: -400
-    parent: Community
+    parent: Developer Docs
 sidebar: sidenav
 title: "How to contribute to Syndesis"
 toc: true

@@ -6,7 +6,7 @@ menu:
   sidenav:
     name: Connection Autodiscovery
     weight: 7
-    parent: Developer Docs
+    parent: "Develop a connector"
 toc: true
 weight: 20
 ---

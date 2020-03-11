@@ -4,9 +4,9 @@ title: "How to develop a connector"
 sidebar: "sidenav"
 menu:
   sidenav:
-    name: Develop a connector
+    name: "Develop a connector"
     weight: 4
-    parent: Developer Docs
+    parent: "Developer Docs"
 toc: true
 weight: 20
 ---
