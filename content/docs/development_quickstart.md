@@ -78,7 +78,7 @@ $ git pull https://github.com/syndesisio/syndesis.git # or own fork
 $ cd syndesis
 
 # install minishift
-$ syndesis minishift --full-reset --project syndesis --maven-mirror
+$ syndesis minishift --full-reset --project syndesis --maven-mirror --disk-size 60GB
 ```
 
 You can also include other options when setting up, for example
@@ -131,12 +131,51 @@ Started Application in 28.9 seconds (JVM running for 29.615)
 After that UI can be started by running (in two separate terminal
 sessions):
 
-```
+```shell
 $ (cd app/ui-react && watch:packages)
 $ (cd app/ui-react && BACKEND=http://localhost:8080 yarn watch:app:proxy)
 ```
 
 You can now access a running instance at <https://localhost:3000>.
 
+
+## Use latest image instead of fixed version
+
+Sometimes the operator pod does override the version we have installed so we can't really test our own custom code. We can manually set the image stream to `latest` in OpenShift console and build the syndesis-operator image with syndesis CLI.
+
+
+```shell
+eval $(minishift docker-env)
+oc login -u developer -p developer
+oc project syndesis
+
+syndesis build -t -f -m operator
+
+docker login -u developer -p $(oc whoami -t) $(minishift openshift registry)
+
+docker tag syndesis/syndesis-operator $(minishift openshift registry)/syndesis/syndesis-operator
+
+docker push $(minishift openshift registry)/syndesis/syndesis-operator
+```
+
+After this we have a new syndesis-operator:latest image in the Minishift registry and the syndesis-operator deployment starts working. The operator will automatically setup arbitrary deployments for syndesis-oauthproxy, syndesis-db, syndesis-prometheus and pull the images.
+
+## Get the Latest Changes
+
+Every now and then we should update the code we are working on to get the latest changes to make pull requests easy to merge.
+
+```shell
+$ git pull --rebase origin $branch
+```
+
+where $branch is usually master.
+
+## Install Maven Nexus as mirror
+
+It is a good idea to have a local Nexus installation that Maven can use to cache dependencies. We can automatically install a maven mirror on our environment with the following command:
+
+```shell
+$ syndesis dev --install-maven-mirror
+```
 
 You should check now the [Day to Day section](/docs/day_to_day)

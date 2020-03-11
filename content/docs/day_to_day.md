@@ -11,22 +11,12 @@ toc: true
 weight: 20
 ---
 
-This uses an existing Minishift instance.
+## Minishift
 
-**NOTE:** If you already followed the First-Time Setup section, you do not
-need to follow this. The Minishift VM will already have been started.
-Simply skip to the
+We are assuming an existing Minishift instance.
 
-### Get the Latest Changes
+### Startup
 
-```shell
-$ git checkout master
-$ git pull upstream master
-$ git checkout <branch>
-$ git rebase master
-```
-
-### Start of the Day
 Make sure Minishift is running.
 
 ```shell
@@ -35,20 +25,25 @@ $ minishift status
 
 Which should look like:
 
-```
+```shell
+$ minishift status
 Minishift:  Running
-Profile:    minishift
-OpenShift:  Running (openshift v3.6.0+c4dd4cf)
-DiskUsage:  11% of 17.9G
 ```
 
-If it isn’t, start it with:
+If it says something like:
+
+```shell
+$ minishift status
+Minishift:  Stopped
+```
+
+Then start minishift with:
 
 ```shell
 $ minishift start
 ```
 
-### Login into and Set up OpenShift
+### Environment
 
 This step is required regardless of whether it’s a first-time install or
 not. It logs you in and points OpenShift to use Minishift resources.
@@ -63,38 +58,102 @@ The eval’s set a number of environment variables, like change the
 `$PATH` and `$DOCKER_HOST`, so each time you do a Syndesis build it’s
 good to make sure those are invoked.
 
-### End of the Day
-
-```shell
-$ minishift stop
-```
-
-### Start the UI App & Open in the Browser
-
-```shell
-$ yarn start:minishift
-$ open https://$(oc get routes syndesis --template "{{.spec.host}}")
-```
-
 ### Prune resources
 
 You can free some disk space by removing and pruning obsolete resources
 from openshift.
 
-    $ syndesis dev --cleanup
-    
-    
+```shell
+$ syndesis dev --cleanup    
+```
+
+If that's not enough to cleanup the Syndesis installation, you can try a more aggresive approach.
+
+First make sure you are properly logged in and the environment variables are setup:
+
+```shell
+$ oc login -u developer
+$ eval $(minishift oc-env)
+$ eval $(minishift docker-env)
+```
+
+Then you can try this commands, but be careful and understand what this is doing because it may break stuff and force you to reinstall things.
+
+```shell
+# delete all syndesis integration resources 
+oc delete all -l syndesis.io/type=integration 
+
+# remove old integration runtime images 
+docker rmi $(docker images -f "reference=*/syndesis/i-*" -q) 
+
+# remove old syndesis images 
+docker rmi $(docker images -f "reference=*/syndesis/syndesis-*" -q) 
+
+# remove docker containers from previous minishift starts 
+docker rm $(docker ps -qa) 
+docker rmi $(docker images -f "dangling=true" -q)
+
+# remove exited containers:
+docker ps --filter status=dead --filter status=exited -aq | xargs -r docker rm -v
+
+docker system prune --all
+
+docker system prune --volumes
+```
+
+### End of the Day
+
+You just shutdown minishift to finish.
+
+```shell
+$ minishift stop
+```
+
+## Backend Development
+
+Here are some common commands to run while developing on the backend.
+
+### Update Server image
+
+Useful when server changes.
+
+```shell
+$ syndesis -m server -i -f -d      
+```
+
+### Update Meta image
+
+Useful when meta changes.
+
+```shell
+$ syndesis -m meta -i -f -d     
+```
+
+### Update Connector
+
+When working with a specific connector and just want to update this specific connector with executing all tests and style checks, you can:
+
+```shell
+$ syndesis -m :connector-$name    
+```
+### Update s2i image
+
+When you want to try a new connector (or an upgraded connector) as an integration through the user interface:
+
+```shell
+$ syndesis -m s2i -i -f -d     
+```
+
 ### Resetting the Database
 
 This step is optional. This command expects Minishift to be running
-already. It’s the `-i docker` that determines the workflow, for Roland
-it seems to work without that though.
+already.
 
 It would clean the database if we increase the schema version, if we
 don’t it remains the same.
 
 ```
-$ syndesis build -m rest -f -i docker -k
+$ syndesis build -m rest -f -k
 ```
 
 Alternatively, you can use the REST API Endpoint:
@@ -121,10 +180,17 @@ In pgadmin you can see the table by navigating into the tree under
 public > Tables > jsondb`. Right click, and then go to `View Data > View
 All Rows`.
 
-## UI
+#### Cleanup DB (Remove Integrations)
 
-After you’ve set up your initial Local Development environment, you’re
-ready to contribute to the UI.
+Once inside the database, we can cleanup the database to save some space and cleanup the installation.
+
+```sql
+DELETE FROM jsondb WHERE path NOT LIKE '/connect%';
+```
+
+## UI Development
+
+Here are some common commands to run while developing on the frontend.
 
 ### Install Dependencies
 
@@ -217,124 +283,8 @@ Included in this stack are the following technologies:
   - Code Analysis: [Codelyzer](https://github.com/mgechev/codelyzer)
     (TsLint rules for static code analysis of Angular TypeScript
     projects) / WIP
+    
 
-## REST API
-
-After you’ve set up your initial Local Development environment, you’re
-ready to contribute to the REST API.
-
-## Troubleshooting
-
-When things go wrong, you want to try to identify the area that is
-causing problems (UI, REST API, etc). If it’s the UI, look for errors in
-the browser console or the terminal to see if it’s a dependency issue.
-
-### UI Dependency Issues
-
-```shell
-$ rm -rf node_modules
-$ yarn install
-```
-
-### VM Trouble
-
-**Not getting latest API changes**
-
-This is a known issue. This is the workaround for using the latest REST
-image from the Docker stream.
-
-**NOTE**: This deletes your Minishift instance, installs OpenShift
-templates for the pods, and restarts Minishift.
-
-Disclaimer: It’s not 100% clear what `-i` docker for `Syndesis Minishift
---install` does exactly, but there is no way to invoke those evals
-before you get a running VM, which is what `--full-reset` does. So as a
-rule of thumb, you can have a terminal with those evals and keep it open
-and do all of the Syndesis building from there.
-
-```shell
-$ syndesis minishift --full-reset --install -p syndesis -i docker
-```
-
-**syndesis command not found** If you get `'syndesis' command not found`
-then use the full path to the `syndesis` binary instead. This assumes
-you are in the root of the project directory.
-
-```shell
-$ ./tools/bin/syndesis minishift --full-reset --install -p syndesis -i docker
-```
-
-**If OpenShift templates have been updated** This should not be the
-first choice, since it changes the IP of the VM, and in general should
-not be necessary for just building and updating the version.
-
-```shell
-$ syndesis minishift --full-reset --install
-```
-
-**VM Trouble**
-
-```shell
-$ syndesis build
-```
-
-**Pods self updating**. Occasionally you can notice some syndesis pods
-may have been updated, it occurs because the image streams are pointing
-to dockerhub and whenever there is an update of that image on dockerhub,
-then your local pod will be updated. To prevent theses updates, set the
-`DEV_SUPPORT=true` environment variable on syndesis-operator deployment
-config.
-
-```shell
-$ oc set env dc/syndesis-operator DEV_SUPPORT=true
-```
-
-Other things you can try: - `rm -rf ~/.minishift` - Check the OpenShift
-console and look for logs. - Is it a xip or nip problem?
-<http://downoruprightnow.com/status/nip.io>
-
-### Diagnostics
-
-**Examining logs**
-
-When a problem occur, the first thing should be to examine the logs.
-
-```shell
-# syndesis-server pod
-$ oc logs -f `oc get -o name pod -l syndesis.io/component=syndesis-server`
-
-# log of an integration named "twilog"
-$ oc logs -f `oc get -o name pod -l syndesis.io/type=integration -l syndesis.io/integration=i-twilog`
-
-# postgresql log
-$ oc logs -f `oc get -o name pod -l syndesis.io/component=syndesis-db` -c postgresql
-```
-
-You can examine the pod initialization events and many other details
-about the pod.
-
-```shell
-$ oc describe `oc get -o name pod -l syndesis.io/component=syndesis-server`
-```
-
-**Enable the java debug agent on a pod**
-
-```
-# to enable debug on an integration named "twilog"
-$ oc set env `oc get dc -o name|grep twilog` JAVA_DEBUG=true
-
-# to enable debug on syndesis-server
-$ oc set env dc/syndesis-server JAVA_DEBUG=true
-```
-
-**Connect to postgresql database** You can use `psql` tool to connect to
-the postgresql database.
-
-```
-$ oc port-forward `oc get -o name pod -l syndesis.io/component=syndesis-db` 5432:5432
-$ psql -U syndesis -h localhost syndesis
-```
-
-### Still Having Trouble?
+## Got any questions?
 
 Ask on [Gitter](https://gitter.im/syndesisio/community)
