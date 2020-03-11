@@ -7,12 +7,17 @@
   </url>
   
   <url>
-    <loc>https://syndesis.io/community/engineering_guidelines/</loc>
+    <loc>https://syndesis.io/docs/categorization/</loc>
     <lastmod>2017-05-19T15:02:30+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://syndesis.io/community/contributing/</loc>
+    <loc>https://syndesis.io/docs/engineering_guidelines/</loc>
+    <lastmod>2017-05-19T15:02:30+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/contributing/</loc>
     <lastmod>2017-05-19T14:40:12+01:00</lastmod>
   </url>
   
@@ -22,7 +27,7 @@
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/backend_architecture/</loc>
+    <loc>https://syndesis.io/docs/architecture/</loc>
   </url>
   
   <url>
@@ -38,11 +43,19 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/docs/day_to_day/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/development_quickstart/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/docs/connectors/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/development/</loc>
+    <loc>https://syndesis.io/docs/architecture/maven_architecture/</loc>
   </url>
   
   <url>
@@ -101,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://syndesis.io/community/</loc>
+    <loc>https://syndesis.io/docs/</loc>
     <lastmod>2017-05-19T15:02:30+01:00</lastmod>
   </url>
   
@@ -116,10 +129,6 @@
   
   <url>
     <loc>https://syndesis.io/community/</loc>
-  </url>
-  
-  <url>
-    <loc>https://syndesis.io/docs/</loc>
   </url>
   
   <url>
