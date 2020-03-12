@@ -67,8 +67,8 @@ Disclaimer: the content illustrated here is related to version 1.8, it can chang
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://syndesis.io/docs/autodiscovery/</guid>
-      <description>Any integration you need to create typically starts and ends to a data source. Thanks to Syndesis you will be able to discover automatically any of those data sources and make easier the configuration of connection for the citizen integrator. Any connector can provide the &amp;ldquo;Connection Autodiscovery&amp;rdquo; feature by making a little extra development and using any kind of service registry you have at your disposal.
-JSON Descriptor The first thing we need to do is to configure the json connector configuration.</description>
+      <description>Most steps on any integration have an input data source coming from the previous step and output another data source to the following step. Each type of connector expects different data sources. These data source formats are the ones used on the mapping steps to match the output of one step to the input of the following step.
+But sometimes we don&amp;rsquo;t have a pre-defined format for those data sources, but a format that is dependent on the context.</description>
     </item>
     
     <item>
