@@ -54,7 +54,24 @@ $ ./tools/bin/syndesis ${options}
 This should not be the first choice, since it changes the IP of the VM, and in general should not be necessary for just building and updating the version.
 
 ```shell
-$ syndesis minishift --full-reset --install -p syndesis --disk-size=60GB
+$ syndesis minishift --full-reset --install -p syndesis --disk-size 60GB
+```
+
+### Checking if requested hypervisor '*' is supported on this platform ... FAIL
+
+This means the default driver you are using on your minishift to run the virtual machines is either not properly installed or not configured.
+
+You can explictly define the driver for the virtual machine with the `vm-driver` option. For example, if you want to use KVM (default best for most Linux environments):
+
+```
+$ syndesis minishift --full-reset --install -p syndesis --disk-size 60GB --vm-driver=kvm
+```
+
+You can also add this configuration by default on your environment with:
+
+```
+$ minishift config set vm-driver $your-driver
+No Minishift instance exists. New 'vm-driver' setting will be applied on next 'minishift start'
 ```
 
 ### VM Trouble
