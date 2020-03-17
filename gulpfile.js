@@ -87,10 +87,6 @@ gulp.task('hugo', function (cb) {
   });
 });
 
-gulp.task('log', function() {
-  console.log('Is everything done yet?');
-});
-
 gulp.task('optimize-html', function() {
   return gulp.src(['./public/**/*.html'])
     .pipe(plugins.cacheBust({
@@ -125,4 +121,4 @@ gulp.task('optimize-js', function() {
 gulp.task('optimize', gulp.series('optimize-html', 'optimize-css', 'optimize-js'));
 
 gulp.task('build', gulp.series('fonts', 'css', 'js', 'hugo', 'optimize'));
-gulp.task('default', gulp.series(gulp.parallel('watch', 'hugo:serve'), 'log'));
+gulp.task('default', gulp.series(gulp.parallel('watch', 'hugo:serve')));
