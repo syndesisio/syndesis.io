@@ -33,6 +33,7 @@
     <div id="main"{{ if not .IsHome }} class="d-flex flex-row"{{ end}}>
       {{ if not .IsHome }}<div id="sidebar" class="sidenav{{ if not (isset .Params "sidebar") }} no-sidebar{{ end }}">{{ if isset .Params "sidebar" }}{{ partial "sidenav" . }}{{ end }}</div>{{ end }}
       <div class="main-content">
+        sfzfdgdg
         {{ block "main" . }}{{ end }}
       </div>
       {{ if .Params.toc }}
