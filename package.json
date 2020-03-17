@@ -19,6 +19,7 @@
   "devDependencies": {
     "anchor-js": "3.2.2",
     "bootstrap": "4.0.0-alpha.6",
+    "browser-sync": "^2.26.7",
     "cssnano": "3.10.0",
     "font-awesome": "4.7.0",
     "gulp": "gulpjs/gulp#4.0",
