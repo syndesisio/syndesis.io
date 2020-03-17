@@ -1,6 +1,6 @@
 const postcssPresetEnv = require('postcss-preset-env');
 
-module.exports = (ctx) => ({
+module.exports = () => ({
   map: false,
   plugins: [
     postcssPresetEnv({

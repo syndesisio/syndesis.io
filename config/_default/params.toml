@@ -1,0 +1,19 @@
+theme = "syndesis"
+test = true
+enableNavbar = true
+
+## Comments
+enableComment = true
+disqus_shortname = ""
+
+[[docs.sidenav]]
+    name = "test"
+    weight = -120
+    identifier = "test"
+    url = "/test/"
+
+[[docs.sidenav]]
+    name = "blog"
+    weight = -130
+    identifier = "blog"
+    url = "/blog/"
