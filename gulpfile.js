@@ -1,9 +1,7 @@
-'use strict';
+const gulp = require('gulp');
+const plugins = require('gulp-load-plugins')();
 
-var gulp = require('gulp');
-var plugins = require('gulp-load-plugins')();
-
-var jsLibs = [
+const jsLibs = [
   './node_modules/scrollpos-styler/scrollPosStyler.js',
   './node_modules/jquery/dist/jquery.slim.min.js',
   './node_modules/tether/dist/js/tether.min.js',
@@ -12,20 +10,13 @@ var jsLibs = [
   './themes/syndesis/js/**/*.js'
 ];
 
-function sriTransformer(tHash) {
-  var res = {};
-  for (var key in tHash){
-    res[key.substr(key.lastIndexOf('/') + 1)] = tHash[key];
-  }
-  return res;
-}
-
 gulp.task('css', function () {
   return gulp.src('./themes/syndesis/scss/**/*.scss')
     .pipe(plugins.sass())
     .pipe(plugins.postcss())
     .pipe(gulp.dest('./themes/syndesis/static/css'));
 });
+
 gulp.task('css:watch', gulp.series('css', function () {
   gulp.watch('./themes/syndesis/scss/**/*.scss', gulp.series('css'));
 }));
@@ -35,13 +26,16 @@ gulp.task('js', function () {
     .pipe(plugins.concat('syndesis.js'))
     .pipe(gulp.dest('./themes/syndesis/static/js'));
 });
+
 gulp.task('js:watch', gulp.series('js', function () {
   gulp.watch(jsLibs, gulp.series('js'));
 }));
+
 gulp.task('fonts', function() {
   return gulp.src('./node_modules/font-awesome/fonts/*')
     .pipe(gulp.dest('./themes/syndesis/static/fonts'))
 });
+
 gulp.task('fonts:watch', gulp.series('fonts', function () {
   gulp.watch(['./node_modules/font-awesome/fonts/*'], gulp.series('fonts'));
 }));
@@ -49,7 +43,7 @@ gulp.task('fonts:watch', gulp.series('fonts', function () {
 gulp.task('watch', gulp.parallel(gulp.series('fonts', 'fonts:watch'), gulp.series('css', 'css:watch'), gulp.series('js', 'js:watch')));
 
 gulp.task('hugo:serve', function (cb) {
-  var exec = require('child_process').exec;
+  const exec = require('child_process').exec;
 
   exec('hugo serve --bind 0.0.0.0', function (err, stdout, stderr) {
     console.log(stdout);
@@ -57,11 +51,12 @@ gulp.task('hugo:serve', function (cb) {
     cb(err);
   });
 });
-gulp.task('hugo', function (cb) {
-  var exec = require('child_process').exec;
 
-  var githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
-  var baseURLArg = '';
+gulp.task('hugo', function (cb) {
+  const exec = require('child_process').exec;
+
+  const githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
+  let baseURLArg = '';
   if (githubProject && githubProject !== "syndesisio" && process.env['CIRCLE_PROJECT_REPONAME']) {
     baseURLArg = ' --baseURL https://' + githubProject + '.github.io/' + process.env['CIRCLE_PROJECT_REPONAME'] + '/';
   }
@@ -88,6 +83,7 @@ gulp.task('optimize-html', function() {
     }))
     .pipe(gulp.dest('./public'));
 });
+
 gulp.task('optimize-css', function() {
   return gulp.src(['./public/**/*.css'])
     .pipe(plugins.uncss({
@@ -96,11 +92,13 @@ gulp.task('optimize-css', function() {
     }))
     .pipe(gulp.dest('./public'));
 });
+
 gulp.task('optimize-js', function() {
   return gulp.src(['./public/**/*.js'])
     .pipe(plugins.uglify())
     .pipe(gulp.dest('./public'));
 });
+
 gulp.task('optimize', gulp.series('optimize-html', 'optimize-css', 'optimize-js'));
 
 gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
