@@ -5,6 +5,10 @@
 @import 'colors';
 @import 'navbar';
 
+p.lead {
+  color: pink !important;
+}
+
 body.home {
 
   #wrapper {

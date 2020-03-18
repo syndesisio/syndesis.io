@@ -45,25 +45,20 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('./themes/syndesis/static/fonts'))
 });
 
-gulp.task('watch', gulp.parallel(function() {
-  console.log('Watching for changes...');
-
-  gulp.watch('./themes/syndesis/scss/**/*.scss').on('change', function() {
-    console.log('Rebuilding CSS...');
-    gulp.task('css');
-  });
-
-  gulp.watch(jsLibs).on('change', function() {
-    console.log('Rebuilding JS...');
-    gulp.series('js');
-  });
-}));
-
 gulp.task('hugo:serve', function (cb) {
   const exec = require('child_process').exec;
 
-  console.log('SYNDESIS is now running on port ' + port);
+  console.log('\n' +
+    '     _______.____    ____ .__   __.  _______   _______     _______. __       _______.\n' +
+    '    /       |\\   \\  /   / |  \\ |  | |       \\ |   ____|   /       ||  |     /       |\n' +
+    '   |   (----` \\   \\/   /  |   \\|  | |  .--.  ||  |__     |   (----`|  |    |   (----`\n' +
+    '    \\   \\      \\_    _/   |  . `  | |  |  |  ||   __|     \\   \\    |  |     \\   \\    \n' +
+    '.----)   |       |  |     |  |\\   | |  \'--\'  ||  |____.----)   |   |  | .----)   |   \n' +
+    '|_______/        |__|     |__| \\__| |_______/ |_______|_______/    |__| |_______/    \n' +
+    '                                                                                     \n' +
+    '');
 
+  console.log('SYNDESIS is now running on port ' + port);
   exec('hugo serve --port ' + port + ' --bind 0.0.0.0', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -118,7 +113,21 @@ gulp.task('optimize-js', function() {
     .pipe(gulp.dest('./public'));
 });
 
+gulp.task('watch', gulp.parallel(function() {
+  console.log('Watching for changes...');
+
+  gulp.watch('./themes/syndesis/scss/**/*.scss').on('change', function() {
+    console.log('Rebuilding CSS...');
+    gulp.task('css');
+  });
+
+  gulp.watch(jsLibs).on('change', function() {
+    console.log('Rebuilding JS...');
+    gulp.series('js');
+  });
+}));
+
 gulp.task('optimize', gulp.series('optimize-html', 'optimize-css', 'optimize-js'));
 
 gulp.task('build', gulp.series('fonts', 'css', 'js', 'hugo', 'optimize'));
-gulp.task('default', gulp.series(gulp.parallel('watch', 'hugo:serve')));
+gulp.task('default', gulp.series(gulp.parallel('css', 'js', 'watch', 'hugo:serve')));
