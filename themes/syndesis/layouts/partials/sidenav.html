@@ -1,50 +1,80 @@
 {{ $currentNode := . }}
 {{ $menuName := .Params.sidebar }}
 {{ $menu := index .Site.Menus $menuName }}
-<aside>
+
+<div class="menu">
+  <!--
+  <h6 class="menu__label">
+    Some Title
+  </h6>
+  -->
+
   <ul class="sidebar-menu">
-    <li class="nav-button hidden-lg-up"><button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button></li>
+<!--
+    <li class="nav-button hidden-lg-up">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">
+        Hide nav
+      </button>
+    </li>
+    -->
     {{ range $menu }}
-    {{ if .HasChildren }}
-    <li class="sub-menu{{ if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} active{{end}}">
-      <a class="d-flex justify-content-between" href="{{ .URL }}">
-        <span>{{ .Pre }} {{ .Name }}</span>
-        <span class="mr-1 expander"></span>
-      </a>
-      <ul class="sub collapse{{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}">
-      {{ range .Children }}      
-        {{ if .HasChildren }}
-        <li class="sub-menu{{ if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} active{{end}}">
-          <a class="d-flex justify-content-between" href="{{ .URL }}">
-            <span>{{ .Pre }} {{ .Name }}</span>
-            <span class="mr-1 expander"></span>
-          </a>
-          <ul class="sub collapse{{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}">
+      {{ if .HasChildren }}
+      <!-- Parent with Children -->
+        <span class="menu__title--collapse {{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}"
+              data-depth="0">
+          {{ .Pre }} {{ .Name }}
+          <span class="menu__title--icon down right">
+            {{ partial "svgs/arrow-right.svg" (dict "width" 22 "height" 22) }}
+          </span>
+        </span>
+        <ul class="menu__list">
           {{ range .Children }}
-            <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a  class="pl-5 d-flex justify-content-between" href="{{.URL}}">
-            <span>{{ .Pre }} {{ .Name }}</span></a></li>
+            {{ if .HasChildren }}
+          <!-- More Children -->
+          <span class="menu__title--collapse {{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}"
+                data-depth="3">
+            <a href="#">{{ .Pre }} {{ .Name }}</a>
+          <span class="menu__title--icon down right">
+            {{ partial "svgs/arrow-right.svg" (dict "width" 22 "height" 22) }}
+          </span>
+        </span>
+            {{ else }}
+            <!-- No More Children -->
+              <li class="menu__title {{if $currentNode.IsMenuCurrent $menuName . }}active{{end}}">
+                <a class="d-flex justify-content-between" href="{{.URL}}">
+                  <span>{{ .Pre }} {{ .Name }}</span>
+                </a>
+              </li>
+            {{ end }}
           {{ end }}
-          </ul>
-        {{else}}
-        <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a  class="d-flex justify-content-between" href="{{.URL}}">
-            <span>{{ .Pre }} {{ .Name }}</span></a></li>
-        {{end}}
-        
+        </ul>
+      {{ else }}
+        <!-- Single Items -->
+        <li {{ if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}>
+          <a class="menu__title" href="{{.URL}}">
+            {{ .Pre }}
+            <span>{{ .Name }}</span>
+          </a>
+          {{ end }}
+        </li>
       {{ end }}
-      </ul>
-    </li>
-  {{else}}
-    <li{{ if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}>
-      <a class="" href="{{.URL}}">
-        {{ .Pre }}
-        <span>{{ .Name }}</span>
-      </a>
-      {{end}}
-    </li>
-  {{end}}
-  <li> <a href="https://github.com/syndesisio/syndesis/issues/" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
-  {{ if .IsPage }}
-  {{ $File := .File }} {{with $File.Path }}<li><a href="https://github.com/syndesisio/syndesis.io/edit/master/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank"><i class='fa fa-fw fa-edit'></i> Refine this Page</a></li>{{end}}
-  {{ end }}
+
+    <!-- Hardcoded Items -->
+      <li>
+        <a href="https://github.com/syndesisio/syndesis/issues/" target="blank">
+          <i class='fa fa-life-ring'></i> <span>Issues & Help</span>
+        </a>
+      </li>
+      {{ if .IsPage }}
+        {{ $File := .File }} {{with $File.Path }}
+          <li>
+            <a href="https://github.com/syndesisio/syndesis.io/edit/master/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank">
+              <i class='fa fa-fw fa-edit'></i> Refine this Page
+            </a>
+          </li>
+      {{ end }}
   </ul>
-</aside>
+</div>
+{{ end }}
+
+

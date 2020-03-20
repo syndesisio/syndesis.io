@@ -10,7 +10,7 @@ const jsLibs = [
   './themes/syndesis/js/**/*.js'
 ];
 
-const port = 1313;
+const port = 7000;
 
 gulp.task('css', function () {
   return gulp.src('./themes/syndesis/scss/**/*.scss')
@@ -30,6 +30,22 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('./themes/syndesis/static/fonts'))
 });
 
+gulp.task('hugo', function (cb) {
+  const exec = require('child_process').exec;
+
+  const githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
+  let baseURLArg = '';
+  if (githubProject && githubProject !== "syndesisio" && process.env['CIRCLE_PROJECT_REPONAME']) {
+    baseURLArg = ' --baseURL https://' + githubProject + '.github.io/' + process.env['CIRCLE_PROJECT_REPONAME'] + '/';
+  }
+
+  exec('hugo' + baseURLArg, function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
 gulp.task('hugo:serve', function (cb) {
   const exec = require('child_process').exec;
 
@@ -45,22 +61,6 @@ gulp.task('hugo:serve', function (cb) {
 
   console.log('SYNDESIS is now running on port ' + port);
   exec('hugo serve --port ' + port + ' --bind 0.0.0.0', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-});
-
-gulp.task('hugo', function (cb) {
-  const exec = require('child_process').exec;
-
-  const githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
-  let baseURLArg = '';
-  if (githubProject && githubProject !== "syndesisio" && process.env['CIRCLE_PROJECT_REPONAME']) {
-    baseURLArg = ' --baseURL https://' + githubProject + '.github.io/' + process.env['CIRCLE_PROJECT_REPONAME'] + '/';
-  }
-
-  exec('hugo' + baseURLArg, function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
@@ -115,4 +115,4 @@ gulp.task('watch', gulp.parallel(function() {
 gulp.task('optimize', gulp.series('optimize-html', 'optimize-css', 'optimize-js'));
 
 gulp.task('build', gulp.series('fonts', 'css', 'js', 'hugo', 'optimize'));
-gulp.task('default', gulp.series(gulp.parallel('css', 'js', 'watch', 'hugo:serve')));
+gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'watch', 'hugo:serve')));
