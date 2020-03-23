@@ -1,3 +1,6 @@
+/**
+SIDEBAR MENU
+*/
 
 @mixin no-select {
   -webkit-touch-callout: none;
@@ -28,7 +31,6 @@
   transform: $transforms;
 }
 
-
 $grid-max-width: 1289px;
 $grid-nav-height: 50px;
 $grid-body-width: 769px;
@@ -38,16 +40,11 @@ $menu-title-height: 30px;
 
 
 .menu {
-  position: -webkit-sticky;
   position: sticky;
   top: $grid-nav-height;
-  //padding: 0.5rem;
-  //margin: 0.5rem;
-  margin-top: 0;
+  margin-top: -0.5rem;
   padding-top: 0.85rem;
-  height: calc(100vh - $grid-nav-height);
   overflow-y: auto;
-  //z-index: z('menu');
 
   @media only screen and (max-width: 600px) {
     top: 0;
@@ -67,67 +64,53 @@ $menu-title-height: 30px;
 
   &__title {
     cursor: pointer;
+    margin: 0.25rem 0;
     position: relative;
     word-break: break-word;
-    //font-size: 0.925rem;
-    //height: $menu-title-height;
-    margin: 0.25rem 0;
 
     &[data-depth="1"] {
       font-size: 0.925rem;
-      //margin-left: 1.25rem;
     }
 
     &[data-depth="2"] {
       font-size: 0.925rem;
-      //margin-left: 2.5rem;
     }
 
     &[data-depth="3"] {
       font-size: 0.925rem;
-      //margin-left: 3.75rem;
     }
 
     &[data-depth="4"] {
       font-size: 0.925rem;
-      //margin-left: 5rem;
     }
 
     &--collapse {
       border-bottom: 1px solid #D7D7D7;
       cursor: pointer;
-      word-break: break-word;
-      //font-size: 16px;
-      //height: $menu-title-height;
-      margin: 0.25rem 0;
       display: flex;
-      //line-height: 20px !important;
+      margin: 0.25rem 0;
       padding: 10px 0 10px 10px;
-      //font-weight: 400;
+      word-break: break-word;
 
       &[data-depth="1"] {
         font-size: 0.925rem;
-        //margin-left: 1.25rem;
       }
 
       &[data-depth="2"] {
         font-size: 0.925rem;
-        //margin-left: 2.5rem;
       }
 
       &[data-depth="3"] {
         font-size: 0.925rem;
-        //margin-left: 3.75rem;
-        //margin-left: 0.75rem;
       }
 
       &[data-depth="4"] {
         font-size: 0.925rem;
-        //margin-left: 5rem;
       }
 
       i {
         font-size: 18px !important;
+        margin-top: 0.25em;
         padding-right: 6px !important;
       }
     }
@@ -174,8 +157,6 @@ $menu-title-height: 30px;
     @include transition();
 
     li {
-      //margin-left: 1.25rem;
-
       &.active {
         font-weight: bold;
         padding-inline-start: 0 !important;
