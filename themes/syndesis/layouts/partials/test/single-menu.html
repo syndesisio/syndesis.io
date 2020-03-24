@@ -1,13 +1,4 @@
 <div class="menu">
-  <!--
-  <h6 class="menu__label">
-    {{ if .IsHome }}
-      {{ .Site.Title }}
-    {{ else }}
-      {{ $.Param "Title" }}
-    {{ end }}
-  </h6>
-  -->
   <ul class="sidebar-menu">
     {{ $root := . }}
     {{ range (.Site.GetPage "section" .Type).Pages }}
