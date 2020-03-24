@@ -1,9 +1,10 @@
 ---
-title: "Test"
-description: "test post index"
+title: "Docs"
+description: "docs post index"
 date: 2020-01-11T14:09:21+09:00
 draft: false
 pre: "<i class='fa fa-fw fa-book'></i>"
+sidebar: "sidenav"
 ---
 
-A test page.
+The docs dir index page.

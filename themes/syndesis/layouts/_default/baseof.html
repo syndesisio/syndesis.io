@@ -33,13 +33,13 @@
     <div id="main"{{ if not .IsHome }} class="d-flex flex-row"{{ end}}>
       {{ if not .IsHome }}
       <div id="sidebar" class="sidenav{{ if not (isset .Params "sidebar") }} no-sidebar{{ end }}">
+
       {{ if $.Param "sidebar" }}{{ partial "sidenav" . }}{{ end }}
 
       <!-- START TESTING ZONE --
       {{ if $.Param "test" }}
       <nav id="single-menu" class="l" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
       {{ if $.Param "enableMenu" }}
-      {{ partial "test/single-menu" . }}
       {{ end }}
       </nav>
       {{ end }}
@@ -124,19 +124,16 @@
 
           var parent = elem.parentNode;
           while (parent.classList.contains('menu__list') && parent.classList.contains('active')) {
-            //console.log('parent');
             parent.style.maxHeight = 100 * parent.children.length + 'px';
             parent = parent.parentNode;
           }
 
           if (content.style.maxHeight) {
-            //console.log('null');
             content.style.maxHeight = null;
             content.classList.remove('active');
             menuTitleIcon.classList.add('right');
             menuTitleIcon.classList.remove('down');
           } else {
-            //console.log('scrollHeight');
             content.style.maxHeight = content.scrollHeight + 'px';
             content.classList.add('active');
             menuTitleIcon.classList.remove('right');

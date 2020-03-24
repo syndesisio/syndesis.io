@@ -2,12 +2,6 @@
 bref: ""
 date: 2017-05-19T14:40:12+01:00
 draft: false
-menu:
-  sidenav:
-    name: Contributing
-    weight: -400
-    parent: Developer Docs
-sidebar: sidenav
 title: "How to contribute to Syndesis"
 toc: true
 weight: 20

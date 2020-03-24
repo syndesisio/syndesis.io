@@ -3,12 +3,6 @@
 {{ $menu := index .Site.Menus $menuName }}
 
 <div class="menu">
-  <!--
-  <h6 class="menu__label">
-    Some Title
-  </h6>
-  -->
-
   <ul class="sidebar-menu">
     <li class="nav-button hidden-lg-up">
       <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">
@@ -38,7 +32,7 @@
         </span>
             {{ else }}
             <!-- No More Children -->
-              <li class="menu__title {{if $currentNode.IsMenuCurrent $menuName . }}active{{end}}">
+              <li class="menu__title--nested {{if $currentNode.IsMenuCurrent $menuName . }}active{{end}}">
                 <a class="d-flex justify-content-between" href="{{.URL}}">
                   <span>{{ .Pre }} {{ .Name }}</span>
                 </a>
