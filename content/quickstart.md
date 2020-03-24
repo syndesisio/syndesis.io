@@ -7,10 +7,6 @@ menu:
   sidenav:
     pre: <i class='fa fa-fw fa-rocket'></i>
     weight: -200
-  topnav:
-    name: quickstart
-    identifier: quickstart
-    weight: -200
 sidebar: sidenav
 title: "Quickstart"
 toc: true

@@ -1,17 +1,29 @@
-[[main]]
-  identifier = "docs"
-  name = "Docs"
-  url = "docs"
+[[topnav]]
+  identifier = "quickstart"
+  name = "quickstart"
+  url = "quickstart"
   weight = 1
 
-[[main]]
-  identifier = "updates"
-  name = "Updates"
-  url = "updates"
+[[topnav]]
+  identifier = "docs"
+  name = "docs"
+  url = "docs"
   weight = 2
 
-[[main]]
+[[topnav]]
   identifier = "blog"
-  name = "Blog"
+  name = "blog"
   url = "blog"
   weight = 3
+
+[[topnav]]
+  identifier = "faq"
+  name = "faq"
+  url = "faq"
+  weight = 4
+
+[[topnav]]
+  identifier = "community"
+  name = "community"
+  url = "community"
+  weight = 5

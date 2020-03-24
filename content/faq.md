@@ -4,11 +4,6 @@ title: "FAQ"
 toc: true
 sidebar: sidenav
 menu:
-  topnav:
-    weight: -130
-    identifier: "name"
-    name: "faq"
-  
   sidenav:
     pre: "<i class='fa fa-fw fa-file-text'></i>"
     weight: -170
