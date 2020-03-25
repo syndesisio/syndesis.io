@@ -1,12 +1,6 @@
 ---
 draft: false
 title: "CLI - Command Line Interface"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: "CLI - Command Line Interface"
-    weight: 3
-    parent: Developer Docs
 toc: true
 weight: 10
 ---

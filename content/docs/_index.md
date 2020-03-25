@@ -1,10 +1,23 @@
 ---
-title: "Docs"
-description: "docs post index"
-date: 2020-01-11T14:09:21+09:00
 draft: false
-pre: "<i class='fa fa-fw fa-book'></i>"
+title: "Developer Docs"
+description: "Documentation and guides for using and/or contributing to the Syndesis project."
 sidebar: "sidenav"
+kind: docs
+collapsible: true
+
+menu:
+  sidenav:
+    name: "Developer Docs"
+    pre: "<i class='fa fa-fw fa-book'></i>"
+    weight: -180
+  topnav:
+    name: "docs"
+    weight: -180
 ---
 
-The docs dir index page.
+This handbook contain all information required for installing, running and developing Syndesis from a developer's point of view.
+
+<div class="alert alert-info admonition" role="alert">
+  <i class="fa note"></i> Please use the links in the sidebar on the left to navigate the Developer Docs.
+</div>

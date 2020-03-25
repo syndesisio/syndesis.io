@@ -31,20 +31,19 @@
     {{ partial "topnav" . }}
 
     <div id="main"{{ if not .IsHome }} class="d-flex flex-row"{{ end}}>
+      <!-- Check that we are not on the homepage -->
       {{ if not .IsHome }}
       <div id="sidebar" class="sidenav{{ if not (isset .Params "sidebar") }} no-sidebar{{ end }}">
 
-      {{ if $.Param "sidebar" }}{{ partial "sidenav" . }}{{ end }}
+      <!-- Display the sidebar if it is a page -->
+      {{ if and (eq .Type "page") (isset .Params "sidebar") }}
+      {{ partial "sidenav" . }}
+      {{ end }}
 
-      <!-- START TESTING ZONE --
-      {{ if $.Param "test" }}
-      <nav id="single-menu" class="l" data-dir="{{ $.Param "languagedir" | default "ltr" }}">
-      {{ if $.Param "enableMenu" }}
+      <!-- Display docs sidebar -->
+      {{ if eq .Type "docs" }}
+      {{ partial "docs/sidenav" . }}
       {{ end }}
-      </nav>
-      {{ end }}
-      -->
-      <!-- END TESTING ZONE -->
     </div>
     {{ end }}
       <div class="main-content">
@@ -73,6 +72,11 @@
     window.onload = function() {
       // ===================== Navbar Collapse ======================
       var navCollapseBtn = document.getElementById('navCollapseBtn');
+
+      /**
+       * If navCollapseBtn class exists, add a click event listener to it.
+       * On click, check if it's opened, close if it is.
+       */
       navCollapseBtn ? navCollapseBtn.addEventListener('click', function(e) {
         var navCollapse = document.querySelector('.navbar__collapse');
 
@@ -92,6 +96,10 @@
       // ========================== Expand ==========================
       var expandBtn = document.querySelectorAll('.expand__button');
 
+      /**
+       * Iterate over every expandBtn class, add a click event listener.
+       * If clicked, adjust the arrow icon class and the height of the list.
+       */
       for (var i = 0; i < expandBtn.length; i++) {
         expandBtn[i].addEventListener('click', function () {
           var content = this.nextElementSibling;
@@ -108,12 +116,19 @@
       }
 
       // =================== Section Menu Collapse ==================
+      /**
+       * For each .menu__list class item that contains an 'active' class
+       * within it, adjust the max height / expand it.
+       */
       document.querySelectorAll('.menu__list').forEach(function(elem) {
-        if (elem.classList.contains('active')) {
+        if (elem.querySelectorAll('.active').length > 0) {
           elem.style.maxHeight = elem.scrollHeight + 'px';
         }
       });
 
+      /**
+       * Adds a 'click' event listener to each .menu__title--collapse item
+       */
       document.querySelectorAll('.menu__title--collapse').forEach(function(elem) {
         elem.addEventListener('click', function (e) {
           var content = this.nextElementSibling;
@@ -122,22 +137,44 @@
             return null;
           }
 
+          /**
+           * If the parent node contains an 'active' class, adjust the max height
+           * and arrow icon.
+           * @type {Node & ParentNode}
+           */
           var parent = elem.parentNode;
           while (parent.classList.contains('menu__list') && parent.classList.contains('active')) {
+            console.log('parent');
             parent.style.maxHeight = 100 * parent.children.length + 'px';
             parent = parent.parentNode;
           }
 
+          /**
+           * Close the sub-menu
+           */
           if (content.style.maxHeight) {
+            console.log('null');
             content.style.maxHeight = null;
             content.classList.remove('active');
-            menuTitleIcon.classList.add('right');
-            menuTitleIcon.classList.remove('down');
+
+            if (languagedir === 'rtl') {
+              menuTitleIcon.classList.remove('downrtl');
+            } else {
+              menuTitleIcon.classList.remove('down');
+            }
           } else {
+            /**
+             * Expand the sub-menu
+             */
+            console.log('scrollHeight');
             content.style.maxHeight = content.scrollHeight + 'px';
             content.classList.add('active');
-            menuTitleIcon.classList.remove('right');
-            menuTitleIcon.classList.add('down');
+
+            if (languagedir === 'rtl') {
+              menuTitleIcon.classList.add('downrtl');
+            } else {
+              menuTitleIcon.classList.add('down');
+            }
           }
         });
       });

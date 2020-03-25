@@ -1,14 +1,8 @@
 ---
 draft: false
-title: "How to develop a connector"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: "Develop a connector"
-    weight: 4
-    parent: "Developer Docs"
+title: "Develop a Connector"
 toc: true
-weight: 20
+weight: 1
 ---
 
 If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.

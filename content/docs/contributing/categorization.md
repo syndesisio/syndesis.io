@@ -3,10 +3,6 @@ bref: ""
 date: 2017-05-19T15:02:30+01:00
 description: ""
 draft: false
-menu:
-  sidenav:
-    parent: Contributing
-    weight: -100
 sidebar: sidenav
 title: "Categorization"
 weight: 20

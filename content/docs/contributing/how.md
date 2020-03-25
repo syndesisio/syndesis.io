@@ -1,10 +1,9 @@
 ---
 bref: ""
-date: 2017-05-19T14:40:12+01:00
 draft: false
-title: "How to contribute to Syndesis"
+title: "Contribute to Syndesis"
 toc: true
-weight: 20
+weight: 10
 ---
 
 There are many ways to contribute to Syndesis. All contributions are valued and welcomed, be it [fixing a typo in documentation]({{< relref "#improving-documentation" >}}), raising an issue to report a bug, or creating a whole new awesome feature. Don't worry if this is your first contribution to an open source project: the Syndesis maintainers can help you if you need it.

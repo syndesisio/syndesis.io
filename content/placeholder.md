@@ -1,9 +1,8 @@
 ---
 draft: false
-title: "Developer Docs"
+title: "Placeholder"
 description: "Documentation and guides for using and/or contributing to the Syndesis project."
 sidebar: "sidenav"
-kind: docs
 pre: "<i class='fa fa-fw fa-book'></i>"
 ---
 

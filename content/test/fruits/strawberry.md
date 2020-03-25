@@ -3,6 +3,7 @@ draft: false
 title: "Strawberry"
 pre: "<i class='fa fa-fw fa-cubes'></i>"
 toc: true
+sidebar: "sidenav"
 weight: 20
 ---
 

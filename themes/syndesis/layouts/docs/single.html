@@ -8,12 +8,6 @@
     <blockquote itemprop="description">{{ .Description }}</blockquote>
     {{ end }}
   </div>
-  <section id="list-side" class="r">
-    {{ if $.Param "test" }}
-    Hello
-    {{ end }}
-    Blah
-  </section>
   <div itemprop="docBody"
       class="docBody">
     {{ .Content | safeHTML }}

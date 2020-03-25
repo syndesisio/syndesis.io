@@ -7,7 +7,7 @@
 [[topnav]]
   identifier = "docs"
   name = "docs"
-  url = "/docs"
+  url = "/docs/development_quickstart"
   weight = 2
 
 [[topnav]]
@@ -27,3 +27,22 @@
   name = "community"
   url = "/community"
   weight = 5
+
+[[sidenav]]
+    name = "Develop a connector"
+    weight = 4
+    parent = "Developer Docs"
+
+[[sidebar]]
+    name = "faq"
+    weight = -120
+    identifier = "faq"
+    url = "/faq/"
+
+[[sidenav]]
+    name = "Blog"
+    weight = -130
+    identifier = "blog"
+    url = "/blog/"
+
+

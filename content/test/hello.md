@@ -1,14 +1,9 @@
 ---
 draft: false
 title: "Hello"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: "Hello"
-    weight: 1
-    parent: "Test"
 toc: true
 weight: 20
+sidebar: "sidenav"
 ---
 
 ## Hello

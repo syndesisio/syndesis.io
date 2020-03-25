@@ -1,12 +1,6 @@
 ---
 draft: false
 title: "Development QuickStart"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: "Development QuickStart"
-    weight: 1
-    parent: "Developer Docs"
 toc: true
 weight: 20
 ---
