@@ -1,9 +1,8 @@
 ---
 draft: false
-title: "Develop a Connector"
+title: "Create a Connector"
 toc: true
 weight: 10
-url: 'docs/connectors'
 ---
 
 If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.

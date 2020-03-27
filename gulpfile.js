@@ -7,6 +7,7 @@ const jsLibs = [
   './node_modules/tether/dist/js/tether.min.js',
   './node_modules/bootstrap/dist/js/bootstrap.min.js',
   './node_modules/anchor-js/anchor.js',
+  './node_modules/@fortawesome/fontawesome-free/js/all.js',
   './themes/syndesis/js/**/*.js'
 ];
 
@@ -26,8 +27,8 @@ gulp.task('js', function () {
 });
 
 gulp.task('fonts', function() {
-  return gulp.src('./node_modules/font-awesome/fonts/*')
-    .pipe(gulp.dest('./themes/syndesis/static/fonts'))
+  return gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/*')
+    .pipe(gulp.dest('./themes/syndesis/static/fonts'));
 });
 
 gulp.task('hugo', function (cb) {

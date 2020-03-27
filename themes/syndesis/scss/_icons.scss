@@ -3,9 +3,12 @@
 // FONTS
 ////////////////////////////////////////////////////////////////////////////////
 
-@import '../../../node_modules/font-awesome/scss/font-awesome';
+//@import '../../../node_modules/font-awesome/scss/font-awesome';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 
 .anchorjs-icon {
-  font-family: 'FontAwesome';
+  //font-family: 'FontAwesome';
+  font-family: "Font Awesome 5 Free";  /* updated font-family */
+  //font-weight: 400; /* regular style/weight */
   font-size: 0.5em;
 }

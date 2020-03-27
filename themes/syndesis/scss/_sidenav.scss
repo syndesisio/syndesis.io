@@ -26,6 +26,13 @@ $menu-title-height: 30px;
     border-right: none;
   }
 
+  /**
+  Margin for Font Awesome icon
+   */
+  svg {
+    margin-right: 0.5em;
+  }
+
   ul {
     list-style: none;
   }
@@ -301,6 +308,22 @@ SIDEBAR MENU
         border-bottom: 1px solid #D7D7D7;
         white-space: nowrap;
 
+        &.active {
+          background: #eeeeee;
+          color: $brand-primary;
+          display: block;
+          transition: all 0.2s ease;
+
+          i {
+            color: $brand-primary;
+          }
+        }
+
+        &.active .expander {
+          @extend .fas;
+          @extend .fa-angle-down;
+        }
+
         &:hover {
           background: #eeeeee;
           color: $brand-primary;
@@ -338,10 +361,12 @@ SIDEBAR MENU
 
       .expander {
         @extend .fa;
+        @extend .fas;
         @extend .fa-angle-right;
       }
       &.active .expander {
         @extend .fa;
+        @extend .fas;
         @extend .fa-angle-down;
       }
     }

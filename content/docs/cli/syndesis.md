@@ -3,7 +3,6 @@ draft: false
 title: "Syndesis CLI"
 toc: true
 weight: 10
-url: 'docs/cli'
 ---
 
 ## Buildtool "syndesis"

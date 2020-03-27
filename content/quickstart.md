@@ -5,7 +5,7 @@ description: ""
 draft: false
 menu:
   sidenav:
-    pre: <i class='fa fa-fw fa-rocket'></i>
+    pre: <i class='fas fa-rocket'></i>
     weight: -200
 sidebar: sidenav
 title: "Quickstart"

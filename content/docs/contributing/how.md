@@ -2,7 +2,6 @@
 draft: false
 title: "How to Contribute"
 toc: true
-url: 'docs/contributing'
 weight: 60
 ---
 

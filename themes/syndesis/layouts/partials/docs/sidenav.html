@@ -10,20 +10,18 @@
     {{ template "render-menu" (dict "ctx" . "root" $root "depth" 0)}}
     {{ end }}
 
-    <!-- Hardcoded Items -->
+    <!-- Static Items -->
     <li>
       <a href="https://github.com/syndesisio/syndesis/issues/" target="blank">
-        <i class='fa fa-life-ring'></i> <span>Issues & Help</span>
+        <i class='fas fa-life-ring'></i>&nbsp;<span>Issues & Help</span>
       </a>
     </li>
-    {{ if .IsPage }}
     {{ $File := .File }} {{with $File.Path }}
     <li>
       <a href="https://github.com/syndesisio/syndesis.io/edit/master/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank">
-        <i class='fa fa-fw fa-edit'></i> Refine this Page
+        <i class='fas fa-edit'></i>&nbsp;Edit this Page
       </a>
     </li>
-    {{ end }}
     {{ end }}
   </ul>
 </div>
@@ -42,8 +40,8 @@
 {{ $active = or $active (in $currentURL $sectionName1) }}
 
 {{ if $ctx.Params.Collapsible }}
-<span class="menu__title--collapse {{ if $active }}active{{ end }}" data-depth="{{ $depth }}">
-    {{ .Pre }} {{ .Name }} {{ $ctx.Title }}
+<span class="menu__title--collapse{{ if $active }} active{{ end }}" data-depth="{{ $depth }}">
+    {{ $ctx.Params.Pre | safeHTML }} {{ .Name }} {{ $ctx.Title }}
     <span class="menu__title--icon {{ if $active }}{{ if eq ($root.Param "languagedir") "rtl" }}downrtl{{ else }}down{{ end }}{{ else }}right{{ end }}">
       {{ if eq ($root.Param "languagedir") "rtl" }}
         {{ partial "svgs/arrow-left.svg" (dict "width" 22 "height" 22) }}
@@ -52,7 +50,8 @@
       {{ end }}
     </span>
 </span>
-<ul class="menu__list {{ if $active }}active{{ else if (in $ctx.Permalink (print "/" $sectionName1 "/")) }}{{ end }}" data-data={{ print "/" $sectionName1 "/"}} data-link={{ .root.Permalink }}>
+<ul class="menu__list{{ if $active }} active{{ else if (in $ctx.Permalink (print "/" $sectionName1 "/")) }}{{ end }}"
+data-data={{ print "/" $sectionName1 "/"}} data-link={{ .root.Permalink }}>
 {{ range $ctx.Pages.ByWeight }}
 {{ if .Params.Collapsible }}
 {{ template "render-menu" (dict "ctx" . "root" $root "depth" (add $depth 1)) }}
@@ -60,7 +59,10 @@
 {{ $lastUrlElement1 := index (last 1 (split (delimit (split .Permalink "/") "," "") ",")) 0 }}
 {{ $lastUrlElement2 := index (last 1 (split (delimit (split $currentURL "/") "," "") ",")) 0 }}
 <li>
-  <a href="{{ .Permalink }}" class="menu__title {{ if and (eq $lastUrlElement1 $lastUrlElement2) (eq $sectionName1 $sectionName2) }}active{{ end }}" data-depth="{{ $depth }}">{{ .Title }}</a>
+  <a href="{{ .Permalink }}"
+     class="menu__title{{ if and (eq $lastUrlElement1 $lastUrlElement2) (eq $sectionName1 $sectionName2) }} active{{ end }}" data-depth="{{ $depth }}">
+    {{ .Params.Pre | safeHTML }}&nbsp;{{ .Title }}
+  </a>
 </li>
 {{ end }}
 {{ end }}
@@ -70,7 +72,9 @@
 {{ $lastUrlElement2 := index (last 1 (split (delimit (split $currentURL "/") "," "") ",")) 0 }}
 <li class="{{ if $active }}active{{ end }}">
   <a href="{{ $ctx.Permalink }}"
-     class="menu__title {{ if $active }}active{{ end }}">{{ $ctx.Title }}</a>
+     class="menu__title{{ if $active }} active{{ end }}">
+    {{ .Params.Pre | safeHTML }}&nbsp;{{ $ctx.Title }}
+  </a>
 </li>
 {{ end }}
 {{ end }}

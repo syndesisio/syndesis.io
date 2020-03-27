@@ -3,7 +3,6 @@ draft: false
 title: "Syndesis Architecture"
 toc: true
 weight: 40
-url: 'docs/architecture'
 ---
 
 This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using [Apache Camel](https://camel.apache.org/) as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.

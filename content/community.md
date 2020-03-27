@@ -7,7 +7,7 @@ sidebar: sidenav
 menu:
   sidenav:
     name: "Community"
-    pre: "<i class='fa fa-fw fa-group'></i>"
+    pre: "<i class='fas fa-heart'></i>"
     weight: -80
   topnav:
     name: "community"

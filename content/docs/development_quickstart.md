@@ -3,6 +3,7 @@ draft: false
 title: "Development QuickStart"
 toc: true
 weight: 10
+pre: "<i class='fas fa-rocket'></i>"
 ---
 
 If you’d like to get a local development environment up and running, for

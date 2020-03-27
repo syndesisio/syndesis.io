@@ -5,7 +5,7 @@ toc: true
 sidebar: sidenav
 menu:
   sidenav:
-    pre: "<i class='fa fa-fw fa-file-text'></i>"
+    pre: "<i class='fas fa-question-circle'></i>"
     weight: -170
 ---
 
