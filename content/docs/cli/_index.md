@@ -2,6 +2,6 @@
 bref: ""
 draft: false
 title: "CLI"
-weight: 20
+weight: 30
 collapsible: true
 ---

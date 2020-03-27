@@ -1,10 +1,8 @@
 ---
-bref: ""
-date: 2017-05-19T15:02:30+01:00
-description: ""
 draft: false
 title: "Engineering Guidelines"
-weight: 30
+weight: 100
+aliases: [/docs/engineering_guidelines]
 toc: true
 ---
 

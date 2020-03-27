@@ -1,4 +1,5 @@
 ---
+bref: ""
 draft: false
 title: "Architecture"
 weight: 20

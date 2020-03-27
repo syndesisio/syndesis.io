@@ -1,8 +1,9 @@
 ---
 draft: false
-title: "CLI - Command Line Interface"
+title: "Syndesis CLI"
 toc: true
 weight: 10
+url: 'docs/cli'
 ---
 
 ## Buildtool "syndesis"

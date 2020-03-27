@@ -1,18 +1,8 @@
 ---
-bref: ""
-description: ""
 draft: false
-menu:
-  sidenav:
-    weight: -200
-    name: Architecture
-    identifier: Architecture
-    parent: "Developer Docs"
-sidebar: sidenav
-title: "Architecture"
-slug: "architecture"
+title: "Syndesis Architecture"
 toc: true
-weight: 20
+weight: 40
 url: 'docs/architecture'
 ---
 

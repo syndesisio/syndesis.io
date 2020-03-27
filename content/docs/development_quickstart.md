@@ -2,9 +2,8 @@
 draft: false
 title: "Development QuickStart"
 toc: true
-weight: 20
+weight: 10
 ---
-
 
 If you’d like to get a local development environment up and running, for
 both the UI and REST API, this is how you’d do it.

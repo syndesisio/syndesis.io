@@ -1,14 +1,8 @@
 ---
 draft: false
 title: "Data Shapes"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: "Data Shapes"
-    weight: 6
-    parent: "Develop a connector"
 toc: true
-weight: 20
+weight: 30
 ---
 
 A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a `datashape`.

@@ -1,14 +1,8 @@
 ---
 draft: false
 title: "Connection Autodiscovery"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: Connection Autodiscovery
-    weight: 7
-    parent: "Develop a connector"
 toc: true
-weight: 20
+weight: 40
 ---
 
 Most steps on any integration have an input data source coming from the previous step and output another data source to the following step. Each type of connector expects different data sources. These data source formats are the ones used on the mapping steps to match the output of one step to the input of the following step. 

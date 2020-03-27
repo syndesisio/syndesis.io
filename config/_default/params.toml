@@ -9,9 +9,3 @@ enableNavbar = true
 ## Comments
 enableComment = true
 disqus_shortname = ""
-
-[[docs.sidenav]]
-    name = "blog"
-    weight = -130
-    identifier = "blog"
-    url = "/blog/"

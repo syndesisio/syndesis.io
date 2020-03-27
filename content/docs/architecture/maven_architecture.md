@@ -1,14 +1,8 @@
 ---
 draft: false
 title: "Maven Architecture"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: Maven Architecture
-    weight: 1
-    parent: Architecture
 toc: true
-weight: 20
+weight: 60
 ---
 
 ## Maven Groups

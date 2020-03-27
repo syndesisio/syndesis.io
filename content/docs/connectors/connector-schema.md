@@ -1,12 +1,6 @@
 ---
 draft: false
 title: "Connector Schema"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: Connector Schema
-    weight: 5
-    parent: "Develop a connector"
 toc: true
 weight: 20
 ---

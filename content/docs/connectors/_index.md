@@ -1,7 +1,7 @@
 ---
 bref: ""
 draft: false
-title: "Develop a Connector"
-weight: 20
+title: "Connectors"
+weight: 40
 collapsible: true
 ---
