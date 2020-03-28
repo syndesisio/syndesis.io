@@ -11,18 +11,24 @@ On this section we will explore how to contribute to the project with issues and
 
 ## Issue Labels
 
-We use [GitHub labels](https://github.com/syndesisio/syndesis/labels) to categorize epics, issues and tasks. They are
- the foundation of our process, so please use labels for issues.
+We use [GitHub labels](https://github.com/syndesisio/syndesis/labels) to
+categorize epics, issues and tasks. They are the foundation of our
+process, so please use labels for issues.
 
-<div class="alert alert-info admonition" role="alert"> <i class="fas fa-caution"></i> Labels are living entities. This
- document describes the current status and might be slightly outdated. Please send a PR to adopt this section if the
-  label structure changes. Also feel free to discuss the label structure anytime. It’s essential that labels describe
-   our process, not that we have to adapt our process for these labels.  </div>
+<div class="alert alert-info admonition" role="alert"> <i class="fa
+caution"></i> Labels are living entities. This document describes the
+current status and might be slightly outdated. Please send a PR to adopt
+this section if the label structure changes. Also feel free to discuss
+the label structure anytime. It’s essential that labels describe our
+process, not that we have to adapt our process for these labels.  </div>
 
-Labels are grouped. Each label consists of two parts: A **Group** and a **Name** which are separated by a slash
- (`/`). For example, the label `module/ui` is used to mark issue which is relevant to the Syndesis UI module.
+Labels are grouped. Each label consists of two parts: A **Group** and a
+**Name** which are separated by a slash (`/`). For example, the label
+`module/ui` is used to mark issue which is relevant to the Syndesis UI
+module.
 
-The following label groups are available. There must be only at most one label from the "Exclusive" groups.
+The following label groups are available. There must be only at most one
+label from the "Exclusive" groups.
 
 | Group       | Description                                                                                                                        | Excl. |
 | ----------- | ---------------------------------------------------------------------------------------------------------------------------------- | ----- |
@@ -36,20 +42,24 @@ The following label groups are available. There must be only at most one label f
 | **size/**   | Tee shirt size for issues. Sizing is a subjective assessment and should be done relative to other issues.                          | ✔︎     |
 | **status/** | Status of an issue or PR.                                                                                                          |       |
 
-Each label group serves a particular purpose, and for each issue and PR, it should be considered whether a label from
- a group applies.
+Each label group serves a particular purpose, and for each issue and PR,
+it should be considered whether a label from a group applies.
 
 ### Groups
 
-Labels from this group reference our application groups like "rest", "ui" or "connector". Each sub-team is
- responsible for one or more group, and every group has an 'owning' team. That does not mean that members of other
-  teams are not allowed to work on such groups. Contrary, this is even encouraged. But its just there so that teams
-   can filter on issues and PRs which are relevant to them.
+Labels from this group reference our application groups like "rest",
+"ui" or "connector". Each sub-team is responsible for one or more group,
+and every group has an 'owning' team. That does not mean that members of
+other teams are not allowed to work on such groups. Contrary, this is
+even encouraged. But its just there so that teams can filter on issues
+and PRs which are relevant to them.
 
-An issue can carry many group labels. Especially Epics will carry more than such label as they touch more than one
- group (otherwise it wouldn’t be an epic).
+An issue can carry many group labels. Especially Epics will carry more
+than such label as they touch more than one group (otherwise it wouldn’t
+be an epic).
 
-For Java code, a "group" roughly corresponds to a directory directly below `app/`.
+For Java code, a "group" roughly corresponds to a directory directly
+below `app/`.
 
 | Group                 | Description                                                     |
 | --------------------- | --------------------------------------------------------------- |
@@ -67,7 +77,9 @@ For Java code, a "group" roughly corresponds to a directory directly below `app/
 
 ### Categories
 
-Labels from the `cat/` group are labels which can always be applied and which does not fit in another category. Currently we have these categories:
+Labels from the `cat/` group are labels which can always be applied and
+which does not fit in another category. Currently we have these
+categories:
 
 | Category           | Description                                                                    |
 | ------------------ | ------------------------------------------------------------------------------ |
@@ -86,9 +98,10 @@ Labels from the `cat/` group are labels which can always be applied and which do
 
 ### Pull Requests
 
-This category of labels is all about pull requests. All of them have a meaning for the [pure-bot](https://github.com
-/syndesisio/pure-bot) bot which watches a pull request and performs certain action. These actions also involve
- monitoring and creating labels.
+This category of labels is all about pull requests. All of them have a
+meaning for the [pure-bot](https://github.com/syndesisio/pure-bot) bot
+which watches a pull request and performs certain action. These actions
+also involve monitoring and creating labels.
 
 The following labels are involved:
 
@@ -102,8 +115,9 @@ The following labels are involved:
 
 ### Notification
 
-Notification labels from the `notif/` group serve a particular purpose. They are used when one team wants to notify
- another group that a specific issue might have them relevance to them.
+Notification labels from the `notif/` group serve a particular purpose.
+They are used when one team wants to notify another group that a
+specific issue might have them relevance to them.
 
 | Notification     | Description                                                                                                                                                                                                                      |
 | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -112,18 +126,22 @@ Notification labels from the `notif/` group serve a particular purpose. They are
 | **notif/triage** | Every new issue gets this label and is considered during a triage session for properly priorisation and categorisation. Remove this label after the triage has happened.                                                         |
 | **notif/uxd**    | This label should be used for issues which needs some attention from the UX team. This might because a new feature has been introduced or, more important, an existing feature has changed for which a UX design already exists. |
 
-It is important to note that these labels also be removed when the notification has been received.
+It is important to note that these labels also be removed when the
+notification has been received.
 
-For example, when a UI feature like an input form changes. Then the UI team attaches a `notif/uxd` label to the PR
- which introduces this change. The UX team, detects with a filter search on this label, that there is a new
-  notification. It then decides, whether UX design needs to be updated or not. In any case, they are removing the
-   `notif/uxd` label and add a `module/uxd` label if this PR indeed requires a UX design update. If no update is
-    required, then the label is removed without replacement.
+For example, when a UI feature like an input form changes. Then the UI
+team attaches a `notif/uxd` label to the PR which introduces this
+change. The UX team, detects with a filter search on this label, that
+there is a new notification. It then decides, whether UX design needs to
+be updated or not. In any case, they are removing the `notif/uxd` label
+and add a `module/uxd` label if this PR indeed requires a UX design
+update. If no update is required, then the label is removed without
+replacement.
 
 ## Source
 
-Labels starting with `source/` indicate the origin of an issue. It should be applied to help in triaging and
- prioritizing.
+Labels starting with `source/` indicate the origin of an issue. It
+should be applied to help in triaging and prioritizing.
 
 | Notification  | Description                      |
 | ------------- | -------------------------------- |
@@ -131,7 +149,8 @@ Labels starting with `source/` indicate the origin of an issue. It should be app
 
 ## External references
 
-This label group should be used if an external system is referenced, which is not part of the Syndesis mono repo.
+This label group should be used if an external system is referenced,
+which is not part of the Syndesis mono repo.
 
 | External Project | Description                                                                                           |
 | ---------------- | ----------------------------------------------------------------------------------------------------- |
@@ -139,8 +158,9 @@ This label group should be used if an external system is referenced, which is no
 | **ext/qe**       | [syndesis-qe](https://github.com/syndesisio/syndesis-qe) suite                                        |
 | **ext/docs**     | [syndesis-documentation](https://github.com/syndesisio/syndesis-documentation) End user documentation |
 
-For the future, we plan to add more of these external repos into the Syndesis mono repo (like documentation or QE
-). If this happens, then labels should be converted to `module/` kind of labels.
+For the future, we plan to add more of these external repos into the
+Syndesis mono repo (like documentation or QE). If this happens, then
+labels should be converted to `module/` kind of labels.
 
 ### Status
 
@@ -154,55 +174,74 @@ The current status labels are:
 
 ## Issue Management and Communication
 
-With Github as the primary tool for logging and handling issues, it is important to become proficient in utilising
- its interface and taking advantage of the extra tools available.
+With Github as the primary tool for logging and handling issues, it is
+important to become proficient in utilising its interface and taking
+advantage of the extra tools available.
 
 ### Displaying Issues
 
-Issues can be displayed natively in Github by clicking the [Issues](https://github.com/syndesisio/syndesis/issues
-) button at the top of the [main repository page](https://github.com/syndesisio/syndesis). This provides a list of
- all the issues which can be filtered according to text, status etc.
+Issues can be displayed natively in Github by clicking the
+[Issues](https://github.com/syndesisio/syndesis/issues) button at the
+top of the [main repository
+page](https://github.com/syndesisio/syndesis). This provides a list of
+all the issues which can be filtered according to text, status etc.
 
-Have a look at [how to find information in a repostiory](https://help.github.com/en/github/managing-your-work-on
--github/finding-information-in-a-repository) on GitHub help. For example to show only issues that one is assigned to
-, the filter `is:issue is:open assignee:@me` can be used.
+Have a look at [how to find information in a
+repostiory](https://help.github.com/en/github/managing-your-work-on-github/finding-information-in-a-repository)
+on GitHub help. For example to show only issues that one is assigned to,
+the filter `is:issue is:open assignee:@me` can be used.
 
-Correspondingly, for pull requests pull requests awaiting ones review can be found using `is:pr is:open review
--requested:@me ` filter.
+Correspondingly, for pull requests pull requests awaiting ones review
+can be found using `is:pr is:open review-requested:@me ` filter.
 
 ### Being Notified of Issues
 
-Once assigned to the project, the registered email address should being receiving notifications from Github
- concerning any modifications to any issues. This can quickly fill an inbox so filtering these into their own folder
-  is recommended (a new developer can expect to see 50-100 per day). Additional tools, like Octobox or the new GitHub
-   Notification (currently in beta), are available for helping with managing these notifications so please ask other
-    project members if you are struggling to handle them.
+Once assigned to the project, the registered email address should being
+receiving notifications from Github concerning any modifications to any
+issues. This can quickly fill an inbox so filtering these into their own
+folder is recommended (a new developer can expect to see 50-100 per
+day). Additional tools, like Octobox or the new GitHub Notifications
+(currently in beta), are available for helping with managing these
+notifications so please ask other project members if you are struggling
+to handle them.
 
 ### Administering Issues
 
-Issues are the bedrock of the project and provide the window into understanding what each developer is currently
- working on. Therefore, it is important to log issues, assign issues and provide comments to issues. Github provides
-  tools to connect issues and Pull Requests (PRs) and even if the PR does not require an issue (rarely!) then it
-   should be possible to provide sufficient context in the PR that spells out its nature and relevance.
+Issues are the bedrock of the project and provide the window into
+understanding what each developer is currently working on. Therefore, it
+is important to log issues, assign issues and provide comments to
+issues. Github provides tools to connect issues and Pull Requests (PRs)
+and even if the PR does not require an issue (rarely!) then it should be
+possible to provide sufficient context in the PR that spells out its
+nature and relevance.
 
-Once assigned, an issue is your's to log as much detail as required to portray any problems, difficulties or
- solutions. Should you need help then Github provides syntax using the _@UserName_ syntax to prompt other's to
-  comment on the issue. Given the plethora of notifications that developers receive on a daily basis, it is
-   recommended to use this syntax if you require additional input, since this sends additional notifications
-    specifically asking the developer concerned to comment. In the event that you are unsure who to contact then it
-     is not impolite to include a number of _@UserNames_ in the issue and someone will respond and either reply
-      directly or in turn notify a person who can. Everyone understands the importance of collaboration so speaking
-       up is to be only encouraged.
+Once assigned, an issue is your's to log as much detail as required to
+portray any problems, difficulties or solutions. Should you need help
+then Github provides syntax using the _@UserName_ syntax to prompt
+other's to comment on the issue. Given the plethora of notifications
+that developers receive on a daily basis, it is recommended to use this
+syntax if you require additional input, since this sends additional
+notifications specifically asking the developer concerned to comment. In
+the event that you are unsure who to contact then it is not impolite to
+include a number of _@UserNames_ in the issue and someone will respond
+and either reply directly or in turn notify a person who can. Everyone
+understands the importance of collaboration so speaking up is to be only
+encouraged.
 
 ### Closing Issues
 
-Development is about solving the issues and closing them down. Therefore, closing issues is a good thing. Do not be
- afraid to close an  issue if the problem has been solved or indeed if the problem has gone away on its own (yes this
-  does happen!). In the event. that a code change has occurred and a PR submitted then that PR will have been
-   reviewed by another developer. There may be a back-and-forth in comments and requests for changes but finally the
-    PR will be approved by the reviewer. Once that happens, the PR will be automatically merged and closed. If an
-     issue is directly linked to the PR then that too will be closed as well. Should this not be required then the
-      issue can of course be re-opened. Once the issue is closed then it is back to the dashboard to find a new one!
+Development is about solving the issues and closing them down.
+Therefore, closing issues is a good thing. Do not be afraid to close an
+issue if the problem has been solved or indeed if the problem has gone
+away on its own (yes this does happen!). In the event. that a code
+change has occurred and a PR submitted then that PR will have been
+reviewed by another developer. There may be a back-and-forth in comments
+and requests for changes but finally the PR will be approved by the
+reviewer. Once that happens, the PR will be automatically merged and
+closed. If an issue is directly linked to the PR then that too will be
+closed as well. Should this not be required then the issue can of course
+be re-opened. Once the issue is closed then it is back to the dashboard
+to find a new one!
 
 
 ### Still Having Trouble?

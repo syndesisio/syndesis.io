@@ -93,27 +93,6 @@
         }
       }) : null;
 
-      // ========================== Expand ==========================
-      var expandBtn = document.querySelectorAll('.expand__button');
-
-      /**
-       * Iterate over every expandBtn class, add a click event listener.
-       * If clicked, adjust the arrow icon class and the height of the list.
-       */
-      for (var i = 0; i < expandBtn.length; i++) {
-        expandBtn[i].addEventListener('click', function () {
-          var content = this.nextElementSibling;
-          if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            this.querySelector('svg').classList.add('expand-icon__right');
-            this.querySelector('svg').classList.remove('expand-icon__down');
-          } else {
-            content.style.maxHeight = content.scrollHeight + 'px';
-            this.querySelector('svg').classList.remove('expand-icon__right');
-            this.querySelector('svg').classList.add('expand-icon__down');
-          }
-        });
-      }
 
       // =================== Section Menu Collapse ==================
       /**
@@ -138,22 +117,10 @@
           }
 
           /**
-           * If the parent node contains an 'active' class, adjust the max height
-           * and arrow icon.
-           * @type {Node & ParentNode}
-           */
-          var parent = elem.parentNode;
-          while (parent.classList.contains('menu__list') && parent.classList.contains('active')) {
-            console.log('parent');
-            parent.style.maxHeight = 100 * parent.children.length + 'px';
-            parent = parent.parentNode;
-          }
-
-          /**
            * Close the sub-menu
            */
           if (content.style.maxHeight) {
-            console.log('null');
+            //console.log('null');
             content.style.maxHeight = null;
             content.classList.remove('active');
 
@@ -166,7 +133,7 @@
             /**
              * Expand the sub-menu
              */
-            console.log('scrollHeight');
+            //console.log('scrollHeight');
             content.style.maxHeight = content.scrollHeight + 'px';
             content.classList.add('active');
 
@@ -174,6 +141,7 @@
               menuTitleIcon.classList.add('downrtl');
             } else {
               menuTitleIcon.classList.add('down');
+              menuTitleIcon.classList.remove('right');
             }
           }
         });
