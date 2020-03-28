@@ -159,7 +159,7 @@ SIDEBAR MENU
           font-size: 0.925rem;
         }
 
-        &.active {
+        &.active, &:hover, &:focus {
           color: $brand-primary;
           transition: all 0.2s ease;
         }
