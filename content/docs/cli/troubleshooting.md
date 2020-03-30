@@ -1,7 +1,6 @@
 ---
 draft: false
 title: "Troubleshooting"
-sidebar: "sidenav"
 toc: true
 weight: 20
 ---
