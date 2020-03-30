@@ -74,20 +74,24 @@ with Font Awesome, made to look a little bit more like an admonition in the mean
   .caution:before {
     content: "\f06d";
     color: #bf3400;
+    font-weight: 900;
   }
 
   .important:before {
     content: "\f06a";
     color: #bf0000;
+    font-weight: 900;
   }
 
   .note:before {
     content: "\f05a";
     color: #19407c;
+    font-weight: 900;
   }
 
   .warning:before {
     content: "\f071";
     color: #bf6900;
+    font-weight: 900;
   }
 }

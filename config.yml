@@ -1,4 +1,4 @@
-baseURL: "/"
+baseURL: "https://syndesis.io/"
 languageCode: "en-gb"
 title: "Syndesis - Open source integration platform"
 theme: "syndesis"

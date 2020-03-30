@@ -7,7 +7,6 @@ const jsLibs = [
   './node_modules/tether/dist/js/tether.min.js',
   './node_modules/bootstrap/dist/js/bootstrap.min.js',
   './node_modules/anchor-js/anchor.js',
-  './node_modules/@fortawesome/fontawesome-free/js/all.js',
   './themes/syndesis/js/**/*.js'
 ];
 
@@ -94,7 +93,7 @@ gulp.task('optimize-html', function() {
 });
 
 gulp.task('optimize-js', function() {
-  return gulp.src(['./public/**/*.js', './themes/syndesis/static/js/*/*.js'])
+  return gulp.src(['./public/**/*.js'])
     .pipe(plugins.uglify())
     .pipe(gulp.dest('./public'));
 });

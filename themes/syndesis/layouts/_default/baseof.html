@@ -40,7 +40,7 @@
       {{ partial "sidenav" . }}
       {{ end }}
 
-      <!-- Display docs sidebar -->
+      <!-- Display docs sidebar if in docs section -->
       {{ if eq .Type "docs" }}
       {{ partial "docs/sidenav" . }}
       {{ end }}
