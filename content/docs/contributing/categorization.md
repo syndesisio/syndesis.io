@@ -15,7 +15,7 @@ We use [GitHub labels](https://github.com/syndesisio/syndesis/labels) to
 categorize epics, issues and tasks. They are the foundation of our
 process, so please use labels for issues.
 
-<div class="alert alert-info admonition" role="alert"> <i class="fa
+<div class="alert alert-info admonition" role="alert"> <i class="far
 caution"></i> Labels are living entities. This document describes the
 current status and might be slightly outdated. Please send a PR to adopt
 this section if the label structure changes. Also feel free to discuss

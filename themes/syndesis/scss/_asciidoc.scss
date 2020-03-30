@@ -64,7 +64,7 @@ with Font Awesome, made to look a little bit more like an admonition in the mean
 .admonition {
   display: table;
   
-  .fa {
+  .fa, .far {
     display: table-cell;
     font-size: x-large;
     padding-right: 0.75em;
