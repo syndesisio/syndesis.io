@@ -64,8 +64,6 @@
   <script src="/js/syndesis.js"></script>
 
   <script>
-    "use strict";
-
     {{ $languagedir := ($.Param "languagedir" | default "ltr") }}
     var languagedir = JSON.parse({{ $languagedir | jsonify }});
 
@@ -99,7 +97,9 @@
        * For each .menu__list class item that contains an 'active' class
        * within it, adjust the max height / expand it.
        */
-      document.querySelectorAll('.menu__list').forEach(function(elem) {
+      var menuList = document.querySelectorAll('.menu__list');
+
+      menuList.forEach(function(elem) {
         if (elem.querySelectorAll('.active').length > 0) {
           elem.style.maxHeight = elem.scrollHeight + 'px';
         }
@@ -108,7 +108,9 @@
       /**
        * Adds a 'click' event listener to each .menu__title--collapse item
        */
-      document.querySelectorAll('.menu__title--collapse').forEach(function(elem) {
+      var menuTitleCollapse = document.querySelectorAll('.menu__title--collapse');
+
+      menuTitleCollapse.forEach(function(elem) {
         elem.addEventListener('click', function (e) {
           var content = this.nextElementSibling;
           var menuTitleIcon = this.querySelector('.menu__title--icon');
@@ -120,7 +122,6 @@
            * Close the sub-menu
            */
           if (content.style.maxHeight) {
-            //console.log('null');
             content.style.maxHeight = null;
             content.classList.remove('active');
 

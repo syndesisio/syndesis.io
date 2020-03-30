@@ -4,11 +4,6 @@ title: "Developer Docs"
 description: "Documentation and guides for using and/or contributing to the Syndesis project."
 kind: docs
 collapsible: true
-
-menu:
-  topnav:
-    name: "docs"
-    weight: -180
 ---
 
 This handbook contain all information required for installing, running and developing Syndesis from a developer's point of view.

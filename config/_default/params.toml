@@ -1,10 +1,5 @@
 theme = "syndesis"
-test = true
 sidebar = false
-
-# Using both, but they are the same thing..
-enableMenu = true
-enableNavbar = true
 
 ## Comments
 enableComment = true
