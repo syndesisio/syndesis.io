@@ -1788,8 +1788,7 @@ SIDEBAR MENU
     list-style: none; }
   @media (max-width: 991px) {
     .sidenav {
-      flex: none;
-      width: 214px;
+      flex: 0 0 214px;
       position: absolute;
       margin-left: -214px;
       z-index: 10000;
@@ -1921,23 +1920,27 @@ SIDEBAR MENU
 
 @media (min-width: 992px) {
   .toc {
-    flex: 0 0 314px; } }
+    flex: 0 0 auto; } }
 
 #TableOfContents {
-  background-color: rgba(0, 0, 0, 0.1);
-  padding: 10px 20px 10px 20px; }
+  padding: 10px 20px 10px 10px;
+  -o-border-image: linear-gradient(#9adde8, #0088ce) 0 0 0 100%;
+     border-image: linear-gradient(#9adde8, #0088ce) 0 0 0 100%;
+  border-left: 5px solid;
+  margin-left: 20px; }
   #TableOfContents ul {
     list-style: none;
     margin: 0;
     padding: 0 10px; }
     #TableOfContents ul li {
-      display: block; }
+      display: block;
+      line-height: 1.6rem; }
   #TableOfContents > ul > li > ul > li > a,
   #TableOfContents > ul > li > a {
     font-weight: bold;
     margin: 0 2px; }
   #TableOfContents > ul > li > ul > li > a {
-    font-style: italic; }
+    font-style: bold; }
 
 pre {
   padding: 8px 15px;
@@ -1964,10 +1967,8 @@ body {
   #main .main-content {
     padding-left: 15px;
     padding-right: 15px;
-    width: 100%; }
-    @media (min-width: 992px) {
-      #main .main-content {
-        width: calc(100% - 214px - 314px); } }
+    min-width: 0;
+    flex: 1; }
     #main .main-content h2 {
       font-size: 1.75rem;
       padding: 35px 0 10px; }
