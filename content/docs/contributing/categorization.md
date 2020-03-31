@@ -1,15 +1,8 @@
 ---
-bref: ""
-date: 2017-05-19T15:02:30+01:00
-description: ""
 draft: false
-menu:
-  sidenav:
-    parent: Contributing
-    weight: -100
-sidebar: sidenav
 title: "Categorization"
-weight: 20
+aliases: [/docs/categorization]
+weight: 80
 toc: true
 ---
 
@@ -22,7 +15,7 @@ We use [GitHub labels](https://github.com/syndesisio/syndesis/labels) to
 categorize epics, issues and tasks. They are the foundation of our
 process, so please use labels for issues.
 
-<div class="alert alert-info admonition" role="alert"> <i class="fa
+<div class="alert alert-info admonition" role="alert"> <i class="far
 caution"></i> Labels are living entities. This document describes the
 current status and might be slightly outdated. Please send a PR to adopt
 this section if the label structure changes. Also feel free to discuss

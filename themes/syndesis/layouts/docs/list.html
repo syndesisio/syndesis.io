@@ -1,0 +1,17 @@
+{{ define "main"}}
+<div itemscope
+     class="docs">
+    <button type="button" class="btn btn-primary btn-sm hidden-lg-up" data-toggle="offcanvas" data-target="#sidebar">Show nav</button>
+    {{ template "_internal/schema.html" .}}
+    <div class="hero">
+        <h1 itemprop="headline">{{.Title}}</h1>
+        {{ if .Description }}
+        <p class="lead" itemprop="description">{{ .Description }}</p>
+        {{ end }}
+    </div>
+    <div itemprop="docBody"
+         class="docBody">
+        {{ .Content | safeHTML }}
+    </div>
+</div>
+{{ end }}

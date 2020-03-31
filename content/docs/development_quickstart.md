@@ -1,16 +1,10 @@
 ---
 draft: false
 title: "Development QuickStart"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: "Development QuickStart"
-    weight: 1
-    parent: "Developer Docs"
 toc: true
-weight: 20
+weight: 10
+pre: "<i class='fas fa-rocket'></i>"
 ---
-
 
 If you’d like to get a local development environment up and running, for
 both the UI and REST API, this is how you’d do it.

@@ -7,11 +7,8 @@ sidebar: sidenav
 menu:
   sidenav:
     name: "Community"
-    pre: "<i class='fa fa-fw fa-group'></i>"
+    pre: "<i class='fas fa-heart'></i>"
     weight: -80
-  topnav:
-    name: "community"
-    weight: -120
 ---
 
 We <i class="fa fa-heart text-danger"></i> community! Contributions and feedback in whatever form are always welcome, as long as they're constructive!

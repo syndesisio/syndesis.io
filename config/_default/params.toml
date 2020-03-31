@@ -1,0 +1,6 @@
+theme = "syndesis"
+sidebar = false
+
+## Comments
+enableComment = true
+disqus_shortname = ""

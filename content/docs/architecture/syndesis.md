@@ -1,17 +1,8 @@
 ---
-bref: ""
-description: ""
 draft: false
-menu:
-  sidenav:
-    weight: -200
-    name: Architecture
-    identifier: Architecture
-    parent: "Developer Docs"
-sidebar: sidenav
-title: "Architecture"
+title: "Syndesis Architecture"
 toc: true
-weight: 20
+weight: 40
 ---
 
 This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using [Apache Camel](https://camel.apache.org/) as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.

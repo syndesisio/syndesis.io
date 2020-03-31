@@ -1,0 +1,31 @@
+[[topnav]]
+  identifier = "quickstart"
+  name = "quickstart"
+  url = "/quickstart"
+  weight = 1
+
+[[topnav]]
+  identifier = "docs"
+  name = "docs"
+  url = "/docs"
+  weight = 2
+
+[[topnav]]
+  identifier = "blog"
+  name = "blog"
+  url = "/blog"
+  weight = 3
+
+[[topnav]]
+  identifier = "faq"
+  name = "faq"
+  url = "/faq"
+  weight = 4
+
+[[topnav]]
+  identifier = "community"
+  name = "community"
+  url = "/community"
+  weight = 5
+
+

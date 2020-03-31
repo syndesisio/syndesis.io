@@ -3,10 +3,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 @import 'colors';
+@import 'mixins';
+
+$grid-max-width: 1289px;
+$grid-nav-height: 50px;
+$grid-body-width: 769px;
+$grid-side-width: 240px;
+$drawer-width: 240px;
+$menu-title-height: 30px;
 
 .sidenav {
-  color: $brand-primary;
   background-color: #eee;
+  color: $pf-black-500;
   height: 100%;
   margin-top: -26px;
   margin-left: 0;
@@ -16,6 +24,13 @@
 
   &.no-sidebar {
     border-right: none;
+  }
+
+  /**
+  Margin for Font Awesome icon
+   */
+  svg {
+    margin-right: 0.5em;
   }
 
   ul {
@@ -64,39 +79,215 @@
       }
     }
   }
-}
 
-ul.sidebar-menu {
-  padding: 0;
-  margin: -2px 0 0;
-  //background-color: #eeeeee;
+  /**
+SIDEBAR MENU
+*/
 
-  li {
+  .menu {
+    position: sticky;
+    top: $grid-nav-height;
+    margin-top: -0.5rem;
+    padding-top: 0.85rem;
+    overflow-y: auto;
 
-    ul.sub {
-      margin: -2px 0 0;
-      padding: 0;
+    @media only screen and (max-width: 600px) {
+      top: 0;
+    }
 
-      li {
-        background: #eeeeee;
-        margin-bottom: 0;
-        margin-left: 0;
-        margin-right: 0;
+    &__label {
+      font-size: 1rem;
+      margin: 0.65rem 0;
+      padding-bottom: 0.5rem;
+      text-transform: capitalize;
 
-        &:last-child {
-          border-radius: 0 0 4px 4px;
-          -webkit-border-radius: 0 0 4px 4px;
+      @media only screen and (max-width: 600px) {
+        text-align: center;
+        font-size: 1.125rem;
+      }
+    }
+
+    &__title {
+      cursor: pointer;
+      margin: 0.25rem 0;
+      position: relative;
+      word-break: break-word;
+
+      &:hover {
+        color: $brand-primary;
+        transition: all 0.2s ease;
+        display: block;
+      }
+
+      &[data-depth="1"] {
+        font-size: 0.925rem;
+      }
+
+      &[data-depth="2"] {
+        font-size: 0.925rem;
+      }
+
+      &[data-depth="3"] {
+        font-size: 0.925rem;
+      }
+
+      &[data-depth="4"] {
+        font-size: 0.925rem;
+      }
+
+      &--collapse {
+        //border-bottom: 1px solid #D7D7D7;
+        cursor: pointer;
+        display: flex;
+        margin: 0.25rem 0;
+        padding: 10px 0 10px 10px;
+        word-break: break-word;
+
+        &[data-depth="1"] {
+          font-size: 0.925rem;
         }
 
-        a {
-          font-size: 12px;
-          padding: 0 0 0 32px;
-          line-height: 35px;
-          height: 35px;
-          transition: all 0.2s ease;
-          color: $pf-black-600;
+        &[data-depth="2"] {
+          font-size: 0.925rem;
+        }
 
-          &:hover {
+        &[data-depth="3"] {
+          font-size: 0.925rem;
+        }
+
+        &[data-depth="4"] {
+          font-size: 0.925rem;
+        }
+
+        &.active, &:hover, &:focus {
+          color: $brand-primary;
+          transition: all 0.2s ease;
+        }
+
+        i {
+          font-size: 18px !important;
+          margin-top: 0.25em;
+          padding-right: 6px !important;
+        }
+      }
+
+      &--icon {
+        margin-right: 1.2em;
+        margin-top: 2px;
+
+        &.down {
+          @include rotate(90);
+          @include transition(all, 0.15s, ease);
+        }
+
+        &.downrtl {
+          @include rotate(-90);
+          @include transition(all, 0.15s, ease);
+        }
+
+        &.right {
+          @include rotate(0);
+          @include transition(all, 0.15s, ease);
+        }
+
+        svg {
+          display: block;
+          margin: auto 0;
+          @include transition(all, 0.15s, ease);
+        }
+      }
+
+      &--nested {
+        font-size: 0.925rem;
+      }
+    }
+
+    &__alone {
+      cursor: pointer;
+      @include no-select;
+    }
+
+    &__list {
+      font-size: 0.925rem;
+      max-height: 0;
+      overflow: hidden;
+      padding-left: 20px;
+      padding-inline-start: 0 !important;
+      transition: all 0.2s ease;
+      word-wrap: break-word;
+
+      @include transition();
+
+      a {
+        color: $pf-black-600;
+
+        &:hover {
+          color: $brand-primary;
+        }
+
+        &:hover, &:focus {
+          display: block;
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+      }
+
+      &.active {
+        font-weight: bold;
+        padding-inline-start: 0 !important;
+      }
+    }
+
+    .active {
+      max-height: 100%;
+    }
+
+    li.active {
+      a {
+        font-weight: bold;
+      }
+    }
+  }
+
+  ul.sidebar-menu {
+    padding: 0;
+    margin: -2px 0 0;
+
+    li {
+
+      ul.sub {
+        margin: -2px 0 0;
+        padding: 0;
+
+        li {
+          background: #eeeeee;
+          margin-bottom: 0;
+          margin-left: 0;
+          margin-right: 0;
+
+          &:last-child {
+            border-radius: 0 0 4px 4px;
+            -webkit-border-radius: 0 0 4px 4px;
+          }
+
+          a {
+            font-size: 12px;
+            padding: 0 0 0 32px;
+            line-height: 35px;
+            height: 35px;
+            transition: all 0.2s ease;
+            color: $pf-black-600;
+
+            &:hover {
+              color: $brand-primary;
+              transition: all 0.2s ease;
+              display: block;
+            }
+          }
+        }
+
+        li.active {
+          a {
             color: $brand-primary;
             transition: all 0.2s ease;
             display: block;
@@ -104,96 +295,98 @@ ul.sidebar-menu {
         }
       }
 
-      li.active {
-        a {
+      line-height: 20px !important;
+
+      a {
+        span {
+          display: inline-block;
+        }
+
+        color: $pf-black-500;
+        text-decoration: none;
+        display: block;
+        padding: 10px 0 10px 10px;
+        outline: none;
+        transition: all 0.2s ease;
+        //border-bottom: 1px solid #D7D7D7;
+        white-space: nowrap;
+
+        &.active {
+          background: #eeeeee;
           color: $brand-primary;
-          transition: all 0.2s ease;
           display: block;
+          transition: all 0.2s ease;
+
+          i {
+            color: $brand-primary;
+          }
+        }
+
+        &.active .expander {
+          @extend .fas;
+          @extend .fa-angle-down;
+        }
+
+        &:hover {
+          background: #eeeeee;
+          color: $brand-primary;
+          display: block;
+          transition: all 0.2s ease;
+          //border-bottom: 1px solid $brand-secondary;
+
+          i {
+            color: $brand-primary;
+          }
+        }
+
+        &:focus {
+          background: #eeeeee;
+          color: $brand-primary;
+          display: block;
+          transition: all 0.2s ease;
+          //border-bottom: 1px solid $brand-secondary;
+
+          i {
+            color: $brand-primary;
+          }
+        }
+
+        i {
+          font-size: 18px;
+          padding-right: 6px;
         }
       }
     }
 
-    line-height: 20px !important;
-
-    a {
-      span {
-        display: inline-block;
-      }
-
-      color: $pf-black-500;
-      text-decoration: none;
-      display: block;
-      padding: 10px 0 10px 10px;
+    li.sub-menu {
+      line-height: 15px;
       font-size: 16px;
-      font-weight: 400;
-      outline: none;
-      transition: all 0.2s ease;
-      border-bottom: 1px solid #D7D7D7;
-      white-space: nowrap;
 
-      &:hover {
-        background: #eeeeee;
-        color: $brand-primary;
-        display: block;
-        transition: all 0.2s ease;
-        border-bottom: 1px solid $brand-secondary;
-
-        i {
-          color: $brand-primary;
-        }
+      .expander {
+        @extend .fa;
+        @extend .fas;
+        @extend .fa-angle-right;
       }
-
-      &:focus {
-        background: #eeeeee;
-        color: $brand-primary;
-        display: block;
-        transition: all 0.2s ease;
-        border-bottom: 1px solid $brand-secondary;
-
-        i {
-          color: $brand-primary;
-        }
-      }
-
-      i {
-        font-size: 18px;
-        padding-right: 6px;
+      &.active .expander {
+        @extend .fa;
+        @extend .fas;
+        @extend .fa-angle-down;
       }
     }
-  }
 
-  li.sub-menu {
-    line-height: 15px;
-    font-size: 16px;
-
-    .expander {
-      @extend .fa;
-      @extend .fa-angle-right;
-    }
-    &.active .expander {
-      @extend .fa;
-      @extend .fa-angle-down;
-    }
-  }
-
-  li.active {
-    a {
-      background: #eeeeee;
-      color: $brand-primary;
-      display: block;
-      transition: all 0.2s ease;
-
-      i {
-        color: $brand-primary;
-      }
-
-    }
-  }
-  .sub-menu {
     li.active {
       a {
-        border-bottom: 1px solid $brand-secondary;
+        background: #eeeeee;
+        color: $brand-primary;
+        display: block;
+        transition: all 0.2s ease;
+
+        i {
+          color: $brand-primary;
+        }
+
       }
     }
   }
 }
+

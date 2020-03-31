@@ -2,7 +2,7 @@
 <html lang="{{ .Site.LanguageCode }}">
 
 <head>
-  {{ .Hugo.Generator }}
+  {{ hugo.Generator }}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
@@ -21,7 +21,7 @@
   {{ partial "favicon" . }}
 
   <!-- Bootstrap CSS -->{{ .Hugo.Generator }}
-  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500|Righteous" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/syndesis.css">
 </head>
 
@@ -31,7 +31,21 @@
     {{ partial "topnav" . }}
 
     <div id="main"{{ if not .IsHome }} class="d-flex flex-row"{{ end}}>
-      {{ if not .IsHome }}<div id="sidebar" class="sidenav{{ if not (isset .Params "sidebar") }} no-sidebar{{ end }}">{{ if isset .Params "sidebar" }}{{ partial "sidenav" . }}{{ end }}</div>{{ end }}
+      <!-- Check that we are not on the homepage -->
+      {{ if not .IsHome }}
+      <div id="sidebar" class="sidenav{{ if not (isset .Params "sidebar") }} no-sidebar{{ end }}">
+
+      <!-- Display the sidebar if it is a page -->
+      {{ if and (eq .Type "page") (isset .Params "sidebar") }}
+      {{ partial "sidenav" . }}
+      {{ end }}
+
+      <!-- Display docs sidebar if in docs section -->
+      {{ if eq .Type "docs" }}
+      {{ partial "docs/sidenav" . }}
+      {{ end }}
+    </div>
+    {{ end }}
       <div class="main-content">
         {{ block "main" . }}{{ end }}
       </div>
@@ -48,6 +62,94 @@
   </div>
 
   <script src="/js/syndesis.js"></script>
+
+  <script>
+    {{ $languagedir := ($.Param "languagedir" | default "ltr") }}
+    var languagedir = JSON.parse({{ $languagedir | jsonify }});
+
+    window.onload = function() {
+      // ===================== Navbar Collapse ======================
+      var navCollapseBtn = document.getElementById('navCollapseBtn');
+
+      /**
+       * If navCollapseBtn class exists, add a click event listener to it.
+       * On click, check if it's opened, close if it is.
+       */
+      navCollapseBtn ? navCollapseBtn.addEventListener('click', function(e) {
+        var navCollapse = document.querySelector('.navbar__collapse');
+
+        if (navCollapse) {
+          var dataOpen = navCollapse.getAttribute('data-open');
+
+          if (dataOpen === 'true') {
+            navCollapse.setAttribute('data-open', 'false');
+            navCollapse.style.maxHeight = 0;
+          } else {
+            navCollapse.setAttribute('data-open', 'true');
+            navCollapse.style.maxHeight = navCollapse.scrollHeight + 'px';
+          }
+        }
+      }) : null;
+
+
+      // =================== Section Menu Collapse ==================
+      /**
+       * For each .menu__list class item that contains an 'active' class
+       * within it, adjust the max height / expand it.
+       */
+      var menuList = document.querySelectorAll('.menu__list');
+
+      menuList.forEach(function(elem) {
+        if (elem.querySelectorAll('.active').length > 0) {
+          elem.style.maxHeight = elem.scrollHeight + 'px';
+        }
+      });
+
+      /**
+       * Adds a 'click' event listener to each .menu__title--collapse item
+       */
+      var menuTitleCollapse = document.querySelectorAll('.menu__title--collapse');
+
+      menuTitleCollapse.forEach(function(elem) {
+        elem.addEventListener('click', function (e) {
+          var content = this.nextElementSibling;
+          var menuTitleIcon = this.querySelector('.menu__title--icon');
+          if (!content) {
+            return null;
+          }
+
+          /**
+           * Close the sub-menu
+           */
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            content.classList.remove('active');
+
+            if (languagedir === 'rtl') {
+              menuTitleIcon.classList.remove('downrtl');
+            } else {
+              menuTitleIcon.classList.remove('down');
+            }
+          } else {
+            /**
+             * Expand the sub-menu
+             */
+            //console.log('scrollHeight');
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.classList.add('active');
+
+            if (languagedir === 'rtl') {
+              menuTitleIcon.classList.add('downrtl');
+            } else {
+              menuTitleIcon.classList.add('down');
+              menuTitleIcon.classList.remove('right');
+            }
+          }
+        });
+      });
+    };
+  </script>
+
   {{ block "pagejs" . }}{{ end }}
 </body>
 </html>

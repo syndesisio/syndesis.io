@@ -1,12 +1,6 @@
 ---
 draft: false
 title: "Day to Day"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: Day to Day
-    weight: 1
-    parent: "CLI - Command Line Interface"
 toc: true
 weight: 20
 ---

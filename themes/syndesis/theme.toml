@@ -11,15 +11,3 @@ min_version = "0.20.6"
   name = "Syndesis Developers"
   homepage = "https://syndesis.io/"
 
-[[docs.sidenav]]
-    name = "faq"
-    weight = -120
-    identifier = "faq"
-    url = "/faq/"
-
-[[docs.sidenav]]
-    name = "blog"
-    weight = -130
-    identifier = "blog"
-    url = "/blog/"
-

@@ -1,6 +1,13 @@
 @import "./bootstrap/_variables";
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+$fa-font-path: '../fonts' !default;
+
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/brands';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/solid';
+@import '../../../node_modules/@fortawesome/fontawesome-free/scss/regular';
+
 @import "asciidoc";
 @import "blog";
 @import "colors";
@@ -9,6 +16,7 @@
 @import "github-corner";
 @import "home";
 @import "icons";
+@import "mixins";
 @import "navbar";
 @import "sidenav";
 @import "toc";

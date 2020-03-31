@@ -3,7 +3,9 @@
 {{ $menu := index .Site.Menus $menuName }}
 <aside>
   <ul class="sidebar-menu">
-    <li class="nav-button hidden-lg-up"><button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button></li>
+    <li class="nav-button hidden-lg-up">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas" data-target="#sidebar">Hide nav</button>
+    </li>
     {{ range $menu }}
     {{ if .HasChildren }}
     <li class="sub-menu{{ if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} active{{end}}">
@@ -21,13 +23,19 @@
           </a>
           <ul class="sub collapse{{if or ($currentNode.IsMenuCurrent $menuName .) ($currentNode.HasMenuCurrent $menuName .) }} show{{end}}">
           {{ range .Children }}
-            <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a  class="pl-5 d-flex justify-content-between" href="{{.URL}}">
-            <span>{{ .Pre }} {{ .Name }}</span></a></li>
+            <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}>
+            <a  class="pl-5 d-flex justify-content-between" href="{{.URL}}">
+            <span>{{ .Pre }} {{ .Name }}</span>
+            </a>
+            </li>
           {{ end }}
           </ul>
         {{else}}
-        <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}><a  class="d-flex justify-content-between" href="{{.URL}}">
-            <span>{{ .Pre }} {{ .Name }}</span></a></li>
+        <li{{if $currentNode.IsMenuCurrent $menuName . }} class="active"{{end}}>
+        <a  class="d-flex justify-content-between" href="{{.URL}}">
+            <span>{{ .Pre }} {{ .Name }}</span>
+        </a>
+        </li>
         {{end}}
         
       {{ end }}
@@ -42,9 +50,21 @@
       {{end}}
     </li>
   {{end}}
-  <li> <a href="https://github.com/syndesisio/syndesis/issues/" target="blank"><i class='fa fa-life-ring'></i> <span>Issues & Help</span></a> </li>
+  <li>
+    <a href="https://github.com/syndesisio/syndesis/issues/" target="blank">
+      <i class='fas fa-life-ring'></i>&nbsp;
+    <span>Issues & Help</span>
+    </a>
+  </li>
+    <!-- If it's a page, display Edit link -->
   {{ if .IsPage }}
-  {{ $File := .File }} {{with $File.Path }}<li><a href="https://github.com/syndesisio/syndesis.io/edit/master/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank"><i class='fa fa-fw fa-edit'></i> Refine this Page</a></li>{{end}}
+  {{ $File := .File }} {{with $File.Path }}
+    <li>
+      <a href="https://github.com/syndesisio/syndesis.io/edit/master/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank">
+        <i class='fas fa-edit'></i>&nbsp;Edit this Page
+      </a>
+    </li>
+    {{end}}
   {{ end }}
   </ul>
 </aside>

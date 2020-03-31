@@ -1,12 +1,6 @@
 ---
 draft: false
 title: "Troubleshooting"
-sidebar: "sidenav"
-menu:
-  sidenav:
-    name: Troubleshooting
-    weight: 1
-    parent: "CLI - Command Line Interface"
 toc: true
 weight: 20
 ---
