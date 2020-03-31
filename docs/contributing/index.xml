@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contributing on Syndesis - Open source integration platform</title>
+    <link>https://syndesis.io/docs/contributing/</link>
+    <description>Recent content in Contributing on Syndesis - Open source integration platform</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    
+	<atom:link href="https://syndesis.io/docs/contributing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to Contribute</title>
+      <link>https://syndesis.io/docs/contributing/how/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/contributing/how/</guid>
+      <description>There are many ways to contribute to Syndesis. All contributions are valued and welcomed, be it fixing a typo in documentation, raising an issue to report a bug, or creating a whole new awesome feature. Don&amp;rsquo;t worry if this is your first contribution to an open source project: the Syndesis maintainers can help you if you need it.
+Improving documentation Documentation is in various places in our repositories. We are committed to streamlining this, but for now there are a few different places to look.</description>
+    </item>
+    
+    <item>
+      <title>Categorization</title>
+      <link>https://syndesis.io/docs/contributing/categorization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/contributing/categorization/</guid>
+      <description>On this section we will explore how to contribute to the project with issues and pull requests.
+Issue Labels We use GitHub labels to categorize epics, issues and tasks. They are the foundation of our process, so please use labels for issues.
+ Labels are living entities. This document describes the current status and might be slightly outdated. Please send a PR to adopt this section if the label structure changes.</description>
+    </item>
+    
+    <item>
+      <title>Engineering Guidelines</title>
+      <link>https://syndesis.io/docs/contributing/engineering_guidelines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/contributing/engineering_guidelines/</guid>
+      <description>Heads up! This is a work in progress... and may always be... Please check back regularly.  The Syndesis maintainers are always looking for the optimum way to develop Syndesis. We aim to have a development process that enables fast delivery across all features and components, taking into account priorities from the community. Speed of development has to be balanced against total community ownership, knowledge sharing, and stability of the software.</description>
+    </item>
+    
+  </channel>
+</rss>

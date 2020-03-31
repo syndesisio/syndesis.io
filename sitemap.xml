@@ -3,22 +3,15 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://syndesis.io/docs/cli/</loc>
+    <loc>https://syndesis.io/docs/connectors/create/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/categorization/</loc>
-    <lastmod>2017-05-19T15:02:30+01:00</lastmod>
+    <loc>https://syndesis.io/docs/development_quickstart/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/engineering_guidelines/</loc>
-    <lastmod>2017-05-19T15:02:30+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://syndesis.io/docs/contributing/</loc>
-    <lastmod>2017-05-19T14:40:12+01:00</lastmod>
+    <loc>https://syndesis.io/docs/cli/syndesis/</loc>
   </url>
   
   <url>
@@ -31,23 +24,27 @@
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/autodiscovery/</loc>
+    <loc>https://syndesis.io/docs/connectors/connector-schema/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/connector-schema/</loc>
+    <loc>https://syndesis.io/docs/cli/day_to_day/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/datashapes/</loc>
+    <loc>https://syndesis.io/docs/cli/troubleshooting/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/day_to_day/</loc>
+    <loc>https://syndesis.io/docs/cli/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/development_quickstart/</loc>
+    <loc>https://syndesis.io/docs/connectors/datashapes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/connectors/autodiscovery/</loc>
   </url>
   
   <url>
@@ -55,11 +52,27 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/docs/architecture/syndesis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/contributing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/contributing/how/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/docs/architecture/maven_architecture/</loc>
   </url>
   
   <url>
-    <loc>https://syndesis.io/docs/troubleshooting/</loc>
+    <loc>https://syndesis.io/docs/contributing/categorization/</loc>
+  </url>
+  
+  <url>
+    <loc>https://syndesis.io/docs/contributing/engineering_guidelines/</loc>
   </url>
   
   <url>
@@ -115,11 +128,6 @@
   <url>
     <loc>https://syndesis.io/blog/</loc>
     <lastmod>2020-03-02T12:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://syndesis.io/docs/</loc>
-    <lastmod>2017-05-19T15:02:30+01:00</lastmod>
   </url>
   
   <url>

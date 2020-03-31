@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Connectors on Syndesis - Open source integration platform</title>
+    <link>https://syndesis.io/docs/connectors/</link>
+    <description>Recent content in Connectors on Syndesis - Open source integration platform</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    
+	<atom:link href="https://syndesis.io/docs/connectors/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create a Connector</title>
+      <link>https://syndesis.io/docs/connectors/create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/create/</guid>
+      <description>If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.
+This documentation provides details about developing, testing, and deploying a new Syndesis connector. It uses the example of creating the MongoDB connector to illustrate internal behavior and analyze development choices.
+Before you start to develop a connector, you should:</description>
+    </item>
+    
+    <item>
+      <title>Connector Schema</title>
+      <link>https://syndesis.io/docs/connectors/connector-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/connector-schema/</guid>
+      <description>As we&amp;rsquo;ve already seen in the Connector Development guidelines, the connection to or from a generic data source is proxied by the presence of the Connector Proxy component. In this page you will find how to configure it in all its details. The descriptor does a fundamental job in linking together the GUI (who will use the configuration to dynamically define the connector behavior), the server, the meta (which can be required to serve certain meta information dynamically) and finally the integration platform runtime where the application will run (being Apache Camel the one we use as reference).</description>
+    </item>
+    
+    <item>
+      <title>Data Shapes</title>
+      <link>https://syndesis.io/docs/connectors/datashapes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/datashapes/</guid>
+      <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
+A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+    </item>
+    
+    <item>
+      <title>Connection Autodiscovery</title>
+      <link>https://syndesis.io/docs/connectors/autodiscovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/autodiscovery/</guid>
+      <description>Most steps on any integration have an input data source coming from the previous step and output another data source to the following step. Each type of connector expects different data sources. These data source formats are the ones used on the mapping steps to match the output of one step to the input of the following step.
+But sometimes we don&amp;rsquo;t have a pre-defined format for those data sources, but a format that is dependent on the context.</description>
+    </item>
+    
+  </channel>
+</rss>

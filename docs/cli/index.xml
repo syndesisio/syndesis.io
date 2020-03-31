@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CLI on Syndesis - Open source integration platform</title>
+    <link>https://syndesis.io/docs/cli/</link>
+    <description>Recent content in CLI on Syndesis - Open source integration platform</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    
+	<atom:link href="https://syndesis.io/docs/cli/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Syndesis CLI</title>
+      <link>https://syndesis.io/docs/cli/syndesis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/syndesis/</guid>
+      <description>Buildtool &amp;ldquo;syndesis&amp;rdquo; Syndesis uses a single tool for controlling various aspects of the build and developer related tasks. This script can be found in $SYNDESIS_DIR/tools/bin and is called syndesis. It requires bash and can be used on any Unix or macOS.
+To have this script handy all the time it is recommended to either put this bin/ directory into the path or add a symlink from syndesis into a directory which is already on your execution path.</description>
+    </item>
+    
+    <item>
+      <title>Day to Day</title>
+      <link>https://syndesis.io/docs/cli/day_to_day/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/day_to_day/</guid>
+      <description>Minishift We are assuming an existing Minishift instance.
+Startup Make sure Minishift is running.
+$ minishift status Which should look like:
+$ minishift status Minishift: Running If it says something like:
+$ minishift status Minishift: Stopped Then start minishift with:
+$ minishift start Environment This step is required regardless of whether it’s a first-time install or not. It logs you in and points OpenShift to use Minishift resources.
+$ oc login -u developer $ eval $(minishift oc-env) $ eval $(minishift docker-env) The eval’s set a number of environment variables, like change the $PATH and $DOCKER_HOST, so each time you do a Syndesis build it’s good to make sure those are invoked.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://syndesis.io/docs/cli/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/troubleshooting/</guid>
+      <description>Common Problems When things go wrong, you want to try to identify the area that is causing problems (UI, REST API, etc). If it’s the UI, look for errors in the browser console or the terminal to see if it’s a dependency issue.
+UI Dependency Issues $ rm -rf node_modules $ yarn install Not getting latest API changes This is a known issue. This is the workaround for using the latest REST image from the Docker stream.</description>
+    </item>
+    
+  </channel>
+</rss>

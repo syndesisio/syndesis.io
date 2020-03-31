@@ -12,106 +12,14 @@
     
     
     <item>
-      <title>CLI - Command Line Interface</title>
-      <link>https://syndesis.io/docs/cli/</link>
+      <title>Create a Connector</title>
+      <link>https://syndesis.io/docs/connectors/create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://syndesis.io/docs/cli/</guid>
-      <description>Buildtool &amp;ldquo;syndesis&amp;rdquo; Syndesis uses a single tool for controlling various aspects of the build and developer related tasks. This script can be found in $SYNDESIS_DIR/tools/bin and is called syndesis. It requires bash and can be used on any Unix or macOS.
-To have this script handy all the time it is recommended to either put this bin/ directory into the path or add a symlink from syndesis into a directory which is already on your execution path.</description>
-    </item>
-    
-    <item>
-      <title>Categorization</title>
-      <link>https://syndesis.io/docs/categorization/</link>
-      <pubDate>Fri, 19 May 2017 15:02:30 +0100</pubDate>
-      
-      <guid>https://syndesis.io/docs/categorization/</guid>
-      <description>On this section we will explore how to contribute to the project with issues and pull requests.
-Issue Labels We use GitHub labels to categorize epics, issues and tasks. They are the foundation of our process, so please use labels for issues.
- Labels are living entities. This document describes the current status and might be slightly outdated. Please send a PR to adopt this section if the label structure changes.</description>
-    </item>
-    
-    <item>
-      <title>Engineering Guidelines</title>
-      <link>https://syndesis.io/docs/engineering_guidelines/</link>
-      <pubDate>Fri, 19 May 2017 15:02:30 +0100</pubDate>
-      
-      <guid>https://syndesis.io/docs/engineering_guidelines/</guid>
-      <description>Heads up! This is a work in progress... and may always be... Please check back regularly.  The Syndesis maintainers are always looking for the optimum way to develop Syndesis. We aim to have a development process that enables fast delivery across all features and components, taking into account priorities from the community. Speed of development has to be balanced against total community ownership, knowledge sharing, and stability of the software.</description>
-    </item>
-    
-    <item>
-      <title>How to contribute to Syndesis</title>
-      <link>https://syndesis.io/docs/contributing/</link>
-      <pubDate>Fri, 19 May 2017 14:40:12 +0100</pubDate>
-      
-      <guid>https://syndesis.io/docs/contributing/</guid>
-      <description>There are many ways to contribute to Syndesis. All contributions are valued and welcomed, be it fixing a typo in documentation, raising an issue to report a bug, or creating a whole new awesome feature. Don&amp;rsquo;t worry if this is your first contribution to an open source project: the Syndesis maintainers can help you if you need it.
-Improving documentation Documentation is in various places in our repositories. We are committed to streamlining this, but for now there are a few different places to look.</description>
-    </item>
-    
-    <item>
-      <title>Quickstart</title>
-      <link>https://syndesis.io/quickstart/</link>
-      <pubDate>Tue, 16 May 2017 15:58:18 +0100</pubDate>
-      
-      <guid>https://syndesis.io/quickstart/</guid>
-      <description>You can try out Syndesis very easily locally, too. All you need is a Minishift installation which is available for all the major operating systems (Linux, OS X and Windows). The following examples assume that you have Minishift installed and can be called with minishift from the command line. So, minishift is supposed to be available in your search path, i.e. located in a directory contained in your $PATH environment variable (Linux, macOS) or in a directory from your system path (Windows).</description>
-    </item>
-    
-    <item>
-      <title>Architecture</title>
-      <link>https://syndesis.io/docs/architecture/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/architecture/</guid>
-      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
-Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
-    </item>
-    
-    <item>
-      <title>Connection Autodiscovery</title>
-      <link>https://syndesis.io/docs/autodiscovery/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/autodiscovery/</guid>
-      <description>Most steps on any integration have an input data source coming from the previous step and output another data source to the following step. Each type of connector expects different data sources. These data source formats are the ones used on the mapping steps to match the output of one step to the input of the following step.
-But sometimes we don&amp;rsquo;t have a pre-defined format for those data sources, but a format that is dependent on the context.</description>
-    </item>
-    
-    <item>
-      <title>Connector Schema</title>
-      <link>https://syndesis.io/docs/connector-schema/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/connector-schema/</guid>
-      <description>As we&amp;rsquo;ve already seen in the Connector Development guidelines, the connection to or from a generic data source is proxied by the presence of the Connector Proxy component. In this page you will find how to configure it in all its details. The descriptor does a fundamental job in linking together the GUI (who will use the configuration to dynamically define the connector behavior), the server, the meta (which can be required to serve certain meta information dynamically) and finally the integration platform runtime where the application will run (being Apache Camel the one we use as reference).</description>
-    </item>
-    
-    <item>
-      <title>Data Shapes</title>
-      <link>https://syndesis.io/docs/datashapes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/datashapes/</guid>
-      <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
-A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
-    </item>
-    
-    <item>
-      <title>Day to Day</title>
-      <link>https://syndesis.io/docs/day_to_day/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/day_to_day/</guid>
-      <description>Minishift We are assuming an existing Minishift instance.
-Startup Make sure Minishift is running.
-$ minishift status Which should look like:
-$ minishift status Minishift: Running If it says something like:
-$ minishift status Minishift: Stopped Then start minishift with:
-$ minishift start Environment This step is required regardless of whether it’s a first-time install or not. It logs you in and points OpenShift to use Minishift resources.
-$ oc login -u developer $ eval $(minishift oc-env) $ eval $(minishift docker-env) The eval’s set a number of environment variables, like change the $PATH and $DOCKER_HOST, so each time you do a Syndesis build it’s good to make sure those are invoked.</description>
+      <guid>https://syndesis.io/docs/connectors/create/</guid>
+      <description>If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.
+This documentation provides details about developing, testing, and deploying a new Syndesis connector. It uses the example of creating the MongoDB connector to illustrate internal behavior and analyze development choices.
+Before you start to develop a connector, you should:</description>
     </item>
     
     <item>
@@ -126,14 +34,96 @@ Tips
     </item>
     
     <item>
-      <title>How to develop a connector</title>
-      <link>https://syndesis.io/docs/connectors/</link>
+      <title>Syndesis CLI</title>
+      <link>https://syndesis.io/docs/cli/syndesis/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://syndesis.io/docs/connectors/</guid>
-      <description>If Syndesis does not provide a connector for the application or service that you want to connect to in an integration, an experienced developer can develop and contribute a new Syndesis connector.
-This documentation provides details about developing, testing, and deploying a new Syndesis connector. It uses the example of creating the MongoDB connector to illustrate internal behavior and analyze development choices.
-Before you start to develop a connector, you should:</description>
+      <guid>https://syndesis.io/docs/cli/syndesis/</guid>
+      <description>Buildtool &amp;ldquo;syndesis&amp;rdquo; Syndesis uses a single tool for controlling various aspects of the build and developer related tasks. This script can be found in $SYNDESIS_DIR/tools/bin and is called syndesis. It requires bash and can be used on any Unix or macOS.
+To have this script handy all the time it is recommended to either put this bin/ directory into the path or add a symlink from syndesis into a directory which is already on your execution path.</description>
+    </item>
+    
+    <item>
+      <title>Quickstart</title>
+      <link>https://syndesis.io/quickstart/</link>
+      <pubDate>Tue, 16 May 2017 15:58:18 +0100</pubDate>
+      
+      <guid>https://syndesis.io/quickstart/</guid>
+      <description>You can try out Syndesis very easily locally, too. All you need is a Minishift installation which is available for all the major operating systems (Linux, OS X and Windows). The following examples assume that you have Minishift installed and can be called with minishift from the command line. So, minishift is supposed to be available in your search path, i.e. located in a directory contained in your $PATH environment variable (Linux, macOS) or in a directory from your system path (Windows).</description>
+    </item>
+    
+    <item>
+      <title>Connector Schema</title>
+      <link>https://syndesis.io/docs/connectors/connector-schema/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/connector-schema/</guid>
+      <description>As we&amp;rsquo;ve already seen in the Connector Development guidelines, the connection to or from a generic data source is proxied by the presence of the Connector Proxy component. In this page you will find how to configure it in all its details. The descriptor does a fundamental job in linking together the GUI (who will use the configuration to dynamically define the connector behavior), the server, the meta (which can be required to serve certain meta information dynamically) and finally the integration platform runtime where the application will run (being Apache Camel the one we use as reference).</description>
+    </item>
+    
+    <item>
+      <title>Day to Day</title>
+      <link>https://syndesis.io/docs/cli/day_to_day/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/day_to_day/</guid>
+      <description>Minishift We are assuming an existing Minishift instance.
+Startup Make sure Minishift is running.
+$ minishift status Which should look like:
+$ minishift status Minishift: Running If it says something like:
+$ minishift status Minishift: Stopped Then start minishift with:
+$ minishift start Environment This step is required regardless of whether it’s a first-time install or not. It logs you in and points OpenShift to use Minishift resources.
+$ oc login -u developer $ eval $(minishift oc-env) $ eval $(minishift docker-env) The eval’s set a number of environment variables, like change the $PATH and $DOCKER_HOST, so each time you do a Syndesis build it’s good to make sure those are invoked.</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://syndesis.io/docs/cli/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/cli/troubleshooting/</guid>
+      <description>Common Problems When things go wrong, you want to try to identify the area that is causing problems (UI, REST API, etc). If it’s the UI, look for errors in the browser console or the terminal to see if it’s a dependency issue.
+UI Dependency Issues $ rm -rf node_modules $ yarn install Not getting latest API changes This is a known issue. This is the workaround for using the latest REST image from the Docker stream.</description>
+    </item>
+    
+    <item>
+      <title>Data Shapes</title>
+      <link>https://syndesis.io/docs/connectors/datashapes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/datashapes/</guid>
+      <description>A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a datashape.
+A datashape is a way to describe any inbound/outbound message format and to allow the user to easily map each data property in the integration step: said in other words, you will be able to transform on the fly the input/output of the data involved in an integration.</description>
+    </item>
+    
+    <item>
+      <title>Connection Autodiscovery</title>
+      <link>https://syndesis.io/docs/connectors/autodiscovery/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/autodiscovery/</guid>
+      <description>Most steps on any integration have an input data source coming from the previous step and output another data source to the following step. Each type of connector expects different data sources. These data source formats are the ones used on the mapping steps to match the output of one step to the input of the following step.
+But sometimes we don&amp;rsquo;t have a pre-defined format for those data sources, but a format that is dependent on the context.</description>
+    </item>
+    
+    <item>
+      <title>Syndesis Architecture</title>
+      <link>https://syndesis.io/docs/architecture/syndesis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/architecture/syndesis/</guid>
+      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
+Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
+    </item>
+    
+    <item>
+      <title>How to Contribute</title>
+      <link>https://syndesis.io/docs/contributing/how/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/contributing/how/</guid>
+      <description>There are many ways to contribute to Syndesis. All contributions are valued and welcomed, be it fixing a typo in documentation, raising an issue to report a bug, or creating a whole new awesome feature. Don&amp;rsquo;t worry if this is your first contribution to an open source project: the Syndesis maintainers can help you if you need it.
+Improving documentation Documentation is in various places in our repositories. We are committed to streamlining this, but for now there are a few different places to look.</description>
     </item>
     
     <item>
@@ -148,13 +138,23 @@ In details Syndesis consists of the following groups:
     </item>
     
     <item>
-      <title>Troubleshooting</title>
-      <link>https://syndesis.io/docs/troubleshooting/</link>
+      <title>Categorization</title>
+      <link>https://syndesis.io/docs/contributing/categorization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://syndesis.io/docs/troubleshooting/</guid>
-      <description>Common Problems When things go wrong, you want to try to identify the area that is causing problems (UI, REST API, etc). If it’s the UI, look for errors in the browser console or the terminal to see if it’s a dependency issue.
-UI Dependency Issues $ rm -rf node_modules $ yarn install Not getting latest API changes This is a known issue. This is the workaround for using the latest REST image from the Docker stream.</description>
+      <guid>https://syndesis.io/docs/contributing/categorization/</guid>
+      <description>On this section we will explore how to contribute to the project with issues and pull requests.
+Issue Labels We use GitHub labels to categorize epics, issues and tasks. They are the foundation of our process, so please use labels for issues.
+ Labels are living entities. This document describes the current status and might be slightly outdated. Please send a PR to adopt this section if the label structure changes.</description>
+    </item>
+    
+    <item>
+      <title>Engineering Guidelines</title>
+      <link>https://syndesis.io/docs/contributing/engineering_guidelines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/contributing/engineering_guidelines/</guid>
+      <description>Heads up! This is a work in progress... and may always be... Please check back regularly.  The Syndesis maintainers are always looking for the optimum way to develop Syndesis. We aim to have a development process that enables fast delivery across all features and components, taking into account priorities from the community. Speed of development has to be balanced against total community ownership, knowledge sharing, and stability of the software.</description>
     </item>
     
     <item>
@@ -275,16 +275,6 @@ Here are some important links:
     </item>
     
     <item>
-      <title>Developer Docs</title>
-      <link>https://syndesis.io/docs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/docs/</guid>
-      <description>This handbook contain all information required for installing, running and developing Syndesis from a developer&amp;rsquo;s point of view.
- Please use the links in the sidebar on the left to navigate the Developer Docs.  </description>
-    </item>
-    
-    <item>
       <title>FAQ</title>
       <link>https://syndesis.io/faq/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -302,7 +292,7 @@ How to read logs?</description>
       
       <guid>https://syndesis.io/about/</guid>
       <description>Syndesis is a flexible platform that provides core integration capabilities as a service. It can be run on the cloud or on premises with OpenShift or Kubernetes. It is fully extensible and, best of all, it is free and open source software.
-Open source IPAAS Gartner defines an Integration Platform As A Service as is a suite of cloud services enabling development, execution and governance of integration flows connecting any combination of on premises and cloud-based processes, services, applications and data within individual or across multiple organizations.</description>
+Open Source IPaaS Gartner defines an Integration Platform As A Service as is a suite of cloud services enabling development, execution and governance of integration flows connecting any combination of on premises and cloud-based processes, services, applications and data within individual or across multiple organizations.</description>
     </item>
     
   </channel>
