@@ -38,8 +38,7 @@ $menu-title-height: 30px;
   }
 
   @include media-breakpoint-down(md) {
-    flex: none;
-    width: 214px;
+    flex: 0 0 214px;
     position: absolute;
     margin-left: -214px;
     z-index: 10000;
