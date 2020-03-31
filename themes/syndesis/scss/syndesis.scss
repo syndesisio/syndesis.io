@@ -44,11 +44,8 @@ body {
   .main-content {
     padding-left: 15px;
     padding-right: 15px;
-    width: 100%;
-
-    @include media-breakpoint-up(lg) {
-      width: calc(100% - 214px - 314px);
-    }
+    min-width: 0; // https://weblog.west-wind.com/posts/2016/feb/15/flexbox-containers-pre-tags-and-managing-overflow
+    flex: 1;
 
     h2 {
       font-size: 1.75rem;
