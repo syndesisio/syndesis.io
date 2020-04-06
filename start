@@ -1,5 +1,60 @@
 #!/bin/bash
 
+set -euf -o pipefail
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+out() {
+  echo "${bold}[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $@${normal}" >&2
+}
+
+download_cli() {
+  local tempDir=$(mktemp -d)
+  trap "rm -rf $tempDir" EXIT
+  cd $tempDir
+
+  local tag="latest"
+
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      --tag)
+        tag=$2
+        ;;
+    esac
+
+    shift
+    shift
+  done
+
+  local status
+  if [[ "${tag}" = "latest" ]]; then
+    out Downloading the latest stable release
+    status=$(curl -sSLO -w "%{http_code}" https://github.com/syndesisio/syndesis/releases/latest/download/syndesis-cli.zip)
+  else
+    out Downloading the version: ${tag}
+    status=$(curl -sSLO -w "%{http_code}" "https://github.com/syndesisio/syndesis/releases/download/${tag}/syndesis-cli.zip")
+  fi
+
+  if [[ $status -eq 200 ]]; then
+    unzip -qq syndesis-cli.zip
+  else
+    out Unable to download syndesis-cli.zip from GitHub releases, make sure that the ${tag} version is correct
+    exit
+  fi
+}
+
+minishift() {
+  local options="--install --full-reset --nodev --open $@"
+
+  if [[ "$OSTYPE" = "darwin"* && "$@" != *"--vm-driver"* ]]; then
+    out "Running on OSX, using Hyperkit support"
+    options+=" --vm-driver hyperkit"
+  fi
+  out Running: syndesis minishift $options
+  ./syndesis minishift $options
+}
+
 cat <<EOT
 =====================================================================
 SYNDESIS QUICKSTART
@@ -13,25 +68,10 @@ Quickstarts: https://github.com/syndesisio/syndesis-quickstarts/blob/master/READ
 EOT
 
 read -p "This install will reset your current MiniShift. OK to continue [y/N]? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-
-  tempDir=$(mktemp -d)
-  pushd $tempDir
-  curl -LO https://github.com/syndesisio/syndesis/archive/master.zip
-  unzip ./master.zip 'syndesis-master/tools/bin/*'
-  mkdir .syndesis
-  mv syndesis-master/tools/bin ./.syndesis
-  rm -fr syndesis-master
-  rm master.zip
-
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Hyperkit support only on OSX"
-    ./.syndesis/bin/syndesis minishift --install --full-reset --nodev --open --vm-driver hyperkit
-  else
-    ./.syndesis/bin/syndesis minishift --install --full-reset --nodev --open
-  fi
-  popd
-
+echo # move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  download_cli $@
+  minishift $@
+  out Finished, to log in use the username 'developer' and any password
 fi
+
