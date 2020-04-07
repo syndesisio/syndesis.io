@@ -6,7 +6,7 @@
     <description>Recent content on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 02 Mar 2020 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2020 07:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -155,6 +155,16 @@ Issue Labels We use GitHub labels to categorize epics, issues and tasks. They ar
       
       <guid>https://syndesis.io/docs/contributing/engineering_guidelines/</guid>
       <description>Heads up! This is a work in progress... and may always be... Please check back regularly.  The Syndesis maintainers are always looking for the optimum way to develop Syndesis. We aim to have a development process that enables fast delivery across all features and components, taking into account priorities from the community. Speed of development has to be balanced against total community ownership, knowledge sharing, and stability of the software.</description>
+    </item>
+    
+    <item>
+      <title>Version 1.9.0 Released</title>
+      <link>https://syndesis.io/blog/20200407-version-1.9/</link>
+      <pubDate>Tue, 07 Apr 2020 07:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/20200407-version-1.9/</guid>
+      <description>It has been a long hard way, but we have just released Syndesis 1.9.0!
+This version includes many new features since latest 1.8.13 release. We have now new connectors for Kafka, Debezium, Amazon DDB and many others. It also contains several bug fixes, upgrades of dependencies and uses a newer Camel version (2.23). We encourage everyone to update their Syndesis installations to this new version. Let us know what are the new features you enjoy most!</description>
     </item>
     
     <item>
