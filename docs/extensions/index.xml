@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Extensions on Syndesis - Open source integration platform</title>
+    <link>https://syndesis.io/docs/extensions/</link>
+    <description>Recent content in Extensions on Syndesis - Open source integration platform</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    
+	<atom:link href="https://syndesis.io/docs/extensions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What is an Extension</title>
+      <link>https://syndesis.io/docs/extensions/whatis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/extensions/whatis/</guid>
+      <description>Syndesis is a platform designed to provide maximum flexibility to your integrations. Most of the time you will be fine using the connectors and other tools provided, but, in a certain situation you may feel you need something specific to your business goal. For that situation we&amp;rsquo;ve thought to provide a special mechanism called Extension.
+An extension is a dedicate development that will enhance the functionality of your platform and integration runtime by adding any custom behavior you need.</description>
+    </item>
+    
+    <item>
+      <title>Create an Extension</title>
+      <link>https://syndesis.io/docs/extensions/create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/extensions/create/</guid>
+      <description>This documentation provides details about developing and deploying a new Syndesis extension. It uses the example of creating the validate EIP to illustrate how to create one. With this Step extension we will be able to validate any incoming message according to a configured rule. If the message does not match the rule the integration will raise an error.
+In the rest of the document we will learn how to develop a custom extension and include the validate behavior, how to import it into Syndesis platform and finally how to use it in an integration.</description>
+    </item>
+    
+  </channel>
+</rss>
