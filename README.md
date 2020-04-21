@@ -8,11 +8,11 @@
   * macOS and Homebrew users: `brew install yarn`
 * Add yarn's binary directory to your path in your `.bashrc` or `.bash_profile`: `export PATH=${PATH}:$(yarn global bin)`
 * Install `gulp` globally: `yarn global add gulp-cli`
-* Install `hugo` (see http://gohugo.io/overview/installing/)
+* Install `hugo` (see http://gohugo.io/overview/installing/) - beware of certain version problems on [Debian/Ubuntu](https://gohugo.io/getting-started/installing/#debian-and-ubuntu).
 * Run `yarn`
 
 ### Previewing
-Run `gulp` and open your browser at http://localhost:1313.
+Run `gulp` and open your browser at http://localhost:7000.
 
 ### Building
 Run `gulp build` to build site into `public` directory.
