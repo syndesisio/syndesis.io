@@ -11,6 +11,16 @@
     
     
     <item>
+      <title>What is a Connector</title>
+      <link>https://syndesis.io/docs/connectors/whatis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/whatis/</guid>
+      <description>Syndesis use Connectors to communicate with an integration platform and its underlying components. An integration platform like Apache Camel, our choice of reference, typically has one or more components used to communicate with external data sources. A connector is a proxy to that component, and is used to instruct Syndesis what that component is expecting and how to communicate with it.
+Put in other words, the goal of the Connector proxy is to simplify or provide additional logic to what is expected by an integration platform&amp;rsquo;s component.</description>
+    </item>
+    
+    <item>
       <title>Create a Connector</title>
       <link>https://syndesis.io/docs/connectors/create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
