@@ -627,7 +627,7 @@ To show the flow of an integration, Syndesis displays icons that identify the ap
 
 **Procedure**
 
-1. Add an image to the Syndesis `app/ui-react/syndesis/public/icons` folder. The image should identify the application that your connector accesses. For example, the image for the MongoDB connector is `mongodb.png`: ![MongoDB icon](/images/mongodb.png) 
+1. Add an image to the Syndesis `app/ui-react/syndesis/public/icons` folder. The image should identify the application that your connector accesses. For example, the image for the MongoDB connector is `mongodb.png`.
 
 2. In the connector definition JSON file, specify the `icon` attribute. with the name of your image file. Follow the format shown here:
 
