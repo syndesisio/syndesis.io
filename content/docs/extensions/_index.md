@@ -4,14 +4,15 @@ draft: false
 title: "Extensions"
 weight: 40
 collapsible: true
-pre: "<i class='fas fa-network-wired'></i>"
+pre: "<i class='fas fa-network-wired fa-fw'></i>"
 ---
 
 Syndesis is a platform designed to provide maximum flexibility to your integrations. Most of the time you will be fine using the connectors and other tools provided, but, in a certain situation you may feel you need something specific to your business goal. For that situation we've thought to provide a special mechanism called `Extension`.
 
-An extension is a dedicate development that will enhance the functionality of your platform and integration runtime by adding any custom behavior you need. You can import that special behavior on your Syndesis installation. 
+An extension is a dedicated development that will enhance the functionality of your platform and integration runtime
+ by adding any custom behavior you need. You can import that special behavior on your Syndesis installation. 
 
-We provide three way to add extensions:
+We provide three ways to add extensions:
 
 - Connector
 - Step
