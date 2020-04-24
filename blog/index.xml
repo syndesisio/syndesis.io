@@ -6,10 +6,20 @@
     <description>Recent content in Blog on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Tue, 07 Apr 2020 07:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2020 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to use an extension</title>
+      <link>https://syndesis.io/blog/2020/04/24/extensions/</link>
+      <pubDate>Fri, 24 Apr 2020 12:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/2020/04/24/extensions/</guid>
+      <description>Customization is a key factor in any successful software product. Even more for an integration platform whose goal is to make heterogeneous external systems communicate between them.
+Syndesis is a flexible integration platform and takes this aspect seriously providing an Extension mechanism by design. We also know that once the platform is up and running, it is desirable to have an easy way to install a customization with no need to involve IT in upgrade procedures.</description>
+    </item>
     
     <item>
       <title>Version 1.9.0 Released</title>

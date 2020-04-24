@@ -6,7 +6,7 @@
     <description>Recent content on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Tue, 07 Apr 2020 07:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2020 12:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -185,6 +185,16 @@ Issue Labels We use GitHub labels to categorize epics, issues and tasks. They ar
       
       <guid>https://syndesis.io/docs/contributing/engineering_guidelines/</guid>
       <description>Heads up! This is a work in progress... and may always be... Please check back regularly.  The Syndesis maintainers are always looking for the optimum way to develop Syndesis. We aim to have a development process that enables fast delivery across all features and components, taking into account priorities from the community. Speed of development has to be balanced against total community ownership, knowledge sharing, and stability of the software.</description>
+    </item>
+    
+    <item>
+      <title>How to use an extension</title>
+      <link>https://syndesis.io/blog/2020/04/24/extensions/</link>
+      <pubDate>Fri, 24 Apr 2020 12:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/2020/04/24/extensions/</guid>
+      <description>Customization is a key factor in any successful software product. Even more for an integration platform whose goal is to make heterogeneous external systems communicate between them.
+Syndesis is a flexible integration platform and takes this aspect seriously providing an Extension mechanism by design. We also know that once the platform is up and running, it is desirable to have an easy way to install a customization with no need to involve IT in upgrade procedures.</description>
     </item>
     
     <item>
