@@ -108,7 +108,13 @@ Everything start with a maven `pom.xml` file. We've created a module called `syn
 </project>
 ```
 
-Extending the `syndesis-extension-parent` is the best way to proceed as you will inherit all the needed plugin to build your extension.
+You can either extend `syndesis-extension-parent` or execute one of the maven archetype we have available. As an example:
+
+```
+mvn archetype:generate -DarchetypeGroupId=io.syndesis.extension -DarchetypeArtifactId=extension-archetype-java
+```
+
+The `Extension`s available archetypes are `extension-archetype-java`, `extension-archetype-spring-boot` and `extension-archetype-xml`.
 
 ### Development
 
