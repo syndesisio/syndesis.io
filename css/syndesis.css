@@ -692,6 +692,10 @@ tbody.collapse.show {
 .fa-3x {
   font-size: 3em; }
 
+.fa-fw {
+  text-align: center;
+  width: 1.25em; }
+
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
 readers do not read off random characters that represent icons */
 
@@ -721,6 +725,12 @@ readers do not read off random characters that represent icons */
 
 .fa-life-ring:before {
   content: "\f1cd"; }
+
+.fa-network-wired:before {
+  content: "\f6ff"; }
+
+.fa-plug:before {
+  content: "\f1e6"; }
 
 .fa-question-circle:before {
   content: "\f059"; }
@@ -1833,7 +1843,7 @@ SIDEBAR MENU
         .sidenav .menu__title--collapse i {
           font-size: 18px !important;
           margin-top: 0.25em;
-          padding-right: 6px !important; }
+          margin-right: 0.50em; }
       .sidenav .menu__title--icon {
         margin-right: 1.2em;
         margin-top: 2px; }
