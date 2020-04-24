@@ -135,7 +135,6 @@ SIDEBAR MENU
       }
 
       &--collapse {
-        //border-bottom: 1px solid #D7D7D7;
         cursor: pointer;
         display: flex;
         margin: 0.25rem 0;
@@ -166,7 +165,7 @@ SIDEBAR MENU
         i {
           font-size: 18px !important;
           margin-top: 0.25em;
-          padding-right: 6px !important;
+          margin-right: 0.50em;
         }
       }
 
