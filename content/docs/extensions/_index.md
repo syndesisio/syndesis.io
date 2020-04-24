@@ -4,7 +4,7 @@ draft: false
 title: "Extensions"
 weight: 40
 collapsible: true
-pre: "<i class='fas fa-window-restore'></i>"
+pre: "<i class='fas fa-network-wired'></i>"
 ---
 
 Syndesis is a platform designed to provide maximum flexibility to your integrations. Most of the time you will be fine using the connectors and other tools provided, but, in a certain situation you may feel you need something specific to your business goal. For that situation we've thought to provide a special mechanism called `Extension`.
