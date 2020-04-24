@@ -11,13 +11,13 @@
     {{ end }}
 
     <!-- Static Items -->
-    <li class="fa-li">
+    <li>
       <a href="https://github.com/syndesisio/syndesis/issues/" target="blank">
         <i class='fas fa-life-ring fa-fw'></i>&nbsp;<span>Issues & Help</span>
       </a>
     </li>
     {{ $File := .File }} {{with $File.Path }}
-    <li class="fa-li">
+    <li>
       <a href="https://github.com/syndesisio/syndesis.io/edit/master/content/{{ $File.Dir }}{{ $File.LogicalName }}" target="blank">
         <i class='fas fa-edit fa-fw'></i>&nbsp;Edit this Page
       </a>
