@@ -741,9 +741,6 @@ readers do not read off random characters that represent icons */
 .fa-user-friends:before {
   content: "\f500"; }
 
-.fa-window-restore:before {
-  content: "\f2d2"; }
-
 /*!
  * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
