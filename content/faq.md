@@ -68,5 +68,8 @@ Syndesis creates and manages data virtualizations to expose as data source conne
 
 Save to config and deploy again the `syndesis-ui` to have the Data Virtualizations enabled.
 
+## Where can I find the server public API documentation?
+You can find `openapi` spec by accessing to `/api/v1/openapi.json` from your base host, ie (`https://syndesis.192.168.42.139.nip.io/api/v1/openapi.json`). You can choose to view either in `json` or `yaml` format. Older versions of Syndesis use `swagger` format. In such case you can access to `/api/v1/swagger.json` instead.
+
 ## Is `oscerd` a bot ?
 This is asked very often. No, he's human. His mom got him tested. 
