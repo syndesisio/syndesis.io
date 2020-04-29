@@ -1,31 +1,35 @@
 [[topnav]]
   identifier = "quickstart"
-  name = "quickstart"
+  name = "Quickstart"
   url = "/quickstart"
   weight = 1
 
 [[topnav]]
   identifier = "docs"
-  name = "docs"
+  name = "Documentation"
   url = "/docs"
   weight = 2
 
 [[topnav]]
   identifier = "blog"
-  name = "blog"
+  name = "Blog"
   url = "/blog"
   weight = 3
 
 [[topnav]]
   identifier = "faq"
-  name = "faq"
+  name = "FAQ"
   url = "/faq"
   weight = 4
 
 [[topnav]]
   identifier = "community"
-  name = "community"
+  name = "Community"
   url = "/community"
   weight = 5
 
-
+[[topnav]]
+  identifier = "about"
+  name = "About"
+  url = "/about"
+  weight = 6
