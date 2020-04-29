@@ -314,6 +314,17 @@ JIRA Issues for Keynote</description>
     </item>
     
     <item>
+      <title>About</title>
+      <link>https://syndesis.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/about/</guid>
+      <description>Syndesis is a flexible platform that provides core integration capabilities as a service. With Syndesis you can integrate data coming from different sources, automate data workflows, interconnect services, conflate, and push your data to any kind of service.
+It can be run on the cloud or on premises with OpenShift or Kubernetes. It is fully extensible and, best of all, it is free and open source software.
+Open Source IPaaS Gartner defines an Integration Platform As A Service as a suite of cloud services enabling development, execution and governance of integration flows connecting any combination of on premises and cloud-based processes, services, applications and data within individual or across multiple organizations.</description>
+    </item>
+    
+    <item>
       <title>Community</title>
       <link>https://syndesis.io/community/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -333,16 +344,6 @@ Here are some important links:
       <description>Syndesis looks awesome. Who is it for? Anyone that wants to integrate services. Syndesis includes a swish UI that enables the user to design integration flows and manage them from their browser.
 No coding required&amp;hellip; Unless you really want to and then Syndesis allows you to dive into the code, develop your own connectors (if one doesn&amp;rsquo;t already exist), or hack on the integration definition directly.
 How to read logs?</description>
-    </item>
-    
-    <item>
-      <title>What is Syndesis</title>
-      <link>https://syndesis.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://syndesis.io/about/</guid>
-      <description>Syndesis is a flexible platform that provides core integration capabilities as a service. It can be run on the cloud or on premises with OpenShift or Kubernetes. It is fully extensible and, best of all, it is free and open source software.
-Open Source IPaaS Gartner defines an Integration Platform As A Service as is a suite of cloud services enabling development, execution and governance of integration flows connecting any combination of on premises and cloud-based processes, services, applications and data within individual or across multiple organizations.</description>
     </item>
     
   </channel>

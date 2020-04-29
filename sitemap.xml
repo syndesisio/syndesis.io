@@ -162,6 +162,10 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/about/</loc>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/categories/</loc>
   </url>
   
@@ -179,10 +183,6 @@
   
   <url>
     <loc>https://syndesis.io/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://syndesis.io/about/</loc>
   </url>
   
 </urlset>
