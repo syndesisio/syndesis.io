@@ -135,7 +135,7 @@ gulp.task('manual:render', (cb) => {
       'doctype': 'book',
       'safe': 'safe',
       'mkdirs': true,
-      'to_file': `content/manual/${section}/index.html`
+      'to_file': `documentation/manual/${section}/index.html`
     });
 
     const messages = logger.getMessages();
@@ -155,4 +155,4 @@ gulp.task('manual:render', (cb) => {
 gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
 gulp.task('manual', gulp.series('manual:export', 'manual:render'));
 gulp.task('build', gulp.series('manual', 'fonts', 'css', 'js', 'hugo', 'optimize'));
-gulp.task('default', gulp.series(gulp.parallel('manual', 'js', 'css', 'watch', 'hugo:serve')));
+gulp.task('default', gulp.series(gulp.parallel('manual', 'js', 'css'), gulp.parallel('hugo:serve', 'watch')));

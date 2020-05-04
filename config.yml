@@ -8,6 +8,9 @@ metaDataFormat: "yaml"
 pygmentsCodeFences: true
 pygmentsCodeFencesGuessSyntax: true
 pygmentsStyle: github
+staticDir:
+- static
+- documentation
 markup:
   defaultMarkdownHandler: blackfriday
   blackFriday:
