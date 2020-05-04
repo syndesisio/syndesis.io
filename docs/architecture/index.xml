@@ -16,8 +16,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://syndesis.io/docs/architecture/syndesis/</guid>
-      <description>This document want to illustrates at high level some of the components that makes up Syndesis and how they are communicating together to finally serves the creation of an integration. We are using Apache Camel as a runtime target, though it would be possible to extend the project and makes it suitable to any other integration platform.
-Disclaimer: the content illustrated here is related to version 1.8, it can change in future versions.</description>
+      <description>This document illustrates at high level the core components of Syndesis and how they communicate together to serve integrations.
+Heads up! The discussion provided in this document is leaving many details and additional components on purpose as it wants to be a high level approach to the architecture behind Syndesis.  Overview Syndesis is composed by several components that are deployed automatically by the operator component. To install Syndesis, you just have to deploy an instance of the operator which will take care of deploying the rest of the components and make sure there is always one healthy instance up.</description>
     </item>
     
     <item>
