@@ -154,5 +154,5 @@ gulp.task('manual:render', (cb) => {
 
 gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
 gulp.task('manual', gulp.series('manual:export', 'manual:render'));
-gulp.task('build', gulp.series('fonts', 'css', 'js', 'hugo', 'optimize'));
-gulp.task('default', gulp.series(gulp.parallel('js', 'css', 'watch', 'hugo:serve')));
+gulp.task('build', gulp.series('manual', 'fonts', 'css', 'js', 'hugo', 'optimize'));
+gulp.task('default', gulp.series(gulp.parallel('manual', 'js', 'css', 'watch', 'hugo:serve')));

@@ -11,6 +11,12 @@
   weight = 2
 
 [[topnav]]
+  identifier = "manual"
+  name = "Manuals"
+  url = "/manual"
+  weight = 2
+
+[[topnav]]
   identifier = "blog"
   name = "Blog"
   url = "/blog"
