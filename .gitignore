@@ -7,6 +7,7 @@
 /themes/syndesis/static/CNAME
 /static/CNAME
 /data/sri
+content/manual/*/index.html
 .cache
 .config
 .yarnrc

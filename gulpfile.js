@@ -135,7 +135,7 @@ gulp.task('manual:render', (cb) => {
       'doctype': 'book',
       'safe': 'safe',
       'mkdirs': true,
-      'to_file': `public/manual/${section}/index.html`
+      'to_file': `content/manual/${section}/index.html`
     });
 
     const messages = logger.getMessages();
