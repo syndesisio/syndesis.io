@@ -95,3 +95,29 @@ with Font Awesome, made to look a little bit more like an admonition in the mean
     font-weight: 900;
   }
 }
+
+#header h1 {
+  margin-left: 23rem;
+}
+
+#toc {
+  position: fixed;
+  width: 20rem;
+  z-index: 1000;
+  left: 0;
+  background: white;
+  height: 100%;
+  overflow: auto;
+  top: 5rem;
+}
+
+#toc ul {
+  list-style: none;
+  padding-left: 1rem;
+  line-height: 1.7;
+}
+
+#content {
+  margin-left: 23rem;
+}
+

@@ -125,17 +125,26 @@ gulp.task('manual:export', (cb) => {
 gulp.task('manual:render', (cb) => {
   const Asciidoctor = require('asciidoctor.js');
   const asciidoctor = Asciidoctor();
+
   const logger = asciidoctor.MemoryLogger.$new();
+  asciidoctor.LoggerManager.setLogger(logger);
+
+  const registry = asciidoctor.Extensions.create();
+  require('./asciidoc-processor.js')(registry);
 
   const sections = ['tutorials', 'integrating-applications', 'connecting', 'developing_extensions', 'managing_environments'];
 
   for (const section of sections) {
-    asciidoctor.LoggerManager.setLogger(logger);
     asciidoctor.convertFile(`build/documentation/${section}/master.adoc`, {
       'doctype': 'book',
       'safe': 'safe',
       'mkdirs': true,
-      'to_file': `documentation/manual/${section}/index.html`
+      'to_file': `documentation/manual/${section}/index.html`,
+      'attributes': {
+        'linkcss': true,
+        'stylesheet': '/css/syndesis.css'
+      },
+      'extension_registry': registry
     });
 
     const messages = logger.getMessages();

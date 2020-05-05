@@ -1,10 +1,22 @@
 ---
 draft: false
-title: "Developer Docs"
+title: "Documentation"
 description: "Documentation and guides for using and/or contributing to the Syndesis project."
 kind: docs
 collapsible: true
 ---
+
+## Using or administrating Syndesis
+
+The following Manuals for Users and Administrators are available:
+
+ - [Connecting to Applications and Services](/manual/connecting)
+ - [Developing Extensions](/manual/developing_extensions)
+ - [Integrating Applications](/manual/integrating-applications)
+ - [Managing Environments](/manual/managing_environments)
+ - [Sample Integration Tutorials](/manual/tutorials)
+
+## Extending or contributing to Syndesis
 
 This handbook contain all information required for installing, running and developing Syndesis from a developer's point of view.
 
