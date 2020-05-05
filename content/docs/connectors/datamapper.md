@@ -5,51 +5,54 @@ toc: true
 weight: 25
 ---
 
-Data Mapper is a data mapping step available in Syndesis, which leverages [AtlasMap](https://github.com/atlasmap/atlasmap/blob/master/README.md) under the cover. When you add a Data Mapper step in integration flow, Data Mapper UI opens up and show available data types to define mappings. Data Mapper consumes output data from all previous steps, and produce an input of next step. 
+Syndesis have a data mapping step called Data Mapper.
+
+Using [AtlasMap](https://github.com/atlasmap/atlasmap/blob/master/README.md), the Data Mapper interface opens up and shows all available data types to define mappings. Data Mapper can consume data from all previous steps, and produce an input for the next step. 
 
 ![Preview of Data Mapper on Syndesis](https://raw.githubusercontent.com/syndesisio/syndesis-quickstarts/1.9/aws-dynamodb/img/create_integration15.png)
+
 _Figure 1. Data Mapper on Syndesis_
 
-Source documents are the inputs into Data Mapper, which are the outputs from all previous steps. Target document is the output from Data Mapper, which is the input for the next step. Each document consists of fields, and the mappings are defined field by field. In other words the Data Mapper is a tool to define and execute a set of field mappings.
+Source documents are the input parameters for Data Mapper, which are the outputs from all previous steps. Target document is the output from Data Mapper, which is the input for the next step. Each document consists of fields, and the mappings are defined field by field. 
 
-Eventually Data Mapper UI produces mapping definition file and store it as a part of Syndesis integration definition. This mapping definition is consumed as a part of Syndesis integration runtime.
+In other words the Data Mapper is a tool to define and execute a set of field mappings. The Data Mapper step generates a mapping definition and store it as a part of the integration. 
 
-While basic field type conversion is applied automatically during executing mapping, you can also add Transformations for each mapping. Transformations are a set of functions you can explicitly choose from a list and apply in UI where you need. 
+Basic field type conversion is applied automatically during executing mapping. You can also add more complex Transformations for each mapping. 
 
-Data Mapper consists of following 3 parts
+## Components
 
-1. [Data Mapper UI](#data-mapper-ui)
-2. [Design Runtime](#design-runtime)
-3. [camel-atlasmap component](#camel-atlasmap-component)
+Data Mapper has three differentiated components:
 
-## Data Mapper UI
+### User Interface
 
-Data Mapper UI is an user interface to define data mappings. You can define mappings in the UI by selecting source and target field(s), choose a mapping type from **_Map(one-to-one)_**, **_Separate(one-to-many)_** and **_Combine(many-to-one)_**, and add **Transformation**s if needed. 
+Data Mapper has a user interface to define data mappings. It interacts with the **Design Runtime** backend service.
 
-Data Mapper UI interacts with **Design Runtime** backend service behind the scene where needed.
-Data Mapper UI is an Angular component which is [AtlasMap Data Mapper UI](https://github.com/atlasmap/atlasmap/blob/master/ui/README.md) behind the scene. 
+You can define mappings in the UI by selecting source and target field(s), choose a mapping type, and add **Transformation**s if needed. 
 
-**Data Mapper Host Component** is responsible to integrate AtlasMap Data Mapper UI component into Syndesis UI.
+**Data Mapper Host Component** integrates AtlasMap Data Mapper UI into Syndesis.
 
-## Design Runtime
+### Design Runtime
 
-Design Runtime is a backend REST service which provides API to be used by Data Mapper UI.
+Design Runtime is a REST service to be used by the Data Mapper user interface.
 
-Data Mapper Design Runtime resides as a part of syndesis-server. It runs endpoints implemented as AtlasMap services
+Data Mapper Design Runtime resides as a part of syndesis-server. It runs endpoints implemented as AtlasMap services:
 
 1. [atlas-java-service](https://github.com/atlasmap/atlasmap/tree/master/lib/modules/java/service)
 1. [atlas-json-service](https://github.com/atlasmap/atlasmap/tree/master/lib/modules/json/service)
 1. [atlas-xml-service](https://github.com/atlasmap/atlasmap/tree/master/lib/modules/xml/service)
 1. [atlas-dfdl-service](https://github.com/atlasmap/atlasmap/tree/master/lib/modules/dfdl/service)
 
-Currently 3 types of API are provided
+The following types of API are provided:
 
 1. [Inspection](#inspection)
 1. [Validation](#validation)
 1. [Transformation (FieldAction)](#transformation-fieldaction-)
 
-### Inspection
-Inspection service consumes some kinds of data type definition and produce an unified internal format, called Document. Document represents the data structure as a set of fields. AtlasMap has different types of inspection service such as:
+#### Inspection
+
+Inspection service consumes some kinds of data type definition and produce an unified internal format, called Document, which represents the data structure as a set of fields. 
+
+AtlasMap has several types of inspection service such as:
 
 1. **Java**: consumes fully qualified class name
 1. **JSON Schema**: consumes JSON Schema 
@@ -57,54 +60,37 @@ Inspection service consumes some kinds of data type definition and produce an un
 1. **XML Schema**: consumes XML Schema
 1. **XML Instance**: consumes XNL instance document
 
-### Validation
-Validation service validates if the mapping definition is valid. For example, when you put a Long => Integer mapping in UI, UI makes a request to validate the mappings, then validation service detects a posibility to get the value out of range on that mapping. UI then shows a warning that there is a range concern.
+#### Validation
 
-### Transformation (FieldAction)
+This service validates the mapping definition. 
 
-Transformation is called *FieldAction* internally. The *FieldAction* service returns a list of all available *FieldAction* details, including *FieldAction* name and supported field type. UI then shows them as a list of available Transformations where the field type matches with supported field type of the Transformation.
+For example, when you define a Long => Integer mapping, the user interface requests to validate the mappings, and then the validation service detects a posibility to get the value out of range on that mapping. UI then returns a warning about a range concern.
+
+#### Transformation (FieldAction)
+
+Transformation is called *FieldAction* internally. 
+
+The *FieldAction* service returns a list of all available *FieldAction* details, including name and supported field type. The user interface then shows them as a list where the field type matches with the supported field type of the Transformation.
 
 <img style="max-width: 100%" src="https://raw.githubusercontent.com/syndesisio/syndesis-quickstarts/1.9/db-2-api-connector/img/contact-2-task.png" alt="Data Mapper with transformations"/>
 _Figure 2. Data Mapper with Transformations_
 
 ## camel-atlasmap component
-[camel-atlasmap component](https://github.com/atlasmap/atlasmap/tree/master/camel3) is an Apache Camel component to execute Data Mapper mappings. It consumes mapping definition file and a set of input data from Camel input messages, perform mappings according to the provided mapping definition, then produce an output and put it into Camel OUT message.
+
+[camel3-atlasmap component](https://github.com/atlasmap/atlasmap/tree/master/camel3) is an Apache Camel component to execute our mappings. It consumes a mapping definition file and a set of input data from Camel input messages, then performs mappings according to the provided mapping definition, produces an output and puts it into the output message of the step.
 
 ## Data Mapper and [DataShape](https://github.com/syndesisio/syndesis/blob/master/app/common/model/src/main/java/io/syndesis/common/model/DataShape.java)
-Each Syndesis [Action](https://github.com/syndesisio/syndesis/blob/master/app/common/model/src/main/java/io/syndesis/common/model/action/Action.java) contains one Input DataShape and one Output DataShape.
-DataShape holds data type metadata. Data Mapper consumes those DataShape to initialize Documents. The DataShape properties related to Data Mapper are
+Each Syndesis [Action](https://github.com/syndesisio/syndesis/blob/master/app/common/model/src/main/java/io/syndesis/common/model/action/Action.java) has one Input DataShape and one Output DataShape.
+Data Mapper consumes these shapes to initialize Documents. 
 
-1. [kind](#datashape-kind)
-2. [type](#datashape-type)
-3. [specification](#datashape-specification)
-4. [name](#datashape-name)
-5. [description](#datashape-description)
+You can find more information on Datashapes on the [DataShape section](datashapes).
 
-### DataShape kind
-The kind of DataShape represented by the enum [DataShapeKinds](https://github.com/syndesisio/syndesis/blob/master/app/common/model/src/main/java/io/syndesis/common/model/DataShapeKinds.java). There are 7 kinds
+## Camel Integration
 
-1. **java**: Data type is represented by Java class. DataShape `type` contains fully qualified class name. If DataShape `specification` contains inspection result, Data Mapper will skip to perform online Java inspection and just use what is held  as `specification`. In Syndesis, all the `java` kind DataShape must hold Java inspection result, so that the online inspection could be avoided.
-2. **json-schema**: Data type is represented by JSON Schema. DataShape `specification` must contain JSON Schema document.
-3. **json-instance**: Data type is represented by JSON instance. DataShape `specification` must contain JSON instance document.
-4. **xml-schema**: Data type is represented by XML Schema. DataShape `specification` must contain XML Schema document.
-5. **xml-instance**: Data type is represented by XML instance. DataShape `specification` must contain XML instance document.
-6. **any**: Data type is not structured. For example, byte array or free format text. Data Mapper will ignore this DataShape if kind is `any`.
-7. **none**: No data type. If input DataShape kind is `none`, that step doesn't read data. If output DataShape kind is `none`, that step doesn't modify data. Since in many case input message body is just transfered to output message body, output DataShape kind = `none` often means passthrough. Data Mapper will ignore the DataShape if kind is `none`.
+In order to capture all the messages from previous steps for Data Mapper, Syndesis embeds [an internal Camel processor](https://github.com/syndesisio/syndesis/blob/master/app/integration/runtime/src/main/java/io/syndesis/integration/runtime/capture/OutMessageCaptureProcessor.java). 
 
-### DataShape type
-If DataShape `kind` is `java`, this property holds fully qualified class name. Otherwise this is ignored by Data Mapper.
+This processor is invoked on each step defined in Syndesis. It captures the output message of each step and put it into the Message Map held as an Camel Exchange property. The Step ID is used as a key, allowing Data Mapper to link between the data type defined in each step and the actual message in the Message Map at runtime.
 
-### DataShape specification
-If DataShape `kind` is `java`, this property holds Java inspection result. If DataShape `kind` is one of `json-schema`, `json-instance`, `xml-schema` or `xml-instance`, this property holds corresponding document.
+## More information
 
-### DataShape name
-A human readable name for the data type. This is shown as a Document label in the Data Mapper UI, as well as in the data type indicators you can see in Syndesis integration flow view.
-
-### DataShape description
-An additional data type description to show. This is shown as a tooltip on a Document label in the Data Mapper UI.
-
-## Message Map
-In order to capture all the output messages from previous steps and let Data Mapper step consume those, Syndesis embeds [an internal Camel processor](https://github.com/syndesisio/syndesis/blob/master/app/integration/runtime/src/main/java/io/syndesis/integration/runtime/capture/OutMessageCaptureProcessor.java). 
-
-This processor is invoked for each steps defined in Syndesis integration flow at runtime. It captures an output message of each steps and put it into the Message Map held as an Camel Exchange property. The Step ID is used as a key. Since Data Mapper use Step ID as a Document ID in the mapping definition file, it eventually allows Data Mapper to link between the data type defined in mapping definition file and actual message in the Message Map at runtime.
-
+You can find [more information on this Data Mapper on the repository](https://github.com/syndesisio/syndesis/blob/master/app/server/docs/design/datamapper.md).

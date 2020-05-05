@@ -3,6 +3,7 @@ draft: false
 title: "Data Shapes"
 toc: true
 weight: 30
+name: "datashapes"
 ---
 
 A very important feature of any integration platform is to manage transparently the data format between the source and the destination channel. Syndesis and the powerful visual data mapper tool bundled with it, simplifies this concept with the definition of a `datashape`.
