@@ -41,6 +41,18 @@ Before you start to develop a connector, you should:</description>
     </item>
     
     <item>
+      <title>Data Mapper</title>
+      <link>https://syndesis.io/docs/connectors/datamapper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://syndesis.io/docs/connectors/datamapper/</guid>
+      <description>Syndesis have a data mapping step called Data Mapper.
+Using AtlasMap, the Data Mapper interface opens up and shows all available data types to define mappings. Data Mapper can consume data from all previous steps, and produce an input for the next step.
+Figure 1. Data Mapper on Syndesis
+Source documents are the input parameters for Data Mapper, which are the outputs from all previous steps. Target document is the output from Data Mapper, which is the input for the next step.</description>
+    </item>
+    
+    <item>
       <title>Data Shapes</title>
       <link>https://syndesis.io/docs/connectors/datashapes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
