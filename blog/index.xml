@@ -6,10 +6,20 @@
     <description>Recent content in Blog on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 24 Apr 2020 12:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2020 10:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Change Data Capture connector</title>
+      <link>https://syndesis.io/blog/2020/05/11/debezium/</link>
+      <pubDate>Mon, 11 May 2020 10:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/2020/05/11/debezium/</guid>
+      <description>A couple of weeks ago, Red Hat celebrated its 2020 summit. The summit is one of the most important events in the IT industry and Syndesis (through its product branded by Red Hat, Fuse Online) was there too!
+One of the most recurrent pattern we&amp;rsquo;ve observed during different sessions was about the usage of changes happening on an application data layer. Those changes are streamed to a topic and provided as event to be consumed by integrations.</description>
+    </item>
     
     <item>
       <title>How to use an extension</title>
