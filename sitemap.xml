@@ -96,6 +96,11 @@
   </url>
   
   <url>
+    <loc>https://syndesis.io/blog/2020/07/23/release-1-10/</loc>
+    <lastmod>2020-07-23T07:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://syndesis.io/blog/2020/05/11/debezium/</loc>
     <lastmod>2020-05-11T10:00:00+01:00</lastmod>
   </url>
@@ -157,12 +162,12 @@
   
   <url>
     <loc>https://syndesis.io/</loc>
-    <lastmod>2020-05-11T10:00:00+01:00</lastmod>
+    <lastmod>2020-07-23T07:00:00+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://syndesis.io/blog/</loc>
-    <lastmod>2020-05-11T10:00:00+01:00</lastmod>
+    <lastmod>2020-07-23T07:00:00+01:00</lastmod>
   </url>
   
   <url>

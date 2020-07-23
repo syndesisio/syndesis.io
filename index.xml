@@ -6,7 +6,7 @@
     <description>Recent content on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 11 May 2020 10:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2020 07:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://syndesis.io/index.xml" rel="self" type="application/rss+xml" />
     
@@ -197,6 +197,16 @@ Issue Labels We use GitHub labels to categorize epics, issues and tasks. They ar
       
       <guid>https://syndesis.io/docs/contributing/engineering_guidelines/</guid>
       <description>Heads up! This is a work in progress... and may always be... Please check back regularly.  The Syndesis maintainers are always looking for the optimum way to develop Syndesis. We aim to have a development process that enables fast delivery across all features and components, taking into account priorities from the community. Speed of development has to be balanced against total community ownership, knowledge sharing, and stability of the software.</description>
+    </item>
+    
+    <item>
+      <title>Announcing Syndesis 1.10</title>
+      <link>https://syndesis.io/blog/2020/07/23/release-1-10/</link>
+      <pubDate>Thu, 23 Jul 2020 07:00:00 +0100</pubDate>
+      
+      <guid>https://syndesis.io/blog/2020/07/23/release-1-10/</guid>
+      <description>Syndesis team is happy to announce the release of version 1.10. We&amp;rsquo;ve worked hard to bring new features and quite a lot of fixes and improvements. Download and try version 1.10.0 and feel free to submit comments or any issue you may find. We&amp;rsquo;re already at work to bring to you more exciting features in the next release!
+What&amp;rsquo;s new in 1.10.0 Let&amp;rsquo;s quickly recap what new feature you will find in these new release:</description>
     </item>
     
     <item>
