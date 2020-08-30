@@ -68,7 +68,7 @@ The goal here is to download the project to your laptop/PC, and to
 install Minishift, the VM that contains OpenShift.
 
 ```shell
-$ git pull https://github.com/syndesisio/syndesis.git # or own fork
+$ git clone https://github.com/syndesisio/syndesis.git # or own fork
 $ cd syndesis
 
 # install minishift
@@ -94,7 +94,7 @@ Kubernetes/OpenShift cluster. You won't be able to publish integrations,
 see activities or gather metrics, or any other functionality that
 requires a running cluster. This is best suited for quick turnaround
 development of backend APIs together with UI features. You'll need three
-components running the Syndesis backend, the PostgreSQL database it uses
+components running: the Syndesis backend, the PostgreSQL database it uses
 and the UI.
 
 Start by running a PostgreSQL database in a Docker container:
@@ -122,11 +122,17 @@ output:
 Started Application in 28.9 seconds (JVM running for 29.615)
 ```
 
+To build the UI, run:
+
+```shell
+$ syndesis ui --install --build
+```
+
 After that UI can be started by running (in two separate terminal
 sessions):
 
 ```shell
-$ (cd app/ui-react && watch:packages)
+$ (cd app/ui-react && yarn watch:packages)
 $ (cd app/ui-react && BACKEND=http://localhost:8080 yarn watch:app:proxy)
 ```
 
