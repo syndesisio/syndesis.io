@@ -1,4 +1,4 @@
-const gulp = require('gulp');
+const { src, dest, series, parallel, watch } = require('gulp');
 const plugins = require('gulp-load-plugins')();
 
 const jsLibs = [
@@ -12,25 +12,25 @@ const jsLibs = [
 
 const port = 7000;
 
-gulp.task('css', function () {
-  return gulp.src('./themes/syndesis/scss/**/*.scss')
+function css() {
+  return src('./themes/syndesis/scss/**/*.scss')
     .pipe(plugins.sass())
     .pipe(plugins.postcss())
-    .pipe(gulp.dest('./themes/syndesis/static/css'));
-});
+    .pipe(dest('./themes/syndesis/static/css'));
+}
 
-gulp.task('js', function () {
-  return gulp.src(jsLibs)
+function js() {
+  return src(jsLibs)
     .pipe(plugins.concat('syndesis.js'))
-    .pipe(gulp.dest('./themes/syndesis/static/js'));
-});
+    .pipe(dest('./themes/syndesis/static/js'));
+}
 
-gulp.task('fonts', function() {
-  return gulp.src('./node_modules/@fortawesome/fontawesome-free/webfonts/*')
-    .pipe(gulp.dest('./themes/syndesis/static/fonts'));
-});
+function fonts() {
+  return src('./node_modules/@fortawesome/fontawesome-free/webfonts/*')
+    .pipe(dest('./themes/syndesis/static/fonts'));
+}
 
-gulp.task('hugo', function (cb) {
+function hugo(cb) {
   const exec = require('child_process').exec;
 
   const githubProject = process.env['CIRCLE_PROJECT_USERNAME'];
@@ -44,9 +44,9 @@ gulp.task('hugo', function (cb) {
     console.log(stderr);
     cb(err);
   });
-});
+}
 
-gulp.task('hugo:serve', function (cb) {
+function hugo_serve(cb) {
   const exec = require('child_process').exec;
 
   console.log('\n' +
@@ -65,19 +65,19 @@ gulp.task('hugo:serve', function (cb) {
     console.log(stderr);
     cb(err);
   });
-});
+}
 
-gulp.task('optimize-css', function() {
-  return gulp.src(['./public/**/*.css'])
+function optimize_css() {
+  return src(['./public/**/*.css'])
     .pipe(plugins.uncss({
       html: ['./public/**/*.html'],
       ignore: [/^\.sps.*/, /\.collapse\.show$/, /\.collapsing$/, '.sidenav.active', '.anchorjs-icon']
     }))
-    .pipe(gulp.dest('./public'));
-});
+    .pipe(dest('./public'));
+}
 
-gulp.task('optimize-html', function() {
-  return gulp.src(['./public/**/*.html'])
+function optimize_html() {
+  return src(['./public/**/*.html'])
     .pipe(plugins.cacheBust({
       type: 'timestamp'
     }))
@@ -89,40 +89,33 @@ gulp.task('optimize-html', function() {
       minifyURLs: true,
       removeComments: true
     }))
-    .pipe(gulp.dest('./public'));
-});
+    .pipe(dest('./public'));
+}
 
-gulp.task('optimize-js', function() {
-  return gulp.src(['./public/**/*.js'])
+function optimize_js() {
+  return src(['./public/**/*.js'])
     .pipe(plugins.uglify())
-    .pipe(gulp.dest('./public'));
-});
+    .pipe(dest('./public'));
+}
 
-gulp.task('watch', gulp.parallel(function() {
+const optimize = series(optimize_html, optimize_css, optimize_js);
+
+function live() {
   console.log('Watching for changes...');
 
-  gulp.watch('./themes/syndesis/scss/**/*.scss').on('change', function() {
-    console.log('Rebuilding CSS...');
-    gulp.task('css');
-  });
+  watch('./themes/syndesis/scss/**/*.scss', css),
+  watch(jsLibs, js)
+}
 
-  gulp.watch(jsLibs).on('change', function() {
-    console.log('Rebuilding JS...');
-    gulp.series('js');
-  });
-}));
-
-gulp.task('optimize', gulp.series('optimize-html', 'optimize-css', 'optimize-js'));
-
-gulp.task('manual:export', (cb) => {
+function manual_export(cb) {
   const svn  = require('node-svn-ultimate');
   return svn.commands.export('https://github.com/syndesisio/syndesis/trunk/doc', 'build/documentation', {
     quiet: true,
     force: true
   }, cb)
-});
+}
 
-gulp.task('manual:render', (cb) => {
+function manual_render(cb) {
   const Asciidoctor = require('asciidoctor.js');
   const asciidoctor = Asciidoctor();
 
@@ -159,9 +152,9 @@ gulp.task('manual:render', (cb) => {
   }
 
   cb();
-});
+}
 
-gulp.task('serve', gulp.parallel('watch', 'hugo:serve'));
-gulp.task('manual', gulp.series('manual:export', 'manual:render'));
-gulp.task('build', gulp.series('manual', 'fonts', 'css', 'js', 'hugo', 'optimize'));
-gulp.task('default', gulp.series(gulp.parallel('manual', 'js', 'css'), gulp.parallel('hugo:serve', 'watch')));
+const manual = series(manual_export, manual_render);
+const serve = parallel(live, hugo_serve);
+exports.build = series(parallel(manual, fonts, css, js, hugo), optimize);
+exports.default = series(parallel(manual, js, css), parallel(hugo_serve, live));
