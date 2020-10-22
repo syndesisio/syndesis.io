@@ -77,5 +77,37 @@ body {
 }
 
 .article {
-  padding-bottom: 21rem;
+  padding: 2rem 2rem 21rem 2rem;
+
+  table.tableblock {
+    border: 1px solid $pf-black-300;
+
+    thead {
+      background-color: $pf-black-150;
+    }
+
+    tr {
+      border-bottom: 1px solid $pf-black-300;
+    }
+
+    td,
+    th {
+      border-right: 1px solid $pf-black-300;
+      padding: .4rem;
+    }
+  }
+
+  .paragraph {
+    padding-top: 1rem;
+  }
+
+  .title {
+    font-weight: bold;
+    padding-bottom: 1rem;
+  }
+
+  .admonitionblock .title {
+    background-color: $pf-light-blue-100;
+    padding: 1rem;
+  }
 }
