@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Developer Docs on Syndesis - Open source integration platform</title>
+    <title>Documentation on Syndesis - Open source integration platform</title>
     <link>https://syndesis.io/docs/</link>
-    <description>Recent content in Developer Docs on Syndesis - Open source integration platform</description>
+    <description>Recent content in Documentation on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
     

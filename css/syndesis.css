@@ -47,9 +47,11 @@ a:active,
 a:hover {
   outline-width: 0; }
 
+b,
 strong {
   font-weight: inherit; }
 
+b,
 strong {
   font-weight: bolder; }
 
@@ -169,7 +171,8 @@ ul {
 
 ol ol,
 ul ul,
-ol ul {
+ol ul,
+ul ol {
   margin-bottom: 0; }
 
 a {
@@ -201,6 +204,13 @@ button,
 table {
   border-collapse: collapse;
   background-color: transparent; }
+
+caption {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #636c72;
+  text-align: left;
+  caption-side: bottom; }
 
 th {
   text-align: left; }
@@ -853,6 +863,12 @@ with Font Awesome, made to look a little bit more like an admonition in the mean
     color: #bf6900;
     font-weight: 900; }
 
+#header h1 {
+  margin-left: 23rem; }
+
+#content {
+  margin-left: 23rem; }
+
 .blog .post .hero h1 {
   padding: 0 0 5px; }
 
@@ -931,9 +947,11 @@ a:active,
 a:hover {
   outline-width: 0; }
 
+b,
 strong {
   font-weight: inherit; }
 
+b,
 strong {
   font-weight: bolder; }
 
@@ -1053,7 +1071,8 @@ ul {
 
 ol ol,
 ul ul,
-ol ul {
+ol ul,
+ul ol {
   margin-bottom: 0; }
 
 a {
@@ -1085,6 +1104,13 @@ button,
 table {
   border-collapse: collapse;
   background-color: transparent; }
+
+caption {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  color: #636c72;
+  text-align: left;
+  caption-side: bottom; }
 
 th {
   text-align: left; }
@@ -1994,3 +2020,6 @@ body {
   margin-top: -100px;
   height: 100px;
   visibility: hidden; }
+
+.article {
+  padding-bottom: 21rem; }
