@@ -105,6 +105,7 @@ function live() {
 
   watch('./themes/syndesis/scss/**/*.scss', css),
   watch(jsLibs, js)
+  watch('asciidoctor-processor.js', manual_render)
 }
 
 function manual_export(cb) {
