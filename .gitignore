@@ -1,11 +1,13 @@
 /node_modules
 /public
+/build
 /themes/syndesis/static/js
 /themes/syndesis/static/css
 /themes/syndesis/static/fonts
 /themes/syndesis/static/CNAME
 /static/CNAME
 /data/sri
+/documentation
 .cache
 .config
 .yarnrc
