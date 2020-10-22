@@ -5,6 +5,8 @@ module.exports = function (registry) {
     self.process(function () {
       return `
 <link href="https://fonts.googleapis.com/css?family=Quicksand&amp;display=swap" rel="stylesheet">
+</head>
+<body class="page">
 <div id="wrapper">
   <a href="https://github.com/syndesisio" class="github-corner hidden-md-down" aria-label="View source on Github" rel="nofollow" target="_blank">
     <svg width="74" height="74" viewBox="0 0 250 250" style="fill:#fff;z-index:2000;color:#0088ce;mix-blend-mode:screen;position:absolute;top:0;border:0;right:0" aria-hidden="true">
@@ -27,9 +29,9 @@ module.exports = function (registry) {
     <span class="navbar-toggler-icon"></span>
   </button>
   <a href="/" title="Syndesis - Open source integration platform">
-  <svg id="artwork" xmlns="http://www.w3.org/2000/svg" 
+  <svg id="artwork" xmlns="http://www.w3.org/2000/svg"
     width="190px" height="39.33px"
-    viewBox="0 0 1300 300" 
+    viewBox="0 0 1300 300"
     preserveAspectRatio="xMidYMin slice">
       <defs>
         <style>.cls-1{fill:#9adde8;}.cls-2{fill:#49badc;}.cls-3{fill:#fff;}</style>
@@ -52,7 +54,7 @@ module.exports = function (registry) {
       <path class="cls-3" d="M1212.62,210.23c-23.56,0-43.44-17.22-44.06-41.6h14.35c.41,22.74,17.21,29.3,37.09,29.3,16.6,0,35.66-9.63,35.66-28.48,0-14.76-10.66-21.73-23.16-25.82-24-8-60.45-15.58-60.45-47.55,0-25.82,23.77-40,47.13-40,19.47,0,44.88,6.77,48.16,35.25H1253c-.41-18.24-17-23-32.17-23-15.37,0-34.43,7.79-34.43,25.82,0,42,83.61,23,83.61,74C1270,200.39,1242.34,210.23,1212.62,210.23Z"/>
     </svg>
   </a>
-  
+
   <div class="collapse navbar-collapse" id="top-nav">
     <ul class="navbar-nav ml-auto mt-2 mt-md-0 mr-lg-4">
       <li class="nav-item ml-lg-3 ml-0">
