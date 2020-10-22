@@ -1,12 +1,13 @@
 module.exports = function (registry) {
   registry.docinfoProcessor(function () {
-    var self = this;
-    self.atLocation('head');
-    self.process(function () {
-      return `
-<link href="https://fonts.googleapis.com/css?family=Quicksand&amp;display=swap" rel="stylesheet">
-</head>
-<body class="page">
+    this.atLocation('head');
+    this.process(function () {
+      return `<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">`;
+    });
+  });
+  registry.postprocessor(function() {
+    this.process(function (doc, output) {
+      return output.replace(/<body([^>]*)(class="([^"]+)")([^>]*)>/, `<body class="page $3" $1 $4>
 <div id="wrapper">
   <a href="https://github.com/syndesisio" class="github-corner hidden-md-down" aria-label="View source on Github" rel="nofollow" target="_blank">
     <svg width="74" height="74" viewBox="0 0 250 250" style="fill:#fff;z-index:2000;color:#0088ce;mix-blend-mode:screen;position:absolute;top:0;border:0;right:0" aria-hidden="true">
@@ -79,16 +80,7 @@ module.exports = function (registry) {
     </div>
   </nav>
 
-  <div class="article">
-`;
-    });
-  });
-  registry.docinfoProcessor(function () {
-    var self = this;
-    self.atLocation('footer');
-    self.process(function () {
-      return `
-  </div>
+  <div class="article">`).replace(/<\/body>/, `</div>
 
   <footer class="page-footer text-center">
     <div class="row">
@@ -120,7 +112,8 @@ module.exports = function (registry) {
     </div>
   </footer>
 </div>
-`;
+</body>
+`);
     });
   });
 }
