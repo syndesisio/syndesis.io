@@ -105,7 +105,7 @@ function live() {
 
   watch('./themes/syndesis/scss/**/*.scss', css),
   watch(jsLibs, js)
-  watch('asciidoctor-processor.js', manual_render)
+  watch('asciidoc-processor.js', manual_render)
 }
 
 function manual_export(cb) {
@@ -125,6 +125,7 @@ function manual_render(cb) {
 
   const registry = asciidoctor.Extensions.create();
   require('./asciidoc-processor.js')(registry);
+  delete require.cache[require.resolve('./asciidoc-processor.js')];
 
   const sections = ['tutorials', 'integrating-applications', 'connecting', 'developing_extensions', 'managing_environments'];
 
