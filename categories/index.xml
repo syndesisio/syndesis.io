@@ -5,10 +5,6 @@
     <link>https://syndesis.io/categories/</link>
     <description>Recent content in Categories on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    
-	<atom:link href="https://syndesis.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-gb</language><atom:link href="https://syndesis.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

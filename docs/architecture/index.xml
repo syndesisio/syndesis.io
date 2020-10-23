@@ -5,11 +5,7 @@
     <link>https://syndesis.io/docs/architecture/</link>
     <description>Recent content in Architecture on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    
-	<atom:link href="https://syndesis.io/docs/architecture/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-gb</language><atom:link href="https://syndesis.io/docs/architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Syndesis Architecture</title>
       <link>https://syndesis.io/docs/architecture/syndesis/</link>

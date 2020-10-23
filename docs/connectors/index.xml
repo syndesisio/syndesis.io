@@ -5,11 +5,7 @@
     <link>https://syndesis.io/docs/connectors/</link>
     <description>Recent content in Connectors on Syndesis - Open source integration platform</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-gb</language>
-    
-	<atom:link href="https://syndesis.io/docs/connectors/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-gb</language><atom:link href="https://syndesis.io/docs/connectors/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What is a Connector</title>
       <link>https://syndesis.io/docs/connectors/whatis/</link>
