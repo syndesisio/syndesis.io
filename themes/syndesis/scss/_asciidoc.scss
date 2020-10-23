@@ -1,78 +1,107 @@
 .page {
-  &.book {
+  padding-left: 21rem;
 
-    .article {
-      margin: auto;
-      max-width: 80rem;
-      padding: 2rem 2rem 21rem;
+  .article {
+    margin: auto;
+    max-width: 80rem;
 
-      table.tableblock {
-        border: 1px solid $pf-black-300;
+    table.tableblock {
+      border: 1px solid $pf-black-300;
 
-        thead {
-          background-color: $pf-black-150;
-        }
-
-        tr {
-          border-bottom: 1px solid $pf-black-300;
-        }
-
-        td,
-        th {
-          border-right: 1px solid $pf-black-300;
-          padding: .4rem;
-        }
+      thead {
+        background-color: $pf-black-150;
       }
 
-      .paragraph {
-        padding-top: 1rem;
+      tr {
+        border-bottom: 1px solid $pf-black-300;
+      }
+
+      td,
+      th {
+        border-right: 1px solid $pf-black-300;
+        padding: .4rem;
+      }
+    }
+
+    .paragraph {
+      padding-top: 1rem;
+    }
+
+    .title {
+      font-weight: bold;
+      padding-bottom: 1rem;
+    }
+
+    .admonitionblock {
+      margin-bottom: 1rem;
+      padding: 1rem;
+
+      &.note {
+        background-color: $state-info-bg;
+        border-top: 3px solid $state-info-border;
+      }
+
+      &.caution {
+        background-color: $state-warning-bg;
+        border-top: 3px solid $state-warning-border;
+      }
+
+      &.important {
+        background-color: $state-warning-bg;
+        border-top: 3px solid $state-warning-border;
+      }
+
+      &.tip {
+        background-color: $state-success-bg;
+        border-top: 3px solid $state-success-border;
       }
 
       .title {
-        font-weight: bold;
-        padding-bottom: 1rem;
-      }
-
-      .admonitionblock {
-        margin-bottom: 1rem;
-        padding: 1rem;
-
-        &.note {
-          background-color: $state-info-bg;
-          border-top: 3px solid $state-info-border;
-        }
-
-        &.caution {
-          background-color: $state-warning-bg;
-          border-top: 3px solid $state-warning-border;
-        }
-
-        &.important {
-          background-color: $state-warning-bg;
-          border-top: 3px solid $state-warning-border;
-        }
-
-        &.tip {
-          background-color: $state-success-bg;
-          border-top: 3px solid $state-success-border;
-        }
-
-        .title {
-          padding-bottom: 0;
-          padding-right: 1rem;
-        }
-      }
-
-      .image img {
-        height: auto;
-        max-width: 100%;
+        padding-bottom: 0;
+        padding-right: 1rem;
       }
     }
 
-    #footer-text {
-      color: $gray;
-      font-size: .8rem;
-      text-align: right;
+    .image img {
+      height: auto;
+      max-width: 100%;
     }
+  }
+
+  #footer-text {
+    color: $gray;
+    font-size: .8rem;
+    text-align: right;
+  }
+
+  #toc {
+    background-color: #eee;
+    color: $pf-black-500;
+    height: 100vh;
+    left: 0;
+    padding: 7rem 0 0 1rem;
+    position: fixed;
+    top: 0;
+    width: 20rem;
+
+    ul {
+      list-style: none;
+      max-height: 86vh; // 100 - 7 (#toc padding-top)
+      overflow: auto;
+      padding-left: 0;
+
+      li {
+        padding: .3rem 0;
+      }
+    }
+
+    a {
+      color: $pf-black-500;
+    }
+  }
+
+  #toctitle {
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 }
