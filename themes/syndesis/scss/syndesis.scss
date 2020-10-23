@@ -78,6 +78,7 @@ body {
 
 .article {
   padding: 2rem 2rem 21rem 2rem;
+  max-width: 80rem;
 
   table.tableblock {
     border: 1px solid $pf-black-300;
@@ -109,5 +110,10 @@ body {
   .admonitionblock .title {
     background-color: $pf-light-blue-100;
     padding: 1rem;
+  }
+
+  .image img {
+    max-width: 100%;
+    height: auto;
   }
 }
