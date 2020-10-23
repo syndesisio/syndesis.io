@@ -137,7 +137,10 @@ function manual_render(done) {
         'to_file': `documentation/manual/${section}/index.html`,
         'attributes': {
           'linkcss': true,
-          'stylesheet': '/css/syndesis.css'
+          'stylesheet': '/css/syndesis.css',
+          'toc': 'left',
+          'toclevels': 1,
+          'toc-title': 'On this page'
         },
         'extension_registry': registry
       });
