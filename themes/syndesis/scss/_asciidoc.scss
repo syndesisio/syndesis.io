@@ -1,9 +1,3 @@
-/***
-Temporary workarounds for switching from Asciidoc to Markdown.
-***/
-
-// Alternating colors for table rows
-
 #main {
     table {
     display: table;
@@ -57,67 +51,107 @@ Temporary workarounds for switching from Asciidoc to Markdown.
   }
 }
 
-/** Admonition
-This is by NO means really an admonition--it's just a Bootstrap alert
-with Font Awesome, made to look a little bit more like an admonition in the meantime.
-**/
-.admonition {
-  display: table;
-  
-  .fa, .far {
-    display: table-cell;
-    font-size: x-large;
-    padding-right: 0.75em;
-    vertical-align: middle;
+.page.book {
+
+  .article {
+    padding: 2rem 2rem 21rem 2rem;
+    max-width: 80rem;
+
+    table.tableblock {
+      border: 1px solid $pf-black-300;
+
+      thead {
+        background-color: $pf-black-150;
+      }
+
+      tr {
+        border-bottom: 1px solid $pf-black-300;
+      }
+
+      td,
+      th {
+        border-right: 1px solid $pf-black-300;
+        padding: .4rem;
+      }
+    }
+
+    .paragraph {
+      padding-top: 1rem;
+    }
+
+    .title {
+      font-weight: bold;
+      padding-bottom: 1rem;
+    }
+
+    .admonitionblock {
+      margin-bottom: 1rem;
+      padding: 1rem;
+
+      &.note {
+        background-color: $state-info-bg;
+      }
+
+      &.caution {
+        background-color: $state-warning-bg;
+      }
+
+      &.important {
+        background-color: $state-warning-bg;
+      }
+
+      &.tip {
+        background-color: $state-success-bg;
+      }
+
+      .title {
+        padding-bottom: 0;
+        padding-right: 1rem;
+      }
+    }
+
+    .image img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
-  .caution:before {
-    content: "\f06d";
-    color: #bf3400;
-    font-weight: 900;
+  /** Admonition
+  This is by NO means really an admonition--it's just a Bootstrap alert
+  with Font Awesome, made to look a little bit more like an admonition in the meantime.
+  **/
+  .admonition {
+    display: table;
+
+    .fa, .far {
+      display: table-cell;
+      font-size: x-large;
+      padding-right: 0.75em;
+      vertical-align: middle;
+    }
+
+    .caution:before {
+      content: "\f06d";
+      color: #bf3400;
+      font-weight: 900;
+    }
+
+    .important:before {
+      content: "\f06a";
+      color: #bf0000;
+      font-weight: 900;
+    }
+
+    .note:before {
+      content: "\f05a";
+      color: #19407c;
+      font-weight: 900;
+    }
+
+    .warning:before {
+      content: "\f071";
+      color: #bf6900;
+      font-weight: 900;
+    }
   }
-
-  .important:before {
-    content: "\f06a";
-    color: #bf0000;
-    font-weight: 900;
-  }
-
-  .note:before {
-    content: "\f05a";
-    color: #19407c;
-    font-weight: 900;
-  }
-
-  .warning:before {
-    content: "\f071";
-    color: #bf6900;
-    font-weight: 900;
-  }
 }
-
-#header h1 {
-  margin-left: 23rem;
-}
-
-#toc {
-  position: fixed;
-  width: 20rem;
-  z-index: 1000;
-  left: 0;
-  background: white;
-  height: 100%;
-  overflow: auto;
-  top: 5rem;
-}
-
-#toc ul {
-  list-style: none;
-  padding-left: 1rem;
-  line-height: 1.7;
-}
-
-#content {
-  margin-left: 23rem;
-}
-
