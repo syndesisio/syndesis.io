@@ -2022,7 +2022,8 @@ body {
   visibility: hidden; }
 
 .article {
-  padding: 2rem 2rem 21rem 2rem; }
+  padding: 2rem 2rem 21rem 2rem;
+  max-width: 80rem; }
   .article table.tableblock {
     border: 1px solid #d1d1d1; }
     .article table.tableblock thead {
@@ -2041,3 +2042,6 @@ body {
   .article .admonitionblock .title {
     background-color: #beedf9;
     padding: 1rem; }
+  .article .image img {
+    max-width: 100%;
+    height: auto; }
