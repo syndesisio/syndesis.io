@@ -39,18 +39,22 @@
 
         &.note {
           background-color: $state-info-bg;
+          border-top: 3px solid $state-info-border;
         }
 
         &.caution {
           background-color: $state-warning-bg;
+          border-top: 3px solid $state-warning-border;
         }
 
         &.important {
           background-color: $state-warning-bg;
+          border-top: 3px solid $state-warning-border;
         }
 
         &.tip {
           background-color: $state-success-bg;
+          border-top: 3px solid $state-success-border;
         }
 
         .title {
@@ -63,6 +67,12 @@
         height: auto;
         max-width: 100%;
       }
+    }
+
+    #footer-text {
+      color: $gray;
+      font-size: .8rem;
+      text-align: right;
     }
   }
 }
