@@ -152,6 +152,7 @@ function manual_render(cb) {
       cb(new Error(text));
     }
   }
+  src('build/documentation/images/**/*.png').pipe(dest('documentation/manual'));
 
   cb();
 }
