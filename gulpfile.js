@@ -151,6 +151,9 @@ function manual_render(cb) {
         .join('\n');
       cb(new Error(text));
     }
+    src(`build/documentation/${section}/images/**/*.png`, {
+      base: `build/documentation/${section}`
+    }).pipe(dest(`documentation/manual/${section}`));
   }
   src('build/documentation/images/**/*.png').pipe(dest('documentation/manual'));
 
@@ -159,5 +162,5 @@ function manual_render(cb) {
 
 const manual = series(manual_export, manual_render);
 const serve = parallel(live, hugo_serve);
-exports.build = series(parallel(manual, fonts, css, js, hugo), optimize);
+exports.build = series(parallel(manual, fonts, css, js), hugo, optimize);
 exports.default = series(parallel(manual, js, css), parallel(hugo_serve, live));
