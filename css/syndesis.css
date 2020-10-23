@@ -799,51 +799,72 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-.page.book .article {
-  margin: auto;
-  max-width: 80rem;
-  padding: 2rem 2rem 21rem; }
-  .page.book .article table.tableblock {
-    border: 1px solid #d1d1d1; }
-    .page.book .article table.tableblock thead {
-      background-color: #f5f5f5; }
-    .page.book .article table.tableblock tr {
-      border-bottom: 1px solid #d1d1d1; }
-    .page.book .article table.tableblock td,
-    .page.book .article table.tableblock th {
-      border-right: 1px solid #d1d1d1;
-      padding: .4rem; }
-  .page.book .article .paragraph {
-    padding-top: 1rem; }
-  .page.book .article .title {
-    font-weight: bold;
-    padding-bottom: 1rem; }
-  .page.book .article .admonitionblock {
-    margin-bottom: 1rem;
-    padding: 1rem; }
-    .page.book .article .admonitionblock.note {
-      background-color: #d9edf7;
-      border-top: 3px solid #bcdff1; }
-    .page.book .article .admonitionblock.caution {
-      background-color: #fcf8e3;
-      border-top: 3px solid #faf2cc; }
-    .page.book .article .admonitionblock.important {
-      background-color: #fcf8e3;
-      border-top: 3px solid #faf2cc; }
-    .page.book .article .admonitionblock.tip {
-      background-color: #dff0d8;
-      border-top: 3px solid #d0e9c6; }
-    .page.book .article .admonitionblock .title {
-      padding-bottom: 0;
-      padding-right: 1rem; }
-  .page.book .article .image img {
-    height: auto;
-    max-width: 100%; }
-
-.page.book #footer-text {
-  color: #464a4c;
-  font-size: .8rem;
-  text-align: right; }
+.page {
+  padding-left: 21rem; }
+  .page .article {
+    margin: auto;
+    max-width: 80rem; }
+    .page .article table.tableblock {
+      border: 1px solid #d1d1d1; }
+      .page .article table.tableblock thead {
+        background-color: #f5f5f5; }
+      .page .article table.tableblock tr {
+        border-bottom: 1px solid #d1d1d1; }
+      .page .article table.tableblock td,
+      .page .article table.tableblock th {
+        border-right: 1px solid #d1d1d1;
+        padding: .4rem; }
+    .page .article .paragraph {
+      padding-top: 1rem; }
+    .page .article .title {
+      font-weight: bold;
+      padding-bottom: 1rem; }
+    .page .article .admonitionblock {
+      margin-bottom: 1rem;
+      padding: 1rem; }
+      .page .article .admonitionblock.note {
+        background-color: #d9edf7;
+        border-top: 3px solid #bcdff1; }
+      .page .article .admonitionblock.caution {
+        background-color: #fcf8e3;
+        border-top: 3px solid #faf2cc; }
+      .page .article .admonitionblock.important {
+        background-color: #fcf8e3;
+        border-top: 3px solid #faf2cc; }
+      .page .article .admonitionblock.tip {
+        background-color: #dff0d8;
+        border-top: 3px solid #d0e9c6; }
+      .page .article .admonitionblock .title {
+        padding-bottom: 0;
+        padding-right: 1rem; }
+    .page .article .image img {
+      height: auto;
+      max-width: 100%; }
+  .page #footer-text {
+    color: #464a4c;
+    font-size: .8rem;
+    text-align: right; }
+  .page #toc {
+    background-color: #eee;
+    color: #8b8d8f;
+    height: 100vh;
+    left: 0;
+    padding: 7rem 0 0 1rem;
+    position: fixed;
+    top: 0;
+    width: 20rem; }
+    .page #toc ul {
+      list-style: none;
+      max-height: 86vh;
+      overflow: auto;
+      padding-left: 0; }
+      .page #toc ul li {
+        padding: .3rem 0; }
+    .page #toc a {
+      color: #8b8d8f; }
+  .page #toctitle {
+    font-size: 1.2rem;
+    font-weight: bold; }
 
 .blog .post .hero h1 {
   padding: 0 0 5px; }
