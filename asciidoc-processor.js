@@ -2,7 +2,8 @@ module.exports = function (registry) {
   registry.docinfoProcessor(function () {
     this.atLocation('head');
     this.process(function () {
-      return `<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">`;
+      return `<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://syndesis.io/images/favicon.png">`;
     });
   });
   registry.postprocessor(function() {
