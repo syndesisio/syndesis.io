@@ -116,7 +116,7 @@ function manual_export(cb) {
   }, cb)
 }
 
-function manual_render(cb) {
+function manual_render(done) {
   const Asciidoctor = require('asciidoctor.js');
   const asciidoctor = Asciidoctor();
 
@@ -127,37 +127,53 @@ function manual_render(cb) {
   require('./asciidoc-processor.js')(registry);
   delete require.cache[require.resolve('./asciidoc-processor.js')];
 
-  const sections = ['tutorials', 'integrating-applications', 'connecting', 'developing_extensions', 'managing_environments'];
+  const asciidoctor_render = function(section) {
+    const name = `manual_render:asciidoctor (${section})`;
+    return {[name]: function(cb) {
+      asciidoctor.convertFile(`build/documentation/${section}/master.adoc`, {
+        'doctype': 'book',
+        'safe': 'safe',
+        'mkdirs': true,
+        'to_file': `documentation/manual/${section}/index.html`,
+        'attributes': {
+          'linkcss': true,
+          'stylesheet': '/css/syndesis.css'
+        },
+        'extension_registry': registry
+      });
 
-  for (const section of sections) {
-    asciidoctor.convertFile(`build/documentation/${section}/master.adoc`, {
-      'doctype': 'book',
-      'safe': 'safe',
-      'mkdirs': true,
-      'to_file': `documentation/manual/${section}/index.html`,
-      'attributes': {
-        'linkcss': true,
-        'stylesheet': '/css/syndesis.css'
-      },
-      'extension_registry': registry
-    });
+      const messages = logger.getMessages();
+      const hasErrors = messages.find(m => m.severity === 'ERROR');
 
-    const messages = logger.getMessages();
-    const hasErrors = messages.find(m => m.severity === 'ERROR');
+      if (hasErrors) {
+        const text = messages
+          .map(m => `${m.severity}: ${m.message['text']}`)
+          .join('\n');
+        cb(new Error(text));
+      }
 
-    if (hasErrors) {
-      const text = messages
-        .map(m => `${m.severity}: ${m.message['text']}`)
-        .join('\n');
-      cb(new Error(text));
-    }
-    src(`build/documentation/${section}/images/**/*.png`, {
-      base: `build/documentation/${section}`
-    }).pipe(dest(`documentation/manual/${section}`));
+      cb();
+    }}[name];
   }
-  src('build/documentation/images/**/*.png').pipe(dest('documentation/manual'));
 
-  cb();
+  const images = function(section) {
+    const name = `manual_render:images (${section})`;
+    return {[name]: function(cb) {
+      return src(`build/documentation/${section}/images/**/*.png`, {
+        base: `build/documentation/${section}`
+      }).pipe(dest(`documentation/manual/${section}`));
+    }}[name];
+  }
+
+  const sections = ['tutorials', 'integrating-applications', 'connecting', 'developing_extensions', 'managing_environments'];
+  const tasks = sections.flatMap(s => [asciidoctor_render(s), images(s)])
+
+  function manual_render_done(tasksDone) {
+    tasksDone();
+    done();
+  }
+
+  return parallel(...tasks, manual_render_done)();
 }
 
 const manual = series(manual_export, manual_render);
