@@ -799,79 +799,42 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-#main table {
-  display: table;
-  border-collapse: collapse;
-  border-color: grey;
-  border-spacing: 2px;
-  empty-cells: hide;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  overflow: auto;
-  width: 100%; }
-  #main table thead {
-    display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit; }
-    #main table thead tr :empty {
-      display: none; }
-  #main table tbody {
-    display: table-row-group;
-    vertical-align: middle;
-    border-color: inherit; }
-  #main table th {
-    font-weight: 600; }
-  #main table tr {
-    background-color: #fff;
-    border-top: 1px solid #c6cbd1;
-    display: table-row; }
-  #main table tr:nth-child(2n) {
-    background-color: #f6f8fa; }
-  #main table td,
-  #main table th {
-    border: 1px solid #dfe2e5;
-    padding: 6px 13px; }
-
-.page.book {
-  /** Admonition
-  This is by NO means really an admonition--it's just a Bootstrap alert
-  with Font Awesome, made to look a little bit more like an admonition in the meantime.
-  **/ }
-  .page.book .article {
-    padding: 2rem 2rem 21rem 2rem;
-    max-width: 80rem; }
-    .page.book .article table.tableblock {
-      border: 1px solid #d1d1d1; }
-      .page.book .article table.tableblock thead {
-        background-color: #f5f5f5; }
-      .page.book .article table.tableblock tr {
-        border-bottom: 1px solid #d1d1d1; }
-      .page.book .article table.tableblock td,
-      .page.book .article table.tableblock th {
-        border-right: 1px solid #d1d1d1;
-        padding: .4rem; }
-    .page.book .article .paragraph {
-      padding-top: 1rem; }
-    .page.book .article .title {
-      font-weight: bold;
-      padding-bottom: 1rem; }
-    .page.book .article .admonitionblock {
-      margin-bottom: 1rem;
-      padding: 1rem; }
-      .page.book .article .admonitionblock.note {
-        background-color: #d9edf7; }
-      .page.book .article .admonitionblock.caution {
-        background-color: #fcf8e3; }
-      .page.book .article .admonitionblock.important {
-        background-color: #fcf8e3; }
-      .page.book .article .admonitionblock.tip {
-        background-color: #dff0d8; }
-      .page.book .article .admonitionblock .title {
-        padding-bottom: 0;
-        padding-right: 1rem; }
-    .page.book .article .image img {
-      max-width: 100%;
-      height: auto; }
+.page.book .article {
+  margin: auto;
+  max-width: 80rem;
+  padding: 2rem 2rem 21rem; }
+  .page.book .article table.tableblock {
+    border: 1px solid #d1d1d1; }
+    .page.book .article table.tableblock thead {
+      background-color: #f5f5f5; }
+    .page.book .article table.tableblock tr {
+      border-bottom: 1px solid #d1d1d1; }
+    .page.book .article table.tableblock td,
+    .page.book .article table.tableblock th {
+      border-right: 1px solid #d1d1d1;
+      padding: .4rem; }
+  .page.book .article .paragraph {
+    padding-top: 1rem; }
+  .page.book .article .title {
+    font-weight: bold;
+    padding-bottom: 1rem; }
+  .page.book .article .admonitionblock {
+    margin-bottom: 1rem;
+    padding: 1rem; }
+    .page.book .article .admonitionblock.note {
+      background-color: #d9edf7; }
+    .page.book .article .admonitionblock.caution {
+      background-color: #fcf8e3; }
+    .page.book .article .admonitionblock.important {
+      background-color: #fcf8e3; }
+    .page.book .article .admonitionblock.tip {
+      background-color: #dff0d8; }
+    .page.book .article .admonitionblock .title {
+      padding-bottom: 0;
+      padding-right: 1rem; }
+  .page.book .article .image img {
+    height: auto;
+    max-width: 100%; }
 
 .blog .post .hero h1 {
   padding: 0 0 5px; }
