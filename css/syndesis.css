@@ -799,9 +799,6 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 5 Free';
   font-weight: 400; }
 
-/***
-Temporary workarounds for switching from Asciidoc to Markdown.
-***/
 #main table {
   display: table;
   border-collapse: collapse;
@@ -835,39 +832,46 @@ Temporary workarounds for switching from Asciidoc to Markdown.
     border: 1px solid #dfe2e5;
     padding: 6px 13px; }
 
-/** Admonition
-This is by NO means really an admonition--it's just a Bootstrap alert
-with Font Awesome, made to look a little bit more like an admonition in the meantime.
-**/
-.admonition {
-  display: table; }
-  .admonition .fa, .admonition .far {
-    display: table-cell;
-    font-size: x-large;
-    padding-right: 0.75em;
-    vertical-align: middle; }
-  .admonition .caution:before {
-    content: "\f06d";
-    color: #bf3400;
-    font-weight: 900; }
-  .admonition .important:before {
-    content: "\f06a";
-    color: #bf0000;
-    font-weight: 900; }
-  .admonition .note:before {
-    content: "\f05a";
-    color: #19407c;
-    font-weight: 900; }
-  .admonition .warning:before {
-    content: "\f071";
-    color: #bf6900;
-    font-weight: 900; }
-
-#header h1 {
-  margin-left: 23rem; }
-
-#content {
-  margin-left: 23rem; }
+.page.book {
+  /** Admonition
+  This is by NO means really an admonition--it's just a Bootstrap alert
+  with Font Awesome, made to look a little bit more like an admonition in the meantime.
+  **/ }
+  .page.book .article {
+    padding: 2rem 2rem 21rem 2rem;
+    max-width: 80rem; }
+    .page.book .article table.tableblock {
+      border: 1px solid #d1d1d1; }
+      .page.book .article table.tableblock thead {
+        background-color: #f5f5f5; }
+      .page.book .article table.tableblock tr {
+        border-bottom: 1px solid #d1d1d1; }
+      .page.book .article table.tableblock td,
+      .page.book .article table.tableblock th {
+        border-right: 1px solid #d1d1d1;
+        padding: .4rem; }
+    .page.book .article .paragraph {
+      padding-top: 1rem; }
+    .page.book .article .title {
+      font-weight: bold;
+      padding-bottom: 1rem; }
+    .page.book .article .admonitionblock {
+      margin-bottom: 1rem;
+      padding: 1rem; }
+      .page.book .article .admonitionblock.note {
+        background-color: #d9edf7; }
+      .page.book .article .admonitionblock.caution {
+        background-color: #fcf8e3; }
+      .page.book .article .admonitionblock.important {
+        background-color: #fcf8e3; }
+      .page.book .article .admonitionblock.tip {
+        background-color: #dff0d8; }
+      .page.book .article .admonitionblock .title {
+        padding-bottom: 0;
+        padding-right: 1rem; }
+    .page.book .article .image img {
+      max-width: 100%;
+      height: auto; }
 
 .blog .post .hero h1 {
   padding: 0 0 5px; }
@@ -2020,28 +2024,3 @@ body {
   margin-top: -100px;
   height: 100px;
   visibility: hidden; }
-
-.article {
-  padding: 2rem 2rem 21rem 2rem;
-  max-width: 80rem; }
-  .article table.tableblock {
-    border: 1px solid #d1d1d1; }
-    .article table.tableblock thead {
-      background-color: #f5f5f5; }
-    .article table.tableblock tr {
-      border-bottom: 1px solid #d1d1d1; }
-    .article table.tableblock td,
-    .article table.tableblock th {
-      border-right: 1px solid #d1d1d1;
-      padding: .4rem; }
-  .article .paragraph {
-    padding-top: 1rem; }
-  .article .title {
-    font-weight: bold;
-    padding-bottom: 1rem; }
-  .article .admonitionblock .title {
-    background-color: #beedf9;
-    padding: 1rem; }
-  .article .image img {
-    max-width: 100%;
-    height: auto; }
