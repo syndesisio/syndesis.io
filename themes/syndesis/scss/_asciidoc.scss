@@ -1,157 +1,68 @@
-#main {
-    table {
-    display: table;
-    border-collapse: collapse;
-    border-color: grey;
-    border-spacing: 2px;
-    empty-cells: hide;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-    overflow: auto;
-    width: 100%;
+.page {
+  &.book {
 
-    thead {
-      display: table-header-group;
-      vertical-align: middle;
-      border-color: inherit;
+    .article {
+      margin: auto;
+      max-width: 80rem;
+      padding: 2rem 2rem 21rem;
 
-      th,
-      tr {
-        :empty {
-          display: none;
+      table.tableblock {
+        border: 1px solid $pf-black-300;
+
+        thead {
+          background-color: $pf-black-150;
+        }
+
+        tr {
+          border-bottom: 1px solid $pf-black-300;
+        }
+
+        td,
+        th {
+          border-right: 1px solid $pf-black-300;
+          padding: .4rem;
         }
       }
-    }
 
-    tbody {
-      display: table-row-group;
-      vertical-align: middle;
-      border-color: inherit;
-    }
-
-    th {
-      font-weight: 600;
-    }
-
-    tr {
-      background-color: #fff;
-      border-top: 1px solid #c6cbd1;
-      display: table-row;
-    }
-
-    tr:nth-child(2n) {
-      background-color: #f6f8fa;
-    }
-
-    td,
-    th {
-      border: 1px solid #dfe2e5;
-      padding: 6px 13px;
-    }
-  }
-}
-
-.page.book {
-
-  .article {
-    padding: 2rem 2rem 21rem 2rem;
-    max-width: 80rem;
-
-    table.tableblock {
-      border: 1px solid $pf-black-300;
-
-      thead {
-        background-color: $pf-black-150;
-      }
-
-      tr {
-        border-bottom: 1px solid $pf-black-300;
-      }
-
-      td,
-      th {
-        border-right: 1px solid $pf-black-300;
-        padding: .4rem;
-      }
-    }
-
-    .paragraph {
-      padding-top: 1rem;
-    }
-
-    .title {
-      font-weight: bold;
-      padding-bottom: 1rem;
-    }
-
-    .admonitionblock {
-      margin-bottom: 1rem;
-      padding: 1rem;
-
-      &.note {
-        background-color: $state-info-bg;
-      }
-
-      &.caution {
-        background-color: $state-warning-bg;
-      }
-
-      &.important {
-        background-color: $state-warning-bg;
-      }
-
-      &.tip {
-        background-color: $state-success-bg;
+      .paragraph {
+        padding-top: 1rem;
       }
 
       .title {
-        padding-bottom: 0;
-        padding-right: 1rem;
+        font-weight: bold;
+        padding-bottom: 1rem;
       }
-    }
 
-    .image img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
+      .admonitionblock {
+        margin-bottom: 1rem;
+        padding: 1rem;
 
-  /** Admonition
-  This is by NO means really an admonition--it's just a Bootstrap alert
-  with Font Awesome, made to look a little bit more like an admonition in the meantime.
-  **/
-  .admonition {
-    display: table;
+        &.note {
+          background-color: $state-info-bg;
+        }
 
-    .fa, .far {
-      display: table-cell;
-      font-size: x-large;
-      padding-right: 0.75em;
-      vertical-align: middle;
-    }
+        &.caution {
+          background-color: $state-warning-bg;
+        }
 
-    .caution:before {
-      content: "\f06d";
-      color: #bf3400;
-      font-weight: 900;
-    }
+        &.important {
+          background-color: $state-warning-bg;
+        }
 
-    .important:before {
-      content: "\f06a";
-      color: #bf0000;
-      font-weight: 900;
-    }
+        &.tip {
+          background-color: $state-success-bg;
+        }
 
-    .note:before {
-      content: "\f05a";
-      color: #19407c;
-      font-weight: 900;
-    }
+        .title {
+          padding-bottom: 0;
+          padding-right: 1rem;
+        }
+      }
 
-    .warning:before {
-      content: "\f071";
-      color: #bf6900;
-      font-weight: 900;
+      .image img {
+        height: auto;
+        max-width: 100%;
+      }
     }
   }
 }
