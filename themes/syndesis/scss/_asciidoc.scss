@@ -1,5 +1,4 @@
 .page.book {
-  padding-left: 21rem;
 
   .article {
     margin: auto;
@@ -68,6 +67,10 @@
     }
   }
 
+  #content {
+    margin-right: 20rem;
+  }
+
   #footer-text {
     color: $gray;
     font-size: .8rem;
@@ -75,28 +78,28 @@
   }
 
   #toc {
-    background-color: #eee;
-    color: $pf-black-500;
-    height: 100vh;
-    left: 0;
-    padding: 7rem 0 0 1rem;
-    position: fixed;
-    top: 0;
+    border-image: linear-gradient(#9adde8, $pf-blue-400) 0 0 0 100%;
+    border-left: 5px solid;
+    color: $pf-blue-400;
+    padding: 10px 20px 0 30px;
+    position: absolute;
+    right: 0;
+    top: 6.5rem;
     width: 20rem;
 
     ul {
       list-style: none;
-      max-height: 86vh; // 100 - 7 (#toc padding-top)
+      margin-bottom: 0;
       overflow: auto;
       padding-left: 0;
 
       li {
-        padding: .3rem 0;
+        line-height: 1.6rem;
       }
     }
 
     a {
-      color: $pf-black-500;
+      color: $pf-blue-400;
     }
   }
 

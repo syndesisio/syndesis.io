@@ -9,10 +9,10 @@
   bottom: 0;
   color: $pf-white;
   height: 20rem;
-  margin-top: 8em;
-  padding-top: 2rem;
+  margin-top: 2em;
   padding-bottom: 2rem;
-  position: absolute;
+  padding-top: 2rem;
+  position: relative;
   width: 100%;
 
   .row {
@@ -26,8 +26,6 @@
 
   .btn-primary {
     @include button-variant($pf-white, $pf-red-200, $pf-black);
-    font-weight: bold;
-    width: 40%;
 
     @include media-breakpoint-down(lg) {
       width: 70%;
@@ -40,6 +38,9 @@
     @include media-breakpoint-down(xs) {
       width: 70%;
     }
+
+    font-weight: bold;
+    width: 40%;
   }
 
   .rh-logo {
