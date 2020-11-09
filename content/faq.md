@@ -54,20 +54,6 @@ oc login
 syndesis dev --cleanup
 ``` 
 
-## How to enable Data Virtualizations ?
-Syndesis creates and manages data virtualizations to expose as data source connections. In order to enable them you can use the `syndesis` CLI and add the `--datavirt` option to your `syndesis install` command. If you already have a running installation and you want to enable the Data Virtualizations you will have to scale up the `komodo-server` pod and edit the `syndesis-ui` config map in order to enable it:
-
-```
-...
-  "datavirt": {
-    "dvUrl": "/vdb-builder/v1/",
-    "enabled": 1
-  },
-...
-``` 
-
-Save to config and deploy again the `syndesis-ui` to have the Data Virtualizations enabled.
-
 ## Where can I find the server public API documentation?
 You can find `openapi` spec by accessing to `/api/v1/openapi.json` from your base host, ie (`https://syndesis.192.168.42.139.nip.io/api/v1/openapi.json`). You can choose to view either in `json` or `yaml` format. Older versions of Syndesis use `swagger` format. In such case you can access to `/api/v1/swagger.json` instead.
 
