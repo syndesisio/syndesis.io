@@ -1594,6 +1594,13 @@ pre {
   border: 1px solid #ededed;
   overflow-x: auto; }
 
+.docs .docBody h1,
+.docs .docBody h2,
+.docs .docBody h3,
+.docs .docBody h4,
+.docs .docBody h5 {
+  scroll-margin-top: 5rem; }
+
 .docs .docBody h2 {
   font-size: 1.75rem;
   padding: 35px 0 10px; }
