@@ -69,9 +69,9 @@ function hugo_serve(cb) {
 
 function optimize_css() {
   return src(['./public/**/*.css'])
-    .pipe(plugins.uncss({
-      html: ['./public/**/*.html'],
-      ignore: [/^\.sps.*/, /\.collapse\.show$/, /\.collapsing$/, '.sidenav.active', '.anchorjs-icon']
+    .pipe(plugins.purgecss({
+      content: ['./public/**/*.html'],
+      safelist: [/^\.sps.*/, /\.collapse\.show$/, /\.collapsing$/, '.sidenav.active', '.anchorjs-icon']
     }))
     .pipe(dest('./public'));
 }
