@@ -1962,7 +1962,7 @@ SIDEBAR MENU
 
 @media (min-width: 992px) {
   .toc {
-    flex: 0 0 auto; } }
+    flex: 1; } }
 
 #TableOfContents {
   padding: 10px 20px 10px 10px;
