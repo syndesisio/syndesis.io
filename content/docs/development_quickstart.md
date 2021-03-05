@@ -100,7 +100,10 @@ and the UI.
 Start by running a PostgreSQL database in a Docker container:
 
 ```shell
+# Using Docker
 $ docker run -d --rm -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=syndesis postgres
+# or Podman
+$ podman run -d --rm -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=syndesis postgres
 ```
 <div class="alert alert-info admonition" role="alert"> <i class="fa
 important"></i> the `--rm` option will remove the container once done
@@ -122,6 +125,45 @@ output:
 Started Application in 28.9 seconds (JVM running for 29.615)
 ```
 
+To connect the debugger using Java TM Debug Wire Protocol, connect to port `8888`.
+
+As an alternative you can run Syndesis from your Java IDE by launching
+`io.syndesis.server.runtime.Application` from the `server-runtime`
+Maven module and specifying additional Java system properties to
+disable subsystems that are not available outside of the OpenShift
+cluster:
+
+```
+-Dcontrollers.dblogging.enabled=false
+-Dencrypt.key=supersecret
+-Dfeatures.monitoring.enabled=false
+-Dmeta.service=localhost:9090
+-Dmetrics.kind=noop
+-Dopenshift.enabled=false
+-Dspring.cloud.kubernetes.enabled=false
+```
+
+You can optionally run the Metadata backend as well, this is needed
+for verifying connections and dynamic parameter support. You have already
+built the Metadata using `syndesis build ... --backend`, and you only
+need to start it by running:
+
+```shell
+$ (cd app && ./mvnw -f meta spring-boot:run)
+```
+
+To connect the debugger using Java TM Debug Wire Protocol, connect to port `8888`.
+
+As an alternative you can run Metadata backend from your Java IDE by
+launching `io.syndesis.connector.meta.Application` from the `meta` Maven
+module and specifying these additional Java system properties:
+
+```
+-Dserver.port=9090
+-Dmanagement.server.port=9091
+-DLOADER_HOME=target
+```
+
 To build the UI, run:
 
 ```shell
@@ -135,6 +177,24 @@ sessions):
 $ (cd app/ui-react && yarn watch:packages)
 $ (cd app/ui-react && BACKEND=http://localhost:8080 yarn watch:app:proxy)
 ```
+
+You might find that the default memory settings of NodeJS are not sufficient
+enough to run the UI in debug mode. And to that end see error like:
+
+```
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+```
+
+To help with that set the `NODE_OPTIONS` environment variable for example:
+
+```shell
+$ export NODE_OPTIONS=--max-old-space-size=4096
+```
+
+Also, when starting the UI you might see a browser window pop up and close,
+this is expected. This functionality is in place to get the cookie when the
+UI is trying to access backend running behind OAuth proxy, in place of the
+OpenShift login screen.
 
 You can now access a running instance at <https://localhost:3000>.
 
