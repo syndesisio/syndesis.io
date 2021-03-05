@@ -152,7 +152,7 @@ need to start it by running:
 $ (cd app && ./mvnw -f meta spring-boot:run)
 ```
 
-To connect the debugger using Java TM Debug Wire Protocol, connect to port `8888`.
+To connect the debugger using Java TM Debug Wire Protocol, connect to port `9999`.
 
 As an alternative you can run Metadata backend from your Java IDE by
 launching `io.syndesis.connector.meta.Application` from the `meta` Maven
