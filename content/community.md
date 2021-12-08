@@ -21,4 +21,4 @@ Here are some important links:
 * **Mailing list:** [Syndesis Google Group](https://groups.google.com/forum/#!forum/syndesis)
 * **Gitter:** [Syndesis on Gitter](https://gitter.im/syndesisio/community)
 * **Twitter:** [@Syndesisio](https://twitter.com/syndesisio)
-* **YouTube:** [YouTube](https://www.youtube.com/channel/UCuyV0y-rXhyfwkBH9riSK7w)
+* **YouTube:** [YouTube](https://www.youtube.com/playlist?list=PLpcZUc-A4hzstFdV8u6fyPfN3QHsxl1Fo)
